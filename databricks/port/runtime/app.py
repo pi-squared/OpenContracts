@@ -30,6 +30,9 @@ install_configured()
 from databricks_port.transport import start  # noqa: E402
 
 start()
+from databricks_port.worker import start as start_worker  # noqa: E402
+
+worker = start_worker()
 import uvicorn  # noqa: E402
 
 uvicorn.run(

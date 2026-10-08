@@ -2,12 +2,13 @@
 
 This fork keeps stock OpenContracts intact and maintains the Databricks recipe
 in this directory. The recipe pins the fork's stock commit, declares additions,
-and applies seventeen hash-verified patches in order. Patches 0001–0014 reproduce
+and applies eighteen hash-verified patches in order. Patches 0001–0014 reproduce
 live port release 0015. Patches 0015–0016 add automatic quotation repair with
 experiment 95's retained-word mechanism and ordinary quotation rendering.
 Patch 0017 regenerates the GraphQL contract for the served port API. Evidence
 persistence resides in native extraction/annotation services; compatibility
-imports retain the existing port entrypoints.
+imports retain the existing port entrypoints. Patch 0018 defers the empty personal
+corpus to the first upload.
 
 The app uses a new Lakebase project, configurable model endpoints and the native
 OpenContracts workflows. Startup creates its schema, runs migrations and creates
@@ -122,8 +123,9 @@ Repair settings are `GROUNDING_ENABLED`, `GROUNDING_MODEL_ENDPOINT`,
 `GROUNDING_REASONING_EFFORT`, `GROUNDING_TEMPERATURE` and
 `GROUNDING_MAX_TOKENS`; defaults reproduce experiment 95's GPT-OSS-120B settings
 of low reasoning, temperature zero and 4096 output tokens. Endpoint names and
-embedding dimensions remain configurable. Native extraction runs eagerly in
-this pilot; a durable asynchronous queue remains outside this release.
+embedding dimensions remain configurable. Native processing runs in a bounded in-process Celery worker so browser requests
+return promptly. The memory queue does not survive App restarts; a durable
+asynchronous queue remains outside this release.
 
 `/port/installation-status` provides aggregate counts and parser/usage-cap
 checks behind the Databricks App boundary. Use an independent QA installation

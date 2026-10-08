@@ -29,9 +29,9 @@ SECURE_CSP_DIRECTIVES["connect-src"] = list(  # noqa: F405
 ]
 USE_AUTH0 = False
 EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
-# Initial bounded owner-operated runtime. Durable asynchronous recovery is a
-# separate acceptance item; eager execution is not advertised as a durable queue.
-CELERY_TASK_ALWAYS_EAGER = True
+# Native tasks run in a bounded in-process worker so requests return promptly.
+# Its memory queue does not survive App restarts; durable dispatch remains deferred.
+CELERY_TASK_ALWAYS_EAGER = False
 CELERY_TASK_EAGER_PROPAGATES = True
 CELERY_BROKER_URL = "memory://"
 CELERY_RESULT_BACKEND = "cache"
@@ -58,4 +58,5 @@ EMBEDDING_MODEL_ENDPOINT = os.environ["EMBEDDING_MODEL_ENDPOINT"]
 EMBEDDING_DIMENSIONS = int(os.environ["EMBEDDING_DIMENSIONS"])
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 os.environ["OPENAI_BASE_URL"] = OPENAI_API_BASE_URL
+AUTO_CREATE_PERSONAL_CORPUS = False
 MODE = "DATABRICKS_PILOT"

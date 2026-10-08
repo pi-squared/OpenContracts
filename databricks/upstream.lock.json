@@ -71,6 +71,10 @@
     {
       "path": "patches/0017-graphql-schema-parity.patch",
       "sha256": "f28afe5417a9180aabb29392cdfe19b7183b5485a9aec59e699d5e7058e322e8"
+    },
+    {
+      "path": "patches/0018-defer-empty-personal-corpus.patch",
+      "sha256": "11466a0166eb2889c611ada69a79b2c9c4773f04cd653e0392be9c56a29e8dfc"
     }
   ],
   "unchanged_stock_files": {
@@ -112,7 +116,7 @@
     {
       "source": "port/python/databricks_port/settings.py",
       "target": "databricks_port/settings.py",
-      "sha256": "889d40c874f689f06beeef7606ec11d639b8b7049622b7b18cf15ffdf8fef1eb"
+      "sha256": "e65b1dc37f6f6e97e731e84446725099fec6d62a69bbfae6dc2335a0b8a19470"
     },
     {
       "source": "port/python/databricks_port/storage.py",
@@ -142,7 +146,7 @@
     {
       "source": "port/runtime/app.py",
       "target": "app.py",
-      "sha256": "ee6ee45fa7a2a36018d50ab6816212de58b626f6dae972ced46c1021c6f5b402"
+      "sha256": "069e2c5b1a9dc8ff5da0b7f9aa5e3d564d1cb6f0b5119ba8ef37f3467fa0c15f"
     },
     {
       "source": "port/python/databricks_port/retained_parser.py",
@@ -233,6 +237,11 @@
       "source": "port/python/services/domain_labels/domain_evidence.py",
       "target": "opencontractserver/annotations/services/domain_evidence.py",
       "sha256": "540437a65822b6ef04536babed1d491e501c102239328734c5a7b6dcd794f399"
+    },
+    {
+      "source": "port/python/databricks_port/worker.py",
+      "target": "databricks_port/worker.py",
+      "sha256": "54ecd9277ba14f6d474089979cd3f7678c2571f1517fd007e8cf1153dd617c41"
     }
   ],
   "patched_files": {
@@ -286,7 +295,8 @@
     "frontend/src/utils/extractUtils.ts": "cefcce68064305bc14ff428afd04f161277ac77e39c5085f4d01afe47589a6ee",
     "frontend/src/components/knowledge_base/document/document_kb/useDocumentLoader.ts": "e80c5a0055000a0bb8c5f254302029ba601bccfd6e67e9fafc1447fdd76c1e08",
     "frontend/src/components/annotator/hooks/AnalysisHooks.tsx": "d9a5102e0a4b24e710cd9db4863772371a3a848a3e2fb03cf35df7ab7e70fd81",
-    "config/graphql/schema.graphql": "2bfba650aa641ba320ffd03b04916227d4ef8a7229c4a2a313f48fcf16fde1f3"
+    "config/graphql/schema.graphql": "2bfba650aa641ba320ffd03b04916227d4ef8a7229c4a2a313f48fcf16fde1f3",
+    "opencontractserver/users/signals.py": "fd754b6a02a89579bfe31ac14e3f4ac0d619296116525ed1fe3d3994d9eabf69"
   },
   "port_baseline": {
     "repository": "pi-squared/OpenContracts-Databricks",
