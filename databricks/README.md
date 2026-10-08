@@ -2,9 +2,12 @@
 
 This fork keeps stock OpenContracts intact and maintains the Databricks recipe
 in this directory. The recipe pins the fork's stock commit, declares additions,
-and applies sixteen hash-verified patches in order. Patches 0001–0014 reproduce
+and applies seventeen hash-verified patches in order. Patches 0001–0014 reproduce
 live port release 0015. Patches 0015–0016 add automatic quotation repair with
 experiment 95's retained-word mechanism and ordinary quotation rendering.
+Patch 0017 regenerates the GraphQL contract for the served port API. Evidence
+persistence resides in native extraction/annotation services; compatibility
+imports retain the existing port entrypoints.
 
 The app uses a new Lakebase project, configurable model endpoints and the native
 OpenContracts workflows. Startup creates its schema, runs migrations and creates

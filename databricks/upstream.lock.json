@@ -67,6 +67,10 @@
     {
       "path": "patches/0016-generic-quotation-evidence.patch",
       "sha256": "8732a4f9f91c7075ede770954c89ec9f8e1966c0fd9ff94448400a0518ba3771"
+    },
+    {
+      "path": "patches/0017-graphql-schema-parity.patch",
+      "sha256": "f28afe5417a9180aabb29392cdfe19b7183b5485a9aec59e699d5e7058e322e8"
     }
   ],
   "unchanged_stock_files": {
@@ -168,7 +172,7 @@
     {
       "source": "port/python/databricks_port/finding_evidence.py",
       "target": "databricks_port/finding_evidence.py",
-      "sha256": "b908ee854d32f206b2a8f78eb44def3b897b3d1b78a397fbd1d127d143f4cf5c"
+      "sha256": "4edfbd74966e14d61060840e284ef9f20cd8ce61b73fc3cf16c7ed39b2087657"
     },
     {
       "source": "port/migrations/0031_datacell_evidence_anchors.py",
@@ -178,7 +182,7 @@
     {
       "source": "port/python/databricks_port/domain_labels.py",
       "target": "databricks_port/domain_labels.py",
-      "sha256": "76f92fa218143614d6082ca29d209ce17eeb8211254b9b9dd843b9497c38d19c"
+      "sha256": "32952d173ba7a73601fa00eb30b06bf64cf84bc259b477e8c64c4246c0879901"
     },
     {
       "source": "port/migrations/0061_corpus_workflow_label_policy.py",
@@ -213,7 +217,22 @@
     {
       "source": "port/python/databricks_port/grounding.py",
       "target": "databricks_port/grounding.py",
+      "sha256": "65fa8ac88fe440ec59fa59a9246f41c59981db990ef48838b2a4deb3f05868dd"
+    },
+    {
+      "source": "port/python/services/finding_evidence/quotation_evidence.py",
+      "target": "opencontractserver/extracts/services/quotation_evidence.py",
+      "sha256": "b908ee854d32f206b2a8f78eb44def3b897b3d1b78a397fbd1d127d143f4cf5c"
+    },
+    {
+      "source": "port/python/services/grounding/quotation_grounding.py",
+      "target": "opencontractserver/extracts/services/quotation_grounding.py",
       "sha256": "17fefc74847a09054f4f5a360cf80abd3d28a63a05339c478a34211394b888d4"
+    },
+    {
+      "source": "port/python/services/domain_labels/domain_evidence.py",
+      "target": "opencontractserver/annotations/services/domain_evidence.py",
+      "sha256": "540437a65822b6ef04536babed1d491e501c102239328734c5a7b6dcd794f399"
     }
   ],
   "patched_files": {
@@ -266,7 +285,8 @@
     "frontend/src/utils/annotationVisibility.ts": "2178681d44a055637e4517b338770698d27c143e74329e8c0e61f5eb8a8dbd19",
     "frontend/src/utils/extractUtils.ts": "cefcce68064305bc14ff428afd04f161277ac77e39c5085f4d01afe47589a6ee",
     "frontend/src/components/knowledge_base/document/document_kb/useDocumentLoader.ts": "e80c5a0055000a0bb8c5f254302029ba601bccfd6e67e9fafc1447fdd76c1e08",
-    "frontend/src/components/annotator/hooks/AnalysisHooks.tsx": "d9a5102e0a4b24e710cd9db4863772371a3a848a3e2fb03cf35df7ab7e70fd81"
+    "frontend/src/components/annotator/hooks/AnalysisHooks.tsx": "d9a5102e0a4b24e710cd9db4863772371a3a848a3e2fb03cf35df7ab7e70fd81",
+    "config/graphql/schema.graphql": "2bfba650aa641ba320ffd03b04916227d4ef8a7229c4a2a313f48fcf16fde1f3"
   },
   "port_baseline": {
     "repository": "pi-squared/OpenContracts-Databricks",

@@ -8,7 +8,7 @@ stock files. Python/frontend additions are separately declared overlays.
 Patches 0001–0014 and their companion additions reproduce the maintained live
 release 0015 at `171f7a0f31e71a629e00003fd88a632c7a10de79`. Their original
 verification lives in [the source port](https://github.com/pi-squared/OpenContracts-Databricks/tree/171f7a0f31e71a629e00003fd88a632c7a10de79/docs/verification).
-This fork adds 0015–0016. Current verification and deployment instructions are
+This fork adds 0015–0017. Current verification and deployment instructions are
 in [the recipe](../README.md); historical acceptance does not verify a new
 installation by itself.
 
@@ -30,6 +30,9 @@ installation by itself.
 | [0014-parsed-text-location-wording.patch](0014-parsed-text-location-wording.patch) | Parsed-text location wording. |
 | [0015-automatic-retained-word-grounding.patch](0015-automatic-retained-word-grounding.patch) | Automatic retained-word quotation repair. |
 | [0016-generic-quotation-evidence.patch](0016-generic-quotation-evidence.patch) | Generic quotation evidence rendering. |
+
+Patch 0017 deliberately regenerates the served GraphQL SDL and is verified by
+the native schema parity test.
 
 The new grounding boundary preserves native machine findings and human correction
 semantics. Generic quotation rows carry per-finding ownership and active state;

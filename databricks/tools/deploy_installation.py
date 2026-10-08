@@ -68,6 +68,11 @@ class Cli:
             raise RuntimeError(
                 "Databricks command failed; inspect private receipt " + str(log)
             )
+        if arguments[:2] in (["workspace", "import-dir"], ["workspace", "export-dir"]):
+            # Directory operations emit a sequence of progress events, rather
+            # than one JSON document. Their complete output is in the receipt;
+            # publication verifies the transferred bytes separately.
+            return {}
         return json.loads(process.stdout) if process.stdout.strip() else {}
 
 
@@ -357,6 +362,8 @@ def publish(args):
         ],
         check=True,
     )
+    if app.get("compute_status", {}).get("state") != "ACTIVE":
+        cli.run(["apps", "start", state["app_name"]])
     deployment = cli.run(
         [
             "apps",
