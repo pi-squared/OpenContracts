@@ -33,6 +33,8 @@ installation by itself.
 | [0017-graphql-schema-parity.patch](0017-graphql-schema-parity.patch) | Served GraphQL schema parity. |
 | [0018-defer-empty-personal-corpus.patch](0018-defer-empty-personal-corpus.patch) | Defer the empty personal corpus to first upload. |
 
+| [0019-ingestion-readiness.patch](0019-ingestion-readiness.patch) | Shared extraction readiness, truthful source failure and original PDF access. |
+
 Patch 0017 deliberately regenerates the served GraphQL SDL and is verified by
 the native schema parity test.
 

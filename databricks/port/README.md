@@ -28,3 +28,9 @@ source, patch and English-resource lock. Staging requires the pinned stock wheel
 and frozen NLTK data explicitly, produces the local patched wheel and packages
 its parser assets. The native local Warp adapter records independent parse
 identities; selecting it for live uploads uses native persisted pipeline settings.
+
+`extraction_readiness.py` owns the shared admission rule used by native mutations,
+orchestration, queued field workers and the review UI. It checks complete text,
+PDF page coverage and every retained passage’s configured retrieval index before
+any model request. The Warp converter recovers zero-area tokens only from unique
+original PDF glyph locations and retains strict evidence bounds validation.

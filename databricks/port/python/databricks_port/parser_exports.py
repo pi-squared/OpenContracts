@@ -142,7 +142,98 @@ def ai_parse_export(raw, dimensions, image_dimensions, title):
     return element_export(elements, dimensions, title)
 
 
-def warp_export(raw, dimensions, title):
+class SourceGeometryError(ValueError):
+    """Safe failure message containing no PDF text or diagnostic stream."""
+
+
+def _recover_zero_area_tokens(export, source):
+    """Use original glyph geometry only for uniquely located zero-area tokens.
+
+    PyMuPDF returns crop-relative, unrotated glyph boxes. Transform them into
+    the displayed page frame used by PAWLS before comparing locations. Token
+    identity/order and all text remain unchanged.
+    """
+    import pymupdf
+
+    repaired = set()
+    with pymupdf.open(stream=source, filetype="pdf") as pdf:
+        for page_data in export["pawls_file_content"]:
+            index = page_data["page"]["index"]
+            if not isinstance(index, int) or not 0 <= index < len(pdf):
+                raise SourceGeometryError(
+                    "Warp evidence references an unknown PDF page"
+                )
+            page = pdf[index]
+            glyphs = None
+            for position, token in enumerate(page_data["tokens"]):
+                if token["width"] != 0 and token["height"] != 0:
+                    continue
+                if glyphs is None:
+                    glyphs = [
+                        (char["c"], pymupdf.Rect(char["bbox"]) * page.rotation_matrix)
+                        for block in page.get_text("rawdict")["blocks"]
+                        if block.get("type") == 0
+                        for line in block["lines"]
+                        for span in line["spans"]
+                        for char in span["chars"]
+                    ]
+                x, y = token["x"], token["y"]
+                center_x = x + token["width"] / 2
+                center_y = y + token["height"] / 2
+                matches = [
+                    box
+                    for text, box in glyphs
+                    if text == token["text"]
+                    and box.width > 0
+                    and box.height > 0
+                    and box.x0 - 0.5 <= center_x <= box.x1 + 0.5
+                    and box.y0 - 0.5 <= center_y <= box.y1 + 0.5
+                    and 0 <= x <= page.rect.width
+                    and 0 <= y <= page.rect.height
+                    and token["width"] >= 0
+                    and token["height"] >= 0
+                ]
+                if len(matches) != 1:
+                    reason = "ambiguous" if matches else "unavailable"
+                    raise SourceGeometryError(
+                        f"Text geometry on PDF page {index + 1} is {reason}; "
+                        "the document cannot be processed safely"
+                    )
+                box = matches[0]
+                token.update(x=box.x0, y=box.y0, width=box.width, height=box.height)
+                repaired.add((index, position))
+    for annotation in export["labelled_text"]:
+        for key, location in annotation["annotation_json"].items():
+            references = location["tokensJsons"]
+            if not any(
+                (r["pageIndex"], r["tokenIndex"]) in repaired for r in references
+            ):
+                continue
+            page_index = int(key)
+            tokens = []
+            for ref in references:
+                if ref["pageIndex"] != page_index or not 0 <= ref["tokenIndex"] < len(
+                    export["pawls_file_content"][page_index]["tokens"]
+                ):
+                    raise SourceGeometryError(
+                        "Warp annotation references an unknown page token"
+                    )
+                tokens.append(
+                    export["pawls_file_content"][page_index]["tokens"][
+                        ref["tokenIndex"]
+                    ]
+                )
+            box = location["bounds"]
+            location["bounds"] = {
+                "left": min(box["left"], *(t["x"] for t in tokens)),
+                "top": min(box["top"], *(t["y"] for t in tokens)),
+                "right": max(box["right"], *(t["x"] + t["width"] for t in tokens)),
+                "bottom": max(box["bottom"], *(t["y"] + t["height"] for t in tokens)),
+            }
+    return len(repaired)
+
+
+def warp_export(raw, dimensions, title, *, source=None):
     export = copy.deepcopy(raw["result"])
     expected_pages = len(dimensions)
     pages = export["pawls_file_content"]
@@ -154,6 +245,12 @@ def warp_export(raw, dimensions, title):
         raise ValueError("Warp page coverage differs from the complete source PDF")
     if not export.get("content") or not export.get("labelled_text"):
         raise ValueError("Warp has no usable text/structural output")
+    if source is not None:
+        recovered = _recover_zero_area_tokens(export, source)
+        export["geometry_recovery"] = {
+            "policy": "unique-original-pdf-glyph-v1",
+            "recovered_tokens": recovered,
+        }
 
     def bounds(page, rectangle):
         if not isinstance(page, int) or not 0 <= page < expected_pages:
@@ -165,7 +262,9 @@ def warp_export(raw, dimensions, title):
             or not 0 <= left < right <= width + 0.01
             or not 0 <= top < bottom <= height + 0.01
         ):
-            raise ValueError("Warp evidence is outside the original PDF page")
+            raise SourceGeometryError(
+                f"Text geometry on PDF page {page + 1} is degenerate or outside the original PDF page"
+            )
 
     for page, (width, height) in zip(pages, dimensions):
         if (

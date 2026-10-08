@@ -75,6 +75,10 @@
     {
       "path": "patches/0018-defer-empty-personal-corpus.patch",
       "sha256": "11466a0166eb2889c611ada69a79b2c9c4773f04cd653e0392be9c56a29e8dfc"
+    },
+    {
+      "path": "patches/0019-ingestion-readiness.patch",
+      "sha256": "79de8ebbc16c91983f22b2193b8873368d31f6c6dd2226a5e463352c109ebc9e"
     }
   ],
   "unchanged_stock_files": {
@@ -196,7 +200,7 @@
     {
       "source": "port/python/databricks_port/warp_pdf.py",
       "target": "databricks_port/warp_pdf.py",
-      "sha256": "cc069bb35501b267193a9f28df052c1415a66aff6c830bd7a68e4ae0a04c4697"
+      "sha256": "e095f1bd3f7b7916f01d576a14604141f73c7767d9c1999d92416d046a554d8a"
     },
     {
       "source": "port/python/warp_local_parser.py",
@@ -206,7 +210,7 @@
     {
       "source": "port/python/databricks_port/parser_exports.py",
       "target": "databricks_port/parser_exports.py",
-      "sha256": "18181a7bdf2489358f352178885c79122896dd497c9b0a15fbeb0515247b51ac"
+      "sha256": "aedafa2eadc3bedfa2fd506e21462f9f293abfb513b0311d2ba97d5e4776b93d"
     },
     {
       "source": "port/python/databricks_port/definitions.py",
@@ -242,25 +246,35 @@
       "source": "port/python/databricks_port/worker.py",
       "target": "databricks_port/worker.py",
       "sha256": "54ecd9277ba14f6d474089979cd3f7678c2571f1517fd007e8cf1153dd617c41"
+    },
+    {
+      "source": "port/python/databricks_port/extraction_readiness.py",
+      "target": "databricks_port/extraction_readiness.py",
+      "sha256": "0806094a58e5f4fb1211337060057f8a0f89ca2ecc72433b98c4415d306e0568"
+    },
+    {
+      "source": "port/frontend/SourceReadinessNotice.tsx",
+      "target": "frontend/src/components/extracts/SourceReadinessNotice.tsx",
+      "sha256": "97c3c98f5b2b905abd5f0fd1280015dde3a519ed4620020d56038a5ba8273f2e"
     }
   ],
   "patched_files": {
-    "config/graphql/extract_mutations.py": "60b5dee1919a6e4ae0f7f7f247398a3ae21bbf65c3efc7db5f7b4f9745d403a8",
+    "config/graphql/extract_mutations.py": "9f7352e8a62b30ce5d915b88a2544ad46beff3cc76cc8a4ec0058f22281f4d3b",
     "config/graphql/extract_types.py": "6d2618c7e0794f7e7ad4fa900af721b9c1f51b4c17442d8739682fd24e95bcd6",
     "frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx": "405c519cb60694f1af4cc06c699054540e237b72098e29211187788208abde40",
-    "frontend/src/graphql/queries.ts": "32b7dd2043f456f7dbc1889437f21b7aeb25ec4dca5d00e35a78fe6c7f7c2032",
+    "frontend/src/graphql/queries.ts": "b84c47b8eb2b2a799375def93616f6a297ec68d4817eb12a6547314bba95e946",
     "frontend/src/routing/CentralRouteManager.tsx": "0ae8119906219f031106dfdd79e35f71afcf11d9f1d653fabe1925a242bd2752",
-    "frontend/src/types/graphql-api.ts": "e41f631b150248176cf3734ee99b31abe95b271c34e8272d07fa8f724e470a20",
+    "frontend/src/types/graphql-api.ts": "e2ad2c1ddef7fb09ee2b5ff8a248a124bff83c7efd3aa23b7aea43bd1e9b6e0c",
     "opencontractserver/annotations/migrations/0066_reset_database_level_hnsw_settings.py": "689085b4377a76ff6b0b88381d705acbcbcf50d3bf877507da1b41fec02fdb71",
     "opencontractserver/constants/llm.py": "508fc3cc860a2e1f673cac1c27e04c254f86b24f1d8de73e6e6c203b1e6c7395",
     "opencontractserver/extracts/models.py": "93d77a2e735b52b8d5e5403ddb96452f1afc97711afa3bc4e2efe26e95892096",
     "opencontractserver/llms/agents/pydantic_ai_agents.py": "f6b116e05c9a6505962f789bac7d09c398f89806975bc56bcfdabc1b12a69092",
     "opencontractserver/llms/api.py": "85ad3cabb45f8bae1f93dc83a3a6069aead6074bd09d945e80ff578d4b39c6ff",
-    "opencontractserver/tasks/data_extract_tasks.py": "87d7ed5430f49acbfedc7eef0aed0e1ffeed82d3e8d1e402785ae098c821c6d3",
+    "opencontractserver/tasks/data_extract_tasks.py": "2cb93f688b746be449366a2fc90969132aad677f879dfb2fc75c21434784b919",
     "opencontractserver/utils/etl.py": "54a5352786453da7656ad8452e34a0a3bcb5c068da2bb63ab420047ab4edc26e",
     "opencontractserver/utils/structural_sets.py": "631a191e3b64f6820e15a3d2fcc8edf44207fbbfcac6368545ac8a4c1dd39bf6",
     "frontend/src/graphql/mutations.ts": "e13c9c4e93f2da877b602cb0047980243ded3531487b86de9fb26dcdaf52dfb0",
-    "frontend/src/components/extracts/datagrid/DataGrid.tsx": "d7a05c37c6ceda8f7c21c5d9e6cd9a548bc630755564431fdb293683bd038a5f",
+    "frontend/src/components/extracts/datagrid/DataGrid.tsx": "389dd82249706306a20ca1174384d34468a2585417958882d79232df62999bdd",
     "frontend/src/components/annotator/components/modals/EditLabelModal.tsx": "99bfe818c44db21fc3271daaf317d4b3b19aa8bdbcc6aafcb399717b3c88ef49",
     "frontend/src/components/annotator/display/components/Selection.tsx": "03509979923337be2f632d98a4455ca3ed89e04c35299c23d2204b73e1bd1291",
     "frontend/src/components/annotator/hooks/useAllAnnotations.ts": "6a31e9a0dbc3d8d51e74252ed8c5b2262ce5191f34fa7ff6777e0ecf20316dfb",
@@ -286,7 +300,7 @@
     "frontend/src/views/Corpuses.tsx": "5787aa5d48816d9e2cb13e017163d81d13706ffd4a8147c6c54d40a1667f2da1",
     "config/graphql/annotation_types.py": "675fe87fe0ad07646e9aac0d672757593046b6697d1b4a7438293b5dccdc0018",
     "config/graphql/annotation_queries.py": "dc5bf0524a22d487dbfa3cb209e50d6525afea0c93595d2e6dde8547f1763e8e",
-    "config/graphql/document_types.py": "4c2af1a5329f090f3c07e91314905776b004ff927fc6c043b111913c4bd09f30",
+    "config/graphql/document_types.py": "286a83645ea48e1d8f4b44da9b88ecada92d2d0935f603a0e0e3f3c2c7b89d81",
     "opencontractserver/corpuses/models.py": "b1e8c97ceb02f49dd642e0653bf3834b9972a6246f47d588b5781fa3daddac67",
     "opencontractserver/annotations/services/annotation_service.py": "b5edcb4afe18d59104692f8ee7f94727b078dee23735c9502e43327e8f2f2bde",
     "frontend/src/assets/configurations/constants.ts": "7ed0c7896b2eb0eb3a936c1199ab9826a2612633ddd1bf66a8acf44516f66512",
@@ -295,8 +309,12 @@
     "frontend/src/utils/extractUtils.ts": "cefcce68064305bc14ff428afd04f161277ac77e39c5085f4d01afe47589a6ee",
     "frontend/src/components/knowledge_base/document/document_kb/useDocumentLoader.ts": "e80c5a0055000a0bb8c5f254302029ba601bccfd6e67e9fafc1447fdd76c1e08",
     "frontend/src/components/annotator/hooks/AnalysisHooks.tsx": "d9a5102e0a4b24e710cd9db4863772371a3a848a3e2fb03cf35df7ab7e70fd81",
-    "config/graphql/schema.graphql": "2bfba650aa641ba320ffd03b04916227d4ef8a7229c4a2a313f48fcf16fde1f3",
-    "opencontractserver/users/signals.py": "fd754b6a02a89579bfe31ac14e3f4ac0d619296116525ed1fe3d3994d9eabf69"
+    "config/graphql/schema.graphql": "42f1e16f53b799c0aea40e154c4ab33c103fa65dcabbdb4fbaaeb165864a1f27",
+    "opencontractserver/users/signals.py": "fd754b6a02a89579bfe31ac14e3f4ac0d619296116525ed1fe3d3994d9eabf69",
+    "opencontractserver/tasks/extract_orchestrator_tasks.py": "0535a4f421e6aa0923dfa872d2a738c46bb473fa22abe10662bf0005c0e9ad52",
+    "frontend/src/components/extracts/CorpusExtractDetail.tsx": "04547f71befeb4501af9e0be16b794d5ecd133838eabf1a4e13b3389942eb84e",
+    "frontend/src/components/extracts/ExtractDetailContent.tsx": "3cbaf082d99dce33d49c9d3aa6265dbb0c951aa52b4d027325bb5b0dbd23e031",
+    "frontend/src/views/ExtractDetail.tsx": "76542859cc1a1511c4bb661e9e319efac9ccd62e04f09dcb154c87d1c4fad48f"
   },
   "port_baseline": {
     "repository": "pi-squared/OpenContracts-Databricks",

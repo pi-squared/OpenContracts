@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from importlib import metadata, util
 from pathlib import Path
 
-from databricks_port.parser_exports import warp_export
+from databricks_port.parser_exports import SourceGeometryError, warp_export
 
 VERSION = "2.1.0+oc39.1"
 
@@ -101,6 +101,10 @@ def parse_warp_pdf(
         if result.returncode:
             # Warp's diagnostic streams can contain source text. Never copy
             # those streams into an exception, app response or public receipt.
+            if output_path.exists():
+                failure = json.loads(output_path.read_text())
+                if failure.get("error_kind") == "source_geometry":
+                    raise SourceGeometryError(failure["error"])
             raise ValueError(f"Verified Warp parser failed (exit {result.returncode})")
         value = json.loads(output_path.read_text())
     value["export"].update(title=title, description=description)
@@ -194,7 +198,7 @@ def _worker(input_path, output_path, options):
             raise ValueError("Warp needs an unlocked nonempty PDF")
         dimensions = [(page.rect.width, page.rect.height) for page in pdf]
     raw = parse_to_opencontracts(str(input_path), options)
-    export = warp_export({"result": raw}, dimensions, "")
+    export = warp_export({"result": raw}, dimensions, "", source=source)
     packages = {
         name: metadata.version(name)
         for name in (
@@ -234,6 +238,7 @@ def _worker(input_path, output_path, options):
             "packages": packages,
             "patches": receipt["patches"],
             "wheel_sha256": receipt["wheel_sha256"],
+            "geometry_recovery": export["geometry_recovery"],
         },
     }
     output_path.write_bytes(canonical(value))
@@ -245,4 +250,10 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--options", required=True)
     args = parser.parse_args()
-    _worker(args.input, args.output, json.loads(args.options))
+    try:
+        _worker(args.input, args.output, json.loads(args.options))
+    except SourceGeometryError as error:
+        args.output.write_bytes(
+            canonical({"error_kind": "source_geometry", "error": str(error)})
+        )
+        sys.exit(1)

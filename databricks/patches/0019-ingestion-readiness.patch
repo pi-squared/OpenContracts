@@ -1,0 +1,380 @@
+--- a/config/graphql/document_types.py
++++ b/config/graphql/document_types.py
+@@ -259,7 +259,12 @@
+     corpus_pk = None
+     if corpus_id is not None:
+         corpus_pk = int(from_global_id(corpus_id)[1])
+-        if BaseService.get_or_none(Corpus, corpus_pk, info.context.user, request=info.context) is None:
++        if (
++            BaseService.get_or_none(
++                Corpus, corpus_pk, info.context.user, request=info.context
++            )
++            is None
++        ):
+             return []
+ 
+     prefetched = getattr(root, "_prefetched_doc_annotations", None)
+@@ -1032,6 +1037,13 @@
+ 
+ @strawberry.type(name="DocumentType")
+ class DocumentType(Node):
++    @strawberry.field(name="extractionReadinessError")
++    def extraction_readiness_error(self, info: strawberry.Info) -> str | None:
++        from databricks_port.extraction_readiness import document_readiness
++
++        _assert_user_can_read(self, info)
++        return document_readiness(self)
++
+     @strawberry.field(name="parent")
+     def parent(self, info: strawberry.Info) -> DocumentType | None:
+         return resolve_visible_fk(self, info, "parent_id", "DocumentType")
+@@ -2161,9 +2173,13 @@
+         name="docTypeLabels",
+         description="Flat list of distinct ``DOC_TYPE_LABEL`` annotation labels for this document — the corpus list view's per-card badges. Resolved from a single batched prefetch when the parent ``documents`` resolver opts in via ``requests_doc_type_labels``; falls back to one targeted SELECT per document otherwise. Skipping the Relay connection wrapper avoids the per-document COUNT + SELECT + FK descriptor storm the old ``docAnnotations`` shape forced.",
+     )
+-    def doc_type_labels(self, info: strawberry.Info, corpus_id: Annotated[
+-        strawberry.ID | None, strawberry.argument(name="corpusId")
+-    ] = strawberry.UNSET) -> None | (
++    def doc_type_labels(
++        self,
++        info: strawberry.Info,
++        corpus_id: Annotated[
++            strawberry.ID | None, strawberry.argument(name="corpusId")
++        ] = strawberry.UNSET,
++    ) -> None | (
+         list[
+             Annotated[
+                 AnnotationLabelType,
+--- a/config/graphql/extract_mutations.py
++++ b/config/graphql/extract_mutations.py
+@@ -45,6 +45,11 @@
+ )
+ from config.graphql.core.scalars import GenericScalar
+ from config.telemetry import record_event
++from databricks_port.extraction_readiness import (
++    SourceNotReady,
++    ensure_document_ready,
++    ensure_extract_ready,
++)
+ from opencontractserver.corpuses.models import Corpus
+ from opencontractserver.corpuses.services import CorpusDocumentService
+ from opencontractserver.documents.models import Document
+@@ -1015,6 +1020,10 @@
+         )
+ 
+     if auto_start:
++        try:
++            ensure_extract_ready(new_extract)
++        except SourceNotReady as error:
++            return payload_cls(ok=False, message=str(error), obj=new_extract)
+         new_extract.started = timezone.now()
+         new_extract.save(update_fields=["started"])
+         transaction.on_commit(
+@@ -1099,6 +1108,10 @@
+     # Start celery task to process extract
+     pk = from_global_id(extract_id)[1]
+     extract = Extract.objects.get(pk=pk, creator=info.context.user)
++    try:
++        ensure_extract_ready(extract)
++    except SourceNotReady as error:
++        return payload_cls(ok=False, message=str(error), obj=extract)
+     extract.started = timezone.now()
+     extract.save()
+     transaction.on_commit(lambda: run_extract.s(pk, info.context.user.id).apply_async())
+@@ -1511,7 +1524,9 @@
+ 
+             finding_evidence(obj)
+         except Exception:
+-            logger.exception("Quotation re-anchoring unavailable for corrected cell %s", obj.pk)
++            logger.exception(
++                "Quotation re-anchoring unavailable for corrected cell %s", obj.pk
++            )
+ 
+     except Datacell.DoesNotExist:
+         ok = False
+@@ -1569,6 +1584,11 @@
+         )
+         if corpus is None:
+             return payload_cls(ok=False, message="Resource not found", obj=None)
++
++    try:
++        ensure_document_ready(document, corpus.pk if corpus else None)
++    except SourceNotReady as error:
++        return payload_cls(ok=False, message=str(error), obj=None)
+ 
+     extract = Extract.objects.create(
+         name=f"Extract {uuid.uuid4()} for {document.title}",
+--- a/config/graphql/schema.graphql
++++ b/config/graphql/schema.graphql
+@@ -3931,6 +3931,7 @@
+   isCurrent: Boolean!
+   processingStarted: DateTime
+   processingFinished: DateTime
++  extractionReadinessError: String
+   parent: DocumentType
+   title: String
+   description: String
+--- a/frontend/src/components/extracts/CorpusExtractDetail.tsx
++++ b/frontend/src/components/extracts/CorpusExtractDetail.tsx
+@@ -152,7 +152,13 @@
+         </HeaderMain>
+         <Actions>
+           {canStart && (
+-            <IconButton aria-label="Start extract" onClick={handleStartExtract}>
++            <IconButton
++              aria-label="Start extract"
++              onClick={handleStartExtract}
++              disabled={extract?.fullDocumentList?.some((document) =>
++                Boolean(document.extractionReadinessError)
++              )}
++            >
+               <Play size={14} />
+             </IconButton>
+           )}
+--- a/frontend/src/components/extracts/ExtractDetailContent.tsx
++++ b/frontend/src/components/extracts/ExtractDetailContent.tsx
+@@ -1,3 +1,4 @@
++import { SourceReadinessNotice } from "./SourceReadinessNotice";
+ /**
+  * ExtractDetailContent - Shared content component for extract detail views
+  *
+@@ -476,6 +477,10 @@
+     RequestStartExtractInputType
+   >(REQUEST_START_EXTRACT, {
+     onCompleted: (data) => {
++      if (!data.startExtract.ok) {
++        toast.error(data.startExtract.message || "Source unavailable.");
++        return;
++      }
+       toast.success("Extract started!");
+       setExtract((prev) =>
+         prev ? { ...prev, ...data.startExtract.obj } : prev
+@@ -489,7 +494,10 @@
+     exportToCsv: () => dataGridRef.current?.exportToCsv(),
+     refetch: () => refetch(),
+     startExtract: () => {
+-      if (extract) {
++      if (
++        extract &&
++        !rows.some((document) => document.extractionReadinessError)
++      ) {
+         startExtract({ variables: { extractId: extract.id } });
+       }
+     },
+@@ -662,6 +670,12 @@
+         </StatGrid>
+       </StatsSection>
+ 
++      {(isFailed || isRunning) && (
++        <SourceReadinessNotice
++          documents={rows}
++          hasFindings={Boolean(extract.started)}
++        />
++      )}
+       {/* Running state overlay */}
+       {isRunning && (
+         <RunningState>
+@@ -687,6 +701,12 @@
+                 leftIcon={<RefreshCw size={14} />}
+                 onClick={() =>
+                   startExtract({ variables: { extractId: extract.id } })
++                }
++                disabled={
++                  startLoading ||
++                  rows.some((document) =>
++                    Boolean(document.extractionReadinessError)
++                  )
+                 }
+               >
+                 Retry
+--- a/frontend/src/components/extracts/datagrid/DataGrid.tsx
++++ b/frontend/src/components/extracts/datagrid/DataGrid.tsx
+@@ -57,6 +57,8 @@
+ import { SelectDocumentsModal } from "../../widgets/modals/SelectDocumentsModal";
+ import { REQUEST_GET_EXTRACT } from "../../../graphql/queries";
+ import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
++import { SourceReadinessNotice } from "../SourceReadinessNotice";
++import { getDocumentUrl } from "../../../utils/navigationUtils";
+ import { unwrapDatacellData } from "../../../utils/extractUtils";
+ 
+ interface DragState {
+@@ -792,6 +794,11 @@
+           }
+         />
+ 
++        <SourceReadinessNotice
++          documents={rows}
++          hasFindings={Boolean(extract.started)}
++          showOriginal={false}
++        />
+         <div {...getRootProps()} ref={gridRef} style={styles.gridWrapper}>
+           {loading && (
+             <div
+@@ -1030,6 +1037,28 @@
+                             text={row.documentTitle || ""}
+                             limit={100}
+                           />
++                          {(() => {
++                            const document = rows.find(
++                              (source) => source.id === row.id
++                            );
++                            if (
++                              !document?.slug ||
++                              !document.creator?.slug ||
++                              document.fileType !== "application/pdf"
++                            )
++                              return null;
++                            return (
++                              <a
++                                href={getDocumentUrl(document)}
++                                target="_blank"
++                                rel="noopener noreferrer"
++                                onClick={(event) => event.stopPropagation()}
++                                style={{ display: "block" }}
++                              >
++                                Open original PDF
++                              </a>
++                            );
++                          })()}
+                         </Table.Cell>
+                         {columns.map((column) => {
+                           const cell = localCells.find(
+--- a/frontend/src/graphql/queries.ts
++++ b/frontend/src/graphql/queries.ts
+@@ -3340,6 +3340,13 @@
+         }
+       }
+       fullDocumentList {
++        slug
++        creator {
++          id
++          slug
++        }
++        extractionReadinessError
++        processingStatus
+         id
+         title
+         description
+--- a/frontend/src/types/graphql-api.ts
++++ b/frontend/src/types/graphql-api.ts
+@@ -489,6 +489,7 @@
+   lastModified?: Maybe<Scalars["DateTime"]>;
+   // Processing status fields
+   processingStatus?: Maybe<DocumentProcessingStatus>;
++  extractionReadinessError?: Maybe<Scalars["String"]>;
+   processingError?: Maybe<Scalars["String"]>;
+   canRetry?: Maybe<Scalars["Boolean"]>;
+ };
+--- a/frontend/src/views/ExtractDetail.tsx
++++ b/frontend/src/views/ExtractDetail.tsx
+@@ -1,3 +1,4 @@
++import { SourceReadinessNotice } from "../components/extracts/SourceReadinessNotice";
+ import React, {
+   useState,
+   useEffect,
+@@ -565,6 +566,10 @@
+     RequestStartExtractInputType
+   >(REQUEST_START_EXTRACT, {
+     onCompleted: (data) => {
++      if (!data.startExtract.ok) {
++        toast.error(data.startExtract.message || "Source unavailable.");
++        return;
++      }
+       toast.success("Extract started!");
+       setExtract((prev) =>
+         prev ? { ...prev, ...data.startExtract.obj } : prev
+@@ -771,7 +776,12 @@
+                   startExtract({ variables: { extractId: extract.id } })
+                 }
+                 disabled={
+-                  startLoading || rows.length === 0 || columns.length === 0
++                  startLoading ||
++                  rows.length === 0 ||
++                  columns.length === 0 ||
++                  rows.some((document) =>
++                    Boolean(document.extractionReadinessError)
++                  )
+                 }
+               >
+                 Start Extract
+@@ -822,6 +832,12 @@
+           </StatGrid>
+         </StatsSection>
+ 
++        {(isFailed || isRunning) && (
++          <SourceReadinessNotice
++            documents={rows}
++            hasFindings={Boolean(extract.started)}
++          />
++        )}
+         {/* Running state overlay */}
+         {isRunning && (
+           <RunningState>
+@@ -847,6 +863,12 @@
+                   leftIcon={<RefreshCw size={16} />}
+                   onClick={() =>
+                     startExtract({ variables: { extractId: extract.id } })
++                  }
++                  disabled={
++                    startLoading ||
++                    rows.some((document) =>
++                      Boolean(document.extractionReadinessError)
++                    )
+                   }
+                 >
+                   Retry Extract
+--- a/opencontractserver/tasks/data_extract_tasks.py
++++ b/opencontractserver/tasks/data_extract_tasks.py
+@@ -8,6 +8,9 @@
+ from asgiref.sync import sync_to_async
+ from pydantic_ai.messages import ModelResponse, ToolCallPart
+ 
++from databricks_port.grounding import (
++    ground_machine_extraction as ground_extraction_to_annotations,
++)
+ from opencontractserver.annotations.compact_json import iter_page_annotations
+ from opencontractserver.constants.extraction import (
+     DEFAULT_EXTRACT_MODEL,
+@@ -27,9 +30,6 @@
+ from opencontractserver.extracts.models import Datacell
+ from opencontractserver.shared.decorators import celery_task_with_async_to_sync
+ from opencontractserver.utils.compact_pawls import expand_pawls_pages
+-from databricks_port.grounding import (
+-    ground_machine_extraction as ground_extraction_to_annotations,
+-)
+ from opencontractserver.utils.files import read_field_file_text
+ from opencontractserver.utils.llm import is_anthropic_model
+ from opencontractserver.utils.prompt_sanitization import (
+@@ -464,6 +464,10 @@
+         # Get corpus ID (None if document isn't in a corpus - that's OK now!)
+         corpus_id = await sync_get_corpus_id(document)
+         logger.info(f"Corpus ID: {corpus_id}")
++
++        from databricks_port.extraction_readiness import aensure_document_ready
++
++        await aensure_document_ready(document, datacell.extract.corpus_id or corpus_id)
+ 
+         # 2. Parse the output type
+         output_type = parse_model_or_primitive(column.output_type)
+--- a/opencontractserver/tasks/extract_orchestrator_tasks.py
++++ b/opencontractserver/tasks/extract_orchestrator_tasks.py
+@@ -113,6 +113,19 @@
+         logger.error(
+             f"User {user_id} lacks permission for extract {extract_id} — aborting"
+         )
++        return
++
++    from databricks_port.extraction_readiness import (
++        SourceNotReady,
++        ensure_extract_ready,
++    )
++
++    try:
++        ensure_extract_ready(extract)
++    except SourceNotReady as error:
++        extract.error = str(error)
++        extract.finished = timezone.now()
++        extract.save(update_fields=["error", "finished"])
+         return
+ 
+     logger.info(f"Setting started timestamp for extract {extract.id}")
