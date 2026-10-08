@@ -56,11 +56,9 @@ class DoclingJobParser(BaseParser):
         # One parser/persistence owner per document, including after a restart.
         # A session advisory lock releases when the worker connection closes.
         with connection.cursor() as cursor:
-            cursor.execute("SELECT pg_try_advisory_lock(%s,%s)", [132980, doc_id])
-            if not cursor.fetchone()[0]:
-                raise DocumentParsingError(
-                    "This Docling source is already processing", is_transient=False
-                )
+            # A duplicate chain waits for its owner and then reuses the retained
+            # artifact. Failing a busy lock would mark the shared source FAILED.
+            cursor.execute("SELECT pg_advisory_lock(%s,%s)", [132980, doc_id])
         try:
             document = Document.objects.get(pk=doc_id)
             if document.structural_annotation_set_id:
@@ -70,6 +68,14 @@ class DoclingJobParser(BaseParser):
                     retained.parser_name == self.title
                     and retained.content_hash == identity.get("parsing_artifact_sha256")
                 ):
+                    with document.pdf_file.open("rb") as source:
+                        if hashlib.sha256(source.read()).hexdigest() != identity.get(
+                            "source_sha256"
+                        ):
+                            raise DocumentParsingError(
+                                "Retained Docling source bytes changed",
+                                is_transient=False,
+                            )
                     # Parse persistence already completed before interruption;
                     # continue the native remap/unlock steps without duplicating it.
                     return {}

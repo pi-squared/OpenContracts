@@ -14,7 +14,7 @@ def job_settings(app_name, workspace_directory, principal):
         "max_concurrent_runs": 4,
         "queue": {"enabled": True},
         "timeout_seconds": 3600,
-        "performance_target": "STANDARD",
+        "performance_target": "PERFORMANCE_OPTIMIZED",
         "run_as": {"service_principal_name": principal},
         "tags": {
             "aidevkit_project": "ai-dev-kit",
@@ -33,10 +33,16 @@ def job_settings(app_name, workspace_directory, principal):
                 "task_key": "parse_pdf",
                 "environment_key": "docling",
                 "max_retries": 0,
+                "disable_auto_optimization": True,
                 "spark_python_task": {
                     "python_file": workspace_directory + "/docling_pdf_job.py",
                     "source": "WORKSPACE",
-                    "parameters": ["--manifest", "{{job.parameters.manifest}}"],
+                    "parameters": [
+                        "--manifest",
+                        "{{job.parameters.manifest}}",
+                        "--worker-file",
+                        workspace_directory + "/docling_pdf_job.py",
+                    ],
                 },
             }
         ],

@@ -2,11 +2,14 @@
 
 import copy
 import hashlib
+import importlib.util
 import io
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "port/python"))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
@@ -168,6 +171,7 @@ class DoclingJobTests(unittest.TestCase):
         config = job_settings("fresh", "/Workspace/owned/revision", "principal")
         self.assertEqual(config["environments"][0]["spec"]["environment_version"], "6")
         self.assertEqual(config["tasks"][0]["max_retries"], 0)
+        self.assertTrue(config["tasks"][0]["disable_auto_optimization"])
         self.assertEqual(config["run_as"]["service_principal_name"], "principal")
         resources = app_resources(42, "catalog.schema.artifacts")
         self.assertEqual(resources[0]["job"]["permission"], "CAN_MANAGE_RUN")
@@ -175,6 +179,28 @@ class DoclingJobTests(unittest.TestCase):
             {r["uc_securable"]["permission"] for r in resources[1:]},
             {"READ_VOLUME", "WRITE_VOLUME"},
         )
+
+    def test_spark_kernel_without_file_launches_explicit_worker(self):
+        source = Path(__file__).resolve().parents[1] / "jobs/docling_pdf_job.py"
+        spec = importlib.util.spec_from_file_location("docling_worker_control", source)
+        worker = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(worker)
+        del worker.__file__
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary) / "attempts" / self.attempt["attempt_id"]
+            directory.mkdir(parents=True)
+            manifest = directory / "request.json"
+            with patch.object(
+                sys,
+                "argv",
+                ["ipython", "--manifest", str(manifest), "--worker-file", str(source)],
+            ), patch.object(
+                worker, "request", return_value=({}, directory)
+            ), patch.object(
+                worker.subprocess, "run", return_value=SimpleNamespace(returncode=0)
+            ) as process:
+                worker.main()
+            self.assertEqual(process.call_args.args[0][3], str(source))
 
 
 if __name__ == "__main__":

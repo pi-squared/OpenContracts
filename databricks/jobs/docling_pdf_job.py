@@ -143,6 +143,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--child", action="store_true")
+    # Spark Python tasks are exec'd by IPython without defining __file__.
+    # Pass the immutable worker path explicitly to launch ordinary Python.
+    parser.add_argument("--worker-file", type=Path)
     args = parser.parse_args()
     data, directory = request(args.manifest)
     if args.child:
@@ -181,7 +184,7 @@ def main():
                 sys.executable,
                 "-X",
                 "faulthandler",
-                str(Path(__file__).resolve()),
+                str((args.worker_file or Path(sys.argv[0])).resolve()),
                 "--child",
                 "--manifest",
                 str(args.manifest),

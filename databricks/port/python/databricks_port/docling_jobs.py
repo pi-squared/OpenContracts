@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 
 PARSER_PATH = "opencontractserver.pipeline.parsers.docling_job_parser.DoclingJobParser"
 VERSION = "2.132.0"
+WORKER_INSTANCE = uuid.uuid4().hex
 
 
 class DoclingJobError(ValueError):

@@ -3,7 +3,7 @@
 import hashlib
 
 from celery import chain
-from databricks_port.docling_jobs import PARSER_PATH
+from databricks_port.docling_jobs import PARSER_PATH, WORKER_INSTANCE, timestamp
 from django.db import transaction
 from django.utils import timezone
 from rest_framework.exceptions import PermissionDenied, ValidationError
@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 
 from opencontractserver.constants.document_processing import MARKDOWN_MIME_TYPE
 from opencontractserver.corpuses.models import Corpus, CorpusAction
-from opencontractserver.documents.models import DocumentPath
+from opencontractserver.documents.models import Document, DocumentPath
 from opencontractserver.tasks.doc_tasks import (
     document_processing_steps,
     mark_doc_failed_on_chain_error,
@@ -119,17 +119,53 @@ def copy_corpus(source_id, title, user):
 
 
 def enqueue(user_id, doc_id):
-    chain(*document_processing_steps(user_id=user_id, doc_id=doc_id)).apply_async(
-        link_error=mark_doc_failed_on_chain_error.s(doc_id=doc_id)
-    )
+    with transaction.atomic():
+        doc = Document.objects.select_for_update().get(pk=doc_id)
+        metadata = doc.custom_meta or {}
+        dispatch = metadata.get("docling_dispatch") or {}
+        if doc.processing_status == "completed" or (
+            dispatch.get("worker_instance") == WORKER_INSTANCE
+            and doc.processing_status in ("pending", "processing")
+        ):
+            return
+        task = chain(*document_processing_steps(user_id=user_id, doc_id=doc_id))
+        task.freeze()
+        doc.custom_meta = {
+            **metadata,
+            "docling_dispatch": {
+                "worker_instance": WORKER_INSTANCE,
+                "admitted_at": timestamp(),
+                "task_id": task.id,
+            },
+        }
+        doc.processing_status = "pending"
+        doc.processing_error = ""
+        doc.processing_finished = None
+        doc.backend_lock = True
+        doc.save(
+            update_fields=[
+                "custom_meta",
+                "processing_status",
+                "processing_error",
+                "processing_finished",
+                "backend_lock",
+            ]
+        )
+        transaction.on_commit(
+            lambda: task.apply_async(
+                link_error=mark_doc_failed_on_chain_error.s(doc_id=doc_id)
+            )
+        )
 
 
-def status(corpus):
+def status(corpus, user):
     rows = []
     for path in DocumentPath.objects.filter(
         corpus=corpus, is_current=True, is_deleted=False
     ).select_related("document"):
         doc = path.document
+        if not doc.user_can(user, PermissionTypes.READ):
+            raise PermissionDenied("Read access to every corpus document is required")
         metadata = doc.custom_meta or {}
         job = metadata.get("docling_job") or {}
         rows.append(
@@ -174,7 +210,7 @@ class DoclingCorpusCopy(APIView):
             corpus = copy_corpus(source_id, request.data.get("title"), request.user)
         except Corpus.DoesNotExist:
             raise ValidationError("Source corpus does not exist") from None
-        return Response(status(corpus), status=202)
+        return Response(status(corpus, request.user), status=202)
 
 
 class DoclingCorpusStatus(APIView):
@@ -185,7 +221,7 @@ class DoclingCorpusStatus(APIView):
             raise ValidationError("Corpus does not exist") from None
         if not corpus.user_can(request.user, PermissionTypes.READ):
             raise PermissionDenied("Read access to this corpus is required")
-        return Response(status(corpus))
+        return Response(status(corpus, request.user))
 
     def post(self, request, corpus_id):
         """Explicitly recover incomplete sources using their admitted job attempts."""
@@ -198,6 +234,16 @@ class DoclingCorpusStatus(APIView):
         rows = DocumentPath.objects.filter(
             corpus=corpus, is_current=True, is_deleted=False
         ).select_related("document")
+        rows = list(rows)
+        for record in rows:
+            if not record.document.user_can(request.user, PermissionTypes.READ):
+                raise PermissionDenied(
+                    "Read access to every corpus document is required"
+                )
+            if not record.document.user_can(request.user, PermissionTypes.UPDATE):
+                raise PermissionDenied(
+                    "Edit access to every corpus document is required"
+                )
         for record in rows:
             doc = record.document
             metadata = doc.custom_meta or {}
@@ -209,17 +255,5 @@ class DoclingCorpusStatus(APIView):
             job_state = (metadata.get("docling_job") or {}).get("job_state", {})
             if job_state.get("result_state") not in (None, "SUCCESS"):
                 continue
-            doc.processing_status = "pending"
-            doc.processing_error = ""
-            doc.processing_finished = None
-            doc.backend_lock = True
-            doc.save(
-                update_fields=[
-                    "processing_status",
-                    "processing_error",
-                    "processing_finished",
-                    "backend_lock",
-                ]
-            )
             enqueue(request.user.pk, doc.pk)
-        return Response(status(corpus), status=202)
+        return Response(status(corpus, request.user), status=202)
