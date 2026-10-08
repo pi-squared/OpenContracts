@@ -32,6 +32,7 @@ def stage(
     warp_wheel=None,
     warp_nltk_data=None,
     rapidocr_wheel=None,
+    docling_jobs=False,
 ):
     if destination.exists():
         raise ValueError("Choose a fresh staging directory")
@@ -165,6 +166,14 @@ def stage(
             {"name": "WORKFLOW_PACKAGE_ROOT", "value": workflow_package_root}
         )
     config["env"].append({"name": "DATABRICKS_TOOL_STRICT", "value": tool_strict_mode})
+    if docling_jobs:
+        config["env"].extend(
+            [
+                {"name": "DOCLING_JOB_ID", "valueFrom": "docling-job"},
+                {"name": "DOCLING_ARTIFACT_ROOT", "valueFrom": "docling-artifacts"},
+                {"name": "OPENCONTRACTS_WORKER_CONCURRENCY", "value": "4"},
+            ]
+        )
     (destination / "app.yaml").write_text(yaml.safe_dump(config, sort_keys=False))
     print(json.dumps(manifest))
 
@@ -178,6 +187,7 @@ if __name__ == "__main__":
     parser.add_argument("--warp-wheel", type=Path)
     parser.add_argument("--warp-nltk-data", type=Path)
     parser.add_argument("--rapidocr-wheel", type=Path)
+    parser.add_argument("--docling-jobs", action="store_true")
     parser.add_argument(
         "--tool-strict-mode", choices=("preserve", "omit"), default="preserve"
     )
@@ -191,4 +201,5 @@ if __name__ == "__main__":
         args.warp_wheel,
         args.warp_nltk_data,
         args.rapidocr_wheel,
+        args.docling_jobs,
     )

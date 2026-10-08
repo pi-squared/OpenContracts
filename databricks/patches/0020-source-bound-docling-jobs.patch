@@ -1,0 +1,18 @@
+--- a/opencontractserver/tasks/doc_tasks.py
++++ b/opencontractserver/tasks/doc_tasks.py
+@@ -171,6 +171,15 @@
+ 
+     pipeline_settings = PipelineSettings.get_instance()
+     parser_name: str | None = pipeline_settings.get_preferred_parser(document.file_type)
++    # The explicit per-source Docling selection preserves the default parser
++    # and cannot load arbitrary classes supplied through upload metadata.
++    from databricks_port.docling_jobs import PARSER_PATH
++
++    if (
++        document.file_type == "application/pdf"
++        and (document.custom_meta or {}).get("databricks_pdf_parser") == PARSER_PATH
++    ):
++        parser_name = PARSER_PATH
+     if not parser_name:
+         raise ValueError(f"No parser defined for MIME type '{document.file_type}'")
+ 

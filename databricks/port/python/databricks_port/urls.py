@@ -5,6 +5,7 @@ import mimetypes
 import time
 from pathlib import Path
 
+from databricks_port.docling_corpus import DoclingCorpusCopy, DoclingCorpusStatus
 from databricks_port.token_transport import TOKEN_TRANSPORT_SCRIPT
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -128,6 +129,8 @@ urlpatterns = (
         path("port/session", session),
         path("port/transport.js", transport_js),
         path("port/installation-status", installation_status),
+        path("port/docling/corpora", DoclingCorpusCopy.as_view()),
+        path("port/docling/corpora/<int:corpus_id>", DoclingCorpusStatus.as_view()),
         path("port/media/<path:name>", media),
     ]
     + [

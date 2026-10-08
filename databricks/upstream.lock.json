@@ -79,6 +79,10 @@
     {
       "path": "patches/0019-ingestion-readiness.patch",
       "sha256": "ea90984cbbf33985691f5e1d0db75d6d467edb45265822cbb19ef0dfa4430506"
+    },
+    {
+      "path": "patches/0020-source-bound-docling-jobs.patch",
+      "sha256": "f52dc55e7cc6bb353403cb76a54b58ae9851e6e1cfd8d173bde0eb5ef14ff4bd"
     }
   ],
   "unchanged_stock_files": {
@@ -130,7 +134,7 @@
     {
       "source": "port/python/databricks_port/token_transport.py",
       "target": "databricks_port/token_transport.py",
-      "sha256": "9a7da77dfd52851a46bd8173c57101a080397c7b3b313ca302bacbfe33aee558"
+      "sha256": "5412d3843703dae0fd81e305806bc931c0d0845ce4d2189499e311b5c6987795"
     },
     {
       "source": "port/python/databricks_port/transport.py",
@@ -140,7 +144,7 @@
     {
       "source": "port/python/databricks_port/urls.py",
       "target": "databricks_port/urls.py",
-      "sha256": "f0b6de844587d698fd06cc5727095fb3e38226016d5ab77fef069dbe1f3b467b"
+      "sha256": "2eac1b4a8b60a79b12fb9cc38b0442859fa09afea3fb372614c6727184f433d8"
     },
     {
       "source": "port/python/databricks_embedder.py",
@@ -256,6 +260,21 @@
       "source": "port/frontend/SourceReadinessNotice.tsx",
       "target": "frontend/src/components/extracts/SourceReadinessNotice.tsx",
       "sha256": "613ba91f953b2e377cd9eed628114d82e600dea735898b7ab61fcd42d2dcf1b5"
+    },
+    {
+      "source": "port/python/databricks_port/docling_jobs.py",
+      "target": "databricks_port/docling_jobs.py",
+      "sha256": "22c5f8cc369809e45494aff7e4976625172b13c3e6beecfb3d5879991c93318f"
+    },
+    {
+      "source": "port/python/databricks_port/docling_corpus.py",
+      "target": "databricks_port/docling_corpus.py",
+      "sha256": "773e2b8f12925fddb27369226efa03fe8ed9e300d67bf1597d56c0b147309830"
+    },
+    {
+      "source": "port/python/docling_job_parser.py",
+      "target": "opencontractserver/pipeline/parsers/docling_job_parser.py",
+      "sha256": "3fe7a014974fb818e3ff9f0289f5802d83eee6205f72aa3a99e6eca2b560f028"
     }
   ],
   "patched_files": {
@@ -314,7 +333,8 @@
     "opencontractserver/tasks/extract_orchestrator_tasks.py": "0535a4f421e6aa0923dfa872d2a738c46bb473fa22abe10662bf0005c0e9ad52",
     "frontend/src/components/extracts/CorpusExtractDetail.tsx": "5f9e7bce3ae8fc0e7f0d2eb686cc0d2fb86a1caa786b6921dddb77f52a6cb3ad",
     "frontend/src/components/extracts/ExtractDetailContent.tsx": "a5f389c8cfb6dd7f7a3cb96e6a00c43263964c5e42eb48b2e915622ed956b3ea",
-    "frontend/src/views/ExtractDetail.tsx": "03ceb5183348ab30afd57868e3cfc6577def60733533bab119640c7ed5b71d9e"
+    "frontend/src/views/ExtractDetail.tsx": "03ceb5183348ab30afd57868e3cfc6577def60733533bab119640c7ed5b71d9e",
+    "opencontractserver/tasks/doc_tasks.py": "cc9d8f9870b43066697c91e334c9236fc2fcfe76809aa2693372e2dff5a47f73"
   },
   "port_baseline": {
     "repository": "pi-squared/OpenContracts-Databricks",

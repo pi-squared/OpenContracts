@@ -26,6 +26,7 @@ def main():
     parser.add_argument("--rapidocr-wheel", type=Path, required=True)
     parser.add_argument("--warp-nltk-data", type=Path, required=True)
     parser.add_argument("--workflow-package-root", required=True)
+    parser.add_argument("--docling-jobs", action="store_true")
     parser.add_argument(
         "--source",
         type=Path,
@@ -74,6 +75,7 @@ def main():
         warp_wheel=args.warp_wheel,
         warp_nltk_data=args.warp_nltk_data,
         rapidocr_wheel=args.rapidocr_wheel,
+        docling_jobs=args.docling_jobs,
     )
     runtime_python = args.runtime_python
     if runtime_python is None:

@@ -131,6 +131,12 @@ def bundle(state, *, database=None):
                     },
                 }
             )
+        if state.get("docling_job_id") and state.get("docling_artifact_volume"):
+            from docling_job_config import app_resources
+
+            bindings.extend(
+                app_resources(state["docling_job_id"], state["docling_artifact_volume"])
+            )
         resources["apps"] = {
             "opencontracts": {
                 "name": "${var.app_name}",
