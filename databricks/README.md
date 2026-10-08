@@ -94,8 +94,10 @@ destruction, and data recovery requires an explicit operator procedure.
 
 ## Definitions and grounding
 
-The separate `install_opencontracts_definitions.py` command lives in the
-`OpenContracts-Databricks` operator worktree, outside this deployed fork. It
+The separate [definition installer](https://github.com/pi-squared/OpenContracts-Databricks/blob/feature/fresh-port-definition-installer/tools/install_opencontracts_definitions.py)
+lives in `OpenContracts-Databricks`, outside this deployed fork. Its
+[operator guide](https://github.com/pi-squared/OpenContracts-Databricks/blob/feature/fresh-port-definition-installer/docs/design/2026-10-08-fresh-port-definition-operator.md)
+provides a complete invocation. It
 uploads only manifest-declared, hash-verified definitions to the attached volume,
 configures `WORKFLOW_INSTALL_HASHES`, runs the release gate and publishes through
 this controller. `--configure-only` prepares configuration without claiming the
@@ -146,3 +148,5 @@ Transport checks need local loopback sockets. Frontend checks need a verified
 prepared checkout and the frozen dependencies. Real parser/launcher checks need
 the staged vendor dependencies and declared assets. Deployment acceptance is
 recorded separately from these synthetic checks.
+
+Hosted acceptance is recorded in the [fresh installation receipt](../docs/verification/2026-10-08-fresh-databricks-installation.md).

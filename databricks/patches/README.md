@@ -30,7 +30,6 @@ installation by itself.
 | [0014-parsed-text-location-wording.patch](0014-parsed-text-location-wording.patch) | Parsed-text location wording. |
 | [0015-automatic-retained-word-grounding.patch](0015-automatic-retained-word-grounding.patch) | Automatic retained-word quotation repair. |
 | [0016-generic-quotation-evidence.patch](0016-generic-quotation-evidence.patch) | Generic quotation evidence rendering. |
-
 | [0017-graphql-schema-parity.patch](0017-graphql-schema-parity.patch) | Served GraphQL schema parity. |
 | [0018-defer-empty-personal-corpus.patch](0018-defer-empty-personal-corpus.patch) | Defer the empty personal corpus to first upload. |
 

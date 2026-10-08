@@ -26,6 +26,7 @@ and new Lakebase project. Repeat provisioning preserves them; another name
 creates another installation. Unknown collisions fail. A separate QA installation
 holds verification documents, leaving delivery empty except for definitions.
 
-This pilot retains eager native task execution. A durable background queue and
-hosted MLflow synchronization remain separate work. Request capture in Lakebase
+This pilot runs native tasks in a bounded in-process Celery worker so browser
+requests return promptly. Its memory queue does not survive App restarts. Durable
+dispatch and hosted MLflow synchronization remain separate work. Request capture in Lakebase
 protects repair admission but does not imply semantic assessment validation.
