@@ -1,0 +1,189 @@
+diff --git a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+--- a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
++++ b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+@@ -119,6 +119,12 @@
+     font-style: italic;
+   }
+ 
++  .source-feedback {
++    margin-top: 4px;
++    font-size: 0.75rem;
++    color: ${OS_LEGAL_COLORS.textSecondary};
++  }
++
+   &:hover {
+     background-color: ${primaryBlueAlpha(0.05)};
+   }
+@@ -188,6 +194,7 @@
+   > | null>(null);
+   const [evidenceLoading, setEvidenceLoading] = useState(false);
+   const [evidenceError, setEvidenceError] = useState<string | null>(null);
++  const [sourcesUnavailable, setSourcesUnavailable] = useState(false);
+   const [evidenceIntent, setEvidenceIntent] = useState<"detail" | "sources">(
+     "detail"
+   );
+@@ -208,6 +215,7 @@
+     setEvidence(null);
+     setEvidenceLoading(false);
+     setEvidenceError(null);
++    setSourcesUnavailable(false);
+     if (isModalOpen && cell?.hasFindingEvidence) void loadEvidence("detail");
+     return () => {
+       evidenceGeneration.current += 1;
+@@ -296,10 +304,13 @@
+ 
+   const loadEvidence = (intent: "detail" | "sources") => {
+     setEvidenceIntent(intent);
+-    if (pendingEvidence.current) return pendingEvidence.current;
++    if (pendingEvidence.current && evidenceIntent === intent) {
++      return pendingEvidence.current;
++    }
+     const generation = ++evidenceGeneration.current;
+     setEvidence(null);
+     setEvidenceError(null);
++    setSourcesUnavailable(false);
+     setEvidenceLoading(true);
+     const request = client
+       .query<{
+@@ -317,15 +328,19 @@
+         if (generation !== evidenceGeneration.current) return;
+         if (!data.datacell) throw new Error("Source access failed");
+         setEvidence(data.datacell);
+-        if (intent === "sources" && data.datacell.fullSourceList?.length) {
+-          openSources(data.datacell.fullSourceList);
++        if (intent === "sources") {
++          setSourcesUnavailable(
++            !openSources(data.datacell.fullSourceList ?? [])
++          );
+           setIsModalOpen(false);
+         }
+       })
+       .catch(() => {
+         if (generation === evidenceGeneration.current) {
+           setEvidenceError(
+-            "Quotation locations could not be loaded. Check source access and retry."
++            intent === "sources"
++              ? "Source locations could not be loaded. Check source access and retry."
++              : "Quotation locations could not be loaded. Check source access and retry."
+           );
+         }
+       })
+@@ -352,10 +367,12 @@
+     setEvidence(null);
+     setEvidenceLoading(false);
+     setEvidenceError(null);
++    setSourcesUnavailable(false);
+     setIsModalOpen(false);
+   };
+ 
+   const openOriginalViewer = () => {
++    closeModal();
+     setIsPopupOpen(false);
+     setIsOriginalModalOpen(true);
+   };
+@@ -412,9 +429,9 @@
+       isReviewerVisibleLabel(source.annotationLabel)
+     );
+     const first = annotations[0];
+-    if (!first?.document || !first.corpus) return;
++    if (!first?.document || !first.corpus) return false;
+     const url = getDocumentUrl(first.document, first.corpus);
+-    if (url === "#") return;
++    if (url === "#") return false;
+     selectedExtract(extract);
+     onlyDisplayTheseAnnotations(annotations);
+     displayAnnotationOnAnnotatorLoad(first);
+@@ -427,11 +444,32 @@
+         labelDisplay: LabelDisplayBehavior.ALWAYS,
+       })}`
+     );
++    return true;
+   };
+ 
+   return (
+     <CellContainer ref={cellRef} style={{ background: getCellBackground() }}>
+-      {displayValue()}
++      <div style={{ minWidth: 0 }}>
++        {displayValue()}
++        {evidenceIntent === "sources" &&
++          !isModalOpen &&
++          (evidenceLoading ? (
++            <div className="source-feedback" role="status">
++              Loading source locations…
++            </div>
++          ) : evidenceError ? (
++            <div className="source-feedback" role="alert">
++              <p>{evidenceError}</p>
++              <Button size="sm" onClick={() => void loadEvidence("sources")}>
++                Retry source locations
++              </Button>
++            </div>
++          ) : sourcesUnavailable ? (
++            <div className="source-feedback" role="status">
++              No highlighted source available.
++            </div>
++          ) : null)}
++      </div>
+       {cellStatus?.correctedData != null && (
+         <Button
+           aria-label="View original"
+@@ -553,6 +591,7 @@
+                     size="sm"
+                     variant="secondary"
+                     onClick={() => {
++                      closeModal();
+                       if (
+                         typeof displayedValue === "object" &&
+                         displayedValue !== null
+@@ -580,8 +619,6 @@
+                         cell?.hasFindingEvidence ||
+                         (!findingValue && cell && !cell.fullSourceList)
+                       ) {
+-                        setShowRawJson(false);
+-                        setIsModalOpen(true);
+                         void loadEvidence("sources");
+                       } else if (cell?.fullSourceList?.length) {
+                         openSources(cell.fullSourceList);
+@@ -674,11 +711,7 @@
+       </Modal>
+       <Modal open={isModalOpen} onClose={closeModal}>
+         <ModalHeader>
+-          {findingValue && !showRawJson
+-            ? column.name
+-            : evidenceIntent === "sources"
+-            ? "Sources"
+-            : "Edit JSON Data"}
++          {findingValue && !showRawJson ? column.name : "Edit JSON Data"}
+         </ModalHeader>
+         <ModalBody>
+           {findingValue && !showRawJson ? (
+@@ -689,7 +722,7 @@
+               }
+               evidenceLoading={evidenceLoading}
+               evidenceError={evidenceError}
+-              onRetryEvidence={() => void loadEvidence(evidenceIntent)}
++              onRetryEvidence={() => void loadEvidence("detail")}
+               onViewQuote={(annotationId) => {
+                 const source = (
+                   evidence?.fullSourceList ?? cell?.fullSourceList
+@@ -705,20 +738,6 @@
+             />
+           ) : (
+             <>
+-              {!findingValue &&
+-                evidenceIntent === "sources" &&
+-                (evidenceLoading ? (
+-                  <p role="status">Loading source locations…</p>
+-                ) : evidenceError ? (
+-                  <div role="alert">
+-                    <p>{evidenceError}</p>
+-                    <Button onClick={() => void loadEvidence("sources")}>
+-                      Retry source locations
+-                    </Button>
+-                  </div>
+-                ) : evidence && !evidence.fullSourceList?.length ? (
+-                  <p role="status">No highlighted source available.</p>
+-                ) : null)}
+               {typeof displayedValue === "object" && displayedValue !== null ? (
+                 <ReactJson
+                   src={displayedValue}

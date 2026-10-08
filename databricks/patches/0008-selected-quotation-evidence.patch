@@ -1,0 +1,279 @@
+diff --git a/config/graphql/extract_types.py b/config/graphql/extract_types.py
+--- a/config/graphql/extract_types.py
++++ b/config/graphql/extract_types.py
+@@ -1717,7 +1717,9 @@
+ 
+     Port of DatacellType.resolve_full_source_list
+     """
+-    return root.sources.all()
++    from databricks_port.finding_evidence import finding_sources
++
++    return finding_sources(root)
+ 
+ 
+ @strawberry.type(name="DatacellType")
+@@ -1940,6 +1942,16 @@
+     @strawberry.field(name="objectSharedWith")
+     def object_shared_with(self, info: strawberry.Info) -> GenericScalar | None:
+         return core_permissions.resolve_object_shared_with(self, info)
++
++    @strawberry.field(name="findingEvidence")
++    def finding_evidence(self, info: strawberry.Info) -> GenericScalar:
++        from databricks_port.finding_evidence import finding_evidence
++
++        from opencontractserver.utils.ids import to_global_id
++
++        return [{**quote, "annotationId": to_global_id("AnnotationType", quote["annotationId"])
++                 if quote.get("annotationId") is not None else None}
++                for quote in finding_evidence(self)]
+ 
+     @strawberry.field(name="fullSourceList")
+     def full_source_list(
+diff --git a/config/graphql/extract_mutations.py b/config/graphql/extract_mutations.py
+--- a/config/graphql/extract_mutations.py
++++ b/config/graphql/extract_mutations.py
+@@ -1506,6 +1506,12 @@
+         obj = Datacell.objects.get(pk=pk, creator=info.context.user)
+         obj.corrected_data = edited_data
+         obj.save()
++        try:
++            from databricks_port.finding_evidence import finding_evidence
++
++            finding_evidence(obj)
++        except Exception:
++            logger.exception("Quotation re-anchoring unavailable for corrected cell %s", obj.pk)
+ 
+     except Datacell.DoesNotExist:
+         ok = False
+diff --git a/opencontractserver/extracts/models.py b/opencontractserver/extracts/models.py
+--- a/opencontractserver/extracts/models.py
++++ b/opencontractserver/extracts/models.py
+@@ -385,6 +385,11 @@
+     )
+     corrected_data = NullableJSONField(default=None, null=True, blank=True)
+ 
++    evidence_anchors = django.db.models.JSONField(
++        default=dict, blank=True,
++        help_text="Quotation anchors for original and corrected finding versions; retrieval history remains in sources.",
++    )
++
+     # LLM call logging for debugging/visibility
+     llm_call_log = django.db.models.TextField(
+         null=True,
+diff --git a/opencontractserver/tasks/data_extract_tasks.py b/opencontractserver/tasks/data_extract_tasks.py
+--- a/opencontractserver/tasks/data_extract_tasks.py
++++ b/opencontractserver/tasks/data_extract_tasks.py
+@@ -27,7 +27,7 @@
+ from opencontractserver.extracts.models import Datacell
+ from opencontractserver.shared.decorators import celery_task_with_async_to_sync
+ from opencontractserver.utils.compact_pawls import expand_pawls_pages
+-from opencontractserver.utils.extraction_grounding import (
++from databricks_port.finding_evidence import (
+     ground_extraction_to_annotations,
+ )
+ from opencontractserver.utils.files import read_field_file_text
+@@ -763,13 +763,8 @@
+             logger.info(f"  Final saved data: {data}")
+             logger.info(f"  LLM log saved: {len(llm_log) if llm_log else 0} characters")
+ 
+-            # Link the annotations the agent actually retrieved to
+-            # ``datacell.sources``.  This is the TRUE citation signal — what
+-            # the retrieval tools surfaced to the model — and it sidesteps
+-            # the fragile fuzzy-match grounder below for answers where the
+-            # retrieval already pinpointed the right spans.  The grounder
+-            # still runs as a complementary pass for extracted substrings
+-            # that weren't part of a retrieved annotation.
++            # Retain retrieved annotations for trajectory auditing. The finding
++            # viewer separately exposes only explicitly selected quotations.
+             if retrieved_annotation_ids:
+                 try:
+                     await _link_retrieval_citations(datacell, retrieved_annotation_ids)
+@@ -786,14 +781,9 @@
+                         exc_info=True,
+                     )
+ 
+-            # Auto-ground: find extracted text values in the source document
+-            # and create linked source annotations with PDF/text coordinates.
++            # Anchor complete selected evidence quotations against retained PDF
++            # tokens; metadata and unmatched quotations never produce highlights.
+             try:
+-                # Pass ``corpus_id`` (int) rather than the Corpus instance:
+-                # only the ID is in scope here (the extract task receives
+-                # ``corpus_id`` as input) and grounding's ``_resolve_corpus``
+-                # handles the lookup safely if the corpus was deleted between
+-                # task scheduling and execution.
+                 grounding_annotations = await ground_extraction_to_annotations(
+                     datacell=datacell,
+                     document=document,
+diff --git a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+--- a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
++++ b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+@@ -33,10 +33,10 @@
+   LabelDisplayBehavior,
+ } from "../../../types/graphql-api";
+ import { Z_INDEX } from "../../../assets/configurations/constants";
+-import { useNavigate, useLocation } from "react-router-dom";
++import { useNavigate } from "react-router-dom";
+ import {
+   getDocumentUrl,
+-  updateAnnotationDisplayParams,
++  buildQueryParams,
+ } from "../../../utils/navigationUtils";
+ import {
+   OS_LEGAL_COLORS,
+@@ -189,7 +189,6 @@
+   const [cellWidth, setCellWidth] = useState<number>(0);
+ 
+   const navigate = useNavigate();
+-  const location = useLocation();
+ 
+   useEffect(() => {
+     if (cellRef.current) {
+@@ -332,15 +331,8 @@
+     if (viewSourceAnnotations !== null) {
+       onlyDisplayTheseAnnotations(viewSourceAnnotations);
+       displayAnnotationOnAnnotatorLoad(viewSourceAnnotations[0]);
+-      // Update display settings via URL - CentralRouteManager will set reactive vars
+-      updateAnnotationDisplayParams(location, navigate, {
+-        showSelectedOnly: false,
+-        showBoundingBoxes: true,
+-        showStructural: true,
+-        labelDisplay: LabelDisplayBehavior.ALWAYS,
+-      });
+-    }
+-  }, [viewSourceAnnotations, location, navigate]);
++    }
++  }, [viewSourceAnnotations]);
+ 
+   useEffect(() => {
+     if (
+@@ -351,7 +343,14 @@
+       if (first.document && first.corpus) {
+         const url = getDocumentUrl(first.document, first.corpus);
+         if (url !== "#") {
+-          navigate(`${url}?ann=${first.id}`);
++          // Preserve the quotation selection and its display filter together.
++          // Setting the old reactive variable alone does not filter the viewer.
++          navigate(`${url}${buildQueryParams({
++            annotationIds: only_display_these_annotations.map((annotation) => annotation.id),
++            showSelectedOnly: true,
++            showBoundingBoxes: true,
++            labelDisplay: LabelDisplayBehavior.ALWAYS,
++          })}`);
+         } else {
+           console.warn("Cannot navigate - missing slugs:", first);
+         }
+@@ -598,6 +597,15 @@
+           {findingValue && !showRawJson ? (
+             <FindingDetails
+               value={findingValue}
++              evidenceAnchors={cell?.findingEvidence}
++              onViewQuote={(annotationId) => {
++                const source = cell?.fullSourceList?.find((annotation) => annotation.id === annotationId);
++                if (source) {
++                  selectedExtract(extract);
++                  setViewSourceAnnotations([source]);
++                  closeModal();
++                }
++              }}
+               isApproved={cellStatus?.isApproved}
+               isRejected={cellStatus?.isRejected}
+               isEdited={cellStatus?.isEdited}
+diff --git a/frontend/src/graphql/queries.ts b/frontend/src/graphql/queries.ts
+--- a/frontend/src/graphql/queries.ts
++++ b/frontend/src/graphql/queries.ts
+@@ -3311,6 +3311,7 @@
+           title
+           fileType
+         }
++        findingEvidence
+         fullSourceList {
+           id
+           isPublic
+@@ -3729,6 +3730,7 @@
+         rejectedBy {
+           email
+         }
++        findingEvidence
+         fullSourceList {
+           id
+           annotationLabel {
+@@ -3854,6 +3856,7 @@
+         correctedData
+         completed
+         failed
++        findingEvidence
+         fullSourceList {
+           id
+           page
+diff --git a/frontend/src/types/graphql-api.ts b/frontend/src/types/graphql-api.ts
+--- a/frontend/src/types/graphql-api.ts
++++ b/frontend/src/types/graphql-api.ts
+@@ -1509,6 +1509,7 @@
+   approvedBy: Maybe<UserType>;
+   correctedData: any;
+   fullSourceList?: ServerAnnotationType[];
++  findingEvidence?: unknown[];
+   sources?: AnnotationTypeConnection;
+ }
+ export interface ExportObject {
+diff --git a/frontend/src/graphql/mutations.ts b/frontend/src/graphql/mutations.ts
+--- a/frontend/src/graphql/mutations.ts
++++ b/frontend/src/graphql/mutations.ts
+@@ -2634,6 +2634,26 @@
+         completed
+         stacktrace
+         correctedData
++        findingEvidence
++        column { id name }
++        document { id title fileType }
++        fullSourceList {
++          id
++          isPublic
++          myPermissions
++          annotationLabel { id text color icon labelType description }
++          document {
++            id slug creator { id slug } fileType pdfFile txtExtractFile pawlsParseFile
++          }
++          corpus { id slug creator { id slug } }
++          page
++          rawText
++          json
++          annotationType
++          sourceNodeInRelationships { edges { node { id } } }
++          targetNodeInRelationships { edges { node { id } } }
++          creator { id slug email }
++        }
+         approvedBy {
+           id
+           username
+diff --git a/frontend/src/components/extracts/datagrid/DataGrid.tsx b/frontend/src/components/extracts/datagrid/DataGrid.tsx
+--- a/frontend/src/components/extracts/datagrid/DataGrid.tsx
++++ b/frontend/src/components/extracts/datagrid/DataGrid.tsx
+@@ -384,7 +384,7 @@
+         toast.success("Cell updated!");
+         const updatedCell = data.editDatacell.obj;
+         setLocalCells((prev) =>
+-          prev.map((cell) => (cell.id === updatedCell.id ? updatedCell : cell))
++          prev.map((cell) => (cell.id === updatedCell.id ? { ...cell, ...updatedCell } : cell))
+         );
+       },
+       onError: () => toast.error("Failed to update cell!"),
+@@ -400,7 +400,7 @@
+           const updatedCell = data.approveDatacell.obj;
+           setLocalCells((prev) =>
+             prev.map((cell) =>
+-              cell.id === updatedCell.id ? updatedCell : cell
++              cell.id === updatedCell.id ? { ...cell, ...updatedCell } : cell
+             )
+           );
+         } else {
+@@ -422,7 +422,7 @@
+           const updatedCell = data.rejectDatacell.obj;
+           setLocalCells((prev) =>
+             prev.map((cell) =>
+-              cell.id === updatedCell.id ? updatedCell : cell
++              cell.id === updatedCell.id ? { ...cell, ...updatedCell } : cell
+             )
+           );
+         } else {

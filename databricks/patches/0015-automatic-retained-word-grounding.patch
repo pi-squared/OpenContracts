@@ -1,0 +1,13 @@
+--- a/opencontractserver/tasks/data_extract_tasks.py
++++ b/opencontractserver/tasks/data_extract_tasks.py
+@@ -27,8 +27,8 @@
+ from opencontractserver.extracts.models import Datacell
+ from opencontractserver.shared.decorators import celery_task_with_async_to_sync
+ from opencontractserver.utils.compact_pawls import expand_pawls_pages
+-from databricks_port.finding_evidence import (
+-    ground_extraction_to_annotations,
++from databricks_port.grounding import (
++    ground_machine_extraction as ground_extraction_to_annotations,
+ )
+ from opencontractserver.utils.files import read_field_file_text
+ from opencontractserver.utils.llm import is_anthropic_model

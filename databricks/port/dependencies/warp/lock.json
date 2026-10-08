@@ -1,0 +1,43 @@
+{
+  "distribution": "warp-ingest",
+  "upstream_version": "2.1.0",
+  "version": "2.1.0+oc39.1",
+  "wheel_filename": "warp_ingest-2.1.0-py3-none-any.whl",
+  "wheel_sha256": "97c6d8ceefe78347ff9d9f28be784b3640d965dcd27ea1122fd9811cb213a4f1",
+  "wheel_url": "https://files.pythonhosted.org/packages/72/27/cad5330ca182fd20259d59dbc51d39bb0959f04b8305b3199d1c18ea69fb/warp_ingest-2.1.0-py3-none-any.whl",
+  "patches": [
+    {
+      "path": "port/dependencies/warp/0001-separate-columns.patch",
+      "sha256": "b84a569983ca0449687d499c2ab85c76cd0517f63434bce1b28e3a29a599f27f"
+    },
+    {
+      "path": "port/dependencies/warp/0002-preserve-column-token-references.patch",
+      "sha256": "282a466450fabb5f76dd5fa154cfe58eec37b355e472bccb9355cd3de384a34f"
+    }
+  ],
+  "stock_files": {
+    "warp_ingest/file_parser/pdf_plumber_parser.py": "68469767ec583d3f620eee7d23ccbc5f67d79b7b9e0042ffd7352b6b17796934",
+    "warp_ingest/ingestor/opencontracts_exporter.py": "6a1f3fb57462edb918682ad99e52b8c228b93f4f58bf87602e14e35baf96204c"
+  },
+  "patched_files": {
+    "warp_ingest/file_parser/pdf_plumber_parser.py": "6a16cd11fca316376a56520042456811051b44983e8431304f930f42a5d0e0a0",
+    "warp_ingest/ingestor/opencontracts_exporter.py": "8da70b4110596ec37e4953f80a48412681d46485242d0de16dffad7df7f6b729"
+  },
+  "nltk_assets": {
+    "tokenizers/punkt/english.pickle": "dda37972ae88998a6fd3e3ec002697a6bd362b32d050fda7d7ca5276873092aa",
+    "tokenizers/punkt_tab/english/abbrev_types.txt": "92a3e070f43d9b4c5534758ca40ad7343b04e7e29bfe0c2eb658a39445a4f779",
+    "tokenizers/punkt_tab/english/collocations.tab": "8e2da1225e4dd2cc9dba261ee231ccb134859e21b46006e7f472c5ee269af0cf",
+    "tokenizers/punkt_tab/english/ortho_context.tab": "4bbcca25ed3d3f06c02402abf8419b9f033b8adc06e7b482eca4e45f81a5dc4c",
+    "tokenizers/punkt_tab/english/sent_starters.txt": "f3f8535483e1dba487241b764945168123bca3209a9645e59acd1225dc76edac",
+    "corpora/stopwords/english": "f6d005956f407dbc6ea32e5ff0c7e8e6f71488d3239b9023efdc7fc139d6375b"
+  },
+  "rapidocr": {
+    "upstream_version": "1.4.4",
+    "version": "1.4.4+oc39.1",
+    "wheel_filename": "rapidocr_onnxruntime-1.4.4-py3-none-any.whl",
+    "wheel_sha256": "971d7d5f223a7a808662229df1ef69893809d8457d834e6373d3854bc1782cbf",
+    "wheel_url": "https://files.pythonhosted.org/packages/ba/12/1e5497183bdbe782dbb91bad1d0d2297dba4d2831b2652657f7517bfc6df/rapidocr_onnxruntime-1.4.4-py3-none-any.whl",
+    "stock_requirement": "Requires-Dist: opencv-python>=4.5.1.48\n",
+    "headless_requirement": "Requires-Dist: opencv-python-headless==5.0.0.93\n"
+  }
+}

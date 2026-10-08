@@ -1,0 +1,2391 @@
+diff --git a/frontend/src/assets/configurations/constants.ts b/frontend/src/assets/configurations/constants.ts
+index d879c38..31e4e9f 100644
+--- a/frontend/src/assets/configurations/constants.ts
++++ b/frontend/src/assets/configurations/constants.ts
+@@ -49,6 +49,10 @@ export const FILTER_TAB_ICON_SIZE = 14;
+ export const ZOOM_MIN = 0.5;
+ /** Maximum document zoom level (400%). */
+ export const ZOOM_MAX = 4;
++/** Document-pane width below which zoom controls use a vertical arrangement. */
++export const ZOOM_CONTROLS_COMPACT_WIDTH_PX = 240;
++/** Vertical space reserved for each coincident quotation's persistent label. */
++export const EVIDENCE_LABEL_ROW_STRIDE_PX = 28;
+ /**
+  * Total horizontal breathing room (px) the shared fit-to-width helper
+  * reserves off the viewer container width so the fitted page does not
+@@ -438,6 +442,8 @@ export const DOCUMENT_ANNOTATION_INDEX_MAX_DEPTH = 6;
+ // Keep in sync with opencontractserver/constants/annotations.py
+ export const STRUCTURAL_LABEL_PREFIX = "OC_";
+ export const OC_SECTION_LABEL = "OC_SECTION";
++// Retrieval anchors are retained for grounding and omitted from reviewer views.
++export const OC_EXTRACT_SOURCE_LABEL = "OC_EXTRACT_SOURCE";
+ // Annotations carrying the OC_URL label render as clickable hyperlinks; their
+ // ``linkUrl`` field is opened on click. Keep in sync with
+ // opencontractserver/constants/annotations.py.
+diff --git a/frontend/src/components/annotator/components/modals/EditLabelModal.tsx b/frontend/src/components/annotator/components/modals/EditLabelModal.tsx
+index f2ce3f7..129b1bb 100644
+--- a/frontend/src/components/annotator/components/modals/EditLabelModal.tsx
++++ b/frontend/src/components/annotator/components/modals/EditLabelModal.tsx
+@@ -1,8 +1,8 @@
++import { DocumentChildModal } from "../../../knowledge_base/document/LayoutComponents";
+ import { MouseEvent, useState, useEffect, SyntheticEvent } from "react";
+ import _ from "lodash";
+ 
+ import {
+-  Modal,
+   ModalHeader,
+   ModalBody,
+   ModalFooter,
+@@ -38,12 +38,13 @@ export const EditLabelModal = ({
+   };
+ 
+   useEffect(() => {
++    if (!visible) return;
+     const onKeyPress = (e: KeyboardEvent) => {
+-      e.preventDefault();
+-      e.stopPropagation();
+-      if (e.keyCode >= 49 && e.keyCode <= 57) {
++      if (/^[1-9]$/.test(e.key)) {
+         const index = Number.parseInt(e.key) - 1;
+         if (index < spanLabels.length) {
++          e.preventDefault();
++          e.stopPropagation();
+           // Note: You'll need to implement updateAnnotation functionality separately
+           setCorpus({
+             humanSpanLabels: spanLabels.map((label, i) =>
+@@ -58,7 +59,7 @@ export const EditLabelModal = ({
+     return () => {
+       window.removeEventListener("keydown", onKeyPress);
+     };
+-  }, [spanLabels, annotation]);
++  }, [visible, spanLabels, annotation]);
+ 
+   const dropdownOptions: DropdownOption[] = spanLabels.map((label) => ({
+     value: label.id,
+@@ -75,7 +76,7 @@ export const EditLabelModal = ({
+   };
+ 
+   return (
+-    <Modal open={visible} onClose={onHide}>
++    <DocumentChildModal open={visible} onClose={onHide}>
+       <ModalHeader>Edit Label</ModalHeader>
+       <ModalBody>
+         <div onMouseDown={onMouseDown}>
+@@ -119,6 +120,6 @@ export const EditLabelModal = ({
+           Save Change
+         </Button>
+       </ModalFooter>
+-    </Modal>
++    </DocumentChildModal>
+   );
+ };
+diff --git a/frontend/src/components/annotator/display/components/Selection.tsx b/frontend/src/components/annotator/display/components/Selection.tsx
+index 3e90122..07be6aa 100644
+--- a/frontend/src/components/annotator/display/components/Selection.tsx
++++ b/frontend/src/components/annotator/display/components/Selection.tsx
+@@ -1,4 +1,5 @@
+-import React, { useState, useEffect, useRef } from "react";
++import { useVisibleAnnotations } from "../../hooks/useVisibleAnnotations";
++import React, { useState, useEffect, useRef, useMemo } from "react";
+ import _ from "lodash";
+ import styled from "styled-components";
+ import { useNavigate } from "react-router-dom";
+@@ -29,7 +30,11 @@ import {
+   openAnnotationUrl,
+ } from "../../utils/urlAnnotation";
+ import { useUpdateAnnotation } from "../../hooks/AnnotationHooks";
+-import { OC_URL_LABEL } from "../../../../assets/configurations/constants";
++import { LabelDisplayBehavior } from "../../../../types/graphql-api";
++import {
++  OC_URL_LABEL,
++  EVIDENCE_LABEL_ROW_STRIDE_PX,
++} from "../../../../assets/configurations/constants";
+ import { useReactiveVar } from "@apollo/client";
+ import { authToken } from "../../../../graphql/cache";
+ import { PDFPageInfo } from "../../types/pdf";
+@@ -150,6 +155,33 @@ export const Selection: React.FC<SelectionProps> = ({
+     setHidden(showSelectedOnly && !selected);
+   }, [showSelectedOnly, selected]);
+ 
++  const visibleAnnotations = useVisibleAnnotations();
++  const evidenceLabelOffset = useMemo(() => {
++    if (!annotation.isEvidenceQuote) return 0;
++    const page = pageInfo.page.pageNumber - 1;
++    const bounds = annotation.json[page]?.bounds;
++    if (!bounds) return 0;
++    const peers = visibleAnnotations
++      .filter((other) => {
++        if (!(other instanceof ServerTokenAnnotation) || !other.isEvidenceQuote)
++          return false;
++        const otherBounds = other.json[page]?.bounds;
++        return (
++          otherBounds &&
++          (["left", "right", "top", "bottom"] as const).every(
++            (key) => otherBounds[key] === bounds[key]
++          )
++        );
++      })
++      .sort((first, second) => first.id.localeCompare(second.id));
++    return (
++      Math.max(
++        0,
++        peers.findIndex((other) => other.id === annotation.id)
++      ) * EVIDENCE_LABEL_ROW_STRIDE_PX
++    );
++  }, [annotation, pageInfo.page.pageNumber, visibleAnnotations]);
++
+   const label = annotation.annotationLabel;
+   const color = label?.color || "#616a6b"; // grey as the default
+ 
+@@ -311,119 +343,130 @@ export const Selection: React.FC<SelectionProps> = ({
+         selected={selected}
+         scrollIntoView={scrollIntoView}
+       >
+-        {showInfo && !hideLabels && (
+-          <SelectionInfo
+-            id="SelectionInfo"
+-            $bounds={bounds}
+-            className={`selection_${annotation.id}`}
+-            $color={color}
+-            $showBoundingBox={showBoundingBoxes}
+-            $approved={approved}
+-            $rejected={rejected}
+-            onMouseEnter={handleMouseEnter}
+-            onMouseLeave={handleMouseLeave}
+-          >
+-            <SelectionInfoContainer id="SelectionInfoContainer">
+-              {relationship_type && (
+-                <RelationshipIndicator
+-                  $type={relationship_type}
+-                  $color={color}
+-                />
+-              )}
+-              <VerticallyJustifiedEndDiv>
+-                <LabelTagContainer
+-                  $hidden={hidden}
+-                  $hovered={hovered}
+-                  $color={color}
+-                  $display_behavior={showLabels}
+-                >
+-                  <div
+-                    style={{
+-                      position: "relative",
+-                      display: "flex",
+-                      alignItems: "center",
+-                    }}
++        {(showInfo || annotation.isEvidenceQuote) &&
++          (!hideLabels || annotation.isEvidenceQuote) && (
++            <SelectionInfo
++              id="SelectionInfo"
++              style={
++                evidenceLabelOffset
++                  ? { transform: `translateY(-${evidenceLabelOffset}px)` }
++                  : undefined
++              }
++              $bounds={bounds}
++              className={`selection_${annotation.id}`}
++              $color={color}
++              $showBoundingBox={showBoundingBoxes}
++              $approved={approved}
++              $rejected={rejected}
++              onMouseEnter={handleMouseEnter}
++              onMouseLeave={handleMouseLeave}
++            >
++              <SelectionInfoContainer id="SelectionInfoContainer">
++                {relationship_type && (
++                  <RelationshipIndicator
++                    $type={relationship_type}
++                    $color={color}
++                  />
++                )}
++                <VerticallyJustifiedEndDiv>
++                  <LabelTagContainer
++                    $hidden={hidden}
++                    $hovered={hovered}
++                    $color={color}
++                    $display_behavior={
++                      annotation.isEvidenceQuote
++                        ? LabelDisplayBehavior.ALWAYS
++                        : showLabels
++                    }
+                   >
+-                    <RadialButtonCloud
+-                      parentBackgroundColor={color}
+-                      actions={actions}
+-                    />
+                     <div
+                       style={{
+-                        whiteSpace: "nowrap",
+-                        overflowX: "visible",
+-                        marginLeft: "8px",
++                        position: "relative",
+                         display: "flex",
+                         alignItems: "center",
+-                        gap: "4px",
+                       }}
+                     >
+-                      {isLinkAnnotation && (
+-                        <ExternalLink
+-                          size={12}
+-                          aria-label="External link annotation"
+-                        />
+-                      )}
+-                      <span>{annotationChipLabel(annotation)}</span>
++                      <RadialButtonCloud
++                        parentBackgroundColor={color}
++                        actions={actions}
++                      />
++                      <div
++                        style={{
++                          whiteSpace: "nowrap",
++                          overflowX: "visible",
++                          marginLeft: "8px",
++                          display: "flex",
++                          alignItems: "center",
++                          gap: "4px",
++                        }}
++                      >
++                        {isLinkAnnotation && (
++                          <ExternalLink
++                            size={12}
++                            aria-label="External link annotation"
++                          />
++                        )}
++                        <span>{annotationChipLabel(annotation)}</span>
++                      </div>
++                      {annotation.myPermissions.includes(
++                        PermissionTypes.CAN_UPDATE
++                      ) &&
++                        !annotation.annotationLabel.readonly && (
++                          <Pencil
++                            size={14}
++                            style={{
++                              marginLeft: ".25rem",
++                              marginRight: ".125rem",
++                              cursor: "pointer",
++                            }}
++                            onClick={(e: React.MouseEvent) => {
++                              e.stopPropagation();
++                              // OC_URL annotations get the link-target editor;
++                              // every other annotation gets the standard label
++                              // editor.
++                              if (
++                                annotation.annotationLabel?.text ===
++                                OC_URL_LABEL
++                              ) {
++                                setIsEditUrlModalVisible(true);
++                              } else {
++                                setIsEditLabelModalVisible(true);
++                              }
++                            }}
++                            onMouseDown={(e: React.MouseEvent) => {
++                              e.stopPropagation();
++                            }}
++                          />
++                        )}
++                      {annotation.myPermissions.includes(
++                        PermissionTypes.CAN_REMOVE
++                      ) &&
++                        !annotation.annotationLabel.readonly && (
++                          <Trash2
++                            size={14}
++                            style={{
++                              marginLeft: ".125rem",
++                              marginRight: ".25rem",
++                              cursor: "pointer",
++                            }}
++                            onClick={(e: React.MouseEvent) => {
++                              e.stopPropagation();
++                              removeAnnotation();
++                            }}
++                            // We have to prevent the default behaviour for
++                            // the pdf canvas here, in order to be able to capture
++                            // the click event.
++                            onMouseDown={(e: React.MouseEvent) => {
++                              e.stopPropagation();
++                            }}
++                          />
++                        )}
+                     </div>
+-                    {annotation.myPermissions.includes(
+-                      PermissionTypes.CAN_UPDATE
+-                    ) &&
+-                      !annotation.annotationLabel.readonly && (
+-                        <Pencil
+-                          size={14}
+-                          style={{
+-                            marginLeft: ".25rem",
+-                            marginRight: ".125rem",
+-                            cursor: "pointer",
+-                          }}
+-                          onClick={(e: React.MouseEvent) => {
+-                            e.stopPropagation();
+-                            // OC_URL annotations get the link-target editor;
+-                            // every other annotation gets the standard label
+-                            // editor.
+-                            if (
+-                              annotation.annotationLabel?.text === OC_URL_LABEL
+-                            ) {
+-                              setIsEditUrlModalVisible(true);
+-                            } else {
+-                              setIsEditLabelModalVisible(true);
+-                            }
+-                          }}
+-                          onMouseDown={(e: React.MouseEvent) => {
+-                            e.stopPropagation();
+-                          }}
+-                        />
+-                      )}
+-                    {annotation.myPermissions.includes(
+-                      PermissionTypes.CAN_REMOVE
+-                    ) &&
+-                      !annotation.annotationLabel.readonly && (
+-                        <Trash2
+-                          size={14}
+-                          style={{
+-                            marginLeft: ".125rem",
+-                            marginRight: ".25rem",
+-                            cursor: "pointer",
+-                          }}
+-                          onClick={(e: React.MouseEvent) => {
+-                            e.stopPropagation();
+-                            removeAnnotation();
+-                          }}
+-                          // We have to prevent the default behaviour for
+-                          // the pdf canvas here, in order to be able to capture
+-                          // the click event.
+-                          onMouseDown={(e: React.MouseEvent) => {
+-                            e.stopPropagation();
+-                          }}
+-                        />
+-                      )}
+-                  </div>
+-                </LabelTagContainer>
+-              </VerticallyJustifiedEndDiv>
+-            </SelectionInfoContainer>
+-          </SelectionInfo>
+-        )}
++                  </LabelTagContainer>
++                </VerticallyJustifiedEndDiv>
++              </SelectionInfoContainer>
++            </SelectionInfo>
++          )}
+         <div
+           style={{
+             width: "100%",
+diff --git a/frontend/src/components/annotator/hooks/useAllAnnotations.ts b/frontend/src/components/annotator/hooks/useAllAnnotations.ts
+index 0645657..fd411fa 100644
+--- a/frontend/src/components/annotator/hooks/useAllAnnotations.ts
++++ b/frontend/src/components/annotator/hooks/useAllAnnotations.ts
+@@ -1,3 +1,5 @@
++import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
++import { useMemo } from "react";
+ import { useAtomValue } from "jotai";
+ import { allAnnotationsAtom } from "../context/AnnotationAtoms";
+ import {
+@@ -10,5 +12,12 @@ export function useAllAnnotations(): (
+   | ServerTokenAnnotation
+   | ServerSpanAnnotation
+ )[] {
+-  return useAtomValue(allAnnotationsAtom);
++  const annotations = useAtomValue(allAnnotationsAtom);
++  return useMemo(
++    () =>
++      annotations.filter((annotation) =>
++        isReviewerVisibleLabel(annotation.annotationLabel)
++      ),
++    [annotations]
++  );
+ }
+diff --git a/frontend/src/components/annotator/hooks/useVisibleAnnotations.ts b/frontend/src/components/annotator/hooks/useVisibleAnnotations.ts
+index 0e6d37c..0a7e275 100644
+--- a/frontend/src/components/annotator/hooks/useVisibleAnnotations.ts
++++ b/frontend/src/components/annotator/hooks/useVisibleAnnotations.ts
+@@ -39,7 +39,7 @@ export function useVisibleAnnotations(): (
+ 
+   /* ---------------- filtering --------------------------------------- */
+   return useMemo(() => {
+-    /* ---- ①  IDs that must be visible whatever other filters say ---- */
++    /* ---- ①  IDs that override display settings after label filtering ---- */
+     const forcedBySelectedRelationIds = new Set<string>(
+       selectedRelations.flatMap((rel) => [...rel.sourceIds, ...rel.targetIds])
+     );
+@@ -57,7 +57,7 @@ export function useVisibleAnnotations(): (
+ 
+     const forcedIds = new Set(forcedBySelection);
+ 
+-    // Explicit relation selection always wins — not gated on showStructural (unlike forcedByRelationships).
++    // Explicit relation selection overrides structural display settings.
+     forcedBySelectedRelationIds.forEach((id) => forcedIds.add(id));
+ 
+     if (showStructural) {
+@@ -72,7 +72,16 @@ export function useVisibleAnnotations(): (
+ 
+     /* ---- ③  Final predicate ---------------------------------------- */
+     return allAnnotations.filter((annot) => {
+-      /* forced – always keep                                            */
++      // Explicit label exclusions apply even to selected annotations and
++      // endpoints of selected relationships.
++      if (
++        labelFilterActive &&
++        !labelFilterActive.has(annot.annotationLabel.id)
++      ) {
++        return false;
++      }
++
++      /* selected annotations may override other display settings */
+       if (forcedIds.has(annot.id)) {
+         return true;
+       }
+@@ -96,14 +105,6 @@ export function useVisibleAnnotations(): (
+         return false;
+       }
+ 
+-      /* label filter - applies to both structural and non-structural    */
+-      if (
+-        labelFilterActive &&
+-        !labelFilterActive.has(annot.annotationLabel.id)
+-      ) {
+-        return false;
+-      }
+-
+       return true;
+     });
+   }, [
+diff --git a/frontend/src/components/annotator/labels/EnhancedLabelSelector.tsx b/frontend/src/components/annotator/labels/EnhancedLabelSelector.tsx
+index 4c452f4..364ae89 100644
+--- a/frontend/src/components/annotator/labels/EnhancedLabelSelector.tsx
++++ b/frontend/src/components/annotator/labels/EnhancedLabelSelector.tsx
+@@ -1,3 +1,4 @@
++import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
+ import React, {
+   useState,
+   useMemo,
+@@ -159,6 +160,10 @@ export const EnhancedLabelSelector: React.FC<EnhancedLabelSelectorProps> = ({
+       availableLabels = [...humanTokenLabels];
+     }
+ 
++    availableLabels = availableLabels.filter((label) =>
++      isReviewerVisibleLabel(label)
++    );
++
+     // Filter by search term
+     if (searchTerm) {
+       availableLabels = availableLabels.filter((label) =>
+diff --git a/frontend/src/components/annotator/labels/view_labels_selector/ViewLabelSelector.tsx b/frontend/src/components/annotator/labels/view_labels_selector/ViewLabelSelector.tsx
+index 42a8f05..f4c603c 100644
+--- a/frontend/src/components/annotator/labels/view_labels_selector/ViewLabelSelector.tsx
++++ b/frontend/src/components/annotator/labels/view_labels_selector/ViewLabelSelector.tsx
+@@ -1,3 +1,4 @@
++import { isReviewerVisibleLabel } from "../../../../utils/annotationVisibility";
+ import React, { useMemo } from "react";
+ import { Dropdown, DropdownOption } from "@os-legal/ui";
+ import _ from "lodash";
+@@ -36,8 +37,9 @@ export const ViewLabelSelector: React.FC = () => {
+     // (structural annotations might use either type)
+     const uniqueLabels = _.uniqBy(combinedLabels, "id").filter((label) => {
+       return (
+-        label.labelType === LabelType.SpanLabel ||
+-        label.labelType === LabelType.TokenLabel
++        isReviewerVisibleLabel(label) &&
++        (label.labelType === LabelType.SpanLabel ||
++          label.labelType === LabelType.TokenLabel)
+       );
+     });
+ 
+diff --git a/frontend/src/components/annotator/renderers/pdf/PDF.tsx b/frontend/src/components/annotator/renderers/pdf/PDF.tsx
+index a16ac89..2637835 100644
+--- a/frontend/src/components/annotator/renderers/pdf/PDF.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/PDF.tsx
+@@ -470,8 +470,14 @@ export const PDF: React.FC<PDFProps> = ({
+    */
+   useEffect(() => {
+     // No selection or no height data yet - can't scroll properly
+-    if (selectedAnnotations.length === 0 || pageHeights.length === 0) return;
+-    if (selectedPageIdx === undefined) return;
++    if (selectedAnnotations.length === 0) {
++      setPendingScrollId(null);
++      return;
++    }
++    if (pageHeights.length === 0 || selectedPageIdx === undefined) {
++      setPendingScrollId(null);
++      return;
++    }
+ 
+     const targetId = selectedAnnotations[0];
+ 
+diff --git a/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx b/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
+index a05c573..ae25b5a 100644
+--- a/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
+@@ -495,7 +495,7 @@ export const PDFPage = ({
+     }
+ 
+     /* 3️⃣  NORMAL ANNOTATION */
+-    if (pendingScrollId) {
++    if (pendingScrollId && selectedAnnotations[0] === pendingScrollId) {
+       const pageOwnsAnnotation = visibleAnnotations.some(
+         (a) =>
+           a instanceof ServerTokenAnnotation &&
+@@ -505,6 +505,7 @@ export const PDFPage = ({
+       if (!pageOwnsAnnotation) return;
+ 
+       let cancelled = false;
++      let frame: number | undefined;
+       const tryScrollAnnot = () => {
+         if (cancelled) return;
+         try {
+@@ -517,19 +518,24 @@ export const PDFPage = ({
+             el.scrollIntoView({ behavior: "smooth", block: "center" });
+             setPendingScrollId(null); // done
+           } else {
+-            requestAnimationFrame(tryScrollAnnot);
++            frame = requestAnimationFrame(tryScrollAnnot);
+           }
+         } catch (error) {
+           console.error("Error scrolling to annotation:", error);
+         }
+       };
+       tryScrollAnnot();
++      return () => {
++        cancelled = true;
++        if (frame !== undefined) cancelAnimationFrame(frame);
++      };
+     }
+   }, [
+     hasPdfPageRendered,
+     pendingScrollSearchId,
+     pendingScrollChatSourceKey,
+     pendingScrollId,
++    selectedAnnotations,
+     searchResults,
+     visibleAnnotations,
+     pageIndex,
+diff --git a/frontend/src/components/annotator/sidebar/HighlightItem.tsx b/frontend/src/components/annotator/sidebar/HighlightItem.tsx
+index 4bf773a..3df7e7d 100644
+--- a/frontend/src/components/annotator/sidebar/HighlightItem.tsx
++++ b/frontend/src/components/annotator/sidebar/HighlightItem.tsx
+@@ -11,7 +11,6 @@ import {
+ import { DynamicIcon } from "../../widgets/icon-picker/DynamicIcon";
+ import { useLocation, useNavigate } from "react-router-dom";
+ import { HorizontallyJustifiedDiv } from "./common";
+-import { useAnnotationRefs } from "../hooks/useAnnotationRefs";
+ import { useAnnotationSelection } from "../context/UISettingsAtom";
+ import { updateAnnotationSelectionParams } from "../../../utils/navigationUtils";
+ import { ServerTokenAnnotation, ServerAnnotation } from "../types/annotations";
+@@ -154,6 +153,9 @@ interface HighlightItemProps {
+   relations: Array<{ sourceIds: string[]; targetIds: string[] }>;
+   onDelete?: (annotationId: string) => void;
+   onSelect: (annotationId: string) => void;
++  selectionDisplay?: Parameters<
++    typeof updateAnnotationSelectionParams
++  >[2]["display"];
+   onToggleMultiSelect?: () => void;
+   isMultiSelected?: boolean;
+   contentModalities?: string[];
+@@ -173,6 +175,7 @@ export const HighlightItem: React.FC<HighlightItemProps> = ({
+   relations,
+   onDelete,
+   onSelect,
++  selectionDisplay,
+   onToggleMultiSelect,
+   isMultiSelected = false,
+   contentModalities,
+@@ -181,7 +184,6 @@ export const HighlightItem: React.FC<HighlightItemProps> = ({
+   const location = useLocation();
+   const navigate = useNavigate();
+   const { selectedAnnotations } = useAnnotationSelection();
+-  const { annotationElementRefs } = useAnnotationRefs();
+ 
+   // Fetch images if annotation has IMAGE modality
+   const { images, loading, error, hasFetchedEmpty } = useAnnotationImages(
+@@ -197,21 +199,14 @@ export const HighlightItem: React.FC<HighlightItemProps> = ({
+     relation.targetIds.includes(annotation.id)
+   );
+   const handleClick = () => {
+-    // Only use scrollIntoView for PDF token annotations. Text annotations
+-    // are scrolled by TxtAnnotator's own selectedAnnotations useEffect,
+-    // so calling scrollIntoView here would cause two competing scroll animations.
+-    if (annotation instanceof ServerTokenAnnotation) {
+-      annotationElementRefs.current[annotation.id]?.scrollIntoView({
+-        behavior: "smooth",
+-        block: "center",
+-      });
+-    }
+-
++    // The PDF renderer focuses the final URL selection after its page and
++    // annotation load. Scrolling an old ref here races that canonical owner.
+     // Update selection via URL - CentralRouteManager Phase 2 will set reactive var
+     // Toggle behavior: if already selected, deselect; otherwise select
+     const newSelection = selected ? [] : [annotation.id];
+     updateAnnotationSelectionParams(location, navigate, {
+       annotationIds: newSelection,
++      display: selectionDisplay,
+     });
+ 
+     // Call optional onSelect callback
+diff --git a/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx b/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx
+index 3afd3f5..c8951a1 100644
+--- a/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx
++++ b/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx
+@@ -1,8 +1,8 @@
++import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
+ import React, { useState, useRef } from "react";
+ import styled from "styled-components";
+ import { Code, Check, X, Eye, Edit3, EyeOff } from "lucide-react";
+ import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
+-import { useNavigate, useLocation } from "react-router-dom";
+ import { LoadingOverlay } from "../../common/LoadingOverlay";
+ import { CellEditor } from "./CellEditor";
+ import {
+@@ -27,16 +27,11 @@ import { HighlightItem } from "./HighlightItem";
+ import {
+   displayAnnotationOnAnnotatorLoad,
+   onlyDisplayTheseAnnotations,
+-  showSelectedAnnotationOnly,
+-  showAnnotationBoundingBoxes,
+-  showStructuralAnnotations,
+-  showAnnotationLabels,
+ } from "../../../graphql/cache";
+ import { toast } from "react-toastify";
+ import { convertToServerAnnotation } from "../../../utils/transform";
+ import ReactJson from "react-json-view";
+ import { useAnalysisManager } from "../hooks/AnalysisHooks";
+-import { updateAnnotationDisplayParams } from "../../../utils/navigationUtils";
+ 
+ interface SingleDocumentExtractResultsProps {
+   datacells: DatacellType[];
+@@ -63,9 +58,6 @@ export const SingleDocumentExtractResults: React.FC<
+   const [isEditing, setIsEditing] = useState(false);
+   const [editingCell, setEditingCell] = useState<DatacellType | null>(null);
+ 
+-  const navigate = useNavigate();
+-  const location = useLocation();
+-
+   const [requestApprove] = useMutation<
+     RequestApproveDatacellOutputType,
+     RequestApproveDatacellInputType
+@@ -318,6 +310,10 @@ export const SingleDocumentExtractResults: React.FC<
+               const cell = lastCells.find(
+                 (c) => c && c.column && c.column.id === column.id
+               );
++              const visibleSources =
++                cell?.fullSourceList?.filter((source) =>
++                  isReviewerVisibleLabel(source.annotationLabel)
++                ) ?? [];
+               return (
+                 <React.Fragment key={column.id}>
+                   <TableRow
+@@ -331,24 +327,22 @@ export const SingleDocumentExtractResults: React.FC<
+                           style={{ display: "flex", flexDirection: "column" }}
+                         >
+                           <span>{column.name}</span>
+-                          {cell &&
+-                            cell.fullSourceList &&
+-                            cell.fullSourceList.length > 0 && (
+-                              <AnnotationShield
+-                                onClick={(e) => {
+-                                  e.stopPropagation();
+-                                  toggleAnnotationVisibility(cell.id);
+-                                }}
+-                              >
+-                                {annotationVisibility[cell.id] ? (
+-                                  <Eye />
+-                                ) : (
+-                                  <EyeOff />
+-                                )}
+-                                {cell.fullSourceList.length} Annotation
+-                                {cell.fullSourceList.length !== 1 ? "s" : ""}
+-                              </AnnotationShield>
+-                            )}
++                          {cell && visibleSources.length > 0 && (
++                            <AnnotationShield
++                              onClick={(e) => {
++                                e.stopPropagation();
++                                toggleAnnotationVisibility(cell.id);
++                              }}
++                            >
++                              {annotationVisibility[cell.id] ? (
++                                <Eye />
++                              ) : (
++                                <EyeOff />
++                              )}
++                              {visibleSources.length} Annotation
++                              {visibleSources.length !== 1 ? "s" : ""}
++                            </AnnotationShield>
++                          )}
+                         </div>
+                         {cell && (
+                           <CellStatus>
+@@ -369,13 +363,12 @@ export const SingleDocumentExtractResults: React.FC<
+                     </TableCell>
+                   </TableRow>
+                   {cell &&
+-                    cell.fullSourceList &&
+-                    cell.fullSourceList.length > 0 &&
++                    visibleSources.length > 0 &&
+                     annotationVisibility[cell.id] && (
+                       <AnnotationRow>
+                         <TableCell colSpan={2}>
+                           <AnnotationsContainer>
+-                            {cell.fullSourceList.map((annotation) => (
++                            {visibleSources.map((annotation) => (
+                               <HighlightItem
+                                 key={annotation.id}
+                                 annotation={convertToServerAnnotation(
+@@ -383,20 +376,15 @@ export const SingleDocumentExtractResults: React.FC<
+                                 )}
+                                 read_only={true}
+                                 relations={[]}
+-                                onSelect={(annotationId: string) => {
++                                selectionDisplay={{
++                                  showSelectedOnly: false,
++                                  showBoundingBoxes: true,
++                                  showStructural: false,
++                                  labelDisplay: LabelDisplayBehavior.ALWAYS,
++                                }}
++                                onSelect={() => {
+                                   onlyDisplayTheseAnnotations([annotation]);
+                                   displayAnnotationOnAnnotatorLoad(annotation);
+-                                  // Update display settings via URL - CentralRouteManager will set reactive vars
+-                                  updateAnnotationDisplayParams(
+-                                    location,
+-                                    navigate,
+-                                    {
+-                                      showSelectedOnly: false,
+-                                      showBoundingBoxes: true,
+-                                      showStructural: true,
+-                                      labelDisplay: LabelDisplayBehavior.ALWAYS,
+-                                    }
+-                                  );
+                                 }}
+                               />
+                             ))}
+diff --git a/frontend/src/components/annotator/types/annotations.ts b/frontend/src/components/annotator/types/annotations.ts
+index 424ce9a..17b99c3 100644
+--- a/frontend/src/components/annotator/types/annotations.ts
++++ b/frontend/src/components/annotator/types/annotations.ts
+@@ -85,7 +85,8 @@ export class ServerSpanAnnotation {
+     public readonly canComment: boolean = false,
+     id: string | undefined = undefined,
+     public readonly contentModalities?: string[],
+-    public readonly linkUrl?: string | null
++    public readonly linkUrl?: string | null,
++    public readonly isEvidenceQuote: boolean = false
+   ) {
+     this.id = id || uuidv4();
+   }
+@@ -107,7 +108,8 @@ export class ServerSpanAnnotation {
+       delta.canComment ?? this.canComment,
+       this.id,
+       delta.contentModalities ?? this.contentModalities,
+-      delta.linkUrl ?? this.linkUrl
++      delta.linkUrl ?? this.linkUrl,
++      delta.isEvidenceQuote ?? this.isEvidenceQuote
+     );
+   }
+ 
+@@ -124,7 +126,8 @@ export class ServerSpanAnnotation {
+       obj.canComment,
+       obj.id,
+       obj.contentModalities,
+-      obj.linkUrl
++      obj.linkUrl,
++      obj.isEvidenceQuote
+     );
+   }
+ }
+@@ -148,7 +151,8 @@ export class ServerTokenAnnotation {
+     public readonly canComment: boolean = false,
+     id: string | undefined = undefined,
+     public readonly contentModalities?: string[],
+-    public readonly linkUrl?: string | null
++    public readonly linkUrl?: string | null,
++    public readonly isEvidenceQuote: boolean = false
+   ) {
+     this.id = id || uuidv4();
+     // Normalize any format (v1 or v2) to v1 for the rendering layer.
+@@ -185,7 +189,8 @@ export class ServerTokenAnnotation {
+       delta.canComment ?? this.canComment,
+       this.id,
+       delta.contentModalities ?? this.contentModalities,
+-      delta.linkUrl ?? this.linkUrl
++      delta.linkUrl ?? this.linkUrl,
++      delta.isEvidenceQuote ?? this.isEvidenceQuote
+     );
+   }
+ 
+@@ -202,7 +207,8 @@ export class ServerTokenAnnotation {
+       obj.canComment,
+       obj.id,
+       obj.contentModalities,
+-      obj.linkUrl
++      obj.linkUrl,
++      obj.isEvidenceQuote
+     );
+   }
+ }
+diff --git a/frontend/src/components/documents/CorpusDocumentCards.tsx b/frontend/src/components/documents/CorpusDocumentCards.tsx
+index 4908782..340121b 100644
+--- a/frontend/src/components/documents/CorpusDocumentCards.tsx
++++ b/frontend/src/components/documents/CorpusDocumentCards.tsx
+@@ -120,6 +120,7 @@ export const CorpusDocumentCards = ({
+       ? {
+           annotateDocLabels: true,
+           inCorpusWithId: opened_corpus_id,
++          badgeCorpusId: opened_corpus_id,
+           includeMetadata: true,
+           includeCaml: true,
+           // Folder filter is descendant-aware (see DocumentFilter.in_folder):
+diff --git a/frontend/src/components/extracts/datagrid/DataGrid.tsx b/frontend/src/components/extracts/datagrid/DataGrid.tsx
+index 744f7d4..ed157da 100644
+--- a/frontend/src/components/extracts/datagrid/DataGrid.tsx
++++ b/frontend/src/components/extracts/datagrid/DataGrid.tsx
+@@ -57,6 +57,7 @@ import { CreateColumnModal } from "../../widgets/modals/CreateColumnModal";
+ import { SelectDocumentsModal } from "../../widgets/modals/SelectDocumentsModal";
+ import { REQUEST_GET_EXTRACT } from "../../../graphql/queries";
+ import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
++import { unwrapDatacellData } from "../../../utils/extractUtils";
+ 
+ interface DragState {
+   isDragging: boolean;
+@@ -333,9 +334,9 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
+           isLoading: Boolean(isProcessing),
+           isApproved: Boolean(cell.approvedBy),
+           isRejected: Boolean(cell.rejectedBy),
+-          isEdited: Boolean(cell.correctedData),
+-          originalData: cell.data || null,
+-          correctedData: cell.correctedData || null,
++          isEdited: cell.correctedData != null,
++          originalData: cell.data ?? null,
++          correctedData: cell.correctedData ?? null,
+           error: cell.failed || null,
+         };
+       },
+@@ -360,12 +361,13 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
+         };
+ 
+         columns.forEach((column) => {
+-          const cell = initialCells.find(
++          const cell = localCells.find(
+             (c) => c.document.id === row.id && c.column.id === column.id
+           );
+ 
+           if (cell) {
+-            rowData[column.id] = cell.data?.data || "";
++            rowData[column.id] =
++              unwrapDatacellData(cell.correctedData ?? cell.data) ?? "";
+           } else {
+             rowData[column.id] = "";
+           }
+@@ -373,7 +375,7 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
+ 
+         return rowData;
+       });
+-    }, [rows, initialCells, columns]);
++    }, [rows, localCells, columns]);
+ 
+     // Separate mutations for edit, approve, and reject
+     const [editDatacell] = useMutation<
+@@ -384,7 +386,9 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
+         toast.success("Cell updated!");
+         const updatedCell = data.editDatacell.obj;
+         setLocalCells((prev) =>
+-          prev.map((cell) => (cell.id === updatedCell.id ? { ...cell, ...updatedCell } : cell))
++          prev.map((cell) =>
++            cell.id === updatedCell.id ? { ...cell, ...updatedCell } : cell
++          )
+         );
+       },
+       onError: () => toast.error("Failed to update cell!"),
+@@ -745,7 +749,12 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
+           }
+ 
+           cellValue = cellValue.replace(/"/g, '""');
+-          if (cellValue.includes(",") || cellValue.includes("\n")) {
++          if (
++            cellValue.includes(",") ||
++            cellValue.includes('"') ||
++            cellValue.includes("\n") ||
++            cellValue.includes("\r")
++          ) {
+             cellValue = `"${cellValue}"`;
+           }
+ 
+@@ -1038,7 +1047,7 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
+                               style={styles.tableCell}
+                             >
+                               <ExtractCellFormatter
+-                                value={row[column.id] || ""}
++                                value={row[column.id] ?? ""}
+                                 cellStatus={cellStatus || null}
+                                 onApprove={() =>
+                                   handleApproveCell(cell?.id || "")
+diff --git a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+index 833e829..4a73613 100644
+--- a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
++++ b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+@@ -1,4 +1,7 @@
++import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
+ import React, { useState, useEffect, useRef } from "react";
++import { useApolloClient, useReactiveVar } from "@apollo/client";
++import { GET_DATACELL_EVIDENCE } from "../../../graphql/queries";
+ import {
+   Modal,
+   ModalHeader,
+@@ -16,15 +19,11 @@ import { FindingPreview, FindingDetails } from "./FindingView";
+ import { findingFrom } from "../../../utils/findingValue";
+ import ReactJson from "react-json-view";
+ import { TruncatedText } from "../../widgets/data-display/TruncatedText";
+-import { useReactiveVar } from "@apollo/client";
+ import {
+   displayAnnotationOnAnnotatorLoad,
+   onlyDisplayTheseAnnotations,
+   selectedExtract,
+-  showAnnotationBoundingBoxes,
+-  showAnnotationLabels,
+-  showSelectedAnnotationOnly,
+-  showStructuralAnnotations,
++  userObj,
+ } from "../../../graphql/cache";
+ import {
+   DatacellType,
+@@ -170,14 +169,6 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+   const [isOriginalModalOpen, setIsOriginalModalOpen] = useState(false);
+   const [showRawJson, setShowRawJson] = useState(false);
+ 
+-  const [viewSourceAnnotations, setViewSourceAnnotations] = useState<
+-    ServerAnnotationType[] | null
+-  >(null);
+-
+-  const only_display_these_annotations = useReactiveVar(
+-    onlyDisplayTheseAnnotations
+-  );
+-
+   const cellRef = useRef<HTMLDivElement>(null);
+   const popupRef = useRef<HTMLDivElement>(null);
+   const firstMenuItemRef = useRef<HTMLButtonElement>(null);
+@@ -189,6 +180,39 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+   const [cellWidth, setCellWidth] = useState<number>(0);
+ 
+   const navigate = useNavigate();
++  const client = useApolloClient();
++  const user = useReactiveVar(userObj);
++  const [evidence, setEvidence] = useState<Pick<
++    DatacellType,
++    "findingEvidence" | "fullSourceList"
++  > | null>(null);
++  const [evidenceLoading, setEvidenceLoading] = useState(false);
++  const [evidenceError, setEvidenceError] = useState<string | null>(null);
++  const [evidenceIntent, setEvidenceIntent] = useState<"detail" | "sources">(
++    "detail"
++  );
++  // No projection data enters the overview query or Apollo's shared cache.
++  // Request generations also reject late responses after correction, sign-out,
++  // cell reuse, dismissal or another evidence inspection.
++  const evidenceGeneration = useRef(0);
++  const pendingEvidence = useRef<Promise<void> | null>(null);
++  const evidenceVersion = JSON.stringify([
++    cellId,
++    value,
++    cellStatus?.correctedData,
++    user?.id,
++  ]);
++  useEffect(() => {
++    evidenceGeneration.current += 1;
++    pendingEvidence.current = null;
++    setEvidence(null);
++    setEvidenceLoading(false);
++    setEvidenceError(null);
++    if (isModalOpen && cell?.hasFindingEvidence) void loadEvidence("detail");
++    return () => {
++      evidenceGeneration.current += 1;
++    };
++  }, [evidenceVersion, client]);
+ 
+   useEffect(() => {
+     if (cellRef.current) {
+@@ -270,16 +294,69 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+     return "transparent";
+   };
+ 
++  const loadEvidence = (intent: "detail" | "sources") => {
++    setEvidenceIntent(intent);
++    if (pendingEvidence.current) return pendingEvidence.current;
++    const generation = ++evidenceGeneration.current;
++    setEvidence(null);
++    setEvidenceError(null);
++    setEvidenceLoading(true);
++    const request = client
++      .query<{
++        datacell: Pick<
++          DatacellType,
++          "findingEvidence" | "fullSourceList"
++        > | null;
++      }>({
++        query: GET_DATACELL_EVIDENCE,
++        variables: { id: cellId },
++        fetchPolicy: "no-cache",
++        context: { queryDeduplication: false },
++      })
++      .then(({ data }) => {
++        if (generation !== evidenceGeneration.current) return;
++        if (!data.datacell) throw new Error("Source access failed");
++        setEvidence(data.datacell);
++        if (intent === "sources" && data.datacell.fullSourceList?.length) {
++          openSources(data.datacell.fullSourceList);
++          setIsModalOpen(false);
++        }
++      })
++      .catch(() => {
++        if (generation === evidenceGeneration.current) {
++          setEvidenceError(
++            "Quotation locations could not be loaded. Check source access and retry."
++          );
++        }
++      })
++      .finally(() => {
++        if (generation === evidenceGeneration.current) {
++          setEvidenceLoading(false);
++          pendingEvidence.current = null;
++        }
++      });
++    pendingEvidence.current = request;
++    return request;
++  };
++
+   const openViewer = () => {
++    setEvidenceIntent("detail");
+     setShowRawJson(false);
+     setIsModalOpen(true);
++    if (cell?.hasFindingEvidence) void loadEvidence("detail");
+   };
+ 
+   const closeModal = () => {
++    evidenceGeneration.current += 1;
++    pendingEvidence.current = null;
++    setEvidence(null);
++    setEvidenceLoading(false);
++    setEvidenceError(null);
+     setIsModalOpen(false);
+   };
+ 
+   const openOriginalViewer = () => {
++    setIsPopupOpen(false);
+     setIsOriginalModalOpen(true);
+   };
+ 
+@@ -294,6 +371,7 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+ 
+   const displayedValue =
+     cellStatus?.correctedData != null ? cellStatus.correctedData : value;
++  const originalValue = cellStatus ? cellStatus.originalData : value;
+   const findingValue = findingFrom(displayedValue);
+ 
+   const displayValue = () => {
+@@ -327,41 +405,43 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+     }
+   };
+ 
+-  useEffect(() => {
+-    if (viewSourceAnnotations !== null) {
+-      onlyDisplayTheseAnnotations(viewSourceAnnotations);
+-      displayAnnotationOnAnnotatorLoad(viewSourceAnnotations[0]);
+-    }
+-  }, [viewSourceAnnotations]);
+-
+-  useEffect(() => {
+-    if (
+-      only_display_these_annotations &&
+-      only_display_these_annotations.length > 0
+-    ) {
+-      const first = only_display_these_annotations[0];
+-      if (first.document && first.corpus) {
+-        const url = getDocumentUrl(first.document, first.corpus);
+-        if (url !== "#") {
+-          // Preserve the quotation selection and its display filter together.
+-          // Setting the old reactive variable alone does not filter the viewer.
+-          navigate(`${url}${buildQueryParams({
+-            annotationIds: only_display_these_annotations.map((annotation) => annotation.id),
+-            showSelectedOnly: true,
+-            showBoundingBoxes: true,
+-            labelDisplay: LabelDisplayBehavior.ALWAYS,
+-          })}`);
+-        } else {
+-          console.warn("Cannot navigate - missing slugs:", first);
+-        }
+-      }
+-      setViewSourceAnnotations(null);
+-    }
+-  }, [only_display_these_annotations, navigate]);
++  // The clicked cell owns this transition. Shared display state must never
++  // navigate from every formatter subscribed to it.
++  const openSources = (sources: ServerAnnotationType[]) => {
++    const annotations = sources.filter((source) =>
++      isReviewerVisibleLabel(source.annotationLabel)
++    );
++    const first = annotations[0];
++    if (!first?.document || !first.corpus) return;
++    const url = getDocumentUrl(first.document, first.corpus);
++    if (url === "#") return;
++    selectedExtract(extract);
++    onlyDisplayTheseAnnotations(annotations);
++    displayAnnotationOnAnnotatorLoad(first);
++    navigate(
++      `${url}${buildQueryParams({
++        annotationIds: annotations.map((annotation) => annotation.id),
++        showSelectedOnly: true,
++        showBoundingBoxes: true,
++        showStructural: false,
++        labelDisplay: LabelDisplayBehavior.ALWAYS,
++      })}`
++    );
++  };
+ 
+   return (
+     <CellContainer ref={cellRef} style={{ background: getCellBackground() }}>
+       {displayValue()}
++      {cellStatus?.correctedData != null && (
++        <Button
++          aria-label="View original"
++          variant="secondary"
++          size="sm"
++          onClick={openOriginalViewer}
++        >
++          View original
++        </Button>
++      )}
+       {cellStatus?.isLoading && <div className="cell-loader">Loading...</div>}
+       {!cellStatus?.isLoading && isExtractComplete && (
+         <>
+@@ -497,18 +577,21 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+                     variant="primary"
+                     onClick={() => {
+                       if (
+-                        cell?.fullSourceList &&
+-                        cell.fullSourceList.length > 0
++                        cell?.hasFindingEvidence ||
++                        (!findingValue && cell && !cell.fullSourceList)
+                       ) {
+-                        selectedExtract(extract);
+-                        setViewSourceAnnotations(
+-                          cell.fullSourceList as ServerAnnotationType[]
+-                        );
++                        setShowRawJson(false);
++                        setIsModalOpen(true);
++                        void loadEvidence("sources");
++                      } else if (cell?.fullSourceList?.length) {
++                        openSources(cell.fullSourceList);
+                       }
+                       setIsPopupOpen(false);
+                     }}
+                     disabled={
+-                      !cell?.fullSourceList || cell.fullSourceList.length === 0
++                      !cell?.hasFindingEvidence &&
++                      !cell?.fullSourceList?.length &&
++                      (Boolean(findingValue) || !cell)
+                     }
+                   >
+                     <Eye size={14} />
+@@ -566,43 +649,53 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+               </ModalBody>
+             </Modal>
+           )}
+-          <Modal open={isOriginalModalOpen} onClose={closeOriginalModal}>
+-            <ModalHeader>Original Value</ModalHeader>
+-            <ModalBody>
+-              {typeof value === "object" && value !== null ? (
+-                <ReactJson
+-                  src={value}
+-                  theme="rjv-default"
+-                  style={{ padding: "20px" }}
+-                  enableClipboard={false}
+-                  displayDataTypes={false}
+-                />
+-              ) : (
+-                <div style={{ padding: "20px" }}>{String(value)}</div>
+-              )}
+-            </ModalBody>
+-            <ModalFooter>
+-              <Button variant="secondary" onClick={closeOriginalModal}>
+-                Close
+-              </Button>
+-            </ModalFooter>
+-          </Modal>
+         </>
+       )}
++      <Modal open={isOriginalModalOpen} onClose={closeOriginalModal}>
++        <ModalHeader>Original Value</ModalHeader>
++        <ModalBody>
++          {typeof originalValue === "object" && originalValue !== null ? (
++            <ReactJson
++              src={originalValue}
++              theme="rjv-default"
++              style={{ padding: "20px" }}
++              enableClipboard={false}
++              displayDataTypes={false}
++            />
++          ) : (
++            <div style={{ padding: "20px" }}>{String(originalValue)}</div>
++          )}
++        </ModalBody>
++        <ModalFooter>
++          <Button variant="secondary" onClick={closeOriginalModal}>
++            Close
++          </Button>
++        </ModalFooter>
++      </Modal>
+       <Modal open={isModalOpen} onClose={closeModal}>
+         <ModalHeader>
+-          {findingValue && !showRawJson ? column.name : "Edit JSON Data"}
++          {findingValue && !showRawJson
++            ? column.name
++            : evidenceIntent === "sources"
++            ? "Sources"
++            : "Edit JSON Data"}
+         </ModalHeader>
+         <ModalBody>
+           {findingValue && !showRawJson ? (
+             <FindingDetails
+               value={findingValue}
+-              evidenceAnchors={cell?.findingEvidence}
++              evidenceAnchors={
++                evidence?.findingEvidence ?? cell?.findingEvidence
++              }
++              evidenceLoading={evidenceLoading}
++              evidenceError={evidenceError}
++              onRetryEvidence={() => void loadEvidence(evidenceIntent)}
+               onViewQuote={(annotationId) => {
+-                const source = cell?.fullSourceList?.find((annotation) => annotation.id === annotationId);
++                const source = (
++                  evidence?.fullSourceList ?? cell?.fullSourceList
++                )?.find((annotation) => annotation.id === annotationId);
+                 if (source) {
+-                  selectedExtract(extract);
+-                  setViewSourceAnnotations([source]);
++                  openSources([source]);
+                   closeModal();
+                 }
+               }}
+@@ -611,22 +704,42 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+               isEdited={cellStatus?.isEdited}
+             />
+           ) : (
+-            <ReactJson
+-              src={displayedValue}
+-              onEdit={
+-                !readOnly && isExtractComplete ? handleJsonEdit : undefined
+-              }
+-              onAdd={
+-                !readOnly && isExtractComplete ? handleJsonEdit : undefined
+-              }
+-              onDelete={
+-                !readOnly && isExtractComplete ? handleJsonEdit : undefined
+-              }
+-              theme="rjv-default"
+-              style={{ padding: "20px" }}
+-              enableClipboard={false}
+-              displayDataTypes={false}
+-            />
++            <>
++              {!findingValue &&
++                evidenceIntent === "sources" &&
++                (evidenceLoading ? (
++                  <p role="status">Loading source locations…</p>
++                ) : evidenceError ? (
++                  <div role="alert">
++                    <p>{evidenceError}</p>
++                    <Button onClick={() => void loadEvidence("sources")}>
++                      Retry source locations
++                    </Button>
++                  </div>
++                ) : evidence && !evidence.fullSourceList?.length ? (
++                  <p role="status">No highlighted source available.</p>
++                ) : null)}
++              {typeof displayedValue === "object" && displayedValue !== null ? (
++                <ReactJson
++                  src={displayedValue}
++                  onEdit={
++                    !readOnly && isExtractComplete ? handleJsonEdit : undefined
++                  }
++                  onAdd={
++                    !readOnly && isExtractComplete ? handleJsonEdit : undefined
++                  }
++                  onDelete={
++                    !readOnly && isExtractComplete ? handleJsonEdit : undefined
++                  }
++                  theme="rjv-default"
++                  style={{ padding: "20px" }}
++                  enableClipboard={false}
++                  displayDataTypes={false}
++                />
++              ) : (
++                <div>{String(displayedValue)}</div>
++              )}
++            </>
+           )}
+         </ModalBody>
+         <ModalFooter>
+diff --git a/frontend/src/components/extracts/datagrid/FindingView.tsx b/frontend/src/components/extracts/datagrid/FindingView.tsx
+index b8a9341..4d786de 100644
+--- a/frontend/src/components/extracts/datagrid/FindingView.tsx
++++ b/frontend/src/components/extracts/datagrid/FindingView.tsx
+@@ -1,3 +1,4 @@
++import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
+ import React from "react";
+ import styled from "styled-components";
+ import { isRecord, Finding } from "../../../utils/findingValue";
+@@ -160,7 +161,15 @@ const QuoteButton = styled.button`
+   }
+ `;
+ 
+-function Evidence({ value, anchors, onViewQuote }: { value: unknown; anchors?: unknown[]; onViewQuote?: (annotationId: string) => void }) {
++function Evidence({
++  value,
++  anchors,
++  onViewQuote,
++}: {
++  value: unknown;
++  anchors?: unknown[];
++  onViewQuote?: (annotationId: string) => void;
++}) {
+   let parsed: unknown = anchors ?? value;
+   if (typeof parsed === "string") {
+     try {
+@@ -183,8 +192,11 @@ function Evidence({ value, anchors, onViewQuote }: { value: unknown; anchors?: u
+           !isRecord(item) ||
+           typeof item.quote !== "string" ||
+           !item.quote.trim() ||
+-          (!anchors && (typeof item.page !== "number" ||
+-            !Number.isInteger(item.page) || item.page < 1))
++          (!anchors &&
++            item.page !== null &&
++            (typeof item.page !== "number" ||
++              !Number.isInteger(item.page) ||
++              item.page < 1))
+         ) {
+           return (
+             <p key={index}>
+@@ -197,23 +209,58 @@ function Evidence({ value, anchors, onViewQuote }: { value: unknown; anchors?: u
+         return (
+           <div key={index}>
+             <blockquote>{item.quote}</blockquote>
++            {Array.isArray(item.domainLabels) && (
++              <div className="evidence-location">
++                {item.domainLabels
++                  .filter(
++                    (entry) =>
++                      isRecord(entry) &&
++                      typeof entry.text === "string" &&
++                      isReviewerVisibleLabel({ text: entry.text })
++                  )
++                  .map((entry) => (isRecord(entry) ? String(entry.text) : ""))
++                  .join(" · ")}
++              </div>
++            )}
+             <div className="evidence-location">
+               {typeof (anchors ? item.reportedPage : item.page) === "number"
+-                ? `${anchors ? "Reported page" : "Page"} ${anchors ? item.reportedPage : item.page}`
++                ? `${anchors ? "Reported page" : "Page"} ${
++                    anchors ? item.reportedPage : item.page
++                  }`
+                 : "Reported page unavailable"}
+               {typeof item.speaker === "string" ? ` · ${item.speaker}` : ""}
+             </div>
+-            {anchors && <div className="evidence-location" role="status">
+-              {item.status === "matched" && `Located on PDF page ${item.locatedPage}.`}
+-              {item.status === "different_page" && `Located on PDF page ${item.locatedPage}; the reported page differs.`}
+-              {item.matchType === "typography_whitespace" && " Matched with typographic or whitespace differences."}
+-              {item.status === "unmatched" && "Quotation not found in retained source. No highlight."}
+-              {item.status === "ambiguous" && "Multiple possible source locations. No highlight."}
+-              {item.status === "source_unavailable" && "Retained source coordinates are unavailable. No highlight."}
+-              {item.status === "projection_unavailable" && "The complete quotation could not be highlighted. No highlight."}
+-            </div>}
+-            {anchors && isRecord(item.scope) && Object.keys(item.scope).length > 0 && <Value value={item.scope} />}
+-            {typeof annotationId === "string" && onViewQuote && <QuoteButton type="button" onClick={() => onViewQuote(annotationId)}>View quotation in PDF</QuoteButton>}
++            {anchors && (
++              <div className="evidence-location" role="status">
++                {item.status === "matched" &&
++                  `Located on PDF page ${item.locatedPage}.`}
++                {item.status === "different_page" &&
++                  `Located on PDF page ${item.locatedPage}; the reported page differs.`}
++                {item.matchType === "typography_whitespace" &&
++                  " Matched with typographic or whitespace differences."}
++                {item.status === "unmatched" &&
++                  "Quotation not found in retained source. No highlight."}
++                {item.status === "ambiguous" &&
++                  "Multiple possible source locations. No highlight."}
++                {item.status === "source_unavailable" &&
++                  "Retained source coordinates are unavailable. No highlight."}
++                {item.status === "projection_unavailable" &&
++                  "The complete quotation could not be highlighted. No highlight."}
++              </div>
++            )}
++            {anchors &&
++              isRecord(item.scope) &&
++              Object.keys(item.scope).length > 0 && (
++                <Value value={item.scope} />
++              )}
++            {typeof annotationId === "string" && onViewQuote && (
++              <QuoteButton
++                type="button"
++                onClick={() => onViewQuote(annotationId)}
++              >
++                View quotation in PDF
++              </QuoteButton>
++            )}
+           </div>
+         );
+       })}
+@@ -227,6 +274,9 @@ interface FindingProps {
+   isRejected?: boolean;
+   isEdited?: boolean;
+   evidenceAnchors?: unknown[];
++  evidenceLoading?: boolean;
++  evidenceError?: string | null;
++  onRetryEvidence?: () => void;
+   onViewQuote?: (annotationId: string) => void;
+ }
+ 
+@@ -271,6 +321,9 @@ export function FindingDetails({
+   isRejected,
+   isEdited,
+   evidenceAnchors,
++  evidenceLoading,
++  evidenceError,
++  onRetryEvidence,
+   onViewQuote,
+ }: FindingProps) {
+   const result = outcome(value);
+@@ -299,7 +352,22 @@ export function FindingDetails({
+         ))}
+       <section>
+         <h3>Evidence</h3>
+-        <Evidence value={value[evidenceKey]} anchors={evidenceAnchors} onViewQuote={onViewQuote} />
++        {evidenceLoading ? (
++          <p role="status">Loading quotation locations…</p>
++        ) : evidenceError ? (
++          <div role="alert">
++            <p>{evidenceError}</p>
++            <QuoteButton type="button" onClick={onRetryEvidence}>
++              Retry quotation locations
++            </QuoteButton>
++          </div>
++        ) : (
++          <Evidence
++            value={value[evidenceKey]}
++            anchors={evidenceAnchors}
++            onViewQuote={onViewQuote}
++          />
++        )}
+       </section>
+     </Details>
+   );
+diff --git a/frontend/src/components/knowledge_base/document/LayoutComponents.tsx b/frontend/src/components/knowledge_base/document/LayoutComponents.tsx
+index 3c47201..472e717 100644
+--- a/frontend/src/components/knowledge_base/document/LayoutComponents.tsx
++++ b/frontend/src/components/knowledge_base/document/LayoutComponents.tsx
+@@ -1,4 +1,4 @@
+-import React, { useEffect } from "react";
++import React, { useEffect, useRef } from "react";
+ import { Modal } from "@os-legal/ui";
+ import styled, { createGlobalStyle } from "styled-components";
+ import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
+@@ -6,6 +6,120 @@ import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
+ export const DOCUMENT_KB_CHILD_MODAL_OVERLAY_CLASS =
+   "document-kb-child-modal-overlay";
+ 
++const childDialogStack: HTMLElement[] = [];
++const focusableSelector =
++  'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
++
++/** Native viewer child dialog: portal layer, scoped focus and launcher return. */
++export const DocumentChildModal = React.forwardRef<
++  HTMLDivElement,
++  React.ComponentProps<typeof Modal>
++>(
++  (
++    {
++      open,
++      onClose,
++      children,
++      overlayClassName,
++      closeOnEscape = true,
++      ...props
++    },
++    forwardedRef
++  ) => {
++    const dialogRef = useRef<HTMLDivElement | null>(null);
++    const closeRef = useRef(onClose);
++    closeRef.current = onClose;
++    useEffect(() => {
++      const dialog = dialogRef.current;
++      if (!open || !dialog) return;
++      const launcher =
++        document.activeElement instanceof HTMLElement
++          ? document.activeElement
++          : null;
++      childDialogStack.push(dialog);
++      const isTopmost = () =>
++        childDialogStack[childDialogStack.length - 1] === dialog;
++      const ownedPortals = () =>
++        Array.from(dialog.querySelectorAll("[aria-controls]"))
++          .map((control) =>
++            document.getElementById(control.getAttribute("aria-controls") ?? "")
++          )
++          .filter((element): element is HTMLElement => element !== null);
++      const containsFocus = (target: Node | null) =>
++        !!target &&
++        (dialog.contains(target) ||
++          ownedPortals().some((portal) => portal.contains(target)));
++      const focusable = () =>
++        [dialog, ...ownedPortals()]
++          .flatMap((region) =>
++            Array.from(region.querySelectorAll<HTMLElement>(focusableSelector))
++          )
++          .filter(
++            (element) =>
++              element.getClientRects().length > 0 && !element.closest("[inert]")
++          );
++      const focusFirst = () => (focusable()[0] ?? dialog).focus();
++      focusFirst();
++      const handleFocus = (event: FocusEvent) => {
++        if (isTopmost() && !containsFocus(event.target as Node)) focusFirst();
++      };
++      const handleKey = (event: KeyboardEvent) => {
++        if (!isTopmost()) return;
++        if (event.key === "Escape" && closeOnEscape) {
++          // Let an open native picker dismiss its popup before the dialog.
++          if (dialog.querySelector('[aria-expanded="true"]')) return;
++          event.preventDefault();
++          event.stopPropagation();
++          closeRef.current();
++        } else if (event.key === "Tab") {
++          const items = focusable();
++          const index = items.indexOf(document.activeElement as HTMLElement);
++          const next = event.shiftKey
++            ? index <= 0
++              ? items.length - 1
++              : index - 1
++            : (index + 1) % items.length;
++          event.preventDefault();
++          event.stopPropagation();
++          (items[next] ?? dialog).focus();
++        }
++      };
++      document.addEventListener("keydown", handleKey, true);
++      document.addEventListener("focusin", handleFocus);
++      return () => {
++        const index = childDialogStack.indexOf(dialog);
++        if (index >= 0) childDialogStack.splice(index, 1);
++        document.removeEventListener("keydown", handleKey, true);
++        document.removeEventListener("focusin", handleFocus);
++        if (launcher?.isConnected) launcher.focus();
++      };
++    }, [open, closeOnEscape]);
++    return (
++      <Modal
++        {...props}
++        open={open}
++        onClose={onClose}
++        closeOnEscape={false}
++        overlayClassName={[
++          DOCUMENT_KB_CHILD_MODAL_OVERLAY_CLASS,
++          overlayClassName,
++        ]
++          .filter(Boolean)
++          .join(" ")}
++        tabIndex={-1}
++        ref={(node) => {
++          dialogRef.current = node;
++          if (typeof forwardedRef === "function") forwardedRef(node);
++          else if (forwardedRef) forwardedRef.current = node;
++        }}
++      >
++        {children}
++      </Modal>
++    );
++  }
++);
++DocumentChildModal.displayName = "DocumentChildModal";
++
+ // Minimal overrides for the fullscreen modal body — the native size="fullscreen"
+ // variant handles positioning, sizing, border-radius, and overlay padding.
+ // We override max-height because the base .oc-modal sets max-height: calc(100vh - 32px)
+diff --git a/frontend/src/components/knowledge_base/document/ZoomControls.tsx b/frontend/src/components/knowledge_base/document/ZoomControls.tsx
+index 652095f..9db102e 100644
+--- a/frontend/src/components/knowledge_base/document/ZoomControls.tsx
++++ b/frontend/src/components/knowledge_base/document/ZoomControls.tsx
+@@ -1,7 +1,11 @@
+ import React from "react";
+ import styled from "styled-components";
+ import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
+-import { ZOOM_MIN, ZOOM_MAX } from "../../../assets/configurations/constants";
++import {
++  ZOOM_MIN,
++  ZOOM_MAX,
++  ZOOM_CONTROLS_COMPACT_WIDTH_PX,
++} from "../../../assets/configurations/constants";
+ import { ZoomIn, ZoomOut } from "lucide-react";
+ 
+ interface ZoomControlsProps {
+@@ -9,13 +13,34 @@ interface ZoomControlsProps {
+   onZoomOut: () => void;
+   zoomLevel: number;
+   className?: string;
++  panelWidth?: number;
+ }
+ 
++const ZoomRegion = styled.div<{ $panelWidth: number }>`
++  position: absolute;
++  inset: 0 ${(props) => props.$panelWidth}% 0 0;
++  z-index: 900;
++  pointer-events: none;
++  container-type: inline-size;
++`;
++
+ const StyledZoomControls = styled.div`
+   position: absolute;
+   top: 1.5rem;
+   right: 1.5rem;
+-  z-index: 900;
++  pointer-events: auto;
++
++  @container (max-width: ${ZOOM_CONTROLS_COMPACT_WIDTH_PX}px) {
++    right: 0.5rem;
++    .zoom-group .zoom-controls {
++      flex-direction: column;
++      gap: 0.25rem;
++    }
++    .zoom-group .zoom-level {
++      min-width: 0;
++      padding: 0;
++    }
++  }
+ 
+   @media (max-width: 768px) {
+     position: absolute; /* Stay within document container */
+@@ -85,29 +110,32 @@ export const ZoomControls: React.FC<ZoomControlsProps> = ({
+   onZoomOut,
+   zoomLevel,
+   className,
++  panelWidth = 0,
+ }) => {
+   return (
+-    <StyledZoomControls className={className}>
+-      <div className="zoom-group">
+-        <div className="zoom-controls">
+-          <button
+-            onClick={onZoomOut}
+-            title="Zoom Out"
+-            disabled={zoomLevel <= ZOOM_MIN}
+-          >
+-            <ZoomOut />
+-          </button>
+-          <div className="zoom-level">{Math.round(zoomLevel * 100)}%</div>
+-          <button
+-            onClick={onZoomIn}
+-            title="Zoom In"
+-            disabled={zoomLevel >= ZOOM_MAX}
+-          >
+-            <ZoomIn />
+-          </button>
++    <ZoomRegion $panelWidth={Math.min(100, Math.max(0, panelWidth))}>
++      <StyledZoomControls className={className}>
++        <div className="zoom-group">
++          <div className="zoom-controls">
++            <button
++              onClick={onZoomOut}
++              title="Zoom Out"
++              disabled={zoomLevel <= ZOOM_MIN}
++            >
++              <ZoomOut />
++            </button>
++            <div className="zoom-level">{Math.round(zoomLevel * 100)}%</div>
++            <button
++              onClick={onZoomIn}
++              title="Zoom In"
++              disabled={zoomLevel >= ZOOM_MAX}
++            >
++              <ZoomIn />
++            </button>
++          </div>
+         </div>
+-      </div>
+-    </StyledZoomControls>
++      </StyledZoomControls>
++    </ZoomRegion>
+   );
+ };
+ 
+diff --git a/frontend/src/components/knowledge_base/document/layouts/DesktopDocumentLayout.tsx b/frontend/src/components/knowledge_base/document/layouts/DesktopDocumentLayout.tsx
+index 26744be..2dac86e 100644
+--- a/frontend/src/components/knowledge_base/document/layouts/DesktopDocumentLayout.tsx
++++ b/frontend/src/components/knowledge_base/document/layouts/DesktopDocumentLayout.tsx
+@@ -221,6 +221,7 @@ export const DesktopDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
+             {/* Zoom Controls - positioned relative to ContentArea */}
+             {activeLayer === "document" && (
+               <ZoomControls
++                panelWidth={showRightPanel ? getPanelWidthPercentage() : 0}
+                 zoomLevel={zoomLevel}
+                 onZoomIn={() => {
+                   setZoomLevel(Math.min(zoomLevel + 0.1, ZOOM_MAX));
+diff --git a/frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx b/frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx
+index f69e78b..3bf7260 100644
+--- a/frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx
++++ b/frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx
+@@ -1,3 +1,7 @@
++import {
++  ZOOM_MIN,
++  ZOOM_MAX,
++} from "../../../../assets/configurations/constants";
+ import React, { useEffect, useState } from "react";
+ import styled from "styled-components";
+ 
+@@ -284,6 +288,12 @@ export const MobileDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
+                 <MobileDocToolbar
+                   zoomPercent={zoomLevel * 100}
+                   onFitWidth={fitToWidth}
++                  onZoomIn={() =>
++                    setZoomLevel(Math.min(zoomLevel + 0.1, ZOOM_MAX))
++                  }
++                  onZoomOut={() =>
++                    setZoomLevel(Math.max(zoomLevel - 0.1, ZOOM_MIN))
++                  }
+                   onSections={() => setSectionsSheetOpen(true)}
+                   onFind={() => setFindSheetOpen(true)}
+                 />
+diff --git a/frontend/src/components/knowledge_base/document/layouts/mobile/MobileDocToolbar.tsx b/frontend/src/components/knowledge_base/document/layouts/mobile/MobileDocToolbar.tsx
+index 218c91c..deb3ac0 100644
+--- a/frontend/src/components/knowledge_base/document/layouts/mobile/MobileDocToolbar.tsx
++++ b/frontend/src/components/knowledge_base/document/layouts/mobile/MobileDocToolbar.tsx
+@@ -1,8 +1,12 @@
+ import React from "react";
+ import styled from "styled-components";
+-import { List, Search, Maximize2 } from "lucide-react";
++import { List, Search, Maximize2, ZoomIn, ZoomOut } from "lucide-react";
+ import { OS_LEGAL_COLORS } from "../../../../../assets/configurations/osLegalStyles";
+-import { Z_INDEX } from "../../../../../assets/configurations/constants";
++import {
++  Z_INDEX,
++  ZOOM_MIN,
++  ZOOM_MAX,
++} from "../../../../../assets/configurations/constants";
+ import { MOBILE_RADIUS, MOBILE_SHADOW } from "./mobileTheme";
+ 
+ export interface MobileDocToolbarProps {
+@@ -10,6 +14,8 @@ export interface MobileDocToolbarProps {
+   onSections: () => void;
+   onFind: () => void;
+   onFitWidth: () => void;
++  onZoomIn?: () => void;
++  onZoomOut?: () => void;
+ }
+ 
+ /** Compact frosted-pill toolbar that floats over the viewer's top-right corner. */
+@@ -85,6 +91,8 @@ export const MobileDocToolbar: React.FC<MobileDocToolbarProps> = ({
+   onSections,
+   onFind,
+   onFitWidth,
++  onZoomIn,
++  onZoomOut,
+ }) => (
+   <Cluster>
+     <IconButton aria-label="Sections" onClick={onSections}>
+@@ -94,8 +102,26 @@ export const MobileDocToolbar: React.FC<MobileDocToolbarProps> = ({
+       <Search size={17} />
+     </IconButton>
+     <Divider aria-hidden="true" />
++    {onZoomOut && (
++      <IconButton
++        aria-label="Zoom Out"
++        onClick={onZoomOut}
++        disabled={zoomPercent <= ZOOM_MIN * 100}
++      >
++        <ZoomOut size={17} />
++      </IconButton>
++    )}
+     <ZoomButton aria-label="Fit width" onClick={onFitWidth}>
+       <Maximize2 size={15} /> {Math.round(zoomPercent)}%
+     </ZoomButton>
++    {onZoomIn && (
++      <IconButton
++        aria-label="Zoom In"
++        onClick={onZoomIn}
++        disabled={zoomPercent >= ZOOM_MAX * 100}
++      >
++        <ZoomIn size={17} />
++      </IconButton>
++    )}
+   </Cluster>
+ );
+diff --git a/frontend/src/components/knowledge_base/document/unified_feed/RelationshipActionModal.tsx b/frontend/src/components/knowledge_base/document/unified_feed/RelationshipActionModal.tsx
+index 35b8e30..e1240fa 100644
+--- a/frontend/src/components/knowledge_base/document/unified_feed/RelationshipActionModal.tsx
++++ b/frontend/src/components/knowledge_base/document/unified_feed/RelationshipActionModal.tsx
+@@ -1,9 +1,9 @@
++import { DocumentChildModal } from "../LayoutComponents";
+ import React, { useState, useMemo } from "react";
+ import {
+   Button,
+   Dropdown,
+   Input,
+-  Modal,
+   ModalHeader,
+   ModalBody,
+   ModalFooter,
+@@ -355,7 +355,7 @@ export const RelationshipActionModal: React.FC<
+   );
+ 
+   return (
+-    <Modal open={open} onClose={onClose} size="sm">
++    <DocumentChildModal open={open} onClose={onClose} size="sm">
+       <ModalHeader
+         title={
+           <span>
+@@ -844,6 +844,6 @@ export const RelationshipActionModal: React.FC<
+             : "Create Relationship"}
+         </Button>
+       </ModalFooter>
+-    </Modal>
++    </DocumentChildModal>
+   );
+ };
+diff --git a/frontend/src/components/widgets/buttons/RadialButtonCloud.tsx b/frontend/src/components/widgets/buttons/RadialButtonCloud.tsx
+index d54ad4e..4a73060 100644
+--- a/frontend/src/components/widgets/buttons/RadialButtonCloud.tsx
++++ b/frontend/src/components/widgets/buttons/RadialButtonCloud.tsx
+@@ -1,6 +1,7 @@
++import { DocumentChildModal } from "../../knowledge_base/document/LayoutComponents";
+ import React, { useState, useRef, useEffect } from "react";
+ import styled, { keyframes } from "styled-components";
+-import { Modal, ModalBody, ModalFooter, Button } from "@os-legal/ui";
++import { ModalBody, ModalFooter, Button } from "@os-legal/ui";
+ import { DynamicIcon } from "../icon-picker/DynamicIcon";
+ import { getLuminance } from "polished";
+ import useWindowDimensions from "../../hooks/WindowDimensionHook";
+@@ -140,7 +141,7 @@ const CloudButtonStyled = styled.button<CloudButtonStyledProps>`
+   }
+ `;
+ 
+-const HighZModal = styled(Modal)`
++const HighZModal = styled(DocumentChildModal)`
+   && {
+     z-index: 20001;
+   }
+diff --git a/frontend/src/components/widgets/model-filters/FilterToLabelSelector.tsx b/frontend/src/components/widgets/model-filters/FilterToLabelSelector.tsx
+index eac93a8..47aa30d 100644
+--- a/frontend/src/components/widgets/model-filters/FilterToLabelSelector.tsx
++++ b/frontend/src/components/widgets/model-filters/FilterToLabelSelector.tsx
+@@ -1,3 +1,4 @@
++import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
+ import { useEffect } from "react";
+ import { useQuery, useReactiveVar } from "@apollo/client";
+ import { Chip } from "@os-legal/ui";
+@@ -118,7 +119,10 @@ export const FilterToLabelSelector = ({
+   let label_options: SelectOption[] = [];
+   if (labels) {
+     label_options = labels
+-      .filter((item): item is AnnotationLabelType => !!item)
++      .filter(
++        (item): item is AnnotationLabelType =>
++          !!item && isReviewerVisibleLabel(item)
++      )
+       .map((label) => ({
+         value: label.id,
+         label: label.text || "",
+diff --git a/frontend/src/graphql/mutations.ts b/frontend/src/graphql/mutations.ts
+index 1b37b60..c07716b 100644
+--- a/frontend/src/graphql/mutations.ts
++++ b/frontend/src/graphql/mutations.ts
+@@ -1673,6 +1673,7 @@ export const REQUEST_ADD_ANNOTATION = gql`
+         isPublic
+         myPermissions
+         annotationType
++        isEvidenceQuote
+         annotationLabel {
+           id
+           icon
+@@ -1754,6 +1755,7 @@ export const REQUEST_ADD_URL_ANNOTATION = gql`
+         isPublic
+         myPermissions
+         annotationType
++        isEvidenceQuote
+         annotationLabel {
+           id
+           icon
+@@ -2635,24 +2637,71 @@ export const REQUEST_EDIT_DATACELL = gql`
+         stacktrace
+         correctedData
+         findingEvidence
+-        column { id name }
+-        document { id title fileType }
++        column {
++          id
++          name
++        }
++        document {
++          id
++          title
++          fileType
++        }
+         fullSourceList {
+           id
+           isPublic
+           myPermissions
+-          annotationLabel { id text color icon labelType description }
++          annotationLabel {
++            id
++            text
++            color
++            icon
++            labelType
++            description
++          }
+           document {
+-            id slug creator { id slug } fileType pdfFile txtExtractFile pawlsParseFile
++            id
++            slug
++            creator {
++              id
++              slug
++            }
++            fileType
++            pdfFile
++            txtExtractFile
++            pawlsParseFile
++          }
++          corpus {
++            id
++            slug
++            creator {
++              id
++              slug
++            }
+           }
+-          corpus { id slug creator { id slug } }
+           page
+           rawText
+           json
+           annotationType
+-          sourceNodeInRelationships { edges { node { id } } }
+-          targetNodeInRelationships { edges { node { id } } }
+-          creator { id slug email }
++          isEvidenceQuote
++          sourceNodeInRelationships {
++            edges {
++              node {
++                id
++              }
++            }
++          }
++          targetNodeInRelationships {
++            edges {
++              node {
++                id
++              }
++            }
++          }
++          creator {
++            id
++            slug
++            email
++          }
+         }
+         approvedBy {
+           id
+diff --git a/frontend/src/graphql/queries.ts b/frontend/src/graphql/queries.ts
+index 927729c..2407552 100644
+--- a/frontend/src/graphql/queries.ts
++++ b/frontend/src/graphql/queries.ts
+@@ -39,6 +39,7 @@ export interface RequestDocumentsInputs {
+   corpusId?: string;
+   inFolderId?: string; // "__root__" (or omit) = all corpus docs; a folder ID = that folder + sub-folders
+   annotateDocLabels?: boolean;
++  badgeCorpusId?: string;
+   hasLabelWithId?: string;
+ }
+ 
+@@ -101,6 +102,7 @@ export const GET_BULK_DOCUMENT_UPLOAD_STATUS = gql`
+ export const GET_DOCUMENTS = gql`
+   query (
+     $inCorpusWithId: String
++    $badgeCorpusId: ID
+     $inFolderId: String
+     $cursor: String
+     $limit: Int
+@@ -145,7 +147,8 @@ export const GET_DOCUMENTS = gql`
+           isLatestVersion
+           canViewHistory
+           docRelationshipCount(corpusId: $inCorpusWithId)
+-          docTypeLabels @include(if: $annotateDocLabels) {
++          docTypeLabels(corpusId: $badgeCorpusId)
++            @include(if: $annotateDocLabels) {
+             labelType
+             text
+           }
+@@ -2501,6 +2504,7 @@ export const GET_ANNOTATIONS = gql`
+             __typename
+           }
+           annotationType
++          isEvidenceQuote
+           structural
+           rawText
+           linkUrl
+@@ -2618,6 +2622,7 @@ export const GET_ANNOTATIONS_FOR_CARDS = gql`
+             __typename
+           }
+           annotationType
++          isEvidenceQuote
+           structural
+           rawText
+           isPublic
+@@ -2826,6 +2831,7 @@ export const SEMANTIC_SEARCH_ANNOTATIONS = gql`
+           __typename
+         }
+         annotationType
++        isEvidenceQuote
+         structural
+         rawText
+         linkUrl
+@@ -3239,6 +3245,46 @@ export interface RequestGetExtractOutput {
+   extract: ExtractType;
+ }
+ 
++export const GET_DATACELL_EVIDENCE = gql`
++  query GetDatacellEvidence($id: ID!) {
++    datacell(id: $id) {
++      id
++      findingEvidence
++      fullSourceList {
++        id
++        page
++        rawText
++        json
++        annotationType
++        isEvidenceQuote
++        structural
++        annotationLabel {
++          id
++          text
++          color
++          labelType
++        }
++        document {
++          id
++          slug
++          creator {
++            id
++            slug
++          }
++        }
++        corpus {
++          id
++          slug
++          creator {
++            id
++            slug
++          }
++        }
++      }
++    }
++  }
++`;
++
+ export const REQUEST_GET_EXTRACT = gql`
+   query GetExtract($id: ID!) {
+     extract(id: $id) {
+@@ -3311,57 +3357,7 @@ export const REQUEST_GET_EXTRACT = gql`
+           title
+           fileType
+         }
+-        findingEvidence
+-        fullSourceList {
+-          id
+-          isPublic
+-          myPermissions
+-          annotationLabel {
+-            id
+-            text
+-            color
+-            icon
+-            labelType
+-            description
+-          }
+-          document {
+-            id
+-            slug
+-            creator { id slug }
+-            fileType
+-            pdfFile
+-            txtExtractFile
+-            pawlsParseFile
+-          }
+-          corpus { id slug creator { id slug } }
+-
+-          page
+-          rawText
+-
+-          json
+-          annotationType
+-          sourceNodeInRelationships {
+-            edges {
+-              node {
+-                id
+-              }
+-            }
+-          }
+-          targetNodeInRelationships {
+-            edges {
+-              node {
+-                id
+-              }
+-            }
+-          }
+-          creator {
+-            id
+-            slug
+-            email
+-          }
+-          isPublic
+-          myPermissions
+-        }
++        hasFindingEvidence
+         data
+         dataDefinition
+         started
+@@ -4005,6 +4001,7 @@ export const GET_REFERENCE_MENTIONS_FOR_ANALYSIS = gql`
+           labelType
+         }
+         annotationType
++        isEvidenceQuote
+         page
+         rawText
+         linkUrl
+@@ -4043,6 +4040,7 @@ export const GET_ANNOTATIONS_FOR_ANALYSIS = gql`
+           labelType
+         }
+         annotationType
++        isEvidenceQuote
+ 
+         page
+         rawText
+@@ -5138,6 +5136,7 @@ export const GET_DOCUMENT_KNOWLEDGE_AND_ANNOTATIONS = gql`
+           totalCount
+         }
+         annotationType
++        isEvidenceQuote
+         rawText
+         json
+         linkUrl
+@@ -5250,6 +5249,7 @@ export const GET_DOCUMENT_ANNOTATIONS_ONLY = gql`
+           totalCount
+         }
+         annotationType
++        isEvidenceQuote
+         rawText
+         json
+         linkUrl
+@@ -5343,6 +5343,7 @@ export const GET_DOCUMENT_STRUCTURAL_ANNOTATIONS = gql`
+           labelType
+         }
+         annotationType
++        isEvidenceQuote
+         rawText
+         json
+         linkUrl
+diff --git a/frontend/src/types/graphql-api.ts b/frontend/src/types/graphql-api.ts
+index 8d34e87..768d642 100644
+--- a/frontend/src/types/graphql-api.ts
++++ b/frontend/src/types/graphql-api.ts
+@@ -140,6 +140,7 @@ export type RawServerAnnotationType = Node & {
+   annotationLabel: AnnotationLabelType;
+   document?: DocumentType;
+   structural?: boolean;
++  isEvidenceQuote?: boolean;
+   /**
+    * Target URL for clickable-link annotations (OC_URL label).
+    * Null/absent for all other annotations.
+@@ -1510,6 +1511,7 @@ export interface DatacellType extends Node {
+   correctedData: any;
+   fullSourceList?: ServerAnnotationType[];
+   findingEvidence?: unknown[];
++  hasFindingEvidence?: boolean;
+   sources?: AnnotationTypeConnection;
+ }
+ export interface ExportObject {
+diff --git a/frontend/src/utils/annotationVisibility.ts b/frontend/src/utils/annotationVisibility.ts
+new file mode 100644
+index 0000000..f95fd82
+--- /dev/null
++++ b/frontend/src/utils/annotationVisibility.ts
+@@ -0,0 +1,8 @@
++import { OC_EXTRACT_SOURCE_LABEL } from "../assets/configurations/constants";
++
++/** Retained retrieval anchors support grounding and stay out of reviewer views. */
++export function isReviewerVisibleLabel(
++  label: { text?: string | null } | null | undefined
++): boolean {
++  return label?.text !== OC_EXTRACT_SOURCE_LABEL;
++}
+diff --git a/frontend/src/utils/extractUtils.ts b/frontend/src/utils/extractUtils.ts
+index 9cf45fb..705d61b 100644
+--- a/frontend/src/utils/extractUtils.ts
++++ b/frontend/src/utils/extractUtils.ts
+@@ -6,12 +6,20 @@
+  */
+ 
+ import type { ExtractType } from "../types/graphql-api";
++import { isRecord } from "./findingValue";
+ import {
+   EXTRACT_STATUS,
+   EXTRACT_STATUS_COLORS,
+   ExtractStatus,
+ } from "../assets/configurations/constants";
+ 
++/** Read the native storage envelope while retaining scalar and structured values. */
++export function unwrapDatacellData(value: unknown): unknown {
++  return isRecord(value) && Object.prototype.hasOwnProperty.call(value, "data")
++    ? value.data
++    : value;
++}
++
+ /**
+  * Extract status color type from the status colors constant
+  */
+diff --git a/frontend/src/utils/navigationUtils.ts b/frontend/src/utils/navigationUtils.ts
+index 7ed787b..503919f 100644
+--- a/frontend/src/utils/navigationUtils.ts
++++ b/frontend/src/utils/navigationUtils.ts
+@@ -637,43 +637,27 @@ export function buildRequestKey(
+  *   labelDisplay: "ALWAYS"
+  * });
+  */
+-export function updateAnnotationDisplayParams(
+-  location: LocationLike,
+-  navigate: NavigateFn,
+-  settings: {
+-    showStructural?: boolean;
+-    showSelectedOnly?: boolean;
+-    showBoundingBoxes?: boolean;
+-    labelDisplay?: string;
+-  }
+-) {
+-  const searchParams = new URLSearchParams(location.search);
+-
+-  // Update only specified params
+-  if (settings.showStructural !== undefined) {
+-    if (settings.showStructural) {
+-      searchParams.set("structural", "true");
+-    } else {
+-      searchParams.delete("structural");
+-    }
+-  }
+-
+-  if (settings.showSelectedOnly !== undefined) {
+-    if (settings.showSelectedOnly) {
+-      searchParams.set("selectedOnly", "true");
+-    } else {
+-      searchParams.delete("selectedOnly");
+-    }
+-  }
++type AnnotationDisplaySettings = {
++  showStructural?: boolean;
++  showSelectedOnly?: boolean;
++  showBoundingBoxes?: boolean;
++  labelDisplay?: string;
++};
+ 
+-  if (settings.showBoundingBoxes !== undefined) {
+-    if (settings.showBoundingBoxes) {
+-      searchParams.set("boundingBoxes", "true");
+-    } else {
+-      searchParams.delete("boundingBoxes");
++function applyAnnotationDisplayParams(
++  searchParams: URLSearchParams,
++  settings: AnnotationDisplaySettings
++) {
++  for (const [setting, param] of [
++    ["showStructural", "structural"],
++    ["showSelectedOnly", "selectedOnly"],
++    ["showBoundingBoxes", "boundingBoxes"],
++  ] as const) {
++    if (settings[setting] !== undefined) {
++      if (settings[setting]) searchParams.set(param, "true");
++      else searchParams.delete(param);
+     }
+   }
+-
+   if (settings.labelDisplay !== undefined) {
+     if (settings.labelDisplay !== "ON_HOVER") {
+       searchParams.set("labels", settings.labelDisplay);
+@@ -681,7 +665,15 @@ export function updateAnnotationDisplayParams(
+       searchParams.delete("labels");
+     }
+   }
++}
+ 
++export function updateAnnotationDisplayParams(
++  location: LocationLike,
++  navigate: NavigateFn,
++  settings: AnnotationDisplaySettings
++) {
++  const searchParams = new URLSearchParams(location.search);
++  applyAnnotationDisplayParams(searchParams, settings);
+   navigate({ search: searchParams.toString() }, { replace: true });
+ }
+ 
+@@ -705,6 +697,7 @@ export function updateAnnotationSelectionParams(
+     annotationIds?: string[];
+     analysisIds?: string[];
+     extractIds?: string[];
++    display?: AnnotationDisplaySettings;
+   }
+ ) {
+   const searchParams = new URLSearchParams(location.search);
+@@ -735,6 +728,9 @@ export function updateAnnotationSelectionParams(
+     }
+   }
+ 
++  if (selection.display) {
++    applyAnnotationDisplayParams(searchParams, selection.display);
++  }
+   navigate({ search: searchParams.toString() }, { replace: true });
+ }
+ 
+diff --git a/frontend/src/utils/transform.tsx b/frontend/src/utils/transform.tsx
+index ab8607b..ab205b8 100644
+--- a/frontend/src/utils/transform.tsx
++++ b/frontend/src/utils/transform.tsx
+@@ -145,7 +145,8 @@ export function convertToServerAnnotation(
+       allowComments ?? false,
+       annotation.id,
+       annotation.contentModalities,
+-      annotation.linkUrl ?? null
++      annotation.linkUrl ?? null,
++      annotation.isEvidenceQuote ?? false
+     );
+   }
+ 
+@@ -163,7 +164,8 @@ export function convertToServerAnnotation(
+     allowComments ?? false,
+     annotation.id,
+     annotation.contentModalities,
+-    annotation.linkUrl ?? null
++    annotation.linkUrl ?? null,
++    annotation.isEvidenceQuote ?? false
+   );
+ }
+ 
+diff --git a/frontend/src/views/Corpuses.tsx b/frontend/src/views/Corpuses.tsx
+index fe945c2..137775b 100644
+--- a/frontend/src/views/Corpuses.tsx
++++ b/frontend/src/views/Corpuses.tsx
+@@ -583,6 +583,7 @@ export const Corpuses = () => {
+               annotateDocLabels: true,
+               includeMetadata: true,
+               inCorpusWithId: opened_corpus_id,
++              badgeCorpusId: opened_corpus_id,
+               includeCaml: true,
+             }
+           : { annotateDocLabels: false, includeMetadata: false }),

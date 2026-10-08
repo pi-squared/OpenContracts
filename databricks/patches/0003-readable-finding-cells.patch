@@ -1,0 +1,143 @@
+diff --git a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+index 0873815..dc637d6 100644
+--- a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
++++ b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+@@ -12,6 +12,8 @@ import { CellStatus } from "../../../types/extract-grid";
+ import styled from "styled-components";
+ import { JSONSchema7 } from "json-schema";
+ import { ExtractCellEditor } from "./ExtractCellEditor";
++import { FindingPreview, FindingDetails } from "./FindingView";
++import { findingFrom } from "../../../utils/findingValue";
+ import ReactJson from "react-json-view";
+ import { TruncatedText } from "../../widgets/data-display/TruncatedText";
+ import { useReactiveVar } from "@apollo/client";
+@@ -166,6 +168,7 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+   const [isEditing, setIsEditing] = useState(false);
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   const [isOriginalModalOpen, setIsOriginalModalOpen] = useState(false);
++  const [showRawJson, setShowRawJson] = useState(false);
+ 
+   const [viewSourceAnnotations, setViewSourceAnnotations] = useState<
+     ServerAnnotationType[] | null
+@@ -269,6 +272,7 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+   };
+ 
+   const openViewer = () => {
++    setShowRawJson(false);
+     setIsModalOpen(true);
+   };
+ 
+@@ -291,8 +295,20 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+ 
+   const displayedValue =
+     cellStatus?.correctedData != null ? cellStatus.correctedData : value;
++  const findingValue = findingFrom(displayedValue);
+ 
+   const displayValue = () => {
++    if (findingValue && !cellStatus?.isLoading && !cellStatus?.error) {
++      return (
++        <FindingPreview
++          value={findingValue}
++          onOpen={openViewer}
++          isApproved={cellStatus?.isApproved}
++          isRejected={cellStatus?.isRejected}
++          isEdited={cellStatus?.isEdited}
++        />
++      );
++    }
+     if (typeof displayedValue === "object" && displayedValue !== null) {
+       return (
+         <div
+@@ -462,7 +478,8 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+                         typeof displayedValue === "object" &&
+                         displayedValue !== null
+                       ) {
+-                        openViewer();
++                        setShowRawJson(true);
++                        setIsModalOpen(true);
+                       } else {
+                         setIsEditing(true);
+                       }
+@@ -550,26 +567,6 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+               </ModalBody>
+             </Modal>
+           )}
+-          <Modal open={isModalOpen} onClose={closeModal}>
+-            <ModalHeader>Edit JSON Data</ModalHeader>
+-            <ModalBody>
+-              <ReactJson
+-                src={displayedValue}
+-                onEdit={handleJsonEdit}
+-                onAdd={handleJsonEdit}
+-                onDelete={handleJsonEdit}
+-                theme="rjv-default"
+-                style={{ padding: "20px" }}
+-                enableClipboard={false}
+-                displayDataTypes={false}
+-              />
+-            </ModalBody>
+-            <ModalFooter>
+-              <Button variant="secondary" onClick={closeModal}>
+-                Close
+-              </Button>
+-            </ModalFooter>
+-          </Modal>
+           <Modal open={isOriginalModalOpen} onClose={closeOriginalModal}>
+             <ModalHeader>Original Value</ModalHeader>
+             <ModalBody>
+@@ -593,6 +590,55 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
+           </Modal>
+         </>
+       )}
++      <Modal open={isModalOpen} onClose={closeModal}>
++        <ModalHeader>
++          {findingValue && !showRawJson ? column.name : "Edit JSON Data"}
++        </ModalHeader>
++        <ModalBody>
++          {findingValue && !showRawJson ? (
++            <FindingDetails
++              value={findingValue}
++              isApproved={cellStatus?.isApproved}
++              isRejected={cellStatus?.isRejected}
++              isEdited={cellStatus?.isEdited}
++            />
++          ) : (
++            <ReactJson
++              src={displayedValue}
++              onEdit={
++                !readOnly && isExtractComplete ? handleJsonEdit : undefined
++              }
++              onAdd={
++                !readOnly && isExtractComplete ? handleJsonEdit : undefined
++              }
++              onDelete={
++                !readOnly && isExtractComplete ? handleJsonEdit : undefined
++              }
++              theme="rjv-default"
++              style={{ padding: "20px" }}
++              enableClipboard={false}
++              displayDataTypes={false}
++            />
++          )}
++        </ModalBody>
++        <ModalFooter>
++          {findingValue && (
++            <Button
++              variant="secondary"
++              onClick={() => setShowRawJson(!showRawJson)}
++            >
++              {showRawJson
++                ? "View finding"
++                : readOnly || !isExtractComplete
++                ? "View data"
++                : "Edit data"}
++            </Button>
++          )}
++          <Button variant="secondary" onClick={closeModal}>
++            Close
++          </Button>
++        </ModalFooter>
++      </Modal>
+     </CellContainer>
+   );
+ };

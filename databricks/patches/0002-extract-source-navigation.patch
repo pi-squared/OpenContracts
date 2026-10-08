@@ -1,0 +1,65 @@
+diff --git a/frontend/src/graphql/queries.ts b/frontend/src/graphql/queries.ts
+index f826ff3..e3cbf9d 100644
+--- a/frontend/src/graphql/queries.ts
++++ b/frontend/src/graphql/queries.ts
+@@ -3325,11 +3325,14 @@ export const REQUEST_GET_EXTRACT = gql`
+           }
+           document {
+             id
++            slug
++            creator { id slug }
+             fileType
+             pdfFile
+             txtExtractFile
+             pawlsParseFile
+           }
++          corpus { id slug creator { id slug } }
+ 
+           page
+           rawText
+diff --git a/frontend/src/routing/CentralRouteManager.tsx b/frontend/src/routing/CentralRouteManager.tsx
+index 1e1e401..2c0f73e 100644
+--- a/frontend/src/routing/CentralRouteManager.tsx
++++ b/frontend/src/routing/CentralRouteManager.tsx
+@@ -1258,6 +1258,32 @@ export function CentralRouteManager() {
+       return;
+     }
+ 
++    // A document-to-document jump may leave the old entities selected until
++    // Phase 1 finishes. Only normalize entities belonging to the current URL.
++    const matchesIdentifier = (
++      identifier: string | undefined,
++      entity: { id: string; slug?: string | null } | null | undefined
++    ) => Boolean(identifier && entity && (
++      identifier === entity.id ||
++      (entity.slug && identifier.toLowerCase() === entity.slug.toLowerCase())
++    ));
++    if (currentRoute.type === "document") {
++      const owner = currentRoute.corpusIdent ? corpus?.creator : document?.creator;
++      if (
++        !matchesIdentifier(currentRoute.documentIdent, document) ||
++        (currentRoute.userIdent && !matchesIdentifier(currentRoute.userIdent, owner)) ||
++        (currentRoute.corpusIdent && !matchesIdentifier(currentRoute.corpusIdent, corpus))
++      ) {
++        return;
++      }
++    }
++
++    // A standalone target must not inherit the previous collection context.
++    // Phase 1 clears openedCorpus when the standalone document is resolved.
++    if (currentRoute.type === "document" && !currentRoute.corpusIdent && corpus) {
++      return;
++    }
++
+     // CRITICAL: Prevent redirects during route transitions when entities don't match route type
+     // Phase 1 is async - it may not have cleared stale entities yet when Phase 3 runs
+     // Example: Navigating from /d/user/corpus/doc → /c/user/corpus
+@@ -1325,7 +1351,7 @@ export function CentralRouteManager() {
+       return;
+     }
+ 
+-    const canonicalPath = buildCanonicalPath(document, corpus, extract);
++    const canonicalPath = buildCanonicalPath(document, corpus, currentRoute.type === "extract" ? extract : null);
+     if (!canonicalPath) return;
+ 
+     // Normalize paths for comparison (remove trailing slashes)

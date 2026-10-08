@@ -1,0 +1,276 @@
+{
+  "repository": "https://github.com/pi-squared/OpenContracts.git",
+  "commit": "1e859dcea0f083f374c160a04244f93bca5b989c",
+  "license": "MIT",
+  "license_sha256": "81f0c3a20d9e858f8f6d8f73aee152af933e78afe5f2c436ee4ab5316b77f78c",
+  "patches": [
+    {
+      "path": "patches/0001-lakebase-migration-privileges.patch",
+      "sha256": "7ff140d98b8b7eb8567b581f82365625cf20660c3bf88c70e39dbd7ae57cdb11"
+    },
+    {
+      "path": "patches/0002-extract-source-navigation.patch",
+      "sha256": "50741d5aac3cb0ab9f592c9392efaa09d671f56f8f22629249553aadc7a198f6"
+    },
+    {
+      "path": "patches/0003-readable-finding-cells.patch",
+      "sha256": "2edc1c83f915e8d593336a66a37abf909f62cc122923ad324fb156c95843fe2d"
+    },
+    {
+      "path": "patches/0004-independent-parser-artifacts.patch",
+      "sha256": "4843dca37c74158041be0361f924f9572b5b3309b88aabd6921abc2f25ed3169"
+    },
+    {
+      "path": "patches/0005-installed-workflow-response-models.patch",
+      "sha256": "696f6b80def24914ce8c749f6f4d886bf023489b287a5bf4e66dabdf59e0b045"
+    },
+    {
+      "path": "patches/0006-structured-claude-temperature.patch",
+      "sha256": "7ea326f6dd3c71e84b56c2af2b12c5f332bc93cb82e6085234a36d2b334283c0"
+    },
+    {
+      "path": "patches/0007-three-retrieval-rounds.patch",
+      "sha256": "aa152b32845bef06cd871a9a0e741c75e68157e6e7ed0ade78eee6da46b3ef83"
+    },
+    {
+      "path": "patches/0008-selected-quotation-evidence.patch",
+      "sha256": "f7604ac9a0afdaade5614cd9e0ed2f75a58a2304696b360dfa4a8769fba6c7dc"
+    },
+    {
+      "path": "patches/0009-ui-evidence-navigation.patch",
+      "sha256": "b6e7f8dced3a4c32d7a8d72fe14928ca8fc79f56c346cbc551dc2862c586c618"
+    },
+    {
+      "path": "patches/0010-domain-evidence-labels.patch",
+      "sha256": "719e054ca65621952a681e2f48a551948e9b7ce4e6213910f4b76a0d2d2045c3"
+    },
+    {
+      "path": "patches/0011-document-extract-annotation-ownership.patch",
+      "sha256": "31026f72b5b9fe2694ece16d23170b8d27cc54e16647b1cb90af6634255f04b5"
+    },
+    {
+      "path": "patches/0012-grid-source-navigation-without-dialog.patch",
+      "sha256": "7114e36eb22c8739bc56f4e659c5550ef0cafdc759948d298d9b98fc73f4e1f8"
+    },
+    {
+      "path": "patches/0013-rejected-finding-evidence.patch",
+      "sha256": "d5c3e28d0d9bd79abf9970e28e5e21cb51bf6859ce538c37d7ff7f52c0c6eec2"
+    },
+    {
+      "path": "patches/0014-parsed-text-location-wording.patch",
+      "sha256": "a53cdd56a1e0fee6f16256907736f2e70546b4c1cd4aa6ff9ef62f362aae9fcd"
+    },
+    {
+      "path": "patches/0015-automatic-retained-word-grounding.patch",
+      "sha256": "8faecf601c47c980c88709f890f4577903c25215bbd9fcec557ed62ff830fd50"
+    },
+    {
+      "path": "patches/0016-generic-quotation-evidence.patch",
+      "sha256": "8732a4f9f91c7075ede770954c89ec9f8e1966c0fd9ff94448400a0518ba3771"
+    }
+  ],
+  "unchanged_stock_files": {
+    "opencontractserver/constants/context_guardrails.py": "a87939044c35a0a525c7176d47c3968b36c207d1ce5f1376ce348d60e3162c50",
+    "opencontractserver/llms/history_processors.py": "022290e165b3b99aafbf6fb7df94b2558e617d664f51ebde3f8db947f0f8d195",
+    "frontend/yarn.lock": "ef4d8ebb32b43641656bb817a843a1c361d8c97ea2d2bec4548f5ae2d8c7b095"
+  },
+  "overlays": [
+    {
+      "source": "port/frontend/FindingView.tsx",
+      "target": "frontend/src/components/extracts/datagrid/FindingView.tsx",
+      "sha256": "7adb9278683d9a573672d1c9ec28c5884a785b7d96a8f78456b64418800f7e1a"
+    },
+    {
+      "source": "port/frontend/findingValue.ts",
+      "target": "frontend/src/utils/findingValue.ts",
+      "sha256": "abee7404ef4fa01e3a2ffc87df519cf9ecca6c7677c3dd5416150f582845c7f7"
+    },
+    {
+      "source": "port/python/databricks_port/__init__.py",
+      "target": "databricks_port/__init__.py",
+      "sha256": "9ca0bbd885f37dda71ada9c6f3edb70291bf0111b203f10cc36659c02e5a22d2"
+    },
+    {
+      "source": "port/python/databricks_port/db/__init__.py",
+      "target": "databricks_port/db/__init__.py",
+      "sha256": "67ed9a6d50b933bc718d92e08632bdd468bf7bb2ce93114453c4cb2b7168e445"
+    },
+    {
+      "source": "port/python/databricks_port/db/base.py",
+      "target": "databricks_port/db/base.py",
+      "sha256": "61b68bf32bab484c4053144a38bc21108e43e99c3e3f5ab73bdbf4200b942b8b"
+    },
+    {
+      "source": "port/python/databricks_port/lakebase.py",
+      "target": "databricks_port/lakebase.py",
+      "sha256": "598230502bae36ae1fab89747bebd3d3a5e7c22f397ba8d6406d5a2350f8c0bb"
+    },
+    {
+      "source": "port/python/databricks_port/settings.py",
+      "target": "databricks_port/settings.py",
+      "sha256": "889d40c874f689f06beeef7606ec11d639b8b7049622b7b18cf15ffdf8fef1eb"
+    },
+    {
+      "source": "port/python/databricks_port/storage.py",
+      "target": "databricks_port/storage.py",
+      "sha256": "9f038fe573753bf0037bf6ee44a19f107fe720c347877191166fcf524dc591cd"
+    },
+    {
+      "source": "port/python/databricks_port/token_transport.py",
+      "target": "databricks_port/token_transport.py",
+      "sha256": "9a7da77dfd52851a46bd8173c57101a080397c7b3b313ca302bacbfe33aee558"
+    },
+    {
+      "source": "port/python/databricks_port/transport.py",
+      "target": "databricks_port/transport.py",
+      "sha256": "c5232d7c4a972e2b9f280e4f8f9fe9a492edbf20195270cc45e758b97818884f"
+    },
+    {
+      "source": "port/python/databricks_port/urls.py",
+      "target": "databricks_port/urls.py",
+      "sha256": "f0b6de844587d698fd06cc5727095fb3e38226016d5ab77fef069dbe1f3b467b"
+    },
+    {
+      "source": "port/python/databricks_embedder.py",
+      "target": "opencontractserver/pipeline/embedders/databricks_embedder.py",
+      "sha256": "64288d43497b1668bccc4551589a974e62d2611245642a03fb27d61c880f90b5"
+    },
+    {
+      "source": "port/runtime/app.py",
+      "target": "app.py",
+      "sha256": "ee6ee45fa7a2a36018d50ab6816212de58b626f6dae972ced46c1021c6f5b402"
+    },
+    {
+      "source": "port/python/databricks_port/retained_parser.py",
+      "target": "databricks_port/retained_parser.py",
+      "sha256": "a22cfe9adeddca0bdd5d7f7ae29b95742082b18697f908bb88a6442f2b19b2dd"
+    },
+    {
+      "source": "port/python/databricks_port/workflows.py",
+      "target": "databricks_port/workflows.py",
+      "sha256": "1c14c6a02383a17bb926b5cb77a3a40c36f1546b5ef4a701b34290a71595df4e"
+    },
+    {
+      "source": "port/python/databricks_port/native_pdf.py",
+      "target": "databricks_port/native_pdf.py",
+      "sha256": "9e769157e2b667c52df2dda25328b3d3ccbbdec65854341e4fe7a277fb05eab8"
+    },
+    {
+      "source": "port/python/pymupdf_parser.py",
+      "target": "opencontractserver/pipeline/parsers/pymupdf_parser.py",
+      "sha256": "11826dc45c2bd5964083828d5d6b3e503758786403e9d81fcabba6e3edf33f43"
+    },
+    {
+      "source": "port/python/databricks_port/evidence.py",
+      "target": "databricks_port/evidence.py",
+      "sha256": "5dc3479dcd79e1e67b4df9fa9c151837c9b12b91c1401d50d5adb6b49adadb82"
+    },
+    {
+      "source": "port/python/databricks_port/finding_evidence.py",
+      "target": "databricks_port/finding_evidence.py",
+      "sha256": "b908ee854d32f206b2a8f78eb44def3b897b3d1b78a397fbd1d127d143f4cf5c"
+    },
+    {
+      "source": "port/migrations/0031_datacell_evidence_anchors.py",
+      "target": "opencontractserver/extracts/migrations/0031_datacell_evidence_anchors.py",
+      "sha256": "caa29d98e090d46f804469611882c12a199b8ed1d0711005c65c80f700fca607"
+    },
+    {
+      "source": "port/python/databricks_port/domain_labels.py",
+      "target": "databricks_port/domain_labels.py",
+      "sha256": "76f92fa218143614d6082ca29d209ce17eeb8211254b9b9dd843b9497c38d19c"
+    },
+    {
+      "source": "port/migrations/0061_corpus_workflow_label_policy.py",
+      "target": "opencontractserver/corpuses/migrations/0061_corpus_workflow_label_policy.py",
+      "sha256": "295460347d788cfd21e7a7889ccee5ac0287286727ccad3a272ace206aef5caf"
+    },
+    {
+      "source": "port/python/databricks_port/warp_pdf.py",
+      "target": "databricks_port/warp_pdf.py",
+      "sha256": "cc069bb35501b267193a9f28df052c1415a66aff6c830bd7a68e4ae0a04c4697"
+    },
+    {
+      "source": "port/python/warp_local_parser.py",
+      "target": "opencontractserver/pipeline/parsers/warp_local_parser.py",
+      "sha256": "d9595a6301c2b21d08153f0505832b2d73fb2e50a42c1280b6cc209782603adb"
+    },
+    {
+      "source": "port/python/databricks_port/parser_exports.py",
+      "target": "databricks_port/parser_exports.py",
+      "sha256": "18181a7bdf2489358f352178885c79122896dd497c9b0a15fbeb0515247b51ac"
+    },
+    {
+      "source": "port/python/databricks_port/definitions.py",
+      "target": "databricks_port/definitions.py",
+      "sha256": "9bb5d1bf6222bf5ed38a02ba748c78b31a2608569e1b89c4cba00fda9d38c132"
+    },
+    {
+      "source": "port/python/databricks_port/quote_repair.py",
+      "target": "databricks_port/quote_repair.py",
+      "sha256": "fdd507632a5a0992485918238abad9f9f53a4b32e7341bb758af25bcc57e3b6d"
+    },
+    {
+      "source": "port/python/databricks_port/grounding.py",
+      "target": "databricks_port/grounding.py",
+      "sha256": "17fefc74847a09054f4f5a360cf80abd3d28a63a05339c478a34211394b888d4"
+    }
+  ],
+  "patched_files": {
+    "config/graphql/extract_mutations.py": "60b5dee1919a6e4ae0f7f7f247398a3ae21bbf65c3efc7db5f7b4f9745d403a8",
+    "config/graphql/extract_types.py": "6d2618c7e0794f7e7ad4fa900af721b9c1f51b4c17442d8739682fd24e95bcd6",
+    "frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx": "405c519cb60694f1af4cc06c699054540e237b72098e29211187788208abde40",
+    "frontend/src/graphql/queries.ts": "32b7dd2043f456f7dbc1889437f21b7aeb25ec4dca5d00e35a78fe6c7f7c2032",
+    "frontend/src/routing/CentralRouteManager.tsx": "0ae8119906219f031106dfdd79e35f71afcf11d9f1d653fabe1925a242bd2752",
+    "frontend/src/types/graphql-api.ts": "e41f631b150248176cf3734ee99b31abe95b271c34e8272d07fa8f724e470a20",
+    "opencontractserver/annotations/migrations/0066_reset_database_level_hnsw_settings.py": "689085b4377a76ff6b0b88381d705acbcbcf50d3bf877507da1b41fec02fdb71",
+    "opencontractserver/constants/llm.py": "508fc3cc860a2e1f673cac1c27e04c254f86b24f1d8de73e6e6c203b1e6c7395",
+    "opencontractserver/extracts/models.py": "93d77a2e735b52b8d5e5403ddb96452f1afc97711afa3bc4e2efe26e95892096",
+    "opencontractserver/llms/agents/pydantic_ai_agents.py": "f6b116e05c9a6505962f789bac7d09c398f89806975bc56bcfdabc1b12a69092",
+    "opencontractserver/llms/api.py": "85ad3cabb45f8bae1f93dc83a3a6069aead6074bd09d945e80ff578d4b39c6ff",
+    "opencontractserver/tasks/data_extract_tasks.py": "87d7ed5430f49acbfedc7eef0aed0e1ffeed82d3e8d1e402785ae098c821c6d3",
+    "opencontractserver/utils/etl.py": "54a5352786453da7656ad8452e34a0a3bcb5c068da2bb63ab420047ab4edc26e",
+    "opencontractserver/utils/structural_sets.py": "631a191e3b64f6820e15a3d2fcc8edf44207fbbfcac6368545ac8a4c1dd39bf6",
+    "frontend/src/graphql/mutations.ts": "e13c9c4e93f2da877b602cb0047980243ded3531487b86de9fb26dcdaf52dfb0",
+    "frontend/src/components/extracts/datagrid/DataGrid.tsx": "d7a05c37c6ceda8f7c21c5d9e6cd9a548bc630755564431fdb293683bd038a5f",
+    "frontend/src/components/annotator/components/modals/EditLabelModal.tsx": "99bfe818c44db21fc3271daaf317d4b3b19aa8bdbcc6aafcb399717b3c88ef49",
+    "frontend/src/components/annotator/display/components/Selection.tsx": "03509979923337be2f632d98a4455ca3ed89e04c35299c23d2204b73e1bd1291",
+    "frontend/src/components/annotator/hooks/useAllAnnotations.ts": "6a31e9a0dbc3d8d51e74252ed8c5b2262ce5191f34fa7ff6777e0ecf20316dfb",
+    "frontend/src/components/annotator/labels/EnhancedLabelSelector.tsx": "1f32b28dc2eeaa5d72c45eb34f6c6f8ad2e5af59737573bd033270e80344ac05",
+    "frontend/src/components/annotator/labels/view_labels_selector/ViewLabelSelector.tsx": "a2b82be089e9b36881f9394c5747a2857195e2bf6fa7dad4da401d6f0b1850a8",
+    "frontend/src/components/annotator/renderers/pdf/PDF.tsx": "7fb01f48ce8ed20a5bace2d38c66aaaf4dffdf15398f548d439309c21073cb93",
+    "frontend/src/components/annotator/renderers/pdf/PDFPage.tsx": "c83519368744c26d71f6cd90265f78bcca4483518e7fc63d0807c0cfb0a150f1",
+    "frontend/src/components/annotator/sidebar/HighlightItem.tsx": "f58d72dd54e723030e37343e8e228bc72747299ae3732f52c135dcdfa2c3447c",
+    "frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx": "ed416175b060f99534377c31a1a94006725b8d1357d8ebc8d54d3c66b26cc366",
+    "frontend/src/components/annotator/types/annotations.ts": "50f5ffacabc3b8f7a2a21330db4dc09e627e9d1e1e66216c6fa6d1241a6b7ae2",
+    "frontend/src/components/documents/CorpusDocumentCards.tsx": "cece59fdbe6125408752165b06f7072b1b051a171be05543ee989d3ad5cf89cf",
+    "frontend/src/components/extracts/datagrid/FindingView.tsx": "0a133273954c24369da2e94a89b6da1e94d67b16929ad1d57ee8808c0313d380",
+    "frontend/src/components/knowledge_base/document/LayoutComponents.tsx": "ad6783bd4b06647147ea5b55624333de04798105cd930d26403859a1baee6e0e",
+    "frontend/src/components/knowledge_base/document/ZoomControls.tsx": "1da97705e6366e5ac3ab1f1a3ddbcc1d88fa7469e018ec5169cc2b5b747132ee",
+    "frontend/src/components/knowledge_base/document/layouts/DesktopDocumentLayout.tsx": "4eba3a1b299878db9e3f5e24646301241da7ddf5f5cffc7bddd9f72d8abfb122",
+    "frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx": "67ffe81a4e3054b57590ab9b7877b1f1be126a0b1a581a6c21432a208ab4b37e",
+    "frontend/src/components/knowledge_base/document/layouts/mobile/MobileDocToolbar.tsx": "a69b381a540aa87bdfe4c0e0e7b4c4d2b4a1d8a3d3d1cfdc1ceb1b1492ef1f81",
+    "frontend/src/components/knowledge_base/document/unified_feed/RelationshipActionModal.tsx": "3a2ab0aa4b73d60ef239de33423eec0ae6c1a474393530bb7cedc23e02124f6c",
+    "frontend/src/components/widgets/buttons/RadialButtonCloud.tsx": "de4afc44680c8419482700840389efffbc2c5e0d5278a37d972384b513b97282",
+    "frontend/src/components/widgets/model-filters/FilterToLabelSelector.tsx": "c1f1899b17ef7366a078dc7b06de0545f600f039e573dab7f412e52fde85eda5",
+    "frontend/src/utils/navigationUtils.ts": "5eb38df2a264a1b97a1b76eb8d915d0d6f07a2f108ca3700e6ffc6e20ceebea8",
+    "frontend/src/utils/transform.tsx": "670c0b1588697495088a40422bc4bda50823396cd210638fb7b3c6dc40c4cfb0",
+    "frontend/src/views/Corpuses.tsx": "5787aa5d48816d9e2cb13e017163d81d13706ffd4a8147c6c54d40a1667f2da1",
+    "config/graphql/annotation_types.py": "675fe87fe0ad07646e9aac0d672757593046b6697d1b4a7438293b5dccdc0018",
+    "config/graphql/annotation_queries.py": "dc5bf0524a22d487dbfa3cb209e50d6525afea0c93595d2e6dde8547f1763e8e",
+    "config/graphql/document_types.py": "4c2af1a5329f090f3c07e91314905776b004ff927fc6c043b111913c4bd09f30",
+    "opencontractserver/corpuses/models.py": "b1e8c97ceb02f49dd642e0653bf3834b9972a6246f47d588b5781fa3daddac67",
+    "opencontractserver/annotations/services/annotation_service.py": "b5edcb4afe18d59104692f8ee7f94727b078dee23735c9502e43327e8f2f2bde",
+    "frontend/src/assets/configurations/constants.ts": "7ed0c7896b2eb0eb3a936c1199ab9826a2612633ddd1bf66a8acf44516f66512",
+    "frontend/src/components/annotator/hooks/useVisibleAnnotations.ts": "078036cba37b05b56249f9c34a41fed1d8051bc9680fd3f6258310bf133b1b3f",
+    "frontend/src/utils/annotationVisibility.ts": "2178681d44a055637e4517b338770698d27c143e74329e8c0e61f5eb8a8dbd19",
+    "frontend/src/utils/extractUtils.ts": "cefcce68064305bc14ff428afd04f161277ac77e39c5085f4d01afe47589a6ee",
+    "frontend/src/components/knowledge_base/document/document_kb/useDocumentLoader.ts": "e80c5a0055000a0bb8c5f254302029ba601bccfd6e67e9fafc1447fdd76c1e08",
+    "frontend/src/components/annotator/hooks/AnalysisHooks.tsx": "d9a5102e0a4b24e710cd9db4863772371a3a848a3e2fb03cf35df7ab7e70fd81"
+  },
+  "port_baseline": {
+    "repository": "pi-squared/OpenContracts-Databricks",
+    "commit": "171f7a0f31e71a629e00003fd88a632c7a10de79",
+    "live_release": "0015"
+  }
+}

@@ -1,0 +1,33 @@
+diff --git a/opencontractserver/llms/api.py b/opencontractserver/llms/api.py
+index c74dfaf..cdf4d09 100644
+--- a/opencontractserver/llms/api.py
++++ b/opencontractserver/llms/api.py
+@@ -20,6 +20,7 @@ from opencontractserver.llms.vector_stores.vector_store_factory import (
+     UnifiedVectorStoreFactory,
+ )
+ from opencontractserver.utils.embeddings import generate_embeddings_from_text
++from opencontractserver.utils.llm import is_anthropic_model
+ from opencontractserver.utils.tools import as_core_tool
+ 
+ logger = logging.getLogger(__name__)
+@@ -401,7 +402,7 @@ class AgentAPI:
+         framework: Optional[FrameworkType] = None,
+         user_id: Optional[int] = None,
+         model: Optional[str] = None,
+-        temperature: float = 0.7,
++        temperature: Optional[float] = 0.7,
+         max_tokens: Optional[int] = None,
+         tools: Optional[list[ToolType]] = None,
+         embedder: Optional[str] = None,
+@@ -419,6 +420,11 @@ class AgentAPI:
+         Synthetic / negative IDs produced by ad-hoc match tools are filtered
+         out inside the retrieval tools themselves.
+         """
++        # Resolve the stock Anthropic default before agent construction turns
++        # None into 0.7; the run-level override also preserves explicit zero.
++        if temperature is None and is_anthropic_model(model):
++            temperature = 0
++
+         if framework is None:
+             framework = AgentFramework.PYDANTIC_AI
+ 

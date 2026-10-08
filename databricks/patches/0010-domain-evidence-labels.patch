@@ -1,0 +1,194 @@
+diff --git a/config/graphql/annotation_queries.py b/config/graphql/annotation_queries.py
+index 3fa787f..642c3bc 100644
+--- a/config/graphql/annotation_queries.py
++++ b/config/graphql/annotation_queries.py
+@@ -32,6 +32,7 @@ import re
+ from typing import Annotated
+ 
+ import strawberry
++from databricks_port.domain_labels import active_domain_annotation_filter
+ from django.db.models import Q
+ from graphql import GraphQLError
+ 
+@@ -695,7 +696,7 @@ def _resolve_Query_annotations(
+             Annotation, info.context.user, request=info.context
+         ).with_cached_count()
+ 
+-    queryset = queryset.select_related(
++    queryset = queryset.filter(active_domain_annotation_filter()).select_related(
+         "annotation_label",
+         "creator",
+         "document",
+diff --git a/config/graphql/annotation_types.py b/config/graphql/annotation_types.py
+index c37bbf2..b1b759d 100644
+--- a/config/graphql/annotation_types.py
++++ b/config/graphql/annotation_types.py
+@@ -276,6 +276,18 @@ class AnnotationType(Node):
+ 
+     json: GenericScalar | None = strawberry.field(name="json", default=None)
+ 
++    @strawberry.field(name="isEvidenceQuote")
++    def is_evidence_quote(self, info: strawberry.Info) -> bool:
++        provenance = (self.data or {}).get("domainEvidence", {})
++        return bool(provenance.get("active") and any(
++            item.get("active") and item.get("kind") == "quote"
++            for item in provenance.get("associations", [])
++        ))
++
++    @strawberry.field(name="domainProvenance")
++    def domain_provenance(self, info: strawberry.Info) -> GenericScalar:
++        return (self.data or {}).get("domainEvidence", {})
++
+     @strawberry.field(name="parent")
+     def parent(self, info: strawberry.Info) -> AnnotationType | None:
+         return resolve_visible_fk(self, info, "parent_id", "AnnotationType")
+diff --git a/config/graphql/document_types.py b/config/graphql/document_types.py
+index 5b8463e..26c9f7b 100644
+--- a/config/graphql/document_types.py
++++ b/config/graphql/document_types.py
+@@ -108,12 +108,16 @@ def _current_path_for_corpus(document, info, corpus_pk):
+     return cache[key]
+ 
+ 
+-def _dedupe_doc_type_labels(annotations: Any) -> list[Any]:
++def _dedupe_doc_type_labels(annotations: Any, corpus_pk=None) -> list[Any]:
+     # A document can carry multiple DOC_TYPE_LABEL annotations sharing the same
+     # label; the badge UI shows each label once, so dedupe by label pk.
+     seen: set[int] = set()
+     labels: list[Any] = []
+     for ann in annotations:
++        if (ann.data or {}).get("domainEvidence", {}).get("active") is False:
++            continue
++        if corpus_pk is not None and ann.corpus_id != corpus_pk:
++            continue
+         label = ann.annotation_label
+         if label is None or label.pk in seen:
+             continue
+@@ -247,15 +251,22 @@ def _resolve_DocumentType_doc_annotations(root, info, **kwargs):
+     return resolve_doc_annotations_optimized(root, info, **kwargs)
+ 
+ 
+-def _resolve_DocumentType_doc_type_labels(root, info):
++def _resolve_DocumentType_doc_type_labels(root, info, corpus_id=None):
+     from opencontractserver.annotations.models import DOC_TYPE_LABEL
+     from opencontractserver.annotations.services import AnnotationService
++    from opencontractserver.corpuses.models import Corpus
++
++    corpus_pk = None
++    if corpus_id is not None:
++        corpus_pk = int(from_global_id(corpus_id)[1])
++        if BaseService.get_or_none(Corpus, corpus_pk, info.context.user, request=info.context) is None:
++            return []
+ 
+     prefetched = getattr(root, "_prefetched_doc_annotations", None)
+     if prefetched is not None:
+         # ``_apply_document_prefetches`` already filtered to DOC_TYPE_LABEL
+         # and ``select_related``-cached ``annotation_label``.
+-        return _dedupe_doc_type_labels(prefetched)
++        return _dedupe_doc_type_labels(prefetched, corpus_pk)
+ 
+     # Fallback path: ``DocumentType`` accessed outside the corpus-list
+     # batch (e.g. ``node(id:)``). Push ``label_type == DOC_TYPE_LABEL``
+@@ -267,11 +278,12 @@ def _resolve_DocumentType_doc_type_labels(root, info):
+             document_id=root.id,
+             user=getattr(info.context, "user", None),
+             context=info.context,
++            corpus_id=corpus_pk,
+         )
+         .filter(annotation_label__label_type=DOC_TYPE_LABEL)
+         .select_related("annotation_label")
+     )
+-    return _dedupe_doc_type_labels(fallback_qs)
++    return _dedupe_doc_type_labels(fallback_qs, corpus_pk)
+ 
+ 
+ def _resolve_DocumentType_all_structural_annotations(root, info, annotation_ids=None):
+@@ -2149,7 +2161,9 @@ class DocumentType(Node):
+         name="docTypeLabels",
+         description="Flat list of distinct ``DOC_TYPE_LABEL`` annotation labels for this document — the corpus list view's per-card badges. Resolved from a single batched prefetch when the parent ``documents`` resolver opts in via ``requests_doc_type_labels``; falls back to one targeted SELECT per document otherwise. Skipping the Relay connection wrapper avoids the per-document COUNT + SELECT + FK descriptor storm the old ``docAnnotations`` shape forced.",
+     )
+-    def doc_type_labels(self, info: strawberry.Info) -> None | (
++    def doc_type_labels(self, info: strawberry.Info, corpus_id: Annotated[
++        strawberry.ID | None, strawberry.argument(name="corpusId")
++    ] = strawberry.UNSET) -> None | (
+         list[
+             Annotated[
+                 AnnotationLabelType,
+@@ -2157,7 +2171,7 @@ class DocumentType(Node):
+             ]
+         ]
+     ):
+-        kwargs = strip_unset({})
++        kwargs = strip_unset({"corpus_id": corpus_id})
+         return _resolve_DocumentType_doc_type_labels(self, info, **kwargs)
+ 
+     @strawberry.field(name="allStructuralAnnotations")
+diff --git a/config/graphql/extract_types.py b/config/graphql/extract_types.py
+index 2e25c24..449a518 100644
+--- a/config/graphql/extract_types.py
++++ b/config/graphql/extract_types.py
+@@ -1943,13 +1943,21 @@ class DatacellType(Node):
+     def object_shared_with(self, info: strawberry.Info) -> GenericScalar | None:
+         return core_permissions.resolve_object_shared_with(self, info)
+ 
++    @strawberry.field(name="hasFindingEvidence")
++    def has_finding_evidence(self, info: strawberry.Info) -> bool:
++        from databricks_port.evidence import selected_quotes
++
++        return bool(selected_quotes(self.corrected_data if self.corrected_data is not None else self.data))
++
+     @strawberry.field(name="findingEvidence")
+     def finding_evidence(self, info: strawberry.Info) -> GenericScalar:
+         from databricks_port.finding_evidence import finding_evidence
+ 
+         from opencontractserver.utils.ids import to_global_id
+ 
+-        return [{**quote, "annotationId": to_global_id("AnnotationType", quote["annotationId"])
++        return [{**quote, "annotationIds": [to_global_id("AnnotationType", identifier)
++                                           for identifier in quote.get("annotationIds", [])],
++                 "annotationId": to_global_id("AnnotationType", quote["annotationId"])
+                  if quote.get("annotationId") is not None else None}
+                 for quote in finding_evidence(self)]
+ 
+diff --git a/opencontractserver/annotations/services/annotation_service.py b/opencontractserver/annotations/services/annotation_service.py
+index 1dd4e50..e9acbbb 100644
+--- a/opencontractserver/annotations/services/annotation_service.py
++++ b/opencontractserver/annotations/services/annotation_service.py
+@@ -13,6 +13,7 @@ permission model are byte-for-byte identical to the former optimizer.
+ from collections.abc import Iterable
+ from typing import Any, Optional, cast
+ 
++from databricks_port.domain_labels import active_domain_annotation_filter
+ from django.db.models import (
+     BooleanField,
+     Case,
+@@ -329,7 +330,7 @@ class AnnotationService(BaseService):
+             )
+ 
+         # Build optimized query with combined document filters
+-        qs = Annotation.objects.filter(doc_filters)
++        qs = Annotation.objects.filter(doc_filters).filter(active_domain_annotation_filter())
+ 
+         # Apply privacy filtering for created_by_* fields. Applies to ALL
+         # users including superusers (scoped admin access, 2026-05): an admin
+@@ -747,7 +748,7 @@ class AnnotationService(BaseService):
+         if structural_set_ids:
+             base_filter |= Q(structural_set_id__in=structural_set_ids, structural=True)
+ 
+-        qs = Annotation.objects.filter(base_filter)
++        qs = Annotation.objects.filter(base_filter).filter(active_domain_annotation_filter())
+ 
+         # Apply privacy filtering for created_by_* fields. Applies to ALL
+         # users including superusers (scoped admin access, 2026-05): an admin
+diff --git a/opencontractserver/corpuses/models.py b/opencontractserver/corpuses/models.py
+index 1736e8d..954a007 100644
+--- a/opencontractserver/corpuses/models.py
++++ b/opencontractserver/corpuses/models.py
+@@ -150,6 +150,7 @@ class Corpus(InstanceUserCanMixin, TreeNode):
+     # Model variables
+     title = django.db.models.CharField(max_length=1024, db_index=True)
+     description = django.db.models.TextField(default="", blank=True)
++    workflow_label_policy = django.db.models.JSONField(default=dict, blank=True)
+     description_preview = django.db.models.TextField(
+         default="",
+         blank=True,

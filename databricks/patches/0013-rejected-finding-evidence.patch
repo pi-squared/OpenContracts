@@ -1,0 +1,97 @@
+diff --git a/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx b/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx
+--- a/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx
++++ b/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx
+@@ -133,12 +133,14 @@
+ 
+     requestApprove({ variables: { datacellId: cell.id } })
+       .then((response) => {
+-        // Grab the real datacell
++        // Review responses omit source projections; retain the loaded evidence.
+         const updatedCell = response.data?.approveDatacell?.obj;
+ 
+         if (updatedCell) {
+           setDataCells((prev) =>
+-            prev.map((c) => (c.id === updatedCell.id ? updatedCell : c))
++            prev.map((c) =>
++              c.id === updatedCell.id ? { ...c, ...updatedCell } : c
++            )
+           );
+           toast.success("Cell approved successfully.");
+         } else {
+@@ -158,12 +160,14 @@
+ 
+     requestReject({ variables: { datacellId: cell.id } })
+       .then((response) => {
+-        // Grab the real datacell
++        // Review responses omit source projections; retain the loaded evidence.
+         const updatedCell = response.data?.rejectDatacell?.obj;
+ 
+         if (updatedCell) {
+           setDataCells((prev) =>
+-            prev.map((c) => (c.id === updatedCell.id ? updatedCell : c))
++            prev.map((c) =>
++              c.id === updatedCell.id ? { ...c, ...updatedCell } : c
++            )
+           );
+           toast.success("Cell rejected successfully.");
+         } else {
+@@ -213,6 +217,7 @@
+         >
+           <ActionButton
+             className="edit"
++            aria-label="Edit finding"
+             onClick={(e) => {
+               e.stopPropagation();
+               setEditingCell(cell);
+@@ -224,6 +229,7 @@
+           </ActionButton>
+           <ActionButton
+             className="approve"
++            aria-label="Approve finding"
+             onClick={(e) => {
+               e.stopPropagation();
+               handleApprove(cell);
+@@ -234,6 +240,7 @@
+           </ActionButton>
+           <ActionButton
+             className="reject"
++            aria-label="Reject finding"
+             onClick={(e) => {
+               e.stopPropagation();
+               handleReject(cell);
+@@ -347,7 +354,11 @@
+                         {cell && (
+                           <CellStatus>
+                             {cell.approvedBy && <Check color="green" />}
+-                            {cell.rejectedBy && <X color="red" />}
++                            {cell.rejectedBy && (
++                              <span>
++                                <X color="red" aria-hidden="true" /> Rejected
++                              </span>
++                            )}
+                             {cell.correctedData && <Code color="blue" />}
+                           </CellStatus>
+                         )}
+diff --git a/frontend/src/components/annotator/renderers/pdf/PDF.tsx b/frontend/src/components/annotator/renderers/pdf/PDF.tsx
+--- a/frontend/src/components/annotator/renderers/pdf/PDF.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/PDF.tsx
+@@ -462,7 +462,10 @@
+    * 1. A new annotation is selected, OR
+    * 2. The page heights become available, OR
+    * 3. The zoom level changes (which affects page positions), OR
+-   * 4. Annotations finish loading (critical for deep links)
++   * 4. The selected annotation acquires a page after loading (deep links)
++   *
++   * An annotation-list refresh alone must preserve the current scroll position.
++   * selectedPageIdx already changes when a late-loaded selection becomes located.
+    *
+    * This effect handles the first part of the scroll-to-annotation process:
+    * - Scroll the container so the correct PAGE is visible
+@@ -495,7 +498,6 @@
+     zoomLevel,
+     getScrollElement,
+     setPendingScrollId,
+-    allAnnotations, // ✅ CRITICAL: Re-run when annotations load (fixes deep link race condition)
+   ]);
+ 
+   /* 2. scroll container & notify pages (mirrors annotation logic) */

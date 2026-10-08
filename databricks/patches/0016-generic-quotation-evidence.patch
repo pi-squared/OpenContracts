@@ -1,0 +1,27 @@
+--- a/config/graphql/annotation_types.py
++++ b/config/graphql/annotation_types.py
+@@ -278,11 +278,19 @@
+ 
+     @strawberry.field(name="isEvidenceQuote")
+     def is_evidence_quote(self, info: strawberry.Info) -> bool:
+-        provenance = (self.data or {}).get("domainEvidence", {})
+-        return bool(provenance.get("active") and any(
+-            item.get("active") and item.get("kind") == "quote"
+-            for item in provenance.get("associations", [])
+-        ))
++        metadata = self.data or {}
++        provenance = metadata.get("domainEvidence", {})
++        quotation = metadata.get("quotationEvidence", {})
++        return bool(
++            (quotation.get("datacellId") and quotation.get("active"))
++            or (
++                provenance.get("active")
++                and any(
++                    item.get("active") and item.get("kind") == "quote"
++                    for item in provenance.get("associations", [])
++                )
++            )
++        )
+ 
+     @strawberry.field(name="domainProvenance")
+     def domain_provenance(self, info: strawberry.Info) -> GenericScalar:

@@ -7,7 +7,9 @@ repos:
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
+        exclude: ^databricks/.*\.patch$
       - id: end-of-file-fixer
+        exclude: ^databricks/.*\.patch$
       # Compose files carry Docker's own YAML tags (``!override``, ``!reset``),
       # which ``safe_load`` cannot construct -- so the default hook fails on a
       # perfectly valid compose file. Rather than weaken the check everywhere
@@ -123,6 +125,8 @@ repos:
           - celery==5.6.3
           - pgvector==0.4.2
           - strawberry-graphql==0.323.2
+          # Stock selection collection uses the GraphQL-core 3.2 API.
+          - graphql-core==3.2.13
           - pydantic==2.13.3
           - psycopg2-binary==2.9.11
           # --- Pulled in transitively by app admin autodiscover ---------

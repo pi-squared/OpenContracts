@@ -1,0 +1,131 @@
+--- a/warp_ingest/file_parser/pdf_plumber_parser.py
++++ b/warp_ingest/file_parser/pdf_plumber_parser.py
+@@ -378,7 +378,9 @@
+         return []
+     if max(widths) / min(widths) > COL_MAX_WIDTH_IMBALANCE:
+         return []
+-    if _count_prose_columns(words, gutters) >= 2:
++    if _count_prose_columns(words, gutters) >= 1 and _columns_low_tabular(
++        words, gutters, COL_MAX_TABULAR_ROW_FRACTION
++    ):
+         return gutters
+     return []
+ 
+@@ -485,7 +487,7 @@
+         return []
+     # the dominant (largest) multi-column region drives the page split
+     _, gutters = max(regions, key=lambda t: len(t[0]))
+-    if _count_prose_columns(words, gutters) >= 2 and _columns_low_tabular(
++    if _count_prose_columns(words, gutters) >= 1 and _columns_low_tabular(
+         words, gutters, COL_STRICT_TABULAR_FRACTION
+     ):
+         return gutters
+@@ -533,22 +535,14 @@
+ 
+ 
+ def _count_prose_columns(words, gutters):
+-    """Number of columns that read like flowing prose: >= COL_MIN_LINES lines,
+-    median words/line >= COL_MIN_MEDIAN_WORDS_PER_LINE, and not table-heavy
+-    (tabular-row fraction < COL_MAX_TABULAR_ROW_FRACTION).  A column containing a
+-    table is rejected so the split never disturbs in-column tables/lists.
+-
+-    The words-per-line floor drops to COL_MIN_MEDIAN_WORDS_3COL for layouts
+-    with 3+ columns: their narrower columns legitimately run ~3-5 words/line,
+-    while the label|value false-positive the strict floor protects against is
+-    a *two*-column shape (and a 3+-column data table's narrow cells already
+-    fail the COL_MIN_WIDTH_FRACTION gate)."""
++    """Count flowing prose columns, including short two-column lines.
++
++    Retain the existing minimum line count, regular-pitch guard for short
++    lines, and table-heavy rejection. Use the stock narrow-column word floor
++    for both two-column and wider layouts.
++    """
+     splits = [(xa + xb) / 2 for xa, xb in gutters]
+-    min_medw = (
+-        COL_MIN_MEDIAN_WORDS_3COL
+-        if len(gutters) >= 2
+-        else COL_MIN_MEDIAN_WORDS_PER_LINE
+-    )
++    min_medw = COL_MIN_MEDIAN_WORDS_3COL
+     col_words = [[] for _ in range(len(gutters) + 1)]
+     for w in words:
+         if any(w["x0"] < xb and w["x1"] > xa for xa, xb in gutters):
+@@ -588,7 +582,7 @@
+     return regular / len(pitches) >= COL_MIN_PITCH_REGULARITY
+ 
+ 
+-def _group_words_into_lines_columns(words, bbox, gutters=None):
++def _group_words_into_lines_columns(words, bbox, gutters=None, separate_panels=False):
+     """Column-aware variant of :func:`_group_words_into_lines`.
+ 
+     Returns the same shape (a list of word-rows, each sorted by x0).  When no
+@@ -649,7 +643,7 @@
+     prev_bottom = None
+     for r in sorted(_group_words_into_lines(words), key=lambda ln: ln[0]["top"]):
+         top = min(w["top"] for w in r)
+-        if prev_bottom is not None and top - prev_bottom > h_gap:
++        if not separate_panels and prev_bottom is not None and top - prev_bottom > h_gap:
+             flush()
+         prev_bottom = max(
+             prev_bottom if prev_bottom is not None else top,
+@@ -1450,6 +1444,45 @@
+     )
+ 
+ 
++def _ruled_table_side_gutters(page, words):
++    """Keep an independently ruled table separate from an adjacent text panel.
++
++    Table borders supply the region boundary; internal cell gutters are never
++    used as layout gutters. Require text at the table's vertical level and a
++    clear gap outside its enclosing rectangle, rather than guessing from rows.
++    """
++    candidates = []
++    tables = page.find_tables()
++    for table in tables:
++        x0, top, x1, bottom = table.bbox
++        # A detected subtable inside an enclosing ruled form/table is not an
++        # independent panel: its outside words can be other cells of that table.
++        if any(
++            other is not table
++            and other.bbox[0] <= x0 + 1
++            and other.bbox[1] <= top + 1
++            and other.bbox[2] >= x1 - 1
++            and other.bbox[3] >= bottom - 1
++            and (other.bbox[2] - other.bbox[0]) * (other.bbox[3] - other.bbox[1])
++                > 1.2 * (x1 - x0) * (bottom - top)
++            for other in tables
++        ):
++            continue
++        if x1 - x0 < COL_MIN_WIDTH_FRACTION * page.width:
++            continue
++        aligned = [w for w in words if top <= w["top"] < bottom]
++        for side in ("left", "right"):
++            outside = [w for w in aligned if
++                       (w["x1"] < x0 if side == "left" else w["x0"] > x1)]
++            if len(_group_words_into_lines(outside)) < 2:
++                continue
++            gutter = ((max(w["x1"] for w in outside), x0) if side == "left"
++                      else (x1, min(w["x0"] for w in outside)))
++            if gutter[1] - gutter[0] >= COL_GUTTER_MIN_WIDTH_FRACTION * page.width:
++                candidates.append(gutter)
++    return [max(candidates, key=lambda g: g[1] - g[0])] if candidates else []
++
++
+ def _render_page(page, force_ocr=False, disable_ocr=False):
+     # Fastest path: interpret the page once with the char-dict device (no
+     # per-glyph LTChar objects, no layout-tree walk; byte-identical output).
+@@ -1546,7 +1579,13 @@
+         # Column-aware grouping for genuine multi-column prose; byte-identical to
+         # the plain grouping above for single-column / table / infographic pages.
+         gutters = _detect_column_gutters(words, page.bbox)
+-        lines = _group_words_into_lines_columns(words, page.bbox, gutters=gutters)
++        separate_panels = False
++        if not gutters:
++            gutters = _ruled_table_side_gutters(page, words)
++            separate_panels = bool(gutters)
++        lines = _group_words_into_lines_columns(
++            words, page.bbox, gutters=gutters, separate_panels=separate_panels
++        )
+         if not gutters:
+             # Table-safe grid-cell split (two-column signature/approval/form
+             # grids the prose gates exclude): route each grid region's cells

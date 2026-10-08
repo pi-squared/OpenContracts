@@ -1,0 +1,50 @@
+--- a/warp_ingest/ingestor/opencontracts_exporter.py
++++ b/warp_ingest/ingestor/opencontracts_exporter.py
+@@ -1290,6 +1290,47 @@
+                 }
+             )
+ 
++    # A column-major block stream can drop a repeated value when globally
++    # aligned to row-major PAWLS words. Preserve an otherwise unassigned word
++    # beside a block as its own passage; do not guess its label/value association.
++    for pidx, div in enumerate(page_divs):
++        bands = div.get("data-columns")
++        if not bands:
++            continue
++        gutters = [tuple(map(float, band.split(","))) for band in bands.split("|")]
++        owned = {reference["tokenIndex"] for annotation in labelled_text
++                 for location in [annotation["annotation_json"].get(str(pidx), {})]
++                 for reference in location.get("tokensJsons", [])}
++        for index, token in enumerate(pawls[pidx]["tokens"]):
++            if index in owned:
++                continue
++            cx, cy = token["x"] + token["width"] / 2, token["y"] + token["height"] / 2
++            nearby = False
++            for bid in blocks_by_page.get(pidx, []):
++                top, left, right, bottom, _page, _area = rects[bid]
++                if any(left < xa and right > xb for xa, xb in gutters):
++                    continue
++                if (token["text"] in block_text_by_idx[bid].split()
++                    and left - _EPS <= cx <= right + _EPS
++                    and max(top - cy, cy - bottom, 0) <= 3 * token["height"]):
++                    nearby = True
++                    break
++            if not nearby:
++                continue
++            labelled_text.append({
++                "id": f"column-word-{pidx}-{index}", "annotationLabel": "Paragraph",
++                "rawText": token["text"], "page": pidx, "parent_id": None,
++                "annotation_type": "TOKEN_LABEL", "structural": True,
++                "content_modalities": ["TEXT"],
++                "annotation_json": {str(pidx): {
++                    "bounds": {"top": token["y"], "left": token["x"],
++                               "right": token["x"] + token["width"],
++                               "bottom": token["y"] + token["height"]},
++                    "tokensJsons": [{"pageIndex": pidx, "tokenIndex": index}],
++                    "rawText": token["text"],
++                }},
++            })
++
+     if include_images:
+         if pdf_bytes is None:
+             raise ValueError("include_images=True requires pdf_bytes")

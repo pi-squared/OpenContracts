@@ -1,0 +1,11 @@
+diff --git a/opencontractserver/annotations/migrations/0066_reset_database_level_hnsw_settings.py b/opencontractserver/annotations/migrations/0066_reset_database_level_hnsw_settings.py
+--- a/opencontractserver/annotations/migrations/0066_reset_database_level_hnsw_settings.py
++++ b/opencontractserver/annotations/migrations/0066_reset_database_level_hnsw_settings.py
+@@ -41,6 +41,7 @@
+                 EXCEPTION
+                     WHEN undefined_object THEN NULL;
+                     WHEN invalid_parameter_value THEN NULL;
++                    WHEN insufficient_privilege THEN NULL;
+                 END $$;
+             """,
+             reverse_sql=migrations.RunSQL.noop,

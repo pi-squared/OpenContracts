@@ -1,0 +1,16 @@
+diff --git a/opencontractserver/utils/etl.py b/opencontractserver/utils/etl.py
+index 5cd752e..17a6854 100644
+--- a/opencontractserver/utils/etl.py
++++ b/opencontractserver/utils/etl.py
+@@ -655,6 +655,11 @@ def parse_model_or_primitive(value: str) -> type:
+     """
+     logger.info(f"Attempting to parse model or primitive from value: {value}")
+ 
++    if value.startswith("workflow:"):
++        from databricks_port.workflows import resolve_response_model
++
++        return resolve_response_model(value)
++
+     # Check for primitive types
+     if value == "int":
+         logger.info("Parsed value as int type")

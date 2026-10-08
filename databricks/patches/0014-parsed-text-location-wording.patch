@@ -1,0 +1,14 @@
+--- a/frontend/src/components/extracts/datagrid/FindingView.tsx
++++ b/frontend/src/components/extracts/datagrid/FindingView.tsx
+@@ -233,9 +233,9 @@
+             {anchors && (
+               <div className="evidence-location" role="status">
+                 {item.status === "matched" &&
+-                  `Located on PDF page ${item.locatedPage}.`}
++                  `Matched in parsed text on PDF page ${item.locatedPage}.`}
+                 {item.status === "different_page" &&
+-                  `Located on PDF page ${item.locatedPage}; the reported page differs.`}
++                  `Matched in parsed text on PDF page ${item.locatedPage}; the reported page differs.`}
+                 {item.matchType === "typography_whitespace" &&
+                   " Matched with typographic or whitespace differences."}
+                 {item.status === "unmatched" &&
