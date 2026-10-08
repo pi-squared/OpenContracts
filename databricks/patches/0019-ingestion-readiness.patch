@@ -1,50 +1,3 @@
---- a/config/graphql/document_types.py
-+++ b/config/graphql/document_types.py
-@@ -259,7 +259,12 @@
-     corpus_pk = None
-     if corpus_id is not None:
-         corpus_pk = int(from_global_id(corpus_id)[1])
--        if BaseService.get_or_none(Corpus, corpus_pk, info.context.user, request=info.context) is None:
-+        if (
-+            BaseService.get_or_none(
-+                Corpus, corpus_pk, info.context.user, request=info.context
-+            )
-+            is None
-+        ):
-             return []
- 
-     prefetched = getattr(root, "_prefetched_doc_annotations", None)
-@@ -1032,6 +1037,13 @@
- 
- @strawberry.type(name="DocumentType")
- class DocumentType(Node):
-+    @strawberry.field(name="extractionReadinessError")
-+    def extraction_readiness_error(self, info: strawberry.Info) -> str | None:
-+        from databricks_port.extraction_readiness import document_readiness
-+
-+        _assert_user_can_read(self, info)
-+        return document_readiness(self)
-+
-     @strawberry.field(name="parent")
-     def parent(self, info: strawberry.Info) -> DocumentType | None:
-         return resolve_visible_fk(self, info, "parent_id", "DocumentType")
-@@ -2161,9 +2173,13 @@
-         name="docTypeLabels",
-         description="Flat list of distinct ``DOC_TYPE_LABEL`` annotation labels for this document — the corpus list view's per-card badges. Resolved from a single batched prefetch when the parent ``documents`` resolver opts in via ``requests_doc_type_labels``; falls back to one targeted SELECT per document otherwise. Skipping the Relay connection wrapper avoids the per-document COUNT + SELECT + FK descriptor storm the old ``docAnnotations`` shape forced.",
-     )
--    def doc_type_labels(self, info: strawberry.Info, corpus_id: Annotated[
--        strawberry.ID | None, strawberry.argument(name="corpusId")
--    ] = strawberry.UNSET) -> None | (
-+    def doc_type_labels(
-+        self,
-+        info: strawberry.Info,
-+        corpus_id: Annotated[
-+            strawberry.ID | None, strawberry.argument(name="corpusId")
-+        ] = strawberry.UNSET,
-+    ) -> None | (
-         list[
-             Annotated[
-                 AnnotationLabelType,
 --- a/config/graphql/extract_mutations.py
 +++ b/config/graphql/extract_mutations.py
 @@ -45,6 +45,11 @@
@@ -104,19 +57,76 @@
  
      extract = Extract.objects.create(
          name=f"Extract {uuid.uuid4()} for {document.title}",
+--- a/config/graphql/extract_types.py
++++ b/config/graphql/extract_types.py
+@@ -685,6 +685,14 @@
+ 
+ @strawberry.type(name="ExtractType")
+ class ExtractType(Node):
++    @strawberry.field(name="sourceReadinessError")
++    def source_readiness_error(self, info: strawberry.Info) -> str | None:
++        from databricks_port.extraction_readiness import extract_readiness
++
++        return extract_readiness(
++            self, documents=_resolve_ExtractType_full_document_list(self, info)
++        )
++
+     user_lock: None | (
+         Annotated[UserType, strawberry.lazy("config.graphql.user_types")]
+     ) = strawberry.field(name="userLock", default=None)
+@@ -1947,19 +1955,32 @@
+     def has_finding_evidence(self, info: strawberry.Info) -> bool:
+         from databricks_port.evidence import selected_quotes
+ 
+-        return bool(selected_quotes(self.corrected_data if self.corrected_data is not None else self.data))
++        return bool(
++            selected_quotes(
++                self.corrected_data if self.corrected_data is not None else self.data
++            )
++        )
+ 
+     @strawberry.field(name="findingEvidence")
+     def finding_evidence(self, info: strawberry.Info) -> GenericScalar:
+         from databricks_port.finding_evidence import finding_evidence
+-
+         from opencontractserver.utils.ids import to_global_id
+ 
+-        return [{**quote, "annotationIds": [to_global_id("AnnotationType", identifier)
+-                                           for identifier in quote.get("annotationIds", [])],
+-                 "annotationId": to_global_id("AnnotationType", quote["annotationId"])
+-                 if quote.get("annotationId") is not None else None}
+-                for quote in finding_evidence(self)]
++        return [
++            {
++                **quote,
++                "annotationIds": [
++                    to_global_id("AnnotationType", identifier)
++                    for identifier in quote.get("annotationIds", [])
++                ],
++                "annotationId": (
++                    to_global_id("AnnotationType", quote["annotationId"])
++                    if quote.get("annotationId") is not None
++                    else None
++                ),
++            }
++            for quote in finding_evidence(self)
++        ]
+ 
+     @strawberry.field(name="fullSourceList")
+     def full_source_list(
 --- a/config/graphql/schema.graphql
 +++ b/config/graphql/schema.graphql
-@@ -3931,6 +3931,7 @@
-   isCurrent: Boolean!
-   processingStarted: DateTime
-   processingFinished: DateTime
-+  extractionReadinessError: String
-   parent: DocumentType
-   title: String
-   description: String
+@@ -4918,6 +4918,7 @@
+   Direct iterations forked from this extract (one level deep). Walk recursively for the full subtree.
+   """
+   fullIterationList: [ExtractType]
++  sourceReadinessError: String
+ }
+ 
+ type ExtractTypeConnection {
 --- a/frontend/src/components/extracts/CorpusExtractDetail.tsx
 +++ b/frontend/src/components/extracts/CorpusExtractDetail.tsx
-@@ -152,7 +152,13 @@
+@@ -152,7 +152,11 @@
          </HeaderMain>
          <Actions>
            {canStart && (
@@ -124,9 +134,7 @@
 +            <IconButton
 +              aria-label="Start extract"
 +              onClick={handleStartExtract}
-+              disabled={extract?.fullDocumentList?.some((document) =>
-+                Boolean(document.extractionReadinessError)
-+              )}
++              disabled={Boolean(extract?.sourceReadinessError)}
 +            >
                <Play size={14} />
              </IconButton>
@@ -149,19 +157,16 @@
        toast.success("Extract started!");
        setExtract((prev) =>
          prev ? { ...prev, ...data.startExtract.obj } : prev
-@@ -489,7 +494,10 @@
+@@ -489,7 +494,7 @@
      exportToCsv: () => dataGridRef.current?.exportToCsv(),
      refetch: () => refetch(),
      startExtract: () => {
 -      if (extract) {
-+      if (
-+        extract &&
-+        !rows.some((document) => document.extractionReadinessError)
-+      ) {
++      if (extract && !Boolean(extract.sourceReadinessError)) {
          startExtract({ variables: { extractId: extract.id } });
        }
      },
-@@ -662,6 +670,12 @@
+@@ -662,6 +667,13 @@
          </StatGrid>
        </StatsSection>
  
@@ -169,79 +174,69 @@
 +        <SourceReadinessNotice
 +          documents={rows}
 +          hasFindings={Boolean(extract.started)}
++          readinessError={extract.sourceReadinessError}
 +        />
 +      )}
        {/* Running state overlay */}
        {isRunning && (
          <RunningState>
-@@ -687,6 +701,12 @@
-                 leftIcon={<RefreshCw size={14} />}
+@@ -688,6 +700,7 @@
                  onClick={() =>
                    startExtract({ variables: { extractId: extract.id } })
-+                }
-+                disabled={
-+                  startLoading ||
-+                  rows.some((document) =>
-+                    Boolean(document.extractionReadinessError)
-+                  )
                  }
++                disabled={startLoading || Boolean(extract.sourceReadinessError)}
                >
                  Retry
+               </Button>
 --- a/frontend/src/components/extracts/datagrid/DataGrid.tsx
 +++ b/frontend/src/components/extracts/datagrid/DataGrid.tsx
-@@ -57,6 +57,8 @@
+@@ -57,6 +57,10 @@
  import { SelectDocumentsModal } from "../../widgets/modals/SelectDocumentsModal";
  import { REQUEST_GET_EXTRACT } from "../../../graphql/queries";
  import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
-+import { SourceReadinessNotice } from "../SourceReadinessNotice";
-+import { getDocumentUrl } from "../../../utils/navigationUtils";
++import {
++  OriginalPdfLink,
++  SourceReadinessNotice,
++} from "../SourceReadinessNotice";
  import { unwrapDatacellData } from "../../../utils/extractUtils";
  
  interface DragState {
-@@ -792,6 +794,11 @@
+@@ -792,6 +796,12 @@
            }
          />
  
 +        <SourceReadinessNotice
 +          documents={rows}
 +          hasFindings={Boolean(extract.started)}
++          readinessError={extract.sourceReadinessError}
 +          showOriginal={false}
 +        />
          <div {...getRootProps()} ref={gridRef} style={styles.gridWrapper}>
            {loading && (
              <div
-@@ -1030,6 +1037,28 @@
+@@ -1030,6 +1040,11 @@
                              text={row.documentTitle || ""}
                              limit={100}
                            />
-+                          {(() => {
-+                            const document = rows.find(
++                          <OriginalPdfLink
++                            document={rows.find(
 +                              (source) => source.id === row.id
-+                            );
-+                            if (
-+                              !document?.slug ||
-+                              !document.creator?.slug ||
-+                              document.fileType !== "application/pdf"
-+                            )
-+                              return null;
-+                            return (
-+                              <a
-+                                href={getDocumentUrl(document)}
-+                                target="_blank"
-+                                rel="noopener noreferrer"
-+                                onClick={(event) => event.stopPropagation()}
-+                                style={{ display: "block" }}
-+                              >
-+                                Open original PDF
-+                              </a>
-+                            );
-+                          })()}
++                            )}
++                          />
                          </Table.Cell>
                          {columns.map((column) => {
                            const cell = localCells.find(
 --- a/frontend/src/graphql/queries.ts
 +++ b/frontend/src/graphql/queries.ts
-@@ -3340,6 +3340,13 @@
+@@ -3319,6 +3319,7 @@
+       started
+       finished
+       error
++      sourceReadinessError
+       modelConfig
+       iterationAxis
+       parentExtract {
+@@ -3340,6 +3341,12 @@
          }
        }
        fullDocumentList {
@@ -250,21 +245,20 @@
 +          id
 +          slug
 +        }
-+        extractionReadinessError
 +        processingStatus
          id
          title
          description
 --- a/frontend/src/types/graphql-api.ts
 +++ b/frontend/src/types/graphql-api.ts
-@@ -489,6 +489,7 @@
-   lastModified?: Maybe<Scalars["DateTime"]>;
-   // Processing status fields
-   processingStatus?: Maybe<DocumentProcessingStatus>;
-+  extractionReadinessError?: Maybe<Scalars["String"]>;
-   processingError?: Maybe<Scalars["String"]>;
-   canRetry?: Maybe<Scalars["Boolean"]>;
+@@ -1450,6 +1450,7 @@
  };
+ 
+ export interface ExtractType extends Node {
++  sourceReadinessError?: Maybe<Scalars["String"]>;
+   corpus: CorpusType;
+   name: string;
+   fieldset: FieldsetType;
 --- a/frontend/src/views/ExtractDetail.tsx
 +++ b/frontend/src/views/ExtractDetail.tsx
 @@ -1,3 +1,4 @@
@@ -283,7 +277,7 @@
        toast.success("Extract started!");
        setExtract((prev) =>
          prev ? { ...prev, ...data.startExtract.obj } : prev
-@@ -771,7 +776,12 @@
+@@ -771,7 +776,10 @@
                    startExtract({ variables: { extractId: extract.id } })
                  }
                  disabled={
@@ -291,13 +285,11 @@
 +                  startLoading ||
 +                  rows.length === 0 ||
 +                  columns.length === 0 ||
-+                  rows.some((document) =>
-+                    Boolean(document.extractionReadinessError)
-+                  )
++                  Boolean(extract.sourceReadinessError)
                  }
                >
                  Start Extract
-@@ -822,6 +832,12 @@
+@@ -822,6 +830,13 @@
            </StatGrid>
          </StatsSection>
  
@@ -305,21 +297,19 @@
 +          <SourceReadinessNotice
 +            documents={rows}
 +            hasFindings={Boolean(extract.started)}
++            readinessError={extract.sourceReadinessError}
 +          />
 +        )}
          {/* Running state overlay */}
          {isRunning && (
            <RunningState>
-@@ -847,6 +863,12 @@
+@@ -847,6 +862,9 @@
                    leftIcon={<RefreshCw size={16} />}
                    onClick={() =>
                      startExtract({ variables: { extractId: extract.id } })
 +                  }
 +                  disabled={
-+                    startLoading ||
-+                    rows.some((document) =>
-+                      Boolean(document.extractionReadinessError)
-+                    )
++                    startLoading || Boolean(extract.sourceReadinessError)
                    }
                  >
                    Retry Extract
@@ -345,14 +335,17 @@
  from opencontractserver.utils.files import read_field_file_text
  from opencontractserver.utils.llm import is_anthropic_model
  from opencontractserver.utils.prompt_sanitization import (
-@@ -464,6 +464,10 @@
+@@ -462,8 +462,12 @@
+         logger.info(f"Document: {document.id}, Column: {column.name}")
+ 
          # Get corpus ID (None if document isn't in a corpus - that's OK now!)
-         corpus_id = await sync_get_corpus_id(document)
+-        corpus_id = await sync_get_corpus_id(document)
++        corpus_id = datacell.extract.corpus_id or await sync_get_corpus_id(document)
          logger.info(f"Corpus ID: {corpus_id}")
 +
 +        from databricks_port.extraction_readiness import aensure_document_ready
 +
-+        await aensure_document_ready(document, datacell.extract.corpus_id or corpus_id)
++        await aensure_document_ready(document, corpus_id)
  
          # 2. Parse the output type
          output_type = parse_model_or_primitive(column.output_type)

@@ -142,6 +142,12 @@ def ai_parse_export(raw, dimensions, image_dimensions, title):
     return element_export(elements, dimensions, title)
 
 
+# Independent PDF text engines can differ by fractions of a PDF point. This
+# tolerance admits a nearby zero-area anchor, never pads the recovered rectangle.
+# More than one same-text glyph within this tolerance remains an error.
+GLYPH_LOCATION_TOLERANCE_POINTS = 0.5
+
+
 class SourceGeometryError(ValueError):
     """Safe failure message containing no PDF text or diagnostic stream."""
 
@@ -186,8 +192,12 @@ def _recover_zero_area_tokens(export, source):
                     if text == token["text"]
                     and box.width > 0
                     and box.height > 0
-                    and box.x0 - 0.5 <= center_x <= box.x1 + 0.5
-                    and box.y0 - 0.5 <= center_y <= box.y1 + 0.5
+                    and box.x0 - GLYPH_LOCATION_TOLERANCE_POINTS
+                    <= center_x
+                    <= box.x1 + GLYPH_LOCATION_TOLERANCE_POINTS
+                    and box.y0 - GLYPH_LOCATION_TOLERANCE_POINTS
+                    <= center_y
+                    <= box.y1 + GLYPH_LOCATION_TOLERANCE_POINTS
                     and 0 <= x <= page.rect.width
                     and 0 <= y <= page.rect.height
                     and token["width"] >= 0

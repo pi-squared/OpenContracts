@@ -98,9 +98,18 @@ def ensure_document_ready(document, corpus_id=None):
 aensure_document_ready = sync_to_async(ensure_document_ready)
 
 
-def ensure_extract_ready(extract):
-    documents = list(extract.documents.all())
+def extract_readiness(extract, *, documents=None):
+    documents = list(extract.documents.all()) if documents is None else list(documents)
     if not documents:
-        raise SourceNotReady("Add a processed document before extracting.")
+        return "Add a processed document before extracting."
     for document in documents:
-        ensure_document_ready(document, extract.corpus_id)
+        reason = document_readiness(document, extract.corpus_id)
+        if reason:
+            return reason
+    return None
+
+
+def ensure_extract_ready(extract):
+    reason = extract_readiness(extract)
+    if reason:
+        raise SourceNotReady(reason)

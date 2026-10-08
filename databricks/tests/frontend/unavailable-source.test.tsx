@@ -31,6 +31,7 @@ it("a failed source keeps original PDF access without locating or rewriting find
                 {
                   id: "extract",
                   name: "Old run",
+                  sourceReadinessError: "Document processing failed.",
                   started: "2026-10-08",
                   finished: "2026-10-08",
                 } as any

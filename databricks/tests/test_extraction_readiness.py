@@ -188,6 +188,133 @@ class ExtractionReadinessTests(unittest.TestCase):
         self.calls.assert_not_called()
         self.acalls.assert_not_called()
 
+    def test_extract_readiness_uses_chosen_corpus_instead_of_first_document_path(self):
+        import uuid
+
+        from graphql_relay import to_global_id
+
+        from config.graphql.schema import schema
+        from opencontractserver.annotations.models import (
+            Annotation,
+            Embedding,
+            StructuralAnnotationSet,
+        )
+        from opencontractserver.corpuses.models import Corpus
+        from opencontractserver.documents.models import Document, DocumentPath
+        from opencontractserver.pipeline.utils import get_embedder_instance
+        from opencontractserver.tasks.data_extract_tasks import doc_extract_query_task
+        from opencontractserver.utils.embeddings import get_embedder
+
+        indexed_corpus = Corpus.objects.create(
+            title="Indexed readiness control",
+            creator=self.user,
+            preferred_llm="openai:readiness-corpus-a",
+        )
+        unindexed_corpus = Corpus.objects.create(
+            title="Unindexed readiness control",
+            creator=self.user,
+            preferred_llm="openai:readiness-corpus-b",
+            preferred_embedder="opencontractserver.pipeline.embedders.openai_embedder.OpenAIEmbedder",
+        )
+        structural = None
+        try:
+            structural = StructuralAnnotationSet.objects.create(
+                content_hash=uuid.uuid4().hex, creator=self.user
+            )
+            source = (
+                Document.objects.filter(
+                    processing_status="completed",
+                    structural_annotation_set__isnull=False,
+                    txt_extract_file__gt="",
+                )
+                .exclude(pk=self.document.pk)
+                .first()
+            )
+            self.assertIsNotNone(source)
+            self.document.processing_status = "completed"
+            self.document.backend_lock = False
+            self.document.file_type = source.file_type
+            self.document.page_count = source.page_count
+            self.document.txt_extract_file = source.txt_extract_file.name
+            self.document.pawls_parse_file = source.pawls_parse_file.name
+            self.document.structural_annotation_set = structural
+            self.document.save()
+            annotation = Annotation.objects.create(
+                structural=True,
+                structural_set=structural,
+                raw_text="Indexed control",
+                creator=self.user,
+            )
+            cls, path = get_embedder(corpus_id=indexed_corpus.pk)
+            dimension = get_embedder_instance(cls, path).vector_size
+            Embedding.objects.create(
+                annotation=annotation,
+                creator=self.user,
+                embedder_path=path,
+                **{f"vector_{dimension}": [0.0] * dimension},
+            )
+            DocumentPath.objects.create(
+                document=self.document,
+                corpus=unindexed_corpus,
+                path="readiness-control.pdf",
+                version_number=1,
+                creator=self.user,
+            )
+
+            def readiness():
+                result = schema.execute_sync(
+                    "query($id: ID!) { extract(id: $id) { sourceReadinessError } }",
+                    variable_values={
+                        "id": to_global_id("ExtractType", self.extract.pk)
+                    },
+                    context_value=SimpleNamespace(user=self.user),
+                )
+                self.assertIsNone(result.errors)
+                return result.data["extract"]["sourceReadinessError"]
+
+            self.extract.corpus = indexed_corpus
+            self.extract.save(update_fields=["corpus"])
+            self.assertIsNone(
+                readiness(), "Only the chosen corpus has its configured index"
+            )
+            # The public field worker must use the same corpus as admission,
+            # even when its first DocumentPath belongs to the other corpus.
+            # Intercept the real provider HTTP boundary before any paid request.
+            import json
+
+            requested_models = []
+
+            async def capture_model(request, *args, **kwargs):
+                requested_models.append(json.loads(request.content)["model"])
+                raise RuntimeError("Readiness provider sentinel")
+
+            self.acalls.side_effect = capture_model
+            doc_extract_query_task.run(self.cell.pk)
+            self.assertTrue(requested_models, "The indexed corpus reaches the provider")
+            self.assertEqual(set(requested_models), {"readiness-corpus-a"})
+            self.calls.assert_not_called()
+            self.acalls.reset_mock()
+            self.acalls.side_effect = AssertionError(
+                "Model request on unavailable source"
+            )
+            self.extract.corpus = unindexed_corpus
+            self.extract.save(update_fields=["corpus"])
+            self.assertIn("retrieval index is incomplete", readiness())
+            with self.assertRaisesRegex(ValueError, "retrieval index is incomplete"):
+                doc_extract_query_task.run(self.cell.pk)
+            self.calls.assert_not_called()
+            self.acalls.assert_not_called()
+        finally:
+            self.extract.corpus = None
+            self.extract.save(update_fields=["corpus"])
+            self.document.structural_annotation_set = None
+            self.document.save(update_fields=["structural_annotation_set"])
+            DocumentPath.objects.filter(document=self.document).delete()
+            if structural is not None:
+                structural.delete()
+            indexed_corpus.delete()
+            unindexed_corpus.delete()
+
 
 if __name__ == "__main__":
     unittest.main()
