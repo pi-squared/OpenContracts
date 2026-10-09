@@ -2,12 +2,11 @@
 
 DEPENDENCIES = [
     "docling-slim[standard,feat-ocr-rapidocr-onnx]==2.132.0",
-    "rapidocr==3.9.2",
     "opencv-python-headless==4.12.0.88",
 ]
 
 
-def job_settings(app_name, workspace_directory, principal):
+def job_settings(app_name, workspace_directory, principal, rapidocr_wheel):
     return {
         "name": app_name + "-docling-pdf",
         "description": "Source-bound PDF parsing for " + app_name,
@@ -25,7 +24,10 @@ def job_settings(app_name, workspace_directory, principal):
         "environments": [
             {
                 "environment_key": "docling",
-                "spec": {"environment_version": "6", "dependencies": DEPENDENCIES},
+                "spec": {
+                    "environment_version": "6",
+                    "dependencies": [*DEPENDENCIES, rapidocr_wheel],
+                },
             }
         ],
         "tasks": [

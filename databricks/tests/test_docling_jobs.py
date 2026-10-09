@@ -168,7 +168,12 @@ class DoclingJobTests(unittest.TestCase):
     def test_serverless_job_has_no_automatic_parser_retry_and_resources_are_scoped(
         self,
     ):
-        config = job_settings("fresh", "/Workspace/owned/revision", "principal")
+        config = job_settings(
+            "fresh",
+            "/Workspace/owned/revision",
+            "principal",
+            "/Volumes/c/s/v/rapidocr.whl",
+        )
         self.assertEqual(config["environments"][0]["spec"]["environment_version"], "6")
         self.assertEqual(config["tasks"][0]["max_retries"], 0)
         self.assertTrue(config["tasks"][0]["disable_auto_optimization"])

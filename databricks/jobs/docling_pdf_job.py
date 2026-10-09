@@ -60,10 +60,24 @@ def convert(manifest):
         "options": data["options"],
         "started_at": datetime.now(timezone.utc).isoformat(),
         "python": sys.version,
-        "installed_packages": sorted(
-            f"{d.metadata['Name']}=={d.version}"
-            for d in importlib.metadata.distributions()
-        ),
+        "installed_packages": {
+            name: importlib.metadata.version(name)
+            for name in (
+                "docling-slim",
+                "docling-core",
+                "docling-parse",
+                "docling-ibm-models",
+                "rapidocr",
+                "onnxruntime",
+                "opencv-python-headless",
+                "numpy",
+                "torch",
+                "torchvision",
+                "transformers",
+                "pypdfium2",
+                "huggingface-hub",
+            )
+        },
         "job_script_sha256": digest(Path(__file__)),
         "converter_sha256": digest(Path(__file__).with_name("parser_exports.py")),
         "status": "running",
@@ -75,11 +89,14 @@ def convert(manifest):
             raise ValueError("The Docling distribution differs from the pinned recipe")
         import pypdfium2
         from docling.datamodel.base_models import InputFormat
-        from docling.datamodel.pipeline_options import PdfPipelineOptions
+        from docling.datamodel.pipeline_options import (
+            PdfPipelineOptions,
+            RapidOcrOptions,
+        )
         from docling.document_converter import DocumentConverter, PdfFormatOption
         from parser_exports import docling_export
 
-        options = PdfPipelineOptions(**data["options"])
+        options = PdfPipelineOptions(ocr_options=RapidOcrOptions(), **data["options"])
         receipt["pipeline_options"] = options.model_dump(
             mode="json", serialize_as_any=True
         )
@@ -115,7 +132,8 @@ def convert(manifest):
             raise ValueError("Original PDF changed during Docling conversion")
         save(output / "export.json", export)
         snapshots = directory.parents[1] / "model-cache" / "huggingface" / "hub"
-        receipt["model_asset_revisions"] = (
+        # Cache inventory does not prove which model revision conversion used.
+        receipt["available_model_snapshots"] = (
             sorted(
                 str(p.relative_to(snapshots))
                 for p in snapshots.glob("models--*/snapshots/*")
@@ -195,6 +213,21 @@ def main():
             timeout=3300,
         )
     if process.returncode:
+        receipt_file = output / "receipt.json"
+        receipt = (
+            json.loads(receipt_file.read_text())
+            if receipt_file.exists()
+            else {
+                "attempt_id": data["attempt_id"],
+                "source_sha256": data["source_sha256"],
+            }
+        )
+        receipt.update(
+            status="failed",
+            child_exit_code=process.returncode,
+            finished_at=datetime.now(timezone.utc).isoformat(),
+        )
+        save(receipt_file, receipt)
         raise RuntimeError(
             "Docling child process failed; private attempt logs are retained"
         )

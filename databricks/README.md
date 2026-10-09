@@ -150,3 +150,40 @@ the staged vendor dependencies and declared assets. Deployment acceptance is
 recorded separately from these synthetic checks.
 
 Hosted acceptance is recorded in the [fresh installation receipt](../docs/verification/2026-10-08-fresh-databricks-installation.md).
+
+## Docling PDF jobs
+
+The optional native parser `Docling · Databricks Job` runs Docling-slim 2.132.0
+on a separate serverless job. Build or stage with `--docling-jobs` and bind a job
+as `docling-job`, plus an artifact volume as `docling-artifacts` (WRITE_VOLUME)
+and `docling-artifacts-read` (READ_VOLUME). The job binding requires
+CAN_MANAGE_RUN. Keep Warp as the normal PDF default; select the native Docling
+parser for an ingestion run, or use the authenticated corpus-copy interface.
+
+Create the job settings with `tools/docling_job_config.py:job_settings`, supplying
+the App name, an immutable workspace directory containing
+`jobs/docling_pdf_job.py` and `port/python/databricks_port/parser_exports.py`, the
+authorized run-as principal and a volume URI for the OCR wheel. Build that wheel
+with `tools/build_docling_ocr.py:build` from the hash-pinned stock RapidOCR wheel.
+The builder changes only distribution metadata to require headless OpenCV; all
+OCR code and model bytes remain identical. Keep these dependencies in the job
+environment. Add `docling_job_id`, `docling_artifact_volume` and
+`docling_job_revision` to the private installation journal so later bundle
+operations preserve the bindings. Validate the bundle and publish through the
+existing gated installation controller.
+
+`POST /port/docling/corpora` accepts `source_corpus_id` and `title`, copies PDF
+sources and a text README into separate native records, and returns immediately.
+`GET /port/docling/corpora/<id>` returns progress. Repeating creation recognizes
+the copied source provenance. `POST /port/docling/corpora/<id>` resumes an
+interrupted native processing chain using its retained attempt. It requires
+update permission on the corpus and every document, skips completed sources and
+never silently reruns a failed remote parse. Active chains in the current App
+process are not queued twice. The native JWT is required in addition to the
+Databricks App boundary.
+
+Receipts retain source/output hashes, exact pipeline options, packages, worker
+identity and timings. Cached model snapshots are an inventory; actual model
+revisions remain unknown without evidence. Paragraph and table boxes retain
+original PDF coordinates. Docling evidence is imported through native parser
+persistence and indexing, with separate structural sets from Warp evidence.

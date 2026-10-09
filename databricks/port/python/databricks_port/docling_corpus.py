@@ -32,7 +32,20 @@ def copy_corpus(source_id, title, user):
         marker = "Docling job copy of corpus " + str(source.pk)
         existing = Corpus.objects.filter(title=title, creator=user).first()
         if existing:
-            if existing.description != marker:
+            # Native README synchronization replaces corpus descriptions. The
+            # immutable per-source copy provenance is the admission identity.
+            copied_paths = list(
+                DocumentPath.objects.filter(
+                    corpus=existing, is_current=True, is_deleted=False
+                ).select_related("document")
+            )
+            if not copied_paths or any(
+                (record.document.custom_meta or {})
+                .get("docling_copy", {})
+                .get("source_corpus_id")
+                != source.pk
+                for record in copied_paths
+            ):
                 raise ValidationError("The target corpus title is already in use")
             return existing
         if CorpusAction.objects.filter(

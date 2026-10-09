@@ -1,0 +1,9 @@
+{
+  "distribution": "rapidocr",
+  "upstream_version": "3.9.2",
+  "version": "3.9.2+oc39.1",
+  "stock_wheel_sha256": "04d6b8d151f823d930bd91910555f57bea897c0c44fa6794267b94cf9c1ef9a0",
+  "change": "Only wheel version and GUI OpenCV requirement change; all rapidocr/ bytes retained",
+  "headless_requirement": "opencv-python-headless==4.12.0.88",
+  "wheel_sha256": "be032ada6a833ffe12e106d1f460af53ee703151f7500de501e5e0df2e1dc355"
+}

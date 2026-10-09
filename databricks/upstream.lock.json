@@ -269,7 +269,7 @@
     {
       "source": "port/python/databricks_port/docling_corpus.py",
       "target": "databricks_port/docling_corpus.py",
-      "sha256": "00e799b8c4616d243f82fe5dfa46c5534e05d6d73a47aad30236baf209414c87"
+      "sha256": "6980f6bfebec7b6bec1d015b76af53858056c35579a1c8766b2c464afd6333a9"
     },
     {
       "source": "port/python/docling_job_parser.py",

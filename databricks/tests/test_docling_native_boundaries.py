@@ -79,3 +79,25 @@ class NativeDoclingControls(unittest.TestCase):
             documents.return_value.get.return_value = doc
             self.module.enqueue(self.user.pk, 99)
         chain.assert_not_called()
+
+    def test_copy_retry_reuses_provenance_after_readme_replaces_description(self):
+        source = SimpleNamespace(pk=5, user_can=lambda user, permission: True)
+        existing = SimpleNamespace(description="README content", pk=6)
+        path = SimpleNamespace(
+            document=SimpleNamespace(
+                custom_meta={"docling_copy": {"source_corpus_id": 5}}
+            )
+        )
+        with patch.object(
+            self.module.Corpus.objects, "select_for_update"
+        ) as sources, patch.object(
+            self.module.Corpus.objects, "filter"
+        ) as targets, patch.object(
+            self.module.DocumentPath.objects, "filter"
+        ) as paths:
+            sources.return_value.get.return_value = source
+            targets.return_value.first.return_value = existing
+            paths.return_value.select_related.return_value = [path]
+            self.assertIs(
+                self.module.copy_corpus(5, "2026-tnc-docling", self.user), existing
+            )
