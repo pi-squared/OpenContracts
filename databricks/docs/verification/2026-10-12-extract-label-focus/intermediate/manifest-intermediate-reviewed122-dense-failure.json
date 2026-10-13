@@ -1,0 +1,487 @@
+{
+  "phase": "intermediate",
+  "artifacts": [
+    {
+      "image": "after-reviewed122-dense-chromium-public-sme-manual-display-127-default-unhovered.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. default-unhovered at measured 127%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:07.590420+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "664a22a6b2277c7cb53807aaeb03b5fe9c98d2d1beed6c11be2aed063359ade7",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-chromium-public-sme-manual-display-127-default-hovered.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. default-hovered at measured 127%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:08.503183+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "6a0851f1df41da5e87f27b144b48f0ae829c3732682ab2427337ab3b0edc6140",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-chromium-public-sme-manual-display-127-always-pointer-away.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. always-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:21.627074+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "97fcea9e0314d1198259f82623a0de0128a81b8c23a25dcb6ffe1af2bb149adb",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-chromium-public-sme-manual-display-127-hide-pointer-away.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. hide-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:33.585613+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "f45fef8cf9355b7f250a86583530b78399f83304b53c53463dc846a757375dcf",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-chromium-public-sme-manual-display-167-default-unhovered.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. default-unhovered at measured 167%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:44.583226+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "sha256": "db68c08e445ca1683521be9878ab054cadbc5c8c11d44277c8406163ecddd986",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-chromium-public-sme-manual-display-167-default-hovered.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. default-hovered at measured 167%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:45.430308+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "sha256": "6372c62be34a50a8a881ac4c586d73095103b8abacbe3ca13ef5e720c12df212",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-chromium-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. always-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:57.534504+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "sha256": "8b5623a710a264c962cca95266a448c2b53fcbd69ed6bf9d04019e3c169b985c",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-chromium-public-sme-manual-display-167-hide-pointer-away.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. hide-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:16:08.696831+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "sha256": "6e1a01b0131de8639619b28cdc348d7b4d0a537002ea0c04c30b9529d97bec92",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-firefox-public-sme-manual-display-127-default-unhovered.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. default-unhovered at measured 127%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:12.959239+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "346f0681dabe3b08b6e6c8f36c0ea1df572107329f8ea72e214eaea2cc6b2c53",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-firefox-public-sme-manual-display-127-default-hovered.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. default-hovered at measured 127%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:13.863438+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "6183c261dffe086e59e36398ab6654e58e8be77619909f92ec6a3618380d1ed1",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-firefox-public-sme-manual-display-127-always-pointer-away.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. always-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:28.154979+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "277dcdb1e73a138f2541c083955843a015fd3026ab52c8c33d601606f7383c9d",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-firefox-public-sme-manual-display-127-hide-pointer-away.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. hide-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:42.383304+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "346f0681dabe3b08b6e6c8f36c0ea1df572107329f8ea72e214eaea2cc6b2c53",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-firefox-public-sme-manual-display-167-default-unhovered.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. default-unhovered at measured 167%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:53.852552+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "sha256": "a7b71a85ebcc4a2ebb38a0ceba025691e645e79bb3eb9976dade8bebf1d31d83",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-firefox-public-sme-manual-display-167-default-hovered.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. default-hovered at measured 167%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:15:54.783506+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "sha256": "4b2fdc57b5b1006f0888d057a462ec4a91799381a849df060ddf69f26d149d4b",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-firefox-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. always-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:16:07.738298+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "sha256": "3f4ca83f67cc6af66f0a8af443fffee81d9dbca96baca255796b6e3114e765ea",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-firefox-public-sme-manual-display-167-hide-pointer-away.png",
+      "caption": "INTERMEDIATE #122: Original public #116 page-1 generic manual display fixture; labels are not extract-evidence quotes. hide-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:16:18.950899+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "sha256": "a7b71a85ebcc4a2ebb38a0ceba025691e645e79bb3eb9976dade8bebf1d31d83",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "Generic manual labels do not prove the extract-evidence quote contract."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-chromium-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "INTERMEDIATE #122: Owned native extract-evidence fixture on the public SME PDF; synthetic geometry tests interaction, not domain attribution. default-unhovered at measured 127%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:17:03.632936+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "84f876bf4f8dee25819789d358e022b78bf9cf57b2cda92b453870d95033626d",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "The owned matrix stopped at the first shared-hover assertion; later owned states and 167% were not executed."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-chromium-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "INTERMEDIATE #122 FAILED: Owned native extract-evidence fixture on the public SME PDF; synthetic geometry tests interaction, not domain attribution. default-hovered at measured 127%. Actual native point candidates: 3; visible labels: 1.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:17:04.546953+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "6f5e2ea2906a387cf7138789abb44c6164108f5cecde9fbbd5afb7fa27214432",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "The owned matrix stopped at the first shared-hover assertion; later owned states and 167% were not executed."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-firefox-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "INTERMEDIATE #122: Owned native extract-evidence fixture on the public SME PDF; synthetic geometry tests interaction, not domain attribution. default-unhovered at measured 127%.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:17:09.031871+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "5b72c51ef067ef0b8c09b998fe2bf98e5a780f52573e45ea35cebbb559edef48",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "The owned matrix stopped at the first shared-hover assertion; later owned states and 167% were not executed."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-dense-firefox-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "INTERMEDIATE #122 FAILED: Owned native extract-evidence fixture on the public SME PDF; synthetic geometry tests interaction, not domain attribution. default-hovered at measured 127%. Actual native point candidates: 3; visible labels: 1.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:17:09.819151+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "sha256": "edd4cfdd00a7ddaf20f42a9382e575db9c5fbf5077be4af25c8f7b9c58853327",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "#122 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "The owned matrix stopped at the first shared-hover assertion; later owned states and 167% were not executed."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    }
+  ],
+  "acceptance": "Partial dense replay: manual16 PASS; owned shared-hover FAIL in both browsers, later owned checks uncompleted.",
+  "hosted_acceptance": false
+}

@@ -29,3 +29,11 @@ quotations.
 **Grounded quotation**:
 An evidence quotation associated with a passage in its source document. The
 association establishes location, not substantive correctness or approval.
+
+**Viewer selection**:
+The set of annotations chosen in the document viewer for source inspection.
+Selection does not change a finding's evidence quotations or domain labels.
+
+**Focused evidence**:
+The single evidence annotation singled out for current source inspection within
+its source version, distinct from viewer selection and recorded review outcomes.

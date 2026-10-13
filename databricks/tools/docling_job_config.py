@@ -1,9 +1,59 @@
 """Pinned, isolated serverless Docling job and Databricks App resource contract."""
 
+import json
+
 DEPENDENCIES = [
     "docling-slim[standard,feat-ocr-rapidocr-onnx]==2.132.0",
     "opencv-python-headless==4.12.0.88",
 ]
+
+TASK_READBACK_DEFAULTS = {
+    "disabled": False,
+    "email_notifications": {},
+    "min_retry_interval_millis": 0,
+    "retry_on_timeout": False,
+    "run_if": "ALL_SUCCESS",
+    "timeout_seconds": 0,
+}
+JOB_READBACK_DEFAULTS = {
+    "email_notifications": {},
+    "webhook_notifications": {},
+    "format": "MULTI_TASK",
+}
+
+
+def _without_omitted_defaults(requested, actual, defaults):
+    normalized = dict(actual)
+    for name, default in defaults.items():
+        if (
+            name not in requested
+            and type(normalized.get(name)) is type(default)
+            and normalized.get(name) == default
+        ):
+            del normalized[name]
+    return normalized
+
+
+def job_settings_match(expected, observed):
+    """Compare complete settings, admitting only exact omitted server defaults."""
+    requested_tasks = expected.get("tasks")
+    observed_tasks = observed.get("tasks")
+    if not isinstance(requested_tasks, list) or not isinstance(observed_tasks, list):
+        return False
+    if len(requested_tasks) != len(observed_tasks):
+        return False
+    tasks = []
+    for requested, actual in zip(requested_tasks, observed_tasks):
+        if not isinstance(requested, dict) or not isinstance(actual, dict):
+            return False
+        tasks.append(
+            _without_omitted_defaults(requested, actual, TASK_READBACK_DEFAULTS)
+        )
+    selected = _without_omitted_defaults(expected, observed, JOB_READBACK_DEFAULTS)
+    selected["tasks"] = tasks
+    return json.dumps(selected, sort_keys=True, allow_nan=False) == json.dumps(
+        expected, sort_keys=True, allow_nan=False
+    )
 
 
 def job_settings(app_name, workspace_directory, principal, rapidocr_wheel):

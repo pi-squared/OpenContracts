@@ -1,0 +1,98 @@
+--- a/config/graphql/corpus_mutations.py
++++ b/config/graphql/corpus_mutations.py
+@@ -845,19 +845,44 @@
+                 if embedder_error:
+                     return payload_cls(ok=False, message=embedder_error)
+ 
+-    # ``super().mutate()`` in the graphene original (see
+-    # _mutate_CreateCorpusMutation).
+-    return drf_mutation(
+-        payload_cls=payload_cls,
+-        model=Corpus,
+-        serializer=CorpusSerializer,
+-        type_name="CorpusType",
+-        pk_fields=("label_set", "categories"),
+-        lookup_field="id",
+-        root=root,
+-        info=info,
+-        kwargs=kwargs,
+-    )
++    # Description is a cache of the versioned Readme.CAML article. Summary
++    # edits must use the canonical writer, with its existing creator-only rule.
++    description_supplied = "description" in kwargs
++    new_content = kwargs.pop("description", None)
++    corpus = None
++    if description_supplied:
++        not_found = "Corpus not found or you do not have permission to update it."
++        try:
++            corpus_pk = from_global_id(kwargs.get("id"))[1]
++            corpus = get_for_user_or_none(Corpus, corpus_pk, info.context.user)
++        except (TypeError, ValueError):
++            return payload_cls(ok=False, message=not_found)
++        if corpus is None or corpus.creator_id != getattr(
++            info.context.user, "id", None
++        ):
++            return payload_cls(ok=False, message=not_found)
++
++    with transaction.atomic():
++        result = drf_mutation(
++            payload_cls=payload_cls,
++            model=Corpus,
++            serializer=CorpusSerializer,
++            type_name="CorpusType",
++            pk_fields=("label_set", "categories"),
++            lookup_field="id",
++            root=root,
++            info=info,
++            kwargs=kwargs,
++        )
++        if result.ok and description_supplied:
++            corpus.refresh_from_db()
++            article = CorpusService.update_description(
++                info.context.user, corpus, new_content
++            )
++            if not article.ok:
++                transaction.set_rollback(True)
++                return payload_cls(ok=False, message=article.error)
++        return result
+ 
+ 
+ def m_update_corpus(
+--- a/frontend/src/components/corpuses/CorpusModal.tsx
++++ b/frontend/src/components/corpuses/CorpusModal.tsx
+@@ -1,5 +1,6 @@
+ import React, { useState, useEffect, useCallback, useRef } from "react";
+-import { useApolloClient, useMutation } from "@apollo/client";
++import { useApolloClient, useMutation, useReactiveVar } from "@apollo/client";
++import { backendUserObj } from "../../graphql/cache";
+ import styled, { createGlobalStyle } from "styled-components";
+ import {
+   Modal,
+@@ -407,6 +408,10 @@
+ }) => {
+   const isReadOnly = mode === "VIEW";
+   const isCreate = mode === "CREATE";
++  const currentUser = useReactiveVar(backendUserObj);
++  const canEditSummary =
++    isCreate ||
++    Boolean(currentUser?.id && corpus?.creator?.id === currentUser.id);
+ 
+   // Form state
+   const [title, setTitle] = useState("");
+@@ -847,14 +852,14 @@
+                 aria-describedby="corpus-summary-help"
+                 value={description}
+                 onChange={handleDescriptionChange}
+-                disabled={loading || isReadOnly}
++                disabled={loading || isReadOnly || !canEditSummary}
+                 fullWidth
+                 autoResize
+                 maxRows={6}
+               />
+               <p id="corpus-summary-help">
+                 Summary shown above the collection page. Generated layout is
+-                preserved. Use Edit Article on the corpus page to deliberately
++                preserved. Use Manage → Edit on the corpus page to deliberately
+                 change the article and its components.
+               </p>
+             </CorpusFormField>

@@ -1,0 +1,679 @@
+{
+  "phase": "intermediate",
+  "artifacts": [
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-public-sme-manual-display-127-default-unhovered.png",
+      "sha256": "e94517583ff1945a09d9076b4e438f5db32860447fa2f88ad943ae57caafec65",
+      "captured_at": "2026-10-12T19:12:41.703423+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "127%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. default-unhovered at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-public-sme-manual-display-127-default-hovered.png",
+      "sha256": "e1356d6d0a5c9e5680f55b67531a80570c03bd66907015e68efd2814684ab36a",
+      "captured_at": "2026-10-12T19:12:42.855982+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "127%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. default-hovered at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-public-sme-manual-display-127-always-pointer-away.png",
+      "sha256": "e912f4494d173c4e042b6fe0918da029132e97a18069fdaadf52dea86e849446",
+      "captured_at": "2026-10-12T19:12:58.079512+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "127%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. always-pointer-away at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-public-sme-manual-display-127-hide-pointer-away.png",
+      "sha256": "8590314894be269c8f23a11db0a3de3525dafdabf616b36f242727a0b1d624d6",
+      "captured_at": "2026-10-12T19:13:11.143101+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "127%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. hide-pointer-away at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-public-sme-manual-display-167-default-unhovered.png",
+      "sha256": "753bdabba76c16129156d9247fcce8cd9f8e91ac3ebf0bafa70d6d54e8a97743",
+      "captured_at": "2026-10-12T19:13:21.461367+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "167%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. default-unhovered at measured 167%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-public-sme-manual-display-167-default-hovered.png",
+      "sha256": "d6f409899e71380d2fc667886940f6b51da1dd1c5ad1d896538ffa97b878ab9c",
+      "captured_at": "2026-10-12T19:13:22.303960+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "167%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. default-hovered at measured 167%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-public-sme-manual-display-167-always-pointer-away.png",
+      "sha256": "e13e93df22f165e81dbf3e640d91e4a244746941985c2ce5f3763d068b2ee64d",
+      "captured_at": "2026-10-12T19:13:34.068301+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "167%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. always-pointer-away at measured 167%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-public-sme-manual-display-167-hide-pointer-away.png",
+      "sha256": "fb575cf0bba2269a7a96971e51f2cd715d7f9614bbfb2dc47a5f11a3ecb082b7",
+      "captured_at": "2026-10-12T19:13:45.090865+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "167%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. hide-pointer-away at measured 167%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-owned-failed-attempt.png",
+      "sha256": "a54a913be4293378aa820c96c047639b0155c48280e2c3ffd9e6bfa2ff52bd39",
+      "captured_at": "2026-10-12T19:13:07.590259+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native quote fixture, Always127%: five readable separate label bars, but the Section Header edit target is covered by another native highlight. Actual failed assertion retained.",
+      "limitations": [
+        "Owned Hide127% and all167% states were not run after this blocking assertion."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-owned-sme-extract-evidence-127-default-unhovered.png",
+      "sha256": "6918d40b40dea0a35ccfd921dd0b4bee34026e8a37839d5fd1c5de074be3f30c",
+      "captured_at": "2026-10-12T19:12:37.900810+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native extract-evidence quote fixture with intentionally synthetic interaction geometry. default-unhovered at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-owned-sme-extract-evidence-127-default-hovered.png",
+      "sha256": "bc61adf87519c999c08d3f450a2cd257da5eb5631b3d84f8a854dcd1384425c3",
+      "captured_at": "2026-10-12T19:12:38.944268+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native extract-evidence quote fixture with intentionally synthetic interaction geometry. default-hovered at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "sha256": "0dc54ea68dc724eab00fc4581f1f232f83a3d63866b70a01dcf7ef3db0c67a03",
+      "captured_at": "2026-10-12T19:12:53.240603+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native extract-evidence quote fixture with intentionally synthetic interaction geometry. focused-pointer-away at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-owned-always127-target-after-trusted-hover.png",
+      "sha256": "31c6bacbd06929e6ae74340ec95a76952a1bc898c3ae51f6f24bd6d7cc8e0fbd",
+      "captured_at": "2026-10-12T19:22:04.904155+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native quote fixture, Always127%: after-trusted-hover at the occluded Section Header edit center. Edit Label did not open; no save occurred.",
+      "limitations": [
+        "Read-only native counterexample; not a completed owned matrix."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-chromium-owned-always127-target-after-trusted-click.png",
+      "sha256": "55f3b650f57c9a3db69cb89f3290f1b9bf9d6f2e312af97f13837d099893a441",
+      "captured_at": "2026-10-12T19:22:06.141322+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native quote fixture, Always127%: after-trusted-click at the occluded Section Header edit center. Edit Label did not open; no save occurred.",
+      "limitations": [
+        "Read-only native counterexample; not a completed owned matrix."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-public-sme-manual-display-127-default-unhovered.png",
+      "sha256": "6536936b403f1de65c82768078679ddbf9a28d5cbf982758f8109c33a3b5ba7c",
+      "captured_at": "2026-10-12T19:17:50.589014+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "127%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. default-unhovered at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-public-sme-manual-display-127-default-hovered.png",
+      "sha256": "6633e0f77b3e8eaa42befccdd118d6c3d52e89e2b14ba3f7f667522d7fe76fcd",
+      "captured_at": "2026-10-12T19:17:51.634740+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "127%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. default-hovered at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-public-sme-manual-display-127-always-pointer-away.png",
+      "sha256": "1f09d2305530d5fbd7074bd3be75361069ee1df36e7ed88201278662deb6867a",
+      "captured_at": "2026-10-12T19:18:06.607800+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "127%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. always-pointer-away at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-public-sme-manual-display-127-hide-pointer-away.png",
+      "sha256": "ffdd06fe1099ce59da2b7d2e3a45beb6b2b77e8d7c52aba3fb5ef3143f22c720",
+      "captured_at": "2026-10-12T19:18:20.454928+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "127%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. hide-pointer-away at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-public-sme-manual-display-167-default-unhovered.png",
+      "sha256": "a7b71a85ebcc4a2ebb38a0ceba025691e645e79bb3eb9976dade8bebf1d31d83",
+      "captured_at": "2026-10-12T19:18:32.177375+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "167%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. default-unhovered at measured 167%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-public-sme-manual-display-167-default-hovered.png",
+      "sha256": "6ee30498196d7db89413f3b85a0d43786b2abc3da1255f9bbcfa3a4aa66455aa",
+      "captured_at": "2026-10-12T19:18:33.029569+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "167%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. default-hovered at measured 167%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-public-sme-manual-display-167-always-pointer-away.png",
+      "sha256": "b519854b2b6062bd762b45957990702ec4a31bde198a75a8a2081e5195ea639b",
+      "captured_at": "2026-10-12T19:18:44.891644+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "167%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. always-pointer-away at measured 167%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-public-sme-manual-display-167-hide-pointer-away.png",
+      "sha256": "978a4def8ce181e0d54cf80ea61c4f936eb003e44f6a3ee006498942b5a082d9",
+      "captured_at": "2026-10-12T19:18:56.809528+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "public-sme-manual-display",
+      "pdf_zoom": "167%",
+      "caption": "Original public #116 generic manual display fixture; these labels are not extract evidence quotes. hide-pointer-away at measured 167%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-owned-failed-attempt.png",
+      "sha256": "fc497160c0b0135198b0421102f0dd21e60fee7c6b98e2beafd6e1217bec8eee",
+      "captured_at": "2026-10-12T19:18:27.694966+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native quote fixture, Always127%: five readable separate label bars, but the Section Header edit target is covered by another native highlight. Actual failed assertion retained.",
+      "limitations": [
+        "Owned Hide127% and all167% states were not run after this blocking assertion."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-owned-sme-extract-evidence-127-default-unhovered.png",
+      "sha256": "1913bc2313b22da0d9e077f7b3c159e3170703025c2d541bc42a20f6f16c4438",
+      "captured_at": "2026-10-12T19:17:54.011829+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native extract-evidence quote fixture with intentionally synthetic interaction geometry. default-unhovered at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-owned-sme-extract-evidence-127-default-hovered.png",
+      "sha256": "5632c189edd2adab47aaf528b27273470eabcda12803a9e62d0af7d17fc19c4c",
+      "captured_at": "2026-10-12T19:17:54.921838+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native extract-evidence quote fixture with intentionally synthetic interaction geometry. default-hovered at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "sha256": "eaa6c944c5433eeb00930aae8bd642efb58c7276b9b961f9d9be1834f23c0c64",
+      "captured_at": "2026-10-12T19:18:11.823926+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native extract-evidence quote fixture with intentionally synthetic interaction geometry. focused-pointer-away at measured 127%.",
+      "limitations": [
+        "Corrected #122 retained #121 dense acceptance; not final #120/#124 acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-owned-always127-target-after-trusted-hover.png",
+      "sha256": "cc8fab084478f55664a2d93b14d407e0e9782916ea042d23959773f93ffcbd24",
+      "captured_at": "2026-10-12T19:22:09.990887+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native quote fixture, Always127%: after-trusted-hover at the occluded Section Header edit center. Edit Label did not open; no save occurred.",
+      "limitations": [
+        "Read-only native counterexample; not a completed owned matrix."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-corrected-dense-firefox-owned-always127-target-after-trusted-click.png",
+      "sha256": "1b88b92445900b004383b475a9f08300f8290091a9b6dd572f3c7f78ac941334",
+      "captured_at": "2026-10-12T19:22:11.279953+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "fixture": "owned-sme-extract-evidence",
+      "pdf_zoom": "127%",
+      "caption": "Owned native quote fixture, Always127%: after-trusted-click at the occluded Section Header edit center. Edit Label did not open; no save occurred.",
+      "limitations": [
+        "Read-only native counterexample; not a completed owned matrix."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    }
+  ],
+  "acceptance": "Partial FAIL on corrected122: native Always127 control covered in both browsers. Manual16 and owned127 first6 states pass; ownedHide127/all167 incomplete.",
+  "hosted_acceptance": false
+}

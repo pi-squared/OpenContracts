@@ -1,0 +1,195 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before-chromium-121-synthetic-clean-default-entry.png",
+      "caption": "BEFORE: synthetic UI fixture opens with all labels persistent without hover, 110%",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T14:28:59.635111+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "641f87bc501b7c68d80cd4772b0c364b79bb9bc37c59686138cbb6bef49ffcbc",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored UI geometry/projections; no model or domain-quality claim"
+    },
+    {
+      "image": "before-chromium-121-synthetic-clean-source-click.png",
+      "caption": "BEFORE: native A source click retains every visible label, pointer away, 110%",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T14:30:38.418619+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0530d531cbecdc2a86a6fb3e94428a972c07dd6520511b480d351c0b33b79303",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored UI geometry/projections; no model or domain-quality claim"
+    },
+    {
+      "image": "before-chromium-122-synthetic-clean-identical-four-clicks.png",
+      "caption": "BEFORE: four plain clicks at the full-identical A/B/D hit point keep the same source selection; no evidence cycle, 110%",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T14:30:41.056926+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "30c7b398863416113160d9f391f8105aa7a72d13e6ebf6d4d95208a2f12e020f",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored UI geometry/projections; no model or domain-quality claim"
+    },
+    {
+      "image": "before-chromium-122-synthetic-clean-partial-four-clicks.png",
+      "caption": "BEFORE: four plain clicks at the partial intersection also keep the same source selection, 110%",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T14:31:17.935350+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7d0f32933a758e9da15fa095c552c4b4e5788f2d8dbd507e33f38d63505afba9",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored UI geometry/projections; no model or domain-quality claim"
+    },
+    {
+      "image": "before-chromium-123-synthetic-clean-shared-page1.png",
+      "caption": "BEFORE: A reused by two finding source cards while unrelated B/C/D labels remain persistent, 110%",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T14:31:18.175441+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3dea12725dcdd73c8932d91d6ee7754a9a714e42dbb94296bad965536160c548",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored UI geometry/projections; no model or domain-quality claim"
+    },
+    {
+      "image": "before-chromium-123-synthetic-clean-multipage-page2.png",
+      "caption": "BEFORE: same A annotation rendered on another visible page after native scroll, 110%",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T14:31:19.151391+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "18248212169c3c2cbe103c3044161411da1cdd0a7404bb2e090239dcb8285143",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored UI geometry/projections; no model or domain-quality claim"
+    },
+    {
+      "image": "before-chromium-124-synthetic-clean-escape.png",
+      "caption": "BEFORE: Escape leaves existing viewer selection and persistent labels unchanged, 110%",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T14:31:19.814287+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d6d734a3ff0098289be0a8221c7a36da69beff5e87198fdaff65419cbbc87e2a",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored UI geometry/projections; no model or domain-quality claim"
+    },
+    {
+      "image": "before-firefox-122-synthetic-clean-identical-four-clicks.png",
+      "caption": "BEFORE: Firefox full-identical A/B/D native clicks retain one source selection and persistent labels, 110%",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T14:30:38.881668+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ecd872a2f1772e98dce26d95805149725f3ea631fa1aeca92b898960e085f65c",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored UI geometry/projections; no model or domain-quality claim"
+    },
+    {
+      "image": "before-firefox-123-synthetic-clean-multipage-page2.png",
+      "caption": "BEFORE: Firefox same-identity synthetic A annotation on the second visible page, 110%",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T14:31:19.668734+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a7ecee331b2bdf14a566a2fbac2b6496f81f11696aa1371590279291c0ccc94c",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored UI geometry/projections; no model or domain-quality claim"
+    },
+    {
+      "image": "before-chromium-124-fspo-touch-tap.png",
+      "caption": "BEFORE: trusted short touch taps on native FSPO evidence do not establish the new evidence focus/cycle behavior",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T14:06:58.461240+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0ce41205ccd244e4120bc3761e8a983424b3be331f9e436fe3f3fd130a84724d",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained native public FSPO PDF",
+      "limitations": "Short trusted tap only; held/moved touch deferred to actual browser protocol verification"
+    }
+  ]
+}

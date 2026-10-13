@@ -266,7 +266,7 @@ it("navigates to every located quote with labels enabled", async () => {
   );
   const params = new URLSearchParams(window.location.search);
   expect(params.get("ann")).toBe("source-A,source-B");
-  expect(params.get("labels")).toBe("ALWAYS");
+  expect(params.get("labels")).toBeNull();
   expect(document.body.querySelector('[role="dialog"]')).toBeNull();
 });
 

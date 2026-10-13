@@ -1,0 +1,478 @@
+diff --git a/frontend/src/components/annotator/display/components/Selection.tsx b/frontend/src/components/annotator/display/components/Selection.tsx
+--- a/frontend/src/components/annotator/display/components/Selection.tsx
++++ b/frontend/src/components/annotator/display/components/Selection.tsx
+@@ -1,4 +1,4 @@
+-import React, { useState, useEffect, useRef } from "react";
++import React, { useState, useEffect, useRef, useCallback } from "react";
+ import _ from "lodash";
+ import styled from "styled-components";
+ import { useNavigate } from "react-router-dom";
+@@ -28,6 +28,7 @@
+   isUrlAnnotation,
+   openAnnotationUrl,
+ } from "../../utils/urlAnnotation";
++import { useEvidenceFocus } from "../../../../hooks/useEvidenceFocus";
+ import { useUpdateAnnotation } from "../../hooks/AnnotationHooks";
+ import { LabelDisplayBehavior } from "../../../../types/graphql-api";
+ import { OC_URL_LABEL } from "../../../../assets/configurations/constants";
+@@ -129,7 +130,30 @@
+ }) => {
+   const auth_token = useReactiveVar(authToken);
+   const navigate = useNavigate();
++  const { focusedEvidenceId } = useEvidenceFocus();
++  const focused =
++    annotation.isEvidenceQuote && focusedEvidenceId === annotation.id;
+   const [hovered, setHovered] = useState(false);
++  const labelRef = useRef<HTMLDivElement>(null);
++  const hoverExitTimer = useRef<ReturnType<typeof setTimeout>>();
++  const handleHover = useCallback((active: boolean) => {
++    clearTimeout(hoverExitTimer.current);
++    if (active) setHovered(true);
++    else hoverExitTimer.current = setTimeout(() => setHovered(false), 160);
++  }, []);
++  useEffect(() => () => clearTimeout(hoverExitTimer.current), []);
++  useEffect(() => {
++    if (!hovered) return;
++    // Native dialogs can consume mouseleave; the next real pointer movement
++    // still ends temporary visibility when it leaves this highlight and label.
++    const leave = (event: PointerEvent) => {
++      const boundary = labelRef.current?.parentElement;
++      if (event.target instanceof Node && !boundary?.contains(event.target))
++        handleHover(false);
++    };
++    document.addEventListener("pointermove", leave);
++    return () => document.removeEventListener("pointermove", leave);
++  }, [hovered, annotation.id, handleHover]);
+   const [isEditLabelModalVisible, setIsEditLabelModalVisible] = useState(false);
+   const [isEditUrlModalVisible, setIsEditUrlModalVisible] = useState(false);
+   const [cloudVisible, setCloudVisible] = useState(false);
+@@ -140,6 +164,8 @@
+   const { showBoundingBoxes, showSelectedOnly, showLabels } =
+     useAnnotationDisplay();
+   const { hideLabels } = useAnnotationDisplay();
++  const labelHidden = showLabels === LabelDisplayBehavior.HIDE ||
++    (showLabels === LabelDisplayBehavior.ON_HOVER && !hovered && !focused);
+   const { pdfAnnotations } = usePdfAnnotations();
+   const { selectedAnnotations, setSelectedAnnotations, selectedRelations } =
+     useAnnotationSelection();
+@@ -289,11 +315,11 @@
+   }
+ 
+   const handleMouseEnter = () => {
+-    setHovered(true);
++    handleHover(true);
+   };
+ 
+   const handleMouseLeave = () => {
+-    setHovered(false);
++    handleHover(false);
+   };
+ 
+   return (
+@@ -304,7 +330,8 @@
+         showBoundingBox={showBoundingBoxes}
+         color={color}
+         bounds={bounds}
+-        onHover={setHovered}
++        onHover={handleHover}
++        foreground={hovered}
+         onClick={onShiftClick}
+         clickThroughOnPlainClick={isLinkAnnotation}
+         approved={approved}
+@@ -315,10 +342,13 @@
+         {(showInfo || annotation.isEvidenceQuote) &&
+           (!hideLabels || annotation.isEvidenceQuote) && (
+             <SelectionInfo
++              ref={labelRef}
+               id="SelectionInfo"
+               data-annotation-label={annotation.id}
+               role="group"
+               aria-label={`Annotation: ${annotationChipLabel(annotation)}`}
++              hidden={labelHidden}
++              style={{ display: labelHidden ? "none" : undefined }}
+               $bounds={bounds}
+               className={`selection_${annotation.id}`}
+               $color={color}
+@@ -338,13 +368,9 @@
+                 <VerticallyJustifiedEndDiv>
+                   <LabelTagContainer
+                     $hidden={hidden}
+-                    $hovered={hovered}
++                    $hovered={hovered || focused}
+                     $color={color}
+-                    $display_behavior={
+-                      annotation.isEvidenceQuote
+-                        ? LabelDisplayBehavior.ALWAYS
+-                        : showLabels
+-                    }
++                    $display_behavior={showLabels}
+                   >
+                     <div
+                       style={{
+diff --git a/frontend/src/components/annotator/display/components/SelectionBoundary.tsx b/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
+--- a/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
++++ b/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
+@@ -23,6 +23,7 @@
+   color: string;
+   bounds: BoundingBox;
+   selected: boolean;
++  foreground?: boolean;
+   children?: React.ReactNode;
+   annotationId?: string;
+   onHover?: (hovered: boolean) => void;
+@@ -49,6 +50,7 @@
+   $boxShadow: string;
+   $color: string;
+   $hidden: boolean;
++  $foreground: boolean;
+   $approved?: boolean;
+   $rejected?: boolean;
+ }>((props) => ({
+@@ -60,7 +62,7 @@
+     height: `${Math.abs(props.$height)}px`,
+     transform: `rotateY(${props.$rotateY}deg) rotateX(${props.$rotateX}deg)`,
+     backgroundColor: props.$backgroundColor,
+-    zIndex: 2,
++    zIndex: props.$foreground ? 3 : 2,
+     border: "none",
+     boxShadow: props.$boxShadow,
+     transformOrigin: "top left",
+@@ -103,6 +105,7 @@
+   onClick,
+   clickThroughOnPlainClick = false,
+   selected,
++  foreground = false,
+   approved,
+   rejected,
+ }) => {
+@@ -184,6 +187,7 @@
+       $rotateX={rotateX}
+       $rotateY={rotateY}
+       $hidden={hidden}
++      $foreground={foreground}
+       $boxShadow={boxShadow}
+       $color={color}
+       $backgroundColor={backgroundColor}
+diff --git a/frontend/src/components/annotator/renderers/pdf/PDF.tsx b/frontend/src/components/annotator/renderers/pdf/PDF.tsx
+--- a/frontend/src/components/annotator/renderers/pdf/PDF.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/PDF.tsx
+@@ -1,3 +1,7 @@
++import {
++  useEvidenceFocus,
++  useEvidenceFocusNavigation,
++} from "../../../../hooks/useEvidenceFocus";
+ import styled from "styled-components";
+ import { PDFPageProxy } from "pdfjs-dist/types/src/display/api";
+ import { useEffect, useMemo, useState, useCallback, useRef } from "react";
+@@ -137,6 +141,9 @@
+   const setViewStateError = useSetViewStateError();
+   const { zoomLevel } = useZoomLevel();
+   const { selectedAnnotations } = useAnnotationSelection();
++  useEvidenceFocusNavigation();
++  const { evidenceNavigation } = useEvidenceFocus();
++  const handledNavigation = useRef<typeof evidenceNavigation>(null);
+   const { pdfDoc } = usePdfDoc();
+   const { textSearchMatches, selectedTextSearchMatchIndex } =
+     useTextSearchState();
+@@ -186,6 +193,12 @@
+     const annot = allAnnotations.find((a) => a.id === selectedAnnotations[0]);
+     return annot?.page; // undefined if not found
+   }, [selectedAnnotations, allAnnotations]);
++
++  const requestedPageIdx = useMemo(() => {
++    return allAnnotations.find(
++      (annotation) => annotation.id === evidenceNavigation?.annotationId
++    )?.page;
++  }, [evidenceNavigation, allAnnotations]);
+ 
+   /**
+    * Returns ALL page indices that contain parts of the selected annotation(s).
+@@ -472,20 +485,28 @@
+    * - Set pendingScrollId so the PDFPage component can center the specific annotation
+    */
+   useEffect(() => {
+-    // No selection or no height data yet - can't scroll properly
+-    if (selectedAnnotations.length === 0) {
++    const explicitNavigation =
++      evidenceNavigation && handledNavigation.current !== evidenceNavigation;
++    const targetId = explicitNavigation
++      ? evidenceNavigation.annotationId
++      : selectedAnnotations[0];
++    const targetPageIdx = explicitNavigation
++      ? requestedPageIdx
++      : selectedPageIdx;
++    // Only explicit source navigation or native selection drives scrolling; focus never does.
++    if (!targetId) {
+       setPendingScrollId(null);
+       return;
+     }
+-    if (pageHeights.length === 0 || selectedPageIdx === undefined) {
++    if (pageHeights.length === 0 || targetPageIdx === undefined) {
+       setPendingScrollId(null);
+       return;
+     }
+ 
+-    const targetId = selectedAnnotations[0];
++    handledNavigation.current = evidenceNavigation;
+ 
+     // 1. Scroll the container/window so the target page is visible
+-    const topOffset = Math.max(0, cumulative[selectedPageIdx] - 32);
++    const topOffset = Math.max(0, cumulative[targetPageIdx] - 32);
+     getScrollElement().scrollTo({ top: topOffset, behavior: "smooth" });
+ 
+     // 2. Tell the PDFPage components to look for and center this annotation
+@@ -493,6 +514,8 @@
+   }, [
+     selectedAnnotations,
+     selectedPageIdx,
++    evidenceNavigation,
++    requestedPageIdx,
+     pageHeights,
+     cumulative,
+     zoomLevel,
+diff --git a/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx b/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
+--- a/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
+@@ -40,6 +40,7 @@
+   PdfTokenBlock,
+   textBlockToBounds,
+ } from "../../../../utils/textBlockEncoding";
++import { useEvidenceFocus } from "../../../../hooks/useEvidenceFocus";
+ import { computeFitToWidthZoom } from "../../../../utils/pdfZoom";
+ 
+ /**
+@@ -100,6 +101,7 @@
+ 
+   const { showSelectedOnly, showBoundingBoxes } = useAnnotationDisplay();
+   const { zoomLevel, setZoomLevel } = useZoomLevel();
++  const { evidenceNavigation } = useEvidenceFocus();
+   const { selectedAnnotations, selectedRelations } = useAnnotationSelection();
+ 
+   const { annotationElementRefs, registerRef, unregisterRef } =
+@@ -496,11 +498,16 @@
+     }
+ 
+     /* 3️⃣  NORMAL ANNOTATION */
+-    if (pendingScrollId && selectedAnnotations[0] === pendingScrollId) {
++    if (
++      pendingScrollId &&
++      (selectedAnnotations[0] === pendingScrollId ||
++        evidenceNavigation?.annotationId === pendingScrollId)
++    ) {
+       const pageOwnsAnnotation = visibleAnnotations.some(
+         (a) =>
+           a instanceof ServerTokenAnnotation &&
+           a.id === pendingScrollId &&
++          a.page === pageIndex &&
+           a.json[pageIndex] !== undefined
+       );
+       if (!pageOwnsAnnotation) return;
+@@ -512,9 +519,9 @@
+         try {
+           // Escape special characters in ID (e.g., '=' from base64 encoding)
+           // CSS.escape() handles all special CSS selector characters
+-          const el = document.querySelector(
+-            `.selection_${CSS.escape(pendingScrollId)}`
+-          ) as HTMLElement | null;
++          const el = pageContainerRef.current?.querySelector<HTMLElement>(
++            `#${CSS.escape(`SELECTION_${pendingScrollId}`)}`
++          );
+           if (el) {
+             el.scrollIntoView({ behavior: "smooth", block: "center" });
+             setPendingScrollId(null); // done
+@@ -536,6 +543,7 @@
+     pendingScrollSearchId,
+     pendingScrollChatSourceKey,
+     pendingScrollId,
++    evidenceNavigation,
+     selectedAnnotations,
+     searchResults,
+     visibleAnnotations,
+diff --git a/frontend/src/components/annotator/sidebar/HighlightItem.tsx b/frontend/src/components/annotator/sidebar/HighlightItem.tsx
+--- a/frontend/src/components/annotator/sidebar/HighlightItem.tsx
++++ b/frontend/src/components/annotator/sidebar/HighlightItem.tsx
+@@ -153,6 +153,8 @@
+   relations: Array<{ sourceIds: string[]; targetIds: string[] }>;
+   onDelete?: (annotationId: string) => void;
+   onSelect: (annotationId: string) => void;
++  focused?: boolean;
++  onInspect?: () => void;
+   selectionDisplay?: Parameters<
+     typeof updateAnnotationSelectionParams
+   >[2]["display"];
+@@ -176,6 +178,8 @@
+   onDelete,
+   onSelect,
+   selectionDisplay,
++  focused,
++  onInspect,
+   onToggleMultiSelect,
+   isMultiSelected = false,
+   contentModalities,
+@@ -203,12 +207,22 @@
+     // annotation load. Scrolling an old ref here races that canonical owner.
+     // Update selection via URL - CentralRouteManager Phase 2 will set reactive var
+     // Toggle behavior: if already selected, deselect; otherwise select
+-    const newSelection = selected ? [] : [annotation.id];
++    // A focused source toggles inspection focus without removing native selection.
++    if (onInspect && focused) {
++      onInspect();
++      return;
++    }
++    const newSelection = onInspect
++      ? [annotation.id]
++      : selected
++      ? []
++      : [annotation.id];
+     updateAnnotationSelectionParams(location, navigate, {
+       annotationIds: newSelection,
+       display: selectionDisplay,
+     });
+ 
++    onInspect?.();
+     // Call optional onSelect callback
+     if (onSelect) {
+       onSelect(annotation.id);
+@@ -218,7 +232,8 @@
+   return (
+     <HighlightItemCard
+       color={annotation?.annotationLabel?.color}
+-      selected={selected}
++      selected={focused ?? selected}
++      aria-current={focused ? "true" : undefined}
+       className={`sidebar__annotation ${className || ""}`}
+       data-testid="highlight-item"
+       data-annotation-id={annotation.id}
+diff --git a/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx b/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx
+--- a/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx
++++ b/frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx
+@@ -1,3 +1,4 @@
++import { useEvidenceFocus } from "../../../hooks/useEvidenceFocus";
+ import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
+ import React, { useState, useRef } from "react";
+ import styled from "styled-components";
+@@ -5,11 +6,7 @@
+ import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
+ import { LoadingOverlay } from "../../common/LoadingOverlay";
+ import { CellEditor } from "./CellEditor";
+-import {
+-  ColumnType,
+-  DatacellType,
+-  LabelDisplayBehavior,
+-} from "../../../types/graphql-api";
++import { ColumnType, DatacellType } from "../../../types/graphql-api";
+ import { useMutation, gql } from "@apollo/client";
+ import {
+   REQUEST_APPROVE_DATACELL,
+@@ -45,6 +42,8 @@
+ export const SingleDocumentExtractResults: React.FC<
+   SingleDocumentExtractResultsProps
+ > = ({ datacells, columns }) => {
++  const { focusedEvidenceId, setFocusedEvidence, navigateToEvidence } =
++    useEvidenceFocus();
+   // State variables
+   const [hoveredRow, setHoveredRow] = useState<string | null>(null);
+   const [tryingApprove, setTryingApprove] = useState(false);
+@@ -387,11 +386,16 @@
+                                 )}
+                                 read_only={true}
+                                 relations={[]}
++                                focused={focusedEvidenceId === annotation.id}
++                                onInspect={() =>
++                                  focusedEvidenceId === annotation.id
++                                    ? setFocusedEvidence(null)
++                                    : navigateToEvidence(annotation.id)
++                                }
+                                 selectionDisplay={{
+                                   showSelectedOnly: false,
+                                   showBoundingBoxes: true,
+                                   showStructural: false,
+-                                  labelDisplay: LabelDisplayBehavior.ALWAYS,
+                                 }}
+                                 onSelect={() => {
+                                   onlyDisplayTheseAnnotations([annotation]);
+diff --git a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+--- a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
++++ b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+@@ -29,10 +29,9 @@
+   DatacellType,
+   ExtractType,
+   ServerAnnotationType,
+-  LabelDisplayBehavior,
+ } from "../../../types/graphql-api";
+ import { Z_INDEX } from "../../../assets/configurations/constants";
+-import { useNavigate } from "react-router-dom";
++import { useLocation, useNavigate } from "react-router-dom";
+ import {
+   getDocumentUrl,
+   buildQueryParams,
+@@ -187,6 +186,7 @@
+   const [cellWidth, setCellWidth] = useState<number>(0);
+ 
+   const navigate = useNavigate();
++  const location = useLocation();
+   const client = useApolloClient();
+   const user = useReactiveVar(userObj);
+   const [evidence, setEvidence] = useState<Pick<
+@@ -450,15 +450,17 @@
+     selectedExtract(extract);
+     onlyDisplayTheseAnnotations(annotations);
+     displayAnnotationOnAnnotatorLoad(first);
+-    navigate(
+-      `${url}${buildQueryParams({
++    const params = new URLSearchParams(
++      buildQueryParams({
+         annotationIds: annotations.map((annotation) => annotation.id),
+         showSelectedOnly: true,
+         showBoundingBoxes: true,
+         showStructural: false,
+-        labelDisplay: LabelDisplayBehavior.ALWAYS,
+-      })}`
++      })
+     );
++    const labelMode = new URLSearchParams(location.search).get("labels");
++    if (labelMode) params.set("labels", labelMode);
++    navigate(`${url}?${params.toString()}`);
+     return true;
+   };
+ 
+diff --git a/frontend/src/routing/CentralRouteManager.tsx b/frontend/src/routing/CentralRouteManager.tsx
+--- a/frontend/src/routing/CentralRouteManager.tsx
++++ b/frontend/src/routing/CentralRouteManager.tsx
+@@ -1,3 +1,4 @@
++import { useEvidenceFocus } from "../hooks/useEvidenceFocus";
+ /**
+  * CentralRouteManager - Single source of truth for routing state
+  *
+@@ -112,6 +113,8 @@
+  * Debug mode: Enable verbose logging with window.DEBUG_ROUTING = true
+  */
+ export function CentralRouteManager() {
++  // Observe focus scope while the viewer is unmounted on grid or library routes.
++  useEvidenceFocus();
+   const location = useLocation();
+   const baseNavigate = useNavigate();
+   const [searchParams] = useSearchParams();
+@@ -1475,7 +1478,7 @@
+       }
+     );
+ 
+-    const queryString = buildQueryParams({
++    let queryString = buildQueryParams({
+       annotationIds: annIds,
+       analysisIds,
+       extractIds,
+@@ -1495,6 +1498,13 @@
+       labelDisplay: labels,
+       textBlock,
+     });
++
++    // Retain an explicitly chosen default mode while source navigation updates the URL.
++    if (labels === "ON_HOVER" && currentUrlParams.get("labels") === "ON_HOVER") {
++      const explicitParams = new URLSearchParams(queryString);
++      explicitParams.set("labels", "ON_HOVER");
++      queryString = `?${explicitParams.toString()}`;
++    }
+ 
+     // Both should have consistent "?" prefix for comparison
+     const expectedSearch = queryString; // Already has "?" from buildQueryParams

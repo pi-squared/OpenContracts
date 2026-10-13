@@ -1,0 +1,57 @@
+--- a/frontend/src/components/corpuses/CorpusModal.tsx
++++ b/frontend/src/components/corpuses/CorpusModal.tsx
+@@ -415,6 +415,7 @@
+   const [setupIntelligence, setSetupIntelligence] = useState(true);
+   const [slug, setSlug] = useState("");
+   const [description, setDescription] = useState("");
++  const [articleLayout, setArticleLayout] = useState("");
+   const [icon, setIcon] = useState<string | null>(null);
+   const [labelSetId, setLabelSetId] = useState<string | null>(null);
+   const [labelSetObj, setLabelSetObj] = useState<LabelSetType | undefined>(
+@@ -496,7 +497,12 @@
+     if (corpus) {
+       const corpusTitle = corpus.title || "";
+       const corpusSlug = corpus.slug || "";
+-      const corpusDescription = corpus.description || "";
++      // Collection intelligence appends CAML to the canonical article. Basic
++      // editing changes only its leading summary; retain the layout verbatim.
++      const article = corpus.description || "";
++      const layoutStart = article.search(/^::: oc-component\b/m);
++      const corpusDescription = (layoutStart >= 0 ? article.slice(0, layoutStart) : article).trim();
++      setArticleLayout(layoutStart >= 0 ? article.slice(layoutStart) : "");
+       const corpusIcon = corpus.icon || null;
+       const corpusLabelSetId = corpus.labelSet?.id || null;
+       const corpusPreferredEmbedder = corpus.preferredEmbedder || null;
+@@ -535,6 +541,7 @@
+       setTitle("");
+       setSlug("");
+       setDescription("");
++      setArticleLayout("");
+       setIcon(null);
+       setLabelSetId(null);
+       setLabelSetObj(undefined);
+@@ -678,7 +685,7 @@
+         formData.slug = slug.trim();
+       }
+       if (description.trim() !== originalValues.description) {
+-        formData.description = description.trim();
++        formData.description = description.trim() + (articleLayout ? "\n\n" + articleLayout : "");
+       }
+       if (icon !== originalValues.icon) {
+         formData.icon = icon;
+@@ -833,6 +840,7 @@
+                 id="corpus-description"
+                 label="Description *"
+                 placeholder="Describe what this corpus is about..."
++                aria-describedby="corpus-summary-help"
+                 value={description}
+                 onChange={handleDescriptionChange}
+                 disabled={loading || isReadOnly}
+@@ -840,6 +848,7 @@
+                 autoResize
+                 maxRows={6}
+               />
++              <p id="corpus-summary-help">Summary shown above the collection page. Generated layout is preserved. Use Edit Article on the corpus page to deliberately change the article and its components.</p>
+             </CorpusFormField>
+           </FormSection>
+ 

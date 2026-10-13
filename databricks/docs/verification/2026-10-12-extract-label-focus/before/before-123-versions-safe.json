@@ -1,0 +1,37 @@
+{
+  "captured_at": "2026-10-12T16:49:29.787766+00:00",
+  "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+  "browsers": [
+    "Chromium151.0.7922.34",
+    "Firefox153.0"
+  ],
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "fixture": "Independent synthetic two-version source fixture, separate from overlap fixture",
+  "new_native_records": {
+    "documents": 2,
+    "paths": 2,
+    "fieldsets": 1,
+    "extracts": 1,
+    "columns": 2,
+    "cells": 2,
+    "annotations": 1
+  },
+  "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+  "v1_source_annotations": 1,
+  "v2_source_annotations": 0,
+  "versions_use_identical_public_pdf_bytes": true,
+  "native_picker_two_options": true,
+  "native_v1_v2_v1_ordinary_return_clears_focus": true,
+  "historical_v1_explicit_source_reload": true,
+  "v2_stale_v1_target_creates_no_highlight_or_visible_label": true,
+  "native_ambiguous_status_explicit_no_quotation_navigation": true,
+  "retained_research_and_existing_overlap_records_unchanged": true,
+  "model_invocations": 0,
+  "task_admissions": 0,
+  "browser_mutations": 0,
+  "synthetic_lineage_and_ambiguity_not_domain_model_acceptance": true,
+  "manifest": "manifest-before-123-versions.json"
+}

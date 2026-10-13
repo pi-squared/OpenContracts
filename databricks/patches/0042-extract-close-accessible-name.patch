@@ -1,0 +1,10 @@
+--- a/frontend/src/components/widgets/modals/CreateExtractModal.tsx
++++ b/frontend/src/components/widgets/modals/CreateExtractModal.tsx
+@@ -567,6 +567,7 @@
+             Set up a new data extraction workflow to analyze your documents
+           </ModalSubtitle>
+           <CloseButton
++            aria-label="Close"
+             onClick={handleClose}
+             whileHover={{ scale: 1.05 }}
+             whileTap={{ scale: 0.95 }}

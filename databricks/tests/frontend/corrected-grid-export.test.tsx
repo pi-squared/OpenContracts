@@ -8,6 +8,7 @@ import {
   InMemoryCache,
   Observable,
 } from "@apollo/client";
+import { unzipSync, strFromU8 } from "fflate";
 import { csvParse } from "d3-dsv";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import {
@@ -156,6 +157,7 @@ function render(cells = [savedCell]) {
           <button onClick={() => grid.current?.exportToCsv()}>
             Download CSV
           </button>
+          <button onClick={() => grid.current?.exportToExcel()}>Download Excel</button>
           <ExtractDataGrid
             ref={grid}
             extract={extract as any}
@@ -309,3 +311,32 @@ it.each([
     ).toBe(corrected != null);
   }
 );
+
+// A finished parent can contain a failed field; it must remain distinguishable.
+it("shows a failed field with context and keeps successful fields reviewable", () => {
+  render([{ ...cell(null), completed: null, failed: "2026-10-05T10:01:00Z" }]);
+  expect(host.textContent).toContain("Extraction failed");
+  click("View failure: Criterion");
+  expect(document.body.textContent).toContain("No finding was produced");
+  expect(document.body.textContent).toContain("Iterations");
+  expect(document.body.querySelector('[aria-label="Cell status actions"]')).toBeNull();
+});
+
+it("downloads an Excel workbook with the document title and current reviewer value", async () => {
+  render([cell({data: finding}, "Reviewer correction")]);
+  click("Download Excel");
+  const blob = downloads.at(-1)!;
+  expect(blob.type).toBe("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+  const bytes = await new Promise<ArrayBuffer>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as ArrayBuffer);
+    reader.onerror = reject;
+    reader.readAsArrayBuffer(blob);
+  });
+  const files = unzipSync(new Uint8Array(bytes));
+  const sheet = new DOMParser().parseFromString(strFromU8(files["xl/worksheets/sheet1.xml"]), "application/xml");
+  expect(sheet.documentElement.nodeName, sheet.documentElement.textContent || "").not.toBe("parsererror");
+  expect(Array.from(sheet.getElementsByTagName("t")).map((node) => node.textContent)).toEqual([
+    "Document", "Criterion", "Fixture agreement", "Reviewer correction"
+  ]);
+});

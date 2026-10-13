@@ -1,0 +1,423 @@
+{
+  "offline_only": false,
+  "hosted_acceptance": true,
+  "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+  "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+  "source_equivalence_root_accepted": true,
+  "read_only_campaign_root_go_sha256": "e7db3ba5b74c8afc6af9f6c05100fbb1ddff4c8e23fa1a7a96a039739f6a5718",
+  "new_source_native_saves": 0,
+  "retained_native_creation_source": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+  "retained_native_creation_effective_path_comparison_required": true,
+  "frozen_native_count": 9,
+  "provider_operations": 0,
+  "new_fixture_records": 0,
+  "criteria": [
+    {
+      "id": "120-H01",
+      "criterion": "Exact reviewed deployment, tested pinned assembly and before-state capture",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "dense-chromium",
+        "dense-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Reviewed correction source13fef8d8; original d9 before-state and root exact source/build/config equivalence retained. No new source saves."
+    },
+    {
+      "id": "120-H02",
+      "criterion": "Ordinary/source/grid/link entry, actual Terms/FSPO and original/corrected source navigation",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "actual_sources-chromium",
+        "actual_sources-firefox",
+        "lifecycle-chromium",
+        "lifecycle-firefox"
+      ],
+      "retained_d9_receipts": [
+        "accepted d9 original/corrected source navigation plus exact unchanged path/records"
+      ],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Actual Terms/FSPO grid, multi-quote and native source entry freshly replayed. Native original/corrected finding UI proof retained from d9 through exact unchanged loader/component/record equivalence; native historical version is synthetic."
+    },
+    {
+      "id": "120-H03",
+      "criterion": "#116 page1 at1440x1000,127/167, both browsers, all applicable states",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "dense-chromium",
+        "dense-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Original manual #116 display has4 applicable states perzoom; owned native extract-evidence projection of identical public PDF has5 including focused-pointer-away. 16manual+20owned original PNGs at127/167,1440\u00d71000."
+    },
+    {
+      "id": "120-H04",
+      "criterion": "Dense/full/partial overlaps, identity dedup, distinct labels, eligible-point cycles",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "mouse-chromium",
+        "mouse-firefox",
+        "keyboard-chromium",
+        "keyboard-firefox",
+        "desktop_touch-chromium",
+        "desktop_touch-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Mouse fullABD3/partialABCD4/strictCE2; keyboard actual target centersCsingleton/ABD3/selectedAB2; software touch full3/partial4. Shared annotation identities deduped; distinct labels retained. No four-way keyboard-center claim."
+    },
+    {
+      "id": "120-H05",
+      "criterion": "Pane/source clearing, document exit, filters, selected-only, mode navigation/reload",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "filters-chromium",
+        "filters-firefox",
+        "actual_sources-chromium",
+        "actual_sources-firefox",
+        "mouse-chromium",
+        "mouse-firefox",
+        "lifecycle-chromium",
+        "lifecycle-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": null
+    },
+    {
+      "id": "120-H06",
+      "criterion": "Multipage labels and repeated scroll/zoom, no accidental viewport navigation",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "mouse-chromium",
+        "mouse-firefox",
+        "lifecycle-chromium",
+        "lifecycle-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": null
+    },
+    {
+      "id": "120-H07",
+      "criterion": "Keyboard/touch, controls, copying, creation and PDF links",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "keyboard-chromium",
+        "keyboard-firefox",
+        "desktop_touch-chromium",
+        "desktop_touch-firefox",
+        "compatibility-chromium",
+        "compatibility-firefox",
+        "native157-native157"
+      ],
+      "retained_d9_receipts": [
+        "accepted d9 native creation plus exact unchanged source/effective values"
+      ],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Fresh read-only drag/menu/AddLinkCancel/copy/link/control usability; four genuine d9 ordinary/URL native creations retained through exact source/effective-value equivalence. New source saves0."
+    },
+    {
+      "id": "120-H08",
+      "criterion": "Original source/findings/quotes/geometry/labels/reviews preserved; owned editable copies",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "compatibility-chromium",
+        "compatibility-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Final after-last-context original49/protected58/assets7/exact9 rows+permissions unchanged; all owned technical fixtures remain separate, provider operations0."
+    },
+    {
+      "id": "120-H09",
+      "criterion": "Dated before/after evidence and identity, privacy and fixture distinctions",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "dense-chromium",
+        "dense-firefox",
+        "desktop_touch-chromium",
+        "desktop_touch-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": null
+    },
+    {
+      "id": "120-H10",
+      "criterion": "Verification receipt, scoped review, local green, fresh hosted completion",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "mouse-chromium",
+        "filters-chromium",
+        "actual_sources-chromium",
+        "desktop_touch-chromium",
+        "lifecycle-chromium",
+        "dense-chromium",
+        "keyboard-chromium",
+        "compatibility-chromium",
+        "mouse-firefox",
+        "filters-firefox",
+        "actual_sources-firefox",
+        "desktop_touch-firefox",
+        "lifecycle-firefox",
+        "dense-firefox",
+        "keyboard-firefox",
+        "compatibility-firefox",
+        "native157-native157"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": null
+    },
+    {
+      "id": "124-A01",
+      "criterion": "Reachable temporary keyboard labels obey modes/exclusions without singular selection",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "keyboard-chromium",
+        "keyboard-firefox",
+        "filters-chromium",
+        "filters-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Permission-dependent temporary edit/protected No controls are verified on ordinary owned document route, then public extract/source-card state. No permission mocking/private focus."
+    },
+    {
+      "id": "124-A02",
+      "criterion": "Enter/Space visible-set/dedup/order/no-empty cycle, full/partial/out-of-set",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "keyboard-chromium",
+        "keyboard-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Full and selected partial candidate sets derive from actual target centers. Ccenter singleton is not a four-way target. Actual sample singleton Enter/Space/repeat and source-card toggle semantics separately verified."
+    },
+    {
+      "id": "124-A03",
+      "criterion": "Stationary taps/cycles/closed blank; movement/longpress do not inspect",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "desktop_touch-chromium",
+        "desktop_touch-firefox",
+        "native157-native157"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Trusted software touch only, no physical hardware claim. Native157 has no actual touchcancel command and movementpanning0; Chromium separately proves trusted cancellation and actual scroll panning."
+    },
+    {
+      "id": "124-A04",
+      "criterion": "First topmost dialog/filter/text-selection Escape then eligible PDF clear",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "keyboard-chromium",
+        "keyboard-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Native Settings/filter/menu/version/dialog owner priority, actual topmost foreground controls, protected No via genuine Tab+Enter. Effective pane geometry\u2014not toolbar aria flag\u2014governs closed-pane claims."
+    },
+    {
+      "id": "124-A05",
+      "criterion": "Label/control pointer+keyboard transfer; native copy/create/link compatibility",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "dense-chromium",
+        "dense-firefox",
+        "keyboard-chromium",
+        "keyboard-firefox",
+        "compatibility-chromium",
+        "compatibility-firefox",
+        "native157-native157"
+      ],
+      "retained_d9_receipts": [
+        "accepted d9 native creation plus exact unchanged source/effective values"
+      ],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "All5 dense real editors\u00d72zooms\u00d72browsers foreground ancestors/hits/twoequal frames pass, thenCancel/focusretained. No new ordinary save or AddLinkCreate; d9 saved proof is explicitly retained."
+    },
+    {
+      "id": "124-A06",
+      "criterion": "Exclusion/selected/multipage/pane/source-version remembered focus and current finding",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "filters-chromium",
+        "filters-firefox",
+        "lifecycle-chromium",
+        "lifecycle-firefox",
+        "mouse-chromium",
+        "mouse-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Owned synthetic source/version and multipage geometry are identified technical UI verification. FSPO exposes one native raw-label option; its selected-only/Shift tests complement Terms distinctlabel and owned allowlists."
+    },
+    {
+      "id": "124-A07",
+      "criterion": "Composed/public screen/events/native evidence-quote fixtures and retained regressions",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "mouse-chromium",
+        "filters-chromium",
+        "actual_sources-chromium",
+        "desktop_touch-chromium",
+        "lifecycle-chromium",
+        "dense-chromium",
+        "keyboard-chromium",
+        "compatibility-chromium",
+        "mouse-firefox",
+        "filters-firefox",
+        "actual_sources-firefox",
+        "desktop_touch-firefox",
+        "lifecycle-firefox",
+        "dense-firefox",
+        "keyboard-firefox",
+        "compatibility-firefox",
+        "native157-native157"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": null
+    },
+    {
+      "id": "124-A08",
+      "criterion": "Maintained pinned delivery, isolated scoped review and required local checks",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "dense-chromium",
+        "dense-firefox"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Exact accepted constants/shared-selector-only correction, required merger, Standards/Spec delta reviews and 12 local gates passed. Tracker closure follows publication."
+    },
+    {
+      "id": "124-A09",
+      "criterion": "Before capture/deploy/source identity; real both-browser input actual samples and fixtures",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "keyboard-chromium",
+        "keyboard-firefox",
+        "desktop_touch-chromium",
+        "desktop_touch-firefox",
+        "native157-native157"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": null
+    },
+    {
+      "id": "124-A10",
+      "criterion": "Fresh every120 acceptance, dense127167, transitions/copy/create/links and gap reporting",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "mouse-chromium",
+        "filters-chromium",
+        "actual_sources-chromium",
+        "desktop_touch-chromium",
+        "lifecycle-chromium",
+        "dense-chromium",
+        "keyboard-chromium",
+        "compatibility-chromium",
+        "mouse-firefox",
+        "filters-firefox",
+        "actual_sources-firefox",
+        "desktop_touch-firefox",
+        "lifecycle-firefox",
+        "dense-firefox",
+        "keyboard-firefox",
+        "compatibility-firefox",
+        "native157-native157"
+      ],
+      "retained_d9_receipts": [
+        "accepted d9 native creation plus exact unchanged source/effective values"
+      ],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": "Old whole-command failures retain actual failed/UNKNOWN statuses; successful named supplemental steps complete criteria without relabeling prior attempts. No new model/provider/fixture operations."
+    },
+    {
+      "id": "124-A11",
+      "criterion": "Dated child receipt/source/fixtures/screenshots/data preservation and completion gates",
+      "new_source_status": "PASS for named fresh phases and explicitly retained unchanged paths",
+      "fresh_phase_receipts": [
+        "mouse-chromium",
+        "filters-chromium",
+        "actual_sources-chromium",
+        "desktop_touch-chromium",
+        "lifecycle-chromium",
+        "dense-chromium",
+        "keyboard-chromium",
+        "compatibility-chromium",
+        "mouse-firefox",
+        "filters-firefox",
+        "actual_sources-firefox",
+        "desktop_touch-firefox",
+        "lifecycle-firefox",
+        "dense-firefox",
+        "keyboard-firefox",
+        "compatibility-firefox",
+        "native157-native157"
+      ],
+      "retained_d9_receipts": [],
+      "source_equivalence_required_for_carried_proof": true,
+      "qualification": null
+    }
+  ],
+  "old_unknown_failures_preserved": true,
+  "limitations": {
+    "manual116_not_quote_focus_fixture": true,
+    "fspo_single_native_raw_label": true,
+    "native157_software_not_hardware": true,
+    "native157_actual_touchcancel_unavailable": true,
+    "native157_movement_observed_panning_was0": true
+  },
+  "all_owned_contexts_actual_closed": true,
+  "ending_original49_protected58_assets7_nine_exact": true,
+  "image_manifest": "manifest-after-finalreview-correction120-published.json",
+  "retained_d9_native_save_proof_does_not_claim_new_save": true,
+  "verified_at_utc": "2026-10-13T04:27:07.467512+00:00",
+  "root_publication_review_pending": false,
+  "final_source_config_identity_root_accepted": true,
+  "final_source_config_identity_receipt_sha256": "39f0ce4a17873b325bf4ea9b78c4585940683bad4a7ad80164a6532b4fbbc789",
+  "accepted_combinations": [
+    "mouse-chromium",
+    "filters-chromium",
+    "actual_sources-chromium",
+    "desktop_touch-chromium",
+    "lifecycle-chromium",
+    "dense-chromium",
+    "keyboard-chromium",
+    "compatibility-chromium",
+    "mouse-firefox",
+    "filters-firefox",
+    "actual_sources-firefox",
+    "desktop_touch-firefox",
+    "lifecycle-firefox",
+    "dense-firefox",
+    "keyboard-firefox",
+    "compatibility-firefox",
+    "native157-native157"
+  ],
+  "failure_qualifications": [
+    "Original two Firefox wrappers143 remain failed with cause/gracefulclosureUNKNOWN; root-reviewed host extinction and separate unchanged successful replays are explicit.",
+    "V2 integrity-start missing Path and two sandbox SDK setup failures were read-only/prebrowser; uniquely reviewed successful corrections preserve original errors.",
+    "Copied historical Firefox reverse traversal premise failed140Tabs; genuine accepted forward native traversal passes temporary keyboard controls, with no forced focus.",
+    "Settings pane reopen remounts native collapsed disclosures; positive source-card oracle uses genuine group disclosure without reseeding focus.",
+    "FSPO source cards may be mounted offscreen during keyboard activation; public eligible highlight/default target label and genuineTab departure form the positive clear oracle.",
+    "Compatibility Python tuple/JSON list representation mismatch was corrected without dropping strict native reading/scroll fields.",
+    "Cold extract projection does not render all saved URL annotations; separate ordinary native full-load proof uses frozen9plusseed.",
+    "The Firefox original custom URL point failed its strict ownership premise; diagnostic and later named proof are separately retained.",
+    "At107% the requested final Firefox saved URL label in nine coincident ordinary annotations/Always lies behind the fixed header. The generic native saved-link check uses a different frozen known OC_URL bar with actual positive paint/hit; the offscreen bar is not claimed accessible. This differs from the five owned evidence-quote labels in dense acceptance.",
+    "First native157 startup stopped before authentication/session because the idle local driver listener was absent; the same approved local listener was restored and a fresh scoped campaign retained independently.",
+    "A local validator mistakenly treated native allowed-request logs as desktop violation-only logs; corrected schema proves109allowed/0blocked/0transporterrors. Campaign/session/bridge remainedactual0."
+  ],
+  "native_creation_boundary": "Four genuine ordinary/OC_URL saves on d9 retained by exact source/effective-value equivalence; this reviewed correction source executed zero saves. Existing nine saved annotations remain identical.",
+  "frozen_annotation_projection_count_qualification": "Nine unchanged native-created rows plus one protected existing seed annotation; no new correction-source saves.",
+  "root_acceptance_receipt": "root-acceptance-after-finalreview-correction120.json"
+}

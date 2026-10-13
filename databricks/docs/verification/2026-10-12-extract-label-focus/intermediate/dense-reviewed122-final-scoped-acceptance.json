@@ -1,0 +1,330 @@
+{
+  "phase": "after-reviewed122-final-dense",
+  "evidence_phase": "Final #122 retained #121 dense acceptance",
+  "verified_at_utc": "2026-10-12T20:39:05.569918+00:00",
+  "acceptance": "PASS scoped dense desktop; full122 and120/124 pending",
+  "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+  "recipe_sha256": "a08536950d30a40ac26e48e5cfff3a5f3c97486030de85960175d252de779735",
+  "verification": {
+    "matrix_images": 36,
+    "actual_native_editor_open_images": 20,
+    "retained_focus_images": 4,
+    "browsers": [
+      "Chromium151.0.7922.34",
+      "Firefox153.0"
+    ],
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "measured_pdf_zoom_percent": [
+      127,
+      167
+    ],
+    "native_frontend_bytes_match_reviewed_stage": true,
+    "public_pdf_bytes_unchanged": true,
+    "query_only_guard_unchanged": true,
+    "guard_events": 0,
+    "save_actions": 0,
+    "model_invocations": 0,
+    "shared_hover_actual_point_candidates": 3,
+    "owned_page_1_eligible_identities": 5,
+    "native_editor_checks": [
+      {
+        "browser_engine": "chromium",
+        "pdf_zoom_percent": 127,
+        "actual_native_editors_opened": 5,
+        "trusted_cancel_without_save": 5,
+        "native_alias_order": [
+          "c",
+          "a",
+          "b",
+          "d",
+          "e"
+        ],
+        "neutral_transfer_and_settled_edit_centers_reachable": true,
+        "settled_actual_editor_header_and_cancel_centers_reachable": true,
+        "open_images_captured_before_cancel": true,
+        "external_native_On_Hover_focus_C_retained_after_every_cancel": true,
+        "non_label_route_targets_canvas_viewport_scroll_preserved": true,
+        "recenter_between_controls": false
+      },
+      {
+        "browser_engine": "chromium",
+        "pdf_zoom_percent": 167,
+        "actual_native_editors_opened": 5,
+        "trusted_cancel_without_save": 5,
+        "native_alias_order": [
+          "c",
+          "a",
+          "b",
+          "d",
+          "e"
+        ],
+        "neutral_transfer_and_settled_edit_centers_reachable": true,
+        "settled_actual_editor_header_and_cancel_centers_reachable": true,
+        "open_images_captured_before_cancel": true,
+        "external_native_On_Hover_focus_C_retained_after_every_cancel": true,
+        "non_label_route_targets_canvas_viewport_scroll_preserved": true,
+        "recenter_between_controls": false
+      },
+      {
+        "browser_engine": "firefox",
+        "pdf_zoom_percent": 127,
+        "actual_native_editors_opened": 5,
+        "trusted_cancel_without_save": 5,
+        "native_alias_order": [
+          "c",
+          "a",
+          "b",
+          "d",
+          "e"
+        ],
+        "neutral_transfer_and_settled_edit_centers_reachable": true,
+        "settled_actual_editor_header_and_cancel_centers_reachable": true,
+        "open_images_captured_before_cancel": true,
+        "external_native_On_Hover_focus_C_retained_after_every_cancel": true,
+        "non_label_route_targets_canvas_viewport_scroll_preserved": true,
+        "recenter_between_controls": false
+      },
+      {
+        "browser_engine": "firefox",
+        "pdf_zoom_percent": 167,
+        "actual_native_editors_opened": 5,
+        "trusted_cancel_without_save": 5,
+        "native_alias_order": [
+          "c",
+          "a",
+          "b",
+          "d",
+          "e"
+        ],
+        "neutral_transfer_and_settled_edit_centers_reachable": true,
+        "settled_actual_editor_header_and_cancel_centers_reachable": true,
+        "open_images_captured_before_cancel": true,
+        "external_native_On_Hover_focus_C_retained_after_every_cancel": true,
+        "non_label_route_targets_canvas_viewport_scroll_preserved": true,
+        "recenter_between_controls": false
+      }
+    ],
+    "protected_native_projection_fingerprints": [
+      {
+        "fixture": "manual",
+        "browser_engine": "chromium",
+        "original_prior123_query_projections_unchanged": 4,
+        "all_prior122_query_projections_unchanged": 4,
+        "changed_projection_count": 0,
+        "preexisting_E_full_projection_marker_geometry_match": false
+      },
+      {
+        "fixture": "owned",
+        "browser_engine": "chromium",
+        "original_prior123_query_projections_unchanged": 8,
+        "all_prior122_query_projections_unchanged": 10,
+        "changed_projection_count": 0,
+        "preexisting_E_full_projection_marker_geometry_match": true
+      },
+      {
+        "fixture": "manual",
+        "browser_engine": "firefox",
+        "original_prior123_query_projections_unchanged": 4,
+        "all_prior122_query_projections_unchanged": 4,
+        "changed_projection_count": 0,
+        "preexisting_E_full_projection_marker_geometry_match": false
+      },
+      {
+        "fixture": "owned",
+        "browser_engine": "firefox",
+        "original_prior123_query_projections_unchanged": 8,
+        "all_prior122_query_projections_unchanged": 10,
+        "changed_projection_count": 0,
+        "preexisting_E_full_projection_marker_geometry_match": true
+      }
+    ],
+    "native_region_precondition": "Bounded trusted wheel establishes page1 source region before interaction, independent of label success; no recentering between five controls.",
+    "route_normalization": "Only evidenced native selectedOnly=false omission normalizes to effective false; label mode alone excluded from route equality; every other route/target/filter/canvas/viewport/scroll value remains strict."
+  },
+  "successful_processes": [
+    {
+      "captured_at_utc": "2026-10-12T20:19:45.104069+00:00",
+      "evidence_phase": "final122 retained121 dense acceptance",
+      "engine": "chromium",
+      "fixture": "manual",
+      "driver_exit_code": 0,
+      "protocol_complete": true,
+      "passed": true,
+      "wrapper_exit_code": 0,
+      "segment_scope": "Complete fixture matrix and required controls"
+    },
+    {
+      "captured_at_utc": "2026-10-12T20:28:10.501399+00:00",
+      "evidence_phase": "final122 retained121 dense acceptance",
+      "engine": "chromium",
+      "fixture": "owned",
+      "driver_exit_code": 0,
+      "protocol_complete": true,
+      "passed": true,
+      "wrapper_exit_code": 0,
+      "segment_scope": "Complete fixture matrix and required controls"
+    },
+    {
+      "captured_at_utc": "2026-10-12T20:19:56.909018+00:00",
+      "evidence_phase": "final122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "manual",
+      "driver_exit_code": 0,
+      "protocol_complete": true,
+      "passed": true,
+      "wrapper_exit_code": 0,
+      "segment_scope": "Complete fixture matrix and required controls"
+    },
+    {
+      "captured_at_utc": "2026-10-12T20:38:56.842406+00:00",
+      "evidence_phase": "final122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "owned",
+      "driver_exit_code": 0,
+      "protocol_complete": true,
+      "passed": true,
+      "wrapper_exit_code": 0,
+      "segment_scope": "Fresh missing Firefox167 all5 editors/focus/Hide completion; prior accepted segments retained with original failed wrapper1"
+    }
+  ],
+  "closed_contexts": [
+    {
+      "fixture": "manual",
+      "browser_engine": "chromium",
+      "driver_process_exited": true,
+      "actual_driver_exit_code": 0,
+      "actual_wrapper_exit_code": 0,
+      "protocol_complete": true,
+      "segment_scope": "Complete fixture",
+      "approved_native_driver_cleanup_present": true,
+      "forced_kill_or_interrupt": false
+    },
+    {
+      "fixture": "owned",
+      "browser_engine": "chromium",
+      "driver_process_exited": true,
+      "actual_driver_exit_code": 0,
+      "actual_wrapper_exit_code": 0,
+      "protocol_complete": true,
+      "segment_scope": "Complete fixture",
+      "approved_native_driver_cleanup_present": true,
+      "forced_kill_or_interrupt": false
+    },
+    {
+      "fixture": "manual",
+      "browser_engine": "firefox",
+      "driver_process_exited": true,
+      "actual_driver_exit_code": 0,
+      "actual_wrapper_exit_code": 0,
+      "protocol_complete": true,
+      "segment_scope": "Complete fixture",
+      "approved_native_driver_cleanup_present": true,
+      "forced_kill_or_interrupt": false
+    },
+    {
+      "fixture": "owned",
+      "browser_engine": "firefox",
+      "driver_process_exited": true,
+      "actual_driver_exit_code": 0,
+      "actual_wrapper_exit_code": 0,
+      "protocol_complete": true,
+      "segment_scope": "Missing Firefox167 completion with separately retained failed original context",
+      "approved_native_driver_cleanup_present": true,
+      "forced_kill_or_interrupt": false
+    },
+    {
+      "fixture": "owned",
+      "browser_engine": "firefox",
+      "driver_process_exited": true,
+      "actual_driver_exit_code": 0,
+      "actual_wrapper_exit_code": 1,
+      "protocol_complete": false,
+      "accepted_completed_segments": "127 matrix+all5 editors;167 default/hover/focused/Always",
+      "failed_stop_retained": true,
+      "approved_native_driver_cleanup_present": true,
+      "forced_kill_or_interrupt": false
+    }
+  ],
+  "retained_attempts": [
+    {
+      "captured_at_utc": "2026-10-12T20:19:25.591488+00:00",
+      "evidence_phase": "final122 retained121 dense acceptance",
+      "engine": "chromium",
+      "fixture": "owned",
+      "driver_exit_code": 0,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1,
+      "classification": "Stopped pre-control comparison: selectedOnly false became omitted during native Settings query canonicalization; zero editors activated."
+    },
+    {
+      "captured_at_utc": "2026-10-12T20:19:44.394246+00:00",
+      "evidence_phase": "final122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "owned",
+      "driver_exit_code": 0,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1,
+      "classification": "Stopped pre-control comparison: selectedOnly false became omitted during native Settings query canonicalization; zero editors activated."
+    },
+    {
+      "captured_at_utc": "2026-10-12T20:21:38.377106+00:00",
+      "driver_exit_code": 0,
+      "wrapper_exit_code": 0,
+      "protocol_complete": true,
+      "diagnostic_only": true,
+      "engine": "chromium",
+      "classification": "Successful native before/after diagnostic establishes selectedOnly false/absent as the only difference."
+    },
+    {
+      "captured_at_utc": "2026-10-12T20:28:15.149267+00:00",
+      "evidence_phase": "final122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "owned",
+      "driver_exit_code": 0,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1,
+      "classification": "Accepted Firefox127 and167 initial matrix segments retained. Attempt stopped after genuine167 C editor opened on fixed two-sample modal equality; original first/second values were not saved, exact difference unrecoverable. No Cancel/saved edit at that stop. Fresh bounded same-hit/equality diagnostic and only missing167 segment completed on unchanged source."
+    },
+    {
+      "captured_at_utc": "2026-10-12T20:35:06.503061+00:00",
+      "wrapper_exit_code": 143,
+      "browser_ready": false,
+      "captures": 0,
+      "classification": "Owned diagnostic setup stopped after accidental restricted-network launch; no native acceptance assertions were reached."
+    },
+    {
+      "captured_at_utc": "2026-10-12T20:35:55.417074+00:00",
+      "evidence_phase": "final122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "owned",
+      "driver_exit_code": 0,
+      "protocol_complete": true,
+      "passed": true,
+      "wrapper_exit_code": 0,
+      "classification": "Successful narrow Firefox167 C real editor open/Cancel diagnosis, stable exact consecutive full geometry/hit observations. Native animations recorded; original unlogged difference is not attributed to a proven CSS cause."
+    }
+  ],
+  "limitations": [
+    "Original manual display labels are generic and cannot prove the evidence-quote contract.",
+    "This page1 desktop sample does not replace QA overlap/filter/version/actual Terms/FSPO/gesture/URI acceptance or upcoming keyboard/touch #124 checks.",
+    "Protected-data comparisons cover the retained queried annotation projections, including preexisting E; this helper performs no independent database export audit.",
+    "Two initial pre-control attempts stopped before any editor on an overly literal selectedOnly=false query comparison; their actual failed receipts remain private, and the root-approved semantic correction ran only in new owned contexts.",
+    "Firefox167 original two-sample modal equality stop is retained with actual wrapper1; exact original first/second difference was not logged. Narrow diagnostic and only the missing segment use bounded consecutive exact geometry/hit equality. One accidentally sandboxed pre-browser diagnostic was explicitly stopped with actual143 and zero assertions; new diagnostic/completion exited0.",
+    "This is final #122 retained #121 dense acceptance, not final #120/#124 integrated acceptance.",
+    "The two Firefox C-retained-focus PNGs show a faint closing Settings drawer at the far right. The native C singleton, strict reading-state equality and label control oracles passed; these screenshots are retained unchanged and are not described as a fully settled Settings drawer."
+  ],
+  "visual_review": {
+    "reviewed_at_utc": "2026-10-12T20:41:09.940234+00:00",
+    "original_pngs_reviewed": 60,
+    "native_editor_open_images_reviewed": 20,
+    "all_open_editor_images_show_foreground_Edit_Label_Cancel_Save_Change": true,
+    "artifact_bytes_unchanged": true,
+    "screenshot_timing_note": "The two Firefox C-retained-focus PNGs show a faint closing Settings drawer at the far right. The native C singleton, strict reading-state equality and label control oracles passed; these screenshots are retained unchanged and are not described as a fully settled Settings drawer."
+  }
+}

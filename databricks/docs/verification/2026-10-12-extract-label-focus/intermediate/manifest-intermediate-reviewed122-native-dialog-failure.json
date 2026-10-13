@@ -1,0 +1,87 @@
+{
+  "phase": "intermediate",
+  "artifacts": [
+    {
+      "image": "intermediate-reviewed122-chromium-stationary-full-overlap-no-focus.png",
+      "caption": "INTERMEDIATE #122 FAILED: in-view native stationary click on three fully overlapping synthetic evidence identities leaves no focused label or source emphasis",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:18:56.696763+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "13416ac3832a7b16169b43a00db919745f5d6468774b73bbbfa1c072f88a8746",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; current release fails native fullscreen viewer inspection boundary; no model/domain assessment",
+      "pdf_zoom": 123
+    },
+    {
+      "image": "intermediate-reviewed122-chromium-hover-full-overlap-one-of-three.png",
+      "caption": "INTERMEDIATE #122 FAILED: in-view native hover on three eligible fully overlapping identities shows only one label",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:19:40.670433+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "053b2ebc582d0ad43c39688e6fafcf49d26bf2339a36ec5f74604bb51be65f06",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; current release fails native fullscreen viewer inspection boundary; no model/domain assessment",
+      "pdf_zoom": 123
+    },
+    {
+      "image": "intermediate-reviewed122-firefox-stationary-full-overlap-no-focus.png",
+      "caption": "INTERMEDIATE #122 FAILED: in-view native stationary click on three fully overlapping synthetic evidence identities leaves no focused label or source emphasis",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:21:33.111118+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a07796e27644b5fe6aac45ea041acb2e161d9c0e522975e5111e89007aac8520",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; current release fails native fullscreen viewer inspection boundary; no model/domain assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-reviewed122-firefox-hover-full-overlap-one-of-three.png",
+      "caption": "INTERMEDIATE #122 FAILED: in-view native hover on three eligible fully overlapping identities shows only one label",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T18:22:10.545291+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e9df9ad75bb69468a5337425877e03ea2b097621b5b9264d635d724e141ffa44",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; current release fails native fullscreen viewer inspection boundary; no model/domain assessment",
+      "pdf_zoom": 110
+    }
+  ],
+  "acceptance": "#122 hosted acceptance FAILED and held pending reviewed native fullscreen interaction correction",
+  "hosted_acceptance": false
+}

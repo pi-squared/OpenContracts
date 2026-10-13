@@ -195,7 +195,7 @@ class StagedRuntimeRealReleaseTests(unittest.TestCase):
             self.assertEqual(report["reason"], "staged_files_changed")
 
     def test_old_launcher_and_missing_declared_import_cannot_be_deployed(self):
-        for fault in ("old_launcher", "missing_import"):
+        for fault in ("old_launcher", "missing_import", "changed_installer"):
             with self.subTest(fault=fault), tempfile.TemporaryDirectory() as temporary:
                 directory = Path(temporary)
                 release = directory / "release"
@@ -205,6 +205,10 @@ class StagedRuntimeRealReleaseTests(unittest.TestCase):
                         "import os, subprocess, sys\nos.chdir('/tmp')\nsubprocess.run([sys.executable, 'app.py'])\n"
                     )
                     expected = "launcher_source_mismatch"
+                elif fault == "changed_installer":
+                    with (release / "staged_dependencies.py").open("a") as target:
+                        target.write("\n# changed installer\n")
+                    expected = "dependency_installer_source_mismatch"
                 else:
                     import hashlib
 
@@ -269,7 +273,9 @@ class StagedRuntimeRealReleaseTests(unittest.TestCase):
                     "upstream.lock.json",
                     "port/dependencies/warp/lock.json",
                     "port/runtime/launch.py",
+                    "port/runtime/staged_dependencies.py",
                     "port/runtime/requirements.lock",
+                    "tools/installation_configuration.py",
                 )
                 for name in files:
                     target = fixture / name

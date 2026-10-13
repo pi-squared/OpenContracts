@@ -1,0 +1,45 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before-accepted121-firefox157-124-native-copy-paste-menu.png",
+      "caption": "BEFORE #124 on accepted #121: Trusted Firefox touch hold650ms/move250ms opens the real copy menu; evidence A retains focus",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T16:19:20.681193+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 108,
+      "sha256": "b17a04545edce4309550ae014f2f10e48b08ffe580100338df2537e2c0f44142",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Additional native Firefox157 gesture protocol; desktop153 acceptance remains separate; synthetic UI geometry is not domain/model acceptance"
+    },
+    {
+      "image": "before-accepted121-firefox157-124-native-copy-complete-focus-retained.png",
+      "caption": "BEFORE #124 on accepted #121: Native Copy Text and trusted isolated-tab paste matched expected text hash; returning app retains focus A and closes menu",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T16:20:00.101513+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 108,
+      "sha256": "62cc68db58531c31e2eebdaf982c25f0e10557575249967b8a20fc68ba48e293",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Additional native Firefox157 gesture protocol; desktop153 acceptance remains separate; synthetic UI geometry is not domain/model acceptance"
+    }
+  ]
+}

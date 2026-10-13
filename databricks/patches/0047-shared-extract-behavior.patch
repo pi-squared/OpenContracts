@@ -1,0 +1,361 @@
+--- a/frontend/src/assets/configurations/constants.ts
++++ b/frontend/src/assets/configurations/constants.ts
+@@ -1194,3 +1194,11 @@
+ // Defaults for the automation credential mint form.
+ export const AUTOMATION_CREDENTIAL_DEFAULT_DAYS = 30;
+ export const AUTOMATION_CREDENTIAL_NAME_MAX_LENGTH = 100;
++
++// Evidence label layout and browser file downloads.
++export const ANNOTATION_LABEL_GAP = 4;
++export const ANNOTATION_LABEL_MIN_HEIGHT = 4;
++export const EXCEL_MAX_CELL_LENGTH = 32767;
++export const EXCEL_MAX_ROWS = 1048576;
++export const EXCEL_MAX_COLUMNS = 16384;
++export const DOWNLOAD_URL_REVOKE_DELAY_MS = 1000;
+--- a/frontend/src/components/extracts/CorpusExtractDetail.tsx
++++ b/frontend/src/components/extracts/CorpusExtractDetail.tsx
+@@ -1,3 +1,4 @@
++import { getExtractExportLabel } from "../../utils/extractDetails";
+ /**
+  * CorpusExtractDetail - Embedded extract detail view for corpus context
+  *
+@@ -111,6 +112,7 @@
+   onClose,
+ }) => {
+   const navigate = useNavigate();
++  const [activeTab, setActiveTab] = useState("data");
+   const contentRef = useRef<ExtractDetailContentHandle>(null);
+   const [extract, setExtract] = useState<ExtractType | null>(null);
+ 
+@@ -122,8 +124,8 @@
+     navigate(`/extracts/${extractId}`);
+   };
+ 
+-  const handleExportCsv = () => {
+-    contentRef.current?.exportToExcel();
++  const handleExport = () => {
++    contentRef.current?.exportActiveTab();
+   };
+ 
+   const handleRefresh = () => {
+@@ -164,9 +166,11 @@
+             <RefreshCw size={14} />
+           </IconButton>
+           <IconButton
+-            aria-label="Export Excel"
+-            onClick={handleExportCsv}
+-            disabled={!extract || Boolean(isRunning)}
++            aria-label={getExtractExportLabel(activeTab)}
++            onClick={handleExport}
++            disabled={
++              !extract || Boolean(isRunning) || activeTab === "documents"
++            }
+           >
+             <Download size={14} />
+           </IconButton>
+@@ -183,6 +187,7 @@
+         <ExtractDetailContent
+           ref={contentRef}
+           extractId={extractId}
++          onActiveTabChange={setActiveTab}
+           compact
+           onExtractLoaded={handleExtractLoaded}
+         />
+--- a/frontend/src/components/extracts/ExtractDetailContent.tsx
++++ b/frontend/src/components/extracts/ExtractDetailContent.tsx
+@@ -1,3 +1,11 @@
++import {
++  getExtractProgress,
++  getDocumentExtractionLabel,
++  getExtractExportLabel,
++  exportExtractTab,
++} from "../../utils/extractDetails";
++import { useNavigate } from "react-router-dom";
++import { getDocumentUrl } from "../../utils/navigationUtils";
+ import { SourceReadinessNotice } from "./SourceReadinessNotice";
+ /**
+  * ExtractDetailContent - Shared content component for extract detail views
+@@ -326,6 +334,7 @@
+ export interface ExtractDetailContentHandle {
+   exportToCsv: () => void;
+   exportToExcel: () => void;
++  exportActiveTab: () => void;
+   refetch: () => void;
+   startExtract: () => void;
+ }
+@@ -337,12 +346,14 @@
+   compact?: boolean;
+   /** Called when extract data is loaded */
+   onExtractLoaded?: (extract: ExtractType) => void;
++  onActiveTabChange?: (tab: string) => void;
+ }
+ 
+ export const ExtractDetailContent = forwardRef<
+   ExtractDetailContentHandle,
+   ExtractDetailContentProps
+->(({ extractId, compact = false, onExtractLoaded }, ref) => {
++>(({ extractId, compact = false, onExtractLoaded, onActiveTabChange }, ref) => {
++  const navigate = useNavigate();
+   const dataGridRef = useRef<ExtractDataGridHandle>(null);
+ 
+   // Local state
+@@ -351,6 +362,9 @@
+   const [rows, setRows] = useState<DocumentType[]>([]);
+   const [columns, setColumns] = useState<ColumnType[]>([]);
+   const [activeTab, setActiveTab] = useState("data");
++  useEffect(() => {
++    onActiveTabChange?.(activeTab);
++  }, [activeTab, onActiveTabChange]);
+   const [isColumnModalOpen, setIsColumnModalOpen] = useState(false);
+   const [editingColumn, setEditingColumn] = useState<ColumnType | null>(null);
+   const [deleteColumnId, setDeleteColumnId] = useState<string | null>(null);
+@@ -494,6 +508,7 @@
+   useImperativeHandle(ref, () => ({
+     exportToCsv: () => dataGridRef.current?.exportToCsv(),
+     exportToExcel: () => dataGridRef.current?.exportToExcel(),
++    exportActiveTab: () => handleExport(),
+     refetch: () => refetch(),
+     startExtract: () => {
+       if (extract && !Boolean(extract.sourceReadinessError)) {
+@@ -501,6 +516,18 @@
+       }
+     },
+   }));
++
++  const handleExport = () => {
++    try {
++      exportExtractTab(activeTab, extract, columns, dataGridRef.current);
++    } catch (error) {
++      toast.error(
++        `Export failed: ${
++          error instanceof Error ? error.message : "Please retry."
++        }`
++      );
++    }
++  };
+ 
+   // Handlers
+   const handleAddDocIds = useCallback(
+@@ -605,19 +632,10 @@
+   const isFailed = Boolean(extract?.error);
+   const canEdit = !extract?.started;
+ 
+-  const stats = useMemo(() => {
+-    const completedCells = cells.filter((c) => c.completed).length;
+-    const totalCells = cells.length;
+-    const successRate =
+-      totalCells > 0 ? Math.round((completedCells / totalCells) * 100) : 0;
+-
+-    return {
+-      documents: rows.length,
+-      columns: columns.length,
+-      rows: rows.length,
+-      successRate: isComplete ? `${successRate}%` : "—",
+-    };
+-  }, [rows, columns, cells, isComplete]);
++  const stats = useMemo(
++    () => getExtractProgress(rows, columns, cells, Boolean(isComplete)),
++    [rows, columns, cells, isComplete]
++  );
+ 
+   // Loading state
+   if (loading && !extract) {
+@@ -639,13 +657,19 @@
+ 
+   return (
+     <>
++      {isComplete && stats.failedFields > 0 && (
++        <div role="status">
++          Extraction finished with {stats.failedFields} failed field(s).
++          Successful fields remain available for review.
++        </div>
++      )}
+       {/* Stats */}
+       <StatsSection>
+         <StatGrid columns={4}>
+           <StatBlock
+             value={String(stats.documents)}
+             label="Documents"
+-            sublabel="processed"
++            sublabel={`processed of ${rows.length} selected`}
+             icon={<DocumentSvgIcon />}
+           />
+           <StatBlock
+@@ -767,9 +791,32 @@
+                             <DocumentMeta>
+                               <span>PDF</span>
+                               <span>•</span>
+-                              <span>1 row extracted</span>
++                              <span>
++                                {getDocumentExtractionLabel(
++                                  doc,
++                                  cells,
++                                  columns.length,
++                                  Boolean(extract.started)
++                                )}
++                              </span>
+                             </DocumentMeta>
+                           </DocumentInfo>
++                          {doc.fileType === "application/pdf" &&
++                          doc.pdfFile &&
++                          getDocumentUrl(doc, extract.corpus) !== "#" ? (
++                            <Button
++                              variant="secondary"
++                              size="sm"
++                              aria-label={`Open PDF: ${doc.title}`}
++                              onClick={() =>
++                                navigate(getDocumentUrl(doc, extract.corpus))
++                              }
++                            >
++                              Open PDF
++                            </Button>
++                          ) : (
++                            <span role="status">Original PDF unavailable</span>
++                          )}
+                         </DocumentItem>
+                       ))}
+                     </DocumentsList>
+--- a/frontend/src/views/ExtractDetail.tsx
++++ b/frontend/src/views/ExtractDetail.tsx
+@@ -1,4 +1,9 @@
+-import { downloadJson } from "../utils/extractDownloads";
++import {
++  getExtractProgress,
++  getDocumentExtractionLabel,
++  getExtractExportLabel,
++  exportExtractTab,
++} from "../utils/extractDetails";
+ import { getDocumentUrl } from "../utils/navigationUtils";
+ import { SourceReadinessNotice } from "../components/extracts/SourceReadinessNotice";
+ import React, {
+@@ -679,34 +684,7 @@
+ 
+   const handleExport = () => {
+     try {
+-      if (activeTab === "data") {
+-        if (!dataGridRef.current)
+-          throw new Error("The data grid is not ready. Retry after it loads.");
+-        dataGridRef.current.exportToExcel();
+-      } else if (activeTab === "schema") {
+-        downloadJson(`${extract?.name || "extract"}-schema.json`, {
+-          fieldset: extract?.fieldset,
+-          columns,
+-        });
+-      } else if (activeTab === "iterations") {
+-        downloadJson(`${extract?.name || "extract"}-iterations.json`, {
+-          current: extract?.id,
+-          parent: extract?.parentExtract,
+-          iterations: [extract, ...(extract?.fullIterationList ?? [])].map(
+-            (run) =>
+-              run && {
+-                id: run.id,
+-                name: run.name,
+-                created: run.created,
+-                started: run.started,
+-                finished: run.finished,
+-                error: run.error,
+-                modelConfig: run.modelConfig,
+-                iterationAxis: run.iterationAxis,
+-              }
+-          ),
+-        });
+-      }
++      exportExtractTab(activeTab, extract, columns, dataGridRef.current);
+     } catch (error) {
+       toast.error(
+         `Export failed: ${
+@@ -730,32 +708,10 @@
+ 
+   const statusProps = extract ? getExtractStatus(extract) : null;
+ 
+-  const stats = useMemo(() => {
+-    const completedCells = cells.filter((c) => c.completed).length;
+-    const totalCells = cells.length;
+-    const successRate =
+-      totalCells > 0 ? Math.round((completedCells / totalCells) * 100) : 0;
+-
+-    return {
+-      documents: rows.filter((doc) => {
+-        const docCells = cells.filter((cell) => cell.document?.id === doc.id);
+-        return (
+-          columns.length > 0 &&
+-          columns.every((column) =>
+-            docCells.some(
+-              (cell) =>
+-                cell.column?.id === column.id && (cell.completed || cell.failed)
+-            )
+-          )
+-        );
+-      }).length,
+-      columns: columns.length,
+-      rows: rows.filter((doc) =>
+-        cells.some((cell) => cell.document?.id === doc.id && cell.completed)
+-      ).length,
+-      successRate: isComplete ? `${successRate}%` : "—",
+-    };
+-  }, [rows, columns, cells, isComplete]);
++  const stats = useMemo(
++    () => getExtractProgress(rows, columns, cells, Boolean(isComplete)),
++    [rows, columns, cells, isComplete]
++  );
+ 
+   // Loading state
+   if (!extract) {
+@@ -847,21 +803,14 @@
+                 loading || Boolean(isRunning) || activeTab === "documents"
+               }
+             >
+-              {activeTab === "data"
+-                ? "Export Excel"
+-                : activeTab === "schema"
+-                ? "Export Schema JSON"
+-                : activeTab === "iterations"
+-                ? "Export Iterations JSON"
+-                : "Export"}
++              {getExtractExportLabel(activeTab)}
+             </Button>
+           </Actions>
+         </Header>
+ 
+-        {isComplete && cells.some((cell) => cell.failed) && (
++        {isComplete && stats.failedFields > 0 && (
+           <div role="status" style={{ padding: 12, background: "#fff4e5" }}>
+-            Extraction finished with{" "}
+-            {cells.filter((cell) => cell.failed).length} failed field(s).
++            Extraction finished with {stats.failedFields} failed field(s).
+             Successful fields remain available for review.
+           </div>
+         )}
+@@ -998,26 +947,12 @@
+                                 <span>PDF</span>
+                                 <span>-</span>
+                                 <span>
+-                                  {(() => {
+-                                    const docCells = cells.filter(
+-                                      (cell) => cell.document?.id === doc.id
+-                                    );
+-                                    const completed = docCells.filter(
+-                                      (cell) => cell.completed
+-                                    ).length;
+-                                    const failed = docCells.filter(
+-                                      (cell) => cell.failed
+-                                    ).length;
+-                                    if (completed || failed)
+-                                      return `${completed} of ${
+-                                        columns.length
+-                                      } fields extracted${
+-                                        failed ? ` · ${failed} failed` : ""
+-                                      }`;
+-                                    return extract.started
+-                                      ? "Awaiting extraction"
+-                                      : "Not started";
+-                                  })()}
++                                  {getDocumentExtractionLabel(
++                                    doc,
++                                    cells,
++                                    columns.length,
++                                    Boolean(extract.started)
++                                  )}
+                                 </span>
+                               </DocumentMeta>
+                             </DocumentInfo>

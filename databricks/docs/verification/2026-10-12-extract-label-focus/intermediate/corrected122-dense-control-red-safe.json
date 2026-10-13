@@ -1,0 +1,281 @@
+{
+  "phase": "intermediate",
+  "evidence_phase": "Corrected #122 retained #121 dense acceptance",
+  "verified_at_utc": "2026-10-12T19:25:28.511959+00:00",
+  "acceptance": "FAIL",
+  "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+  "recipe_sha256": "1bec4068ef855bd5aa59e1a09af5de8b4ad7d11618d28f75839c174e2fc9bf8b",
+  "verification": {
+    "manual": {
+      "acceptance": "PASS",
+      "images": 16,
+      "measured_pdf_zoom_percent": [
+        127,
+        167
+      ],
+      "browsers": [
+        "Chromium151.0.7922.34",
+        "Firefox153.0"
+      ],
+      "states": [
+        "default-unhovered",
+        "default-hovered",
+        "Always",
+        "Hide"
+      ]
+    },
+    "owned": {
+      "acceptance": "FAIL",
+      "completed_matrix_images": 6,
+      "passed_states_at127": [
+        "default-unhovered",
+        "shared-point-hover3-of5-native-candidates",
+        "focused-pointer-away1"
+      ],
+      "failed_state": "Always127% settled label action target reachability",
+      "uncompleted_states": [
+        "Hide127%",
+        "all167% owned states"
+      ],
+      "failures": [
+        {
+          "browser_engine": "chromium",
+          "failure": "Always127% Section Header edit center is occluded by another native highlight; trusted pointer transfer does not restore it and native click does not open Edit Label.",
+          "label_bars_in_view_readable_separate": true,
+          "actual_target_failure_verified": true
+        },
+        {
+          "browser_engine": "firefox",
+          "failure": "Always127% Section Header edit center is occluded by another native highlight; trusted pointer transfer does not restore it and native click does not open Edit Label.",
+          "label_bars_in_view_readable_separate": true,
+          "actual_target_failure_verified": true
+        }
+      ]
+    },
+    "native_click_counterexample": [
+      {
+        "browser_engine": "chromium",
+        "browser_version": "151.0.7922.34",
+        "state": "Always127% Section Header edit target",
+        "neutral_to_exact_control_center_pointer_transfer": {
+          "x": 532.71875,
+          "y": 262.703125
+        },
+        "before_and_after_geometry_settled": true,
+        "covered_native_edit_target_count": 1,
+        "other_native_edit_target_count": 4,
+        "edit_control_reachable_before_hover": false,
+        "edit_control_reachable_after_hover": false,
+        "native_click_edit_modal_opened": false,
+        "cancel_or_save_change_button_count": 0,
+        "save_actions": 0,
+        "guard_events": 0,
+        "route_viewport_zoom_scroll_and_source_region_unchanged": true,
+        "native_source_card_count_before_after": [
+          0,
+          0
+        ],
+        "click_added_observable_highlight_change": false,
+        "limitation": "Transient focus and plural viewer-selection atoms were not read; no source cards/selection controls are mounted in this full-width screen, so their hidden internal state is not inferred."
+      },
+      {
+        "browser_engine": "firefox",
+        "browser_version": "153.0",
+        "state": "Always127% Section Header edit target",
+        "neutral_to_exact_control_center_pointer_transfer": {
+          "x": 549.0,
+          "y": 262.26666259765625
+        },
+        "before_and_after_geometry_settled": true,
+        "covered_native_edit_target_count": 1,
+        "other_native_edit_target_count": 4,
+        "edit_control_reachable_before_hover": false,
+        "edit_control_reachable_after_hover": false,
+        "native_click_edit_modal_opened": false,
+        "cancel_or_save_change_button_count": 0,
+        "save_actions": 0,
+        "guard_events": 0,
+        "route_viewport_zoom_scroll_and_source_region_unchanged": true,
+        "native_source_card_count_before_after": [
+          0,
+          0
+        ],
+        "click_added_observable_highlight_change": false,
+        "limitation": "Transient focus and plural viewer-selection atoms were not read; no source cards/selection controls are mounted in this full-width screen, so their hidden internal state is not inferred."
+      }
+    ],
+    "native_frontend_bytes_match_staged_source": true,
+    "public_pdf_bytes_unchanged": true,
+    "retained_projection_fingerprints": [
+      {
+        "fixture": "manual",
+        "browser_engine": "chromium",
+        "original_prior123_query_projections_matched": 4,
+        "all_prior122_query_projections_matched": 4,
+        "changed_projection_count": 0,
+        "preexisting_E_marker_geometry_and_complete_projection_fingerprint_matched": false
+      },
+      {
+        "fixture": "owned",
+        "browser_engine": "chromium",
+        "original_prior123_query_projections_matched": 8,
+        "all_prior122_query_projections_matched": 10,
+        "changed_projection_count": 0,
+        "preexisting_E_marker_geometry_and_complete_projection_fingerprint_matched": true
+      },
+      {
+        "fixture": "manual",
+        "browser_engine": "firefox",
+        "original_prior123_query_projections_matched": 4,
+        "all_prior122_query_projections_matched": 4,
+        "changed_projection_count": 0,
+        "preexisting_E_marker_geometry_and_complete_projection_fingerprint_matched": false
+      },
+      {
+        "fixture": "owned",
+        "browser_engine": "firefox",
+        "original_prior123_query_projections_matched": 8,
+        "all_prior122_query_projections_matched": 10,
+        "changed_projection_count": 0,
+        "preexisting_E_marker_geometry_and_complete_projection_fingerprint_matched": true
+      }
+    ],
+    "readonly_native_guard": "Unchanged same-origin/AST query-only guard; no accepted mutation or model requests and no editable-save action.",
+    "source_snapshot_identity_live_checked": true
+  },
+  "processes": [
+    {
+      "captured_at_utc": "2026-10-12T19:13:45.578200+00:00",
+      "evidence_phase": "corrected122 retained121 dense acceptance",
+      "engine": "chromium",
+      "fixture": "manual",
+      "driver_exit_code": 0,
+      "protocol_complete": true,
+      "passed": true,
+      "wrapper_exit_code": 0
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:13:07.975347+00:00",
+      "evidence_phase": "corrected122 retained121 dense acceptance",
+      "engine": "chromium",
+      "fixture": "owned",
+      "driver_exit_code": 0,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:22:06.601303+00:00",
+      "driver_exit_code": 0,
+      "wrapper_exit_code": 0,
+      "protocol_complete": true,
+      "diagnostic_only": true,
+      "engine": "chromium"
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:18:57.673799+00:00",
+      "evidence_phase": "corrected122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "manual",
+      "driver_exit_code": 0,
+      "protocol_complete": true,
+      "passed": true,
+      "wrapper_exit_code": 0
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:18:28.523352+00:00",
+      "evidence_phase": "corrected122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "owned",
+      "driver_exit_code": 0,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:12:23.969025+00:00",
+      "evidence_phase": "corrected122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "manual",
+      "driver_exit_code": 1,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1,
+      "attempt": "preserved initial/setup attempt"
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:12:25.478654+00:00",
+      "evidence_phase": "corrected122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "owned",
+      "driver_exit_code": 1,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1,
+      "attempt": "preserved initial/setup attempt"
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:15:29.563469+00:00",
+      "evidence_phase": "corrected122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "manual",
+      "driver_exit_code": 1,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1,
+      "attempt": "preserved initial/setup attempt"
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:15:30.811638+00:00",
+      "evidence_phase": "corrected122 retained121 dense acceptance",
+      "engine": "firefox",
+      "fixture": "owned",
+      "driver_exit_code": 1,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1,
+      "attempt": "preserved initial/setup attempt"
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:22:12.533399+00:00",
+      "driver_exit_code": 0,
+      "wrapper_exit_code": 0,
+      "protocol_complete": true,
+      "diagnostic_only": true,
+      "engine": "firefox"
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:16:13.509911+00:00",
+      "driver_exit_code": 0,
+      "wrapper_exit_code": 1,
+      "protocol_complete": false,
+      "diagnostic_only": true,
+      "attempt": "target-diagnostic"
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:17:51.534822+00:00",
+      "driver_exit_code": 0,
+      "wrapper_exit_code": 0,
+      "protocol_complete": true,
+      "diagnostic_only": true,
+      "attempt": "target-diagnostic-2"
+    },
+    {
+      "captured_at_utc": "2026-10-12T19:19:37.483513+00:00",
+      "driver_exit_code": 0,
+      "wrapper_exit_code": 0,
+      "protocol_complete": true,
+      "diagnostic_only": true,
+      "attempt": "target-diagnostic-3"
+    }
+  ],
+  "limitations": [
+    "This is a partial red corrected #122 gate, not final #120/#124 integrated acceptance.",
+    "Owned wrappers exited1 after caught control assertions; driver0 alone does not mean acceptance passed.",
+    "Four Firefox setup attempts stopped at launch before app behavior; the launcher expression was corrected to the verified absolute153 path in a new directory.",
+    "One narrow private diagnostic stopped with a helper NameError before its screen checks; later successful diagnostics are distinct preserved attempts.",
+    "Prior #123 dense receipts did not record native control hit targets, so this packet does not establish when the observed action occlusion first arose.",
+    "Source cards and plural selection controls are absent in the full-width diagnostic; hidden atom state is not claimed."
+  ],
+  "hosted_acceptance": false
+}

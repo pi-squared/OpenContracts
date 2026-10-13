@@ -1,0 +1,70 @@
+diff --git a/frontend/src/App.tsx b/frontend/src/App.tsx
+index 87cd70f..89294a7 100644
+--- a/frontend/src/App.tsx
++++ b/frontend/src/App.tsx
+@@ -19,7 +19,6 @@ import { useMutation, useReactiveVar } from "@apollo/client";
+ import {
+   showAnnotationLabels,
+   showExportModal,
+-  showCookieAcceptModal,
+   openedCorpus,
+   uploadModalPreloadedFiles,
+   showUploadNewDocumentsModal,
+@@ -55,7 +54,6 @@ import "./App.css";
+ import "react-toastify/dist/ReactToastify.css";
+ import useWindowDimensions from "./components/hooks/WindowDimensionHook";
+ import { LabelDisplayBehavior } from "./types/graphql-api";
+-import { CookieConsentDialog } from "./components/cookies/CookieConsent";
+ import { initializeAnalyticsOnLoad } from "./utils/analytics";
+ import { Extracts } from "./views/Extracts";
+ import { BadgeManagement } from "./components/badges/BadgeManagement";
+@@ -98,7 +96,6 @@ import { useRefetchOnAuthChange } from "./hooks/useRefetchOnAuthChange";
+ export const App = () => {
+   const { REACT_APP_USE_AUTH0, REACT_APP_AUDIENCE } = useEnv();
+   const show_export_modal = useReactiveVar(showExportModal);
+-  const show_cookie_modal = useReactiveVar(showCookieAcceptModal);
+   const knowledge_base_modal = useReactiveVar(showKnowledgeBaseModal);
+   const opened_corpus = useReactiveVar(openedCorpus);
+ 
+@@ -199,7 +196,6 @@ export const App = () => {
+   // Auth logic has been moved to AuthGate component to ensure it completes
+   // before any components that need authentication are rendered
+ 
+-  console.log("Cookie Accepted: ", show_cookie_modal);
+ 
+   const onDrop = useCallback((acceptedFiles: File[]) => {
+     const filePackages: FileUploadPackageProps[] = acceptedFiles.map(
+@@ -216,22 +212,12 @@ export const App = () => {
+   }, []);
+ 
+   /* ---------------------------------------------------------------------- */
+-  /* Cookie consent and analytics initialization                            */
++  /* Analytics initialization                                               */
+   /* ---------------------------------------------------------------------- */
+   useEffect(() => {
+-    // Run once on mount in browser to determine whether to display the
+-    // cookie consent banner. We avoid touching `localStorage` during SSR or
+-    // in non-browser test environments.
+     if (typeof window === "undefined") return;
+-
+-    const accepted =
+-      window.localStorage?.getItem("oc_cookieAccepted") === "true";
+-    // Only update if we haven't explicitly set it elsewhere yet.
+-    if (showCookieAcceptModal() === false && !accepted) {
+-      showCookieAcceptModal(true);
+-    }
+-
+-    // Initialize PostHog analytics if consent was previously given
++    // The Databricks port omits the demo terms overlay. Analytics still
++    // follows actual prior consent; startup does not record acceptance.
+     initializeAnalyticsOnLoad();
+   }, []);
+ 
+@@ -258,7 +244,6 @@ export const App = () => {
+             onClose={handleKnowledgeBaseModalClose}
+           />
+         )}
+-      {show_cookie_modal ? <CookieConsentDialog /> : <></>}
+       {showModal && currentBadge && (
+         <BadgeCelebrationModal
+           badgeName={currentBadge.badgeName}

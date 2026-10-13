@@ -1,0 +1,2100 @@
+{
+  "phase": "after",
+  "evidence_phase": "Final Standards correction #120/#124",
+  "verified_at_utc": "2026-10-13T04:27:07.467512+00:00",
+  "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+  "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+  "hosted_acceptance": true,
+  "acceptance": "PASS for complete reviewed bounded correction-source campaign; root publication review pending",
+  "image_count": 71,
+  "all_image_bytes_unchanged": true,
+  "artifacts": [
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-owned-sme-extract-evidence-127-always-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 chromium owned sme extract evidence 127 always pointer away. Source13fef8d8; 127% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:24.319528+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "afd84aa9544a96ad8075ff1e734998a50fe6cc1234afd5fdbc617435d71b1205",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 chromium owned sme extract evidence 127 default hovered. Source13fef8d8; 127% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:00.163188+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "2c174d5b7ce4145f55b3c3efa4841824bddce56644c3107e66634459437a44d5",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 chromium owned sme extract evidence 127 default unhovered. Source13fef8d8; 127% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:59.077495+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "80a3abba11b2b8ef4b486f755f52de7d60c9060906e4de0d3c5de234148268ca",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 chromium owned sme extract evidence 127 focused pointer away. Source13fef8d8; 127% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:11.997003+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "c88e2869c6a6a30a58dde882f44eb66a0283f0839a4f81dd9b8db67171711c79",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-owned-sme-extract-evidence-127-hide-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 chromium owned sme extract evidence 127 hide pointer away. Source13fef8d8; 127% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:35.836785+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "5617ddec5cbcd533000a9877aad964635e780ebb487db6349d56084388b3189b",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-owned-sme-extract-evidence-167-always-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 chromium owned sme extract evidence 167 always pointer away. Source13fef8d8; 167% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:10:07.936399+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "6f5b7999667fe5e03921f035127767381630f3fdcad753a6112debaca6cd6ec4",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-owned-sme-extract-evidence-167-default-hovered.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 chromium owned sme extract evidence 167 default hovered. Source13fef8d8; 167% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:47.017502+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "b429d0194b0db6a956bed67a393c2b80b25f47f9be1aacbdf976d96795beab66",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-owned-sme-extract-evidence-167-default-unhovered.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 chromium owned sme extract evidence 167 default unhovered. Source13fef8d8; 167% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:46.006130+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "8a8ff24b87d9145e909aef3d6746befe897b70552cfd5aa2a41a6f6cfb1165ce",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-owned-sme-extract-evidence-167-focused-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 chromium owned sme extract evidence 167 focused pointer away. Source13fef8d8; 167% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:57.563410+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "4c6acabffc93f1606f34bb6de8d038309f75b5cd297a4fbf2957d812fa0e4dae",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-owned-sme-extract-evidence-167-hide-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 chromium owned sme extract evidence 167 hide pointer away. Source13fef8d8; 167% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:10:18.526315+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "5dac035ee73ceadf5f1d49d2111c3f53a321808ad82179d01936b0460d804497",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-public-sme-manual-display-127-always-pointer-away.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 chromium public sme manual display 127 always pointer away. Source13fef8d8; 127% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:04.779544+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "a8273215a9f0d0a869539568364af926dce8ac909ff950cf9e0d457df4cd6c93",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-public-sme-manual-display-127-default-hovered.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 chromium public sme manual display 127 default hovered. Source13fef8d8; 127% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:07:52.710511+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "b20a7c6a0c5aa18fdbe26c79e4d41a2bb3787862216d232cdc77f003652d2b99",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-public-sme-manual-display-127-default-unhovered.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 chromium public sme manual display 127 default unhovered. Source13fef8d8; 127% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:07:51.673014+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "0a2b3c5b8bc24546c44ca13f64a2f907b031f5a2710cf08c6178ba837da75bd1",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-public-sme-manual-display-127-hide-pointer-away.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 chromium public sme manual display 127 hide pointer away. Source13fef8d8; 127% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:16.069099+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "0a2b3c5b8bc24546c44ca13f64a2f907b031f5a2710cf08c6178ba837da75bd1",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 chromium public sme manual display 167 always pointer away. Source13fef8d8; 167% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:37.488416+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "0c6849f6a0175617bbcde4b8ecfe581a5efc13801dd08d51d13bf0f7727d0268",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-public-sme-manual-display-167-default-hovered.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 chromium public sme manual display 167 default hovered. Source13fef8d8; 167% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:26.944079+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "cf794de41053a20fed180107e0c4537577fe337f319afe610a1c514a0869b941",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-public-sme-manual-display-167-default-unhovered.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 chromium public sme manual display 167 default unhovered. Source13fef8d8; 167% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:25.903677+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "1f2f0e7220000d42db7caa62b31ab33c771bca22edccb471e21920c8d69328eb",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-chromium-public-sme-manual-display-167-hide-pointer-away.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 chromium public sme manual display 167 hide pointer away. Source13fef8d8; 167% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:47.202289+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "a3bf78df9bceab6f2efb125e8e329fd29068819a502e24988ff8c68e3233cb96",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-owned-sme-extract-evidence-127-always-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 firefox owned sme extract evidence 127 always pointer away. Source13fef8d8; 127% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:36.945092+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "023ad6e138d100ca32ccaece6519c822dff6ae082a5ccfc43d4d702fb7b62800",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 firefox owned sme extract evidence 127 default hovered. Source13fef8d8; 127% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:09.168161+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "0d2462293d7e7dc56ab52a175e5ee138ba0ab3e0e040af33a908ae560e57d7e7",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 firefox owned sme extract evidence 127 default unhovered. Source13fef8d8; 127% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:08.227887+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "45799cd96078551dd304a7297253ca41a7f4c92e2bca1380f52ec3ca8207a961",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 firefox owned sme extract evidence 127 focused pointer away. Source13fef8d8; 127% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:23.386655+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "9d17b8a061b85273c0b999a78727895d839e1907670e7606fe8da3b1135ac44c",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-owned-sme-extract-evidence-127-hide-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 firefox owned sme extract evidence 127 hide pointer away. Source13fef8d8; 127% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:09:50.750425+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "07d02c605de9eecd3b804c1f978ef63cbd48bba62c6308757eb8d2bc77f81cf0",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-owned-sme-extract-evidence-167-always-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 firefox owned sme extract evidence 167 always pointer away. Source13fef8d8; 167% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:10:26.560265+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "31c89f591b9ea861cea3df29cfc13fa1bf8f133a0a9533cf7cac26a884c81379",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-owned-sme-extract-evidence-167-default-hovered.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 firefox owned sme extract evidence 167 default hovered. Source13fef8d8; 167% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:10:03.370115+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "ff1f884ed7a9c48339759f4c091a9522ed5d2ca51e86db990068968e16e6017a",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-owned-sme-extract-evidence-167-default-unhovered.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 firefox owned sme extract evidence 167 default unhovered. Source13fef8d8; 167% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:10:02.369976+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "fc08c3ef5646a663508d3b540026c159dde4e8b7bf1ce1d4fa25ed16b6fc64e9",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-owned-sme-extract-evidence-167-focused-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 firefox owned sme extract evidence 167 focused pointer away. Source13fef8d8; 167% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:10:15.663278+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "2176049a491d1f3a2523efeb039c04d8eeb5d38531702c5f6c136eaa3023f27f",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-owned-sme-extract-evidence-167-hide-pointer-away.png",
+      "caption": "Owned synthetic public SME extract-evidence projection. matrix36 firefox owned sme extract evidence 167 hide pointer away. Source13fef8d8; 167% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:10:37.018442+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "a6048b3c089edc29731c9096fa344fb79c19d1331e05d8309e9a44a9cc628070",
+      "fixture": "Owned synthetic public SME extract-evidence projection",
+      "evidence_quote_fixture": true,
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-public-sme-manual-display-127-always-pointer-away.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 firefox public sme manual display 127 always pointer away. Source13fef8d8; 127% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:08.451516+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "da663db02e32087796840c056391e1f0fd407ef264212897a1c3e7d516d57b39",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-public-sme-manual-display-127-default-hovered.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 firefox public sme manual display 127 default hovered. Source13fef8d8; 127% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:07:54.874737+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "9cf56e766969cfa171b955bc071667d6a31349d15d819f3c18c7b44da1d4b71a",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-public-sme-manual-display-127-default-unhovered.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 firefox public sme manual display 127 default unhovered. Source13fef8d8; 127% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:07:53.956618+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "be868ef69ae8c0d369dcd7ef2e8990d9d182daec674f37a0e8c3f9f470638b3f",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-public-sme-manual-display-127-hide-pointer-away.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 firefox public sme manual display 127 hide pointer away. Source13fef8d8; 127% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:21.844985+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "d6db195aaf34aec35b131dd2c892ee296ab960e7e7d79d66139bc4d2c84837d6",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 firefox public sme manual display 167 always pointer away. Source13fef8d8; 167% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:44.684158+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "289eb2e4c8cc5f85a19e7eb2b4c85c5dbbdd37161a232654fcdcb9c7dce1f9cf",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-public-sme-manual-display-167-default-hovered.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 firefox public sme manual display 167 default hovered. Source13fef8d8; 167% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:33.354825+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "2794919838120a97e00598b39f175f79ed2d0141723b12f22055f6421da7d632",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-public-sme-manual-display-167-default-unhovered.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 firefox public sme manual display 167 default unhovered. Source13fef8d8; 167% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:32.417320+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "b6271261f6c5e67d4a748e221f0386e343b5360bcd8ba6dd35aaceb7b6cd8410",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-matrix36-firefox-public-sme-manual-display-167-hide-pointer-away.png",
+      "caption": "Original public SME manual annotation display used by #116. matrix36 firefox public sme manual display 167 hide pointer away. Source13fef8d8; 167% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:08:55.118560+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "12601c484b52c25ec4f8f7262b52455a7e51d88244b692323b8e58b1945ffd06",
+      "fixture": "Original public SME manual annotation display used by #116",
+      "evidence_quote_fixture": false,
+      "acceptance": "PASS for named state",
+      "limitations": [],
+      "sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-dense-chromium-owned-sme-extract-evidence-167-editor-open-e.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. dense chromium owned sme extract evidence 167 editor open e. Source13fef8d8; 167% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T02:56:18.651129+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "38c0368fc013459cce72bc25fdaa0288fc44355910dd70c8029f86f430104b03",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-124-fullwidth-temporary-protected-confirmation-open-before-No.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. chromium 124 fullwidth temporary protected confirmation open before No. Source13fef8d8; 127% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:21:21.849124+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "7e3ed9841390bc479c972268e6674f2430bc6ee1edb14df207911c230d252f43",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-124-floating-Settings-first-Escape-focus-retained.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. chromium 124 floating Settings first Escape focus retained. Source13fef8d8; 101% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:49:03.631610+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 101,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "2630830ea3114e6cbb0315019f6372cbe5b23f96cf9925cf26e920e2f4819654",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-122-strict-chain-C-E-stop-2.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. chromium 122 strict chain C E stop 2. Source13fef8d8; 110% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T02:52:31.257229+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "2a3f486319ec784632337df7f243818d545f2edd49edb30368483298b9c71957",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-trusted-touch-blank-focus-cleared-pane-effectively-closed.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. chromium trusted touch blank focus cleared pane effectively closed. Source13fef8d8; 110% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:27:13.851487+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "379b4aa6e7796db6a8581a19cd18bee2bbf32e2678a4455feaa6fc14542e3201",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-trusted-touch-partial-four-cycle-stop-5.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. chromium trusted touch partial four cycle stop 5. Source13fef8d8; 110% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:27:06.411635+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "17d5636dc5ef7882ff984fbbb1a28db7c20429faf76fdfff728ef3179f049597",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-touch-contract-chromium-terms-trusted-touch-stationary-singleton-focused.png",
+      "caption": "Actual public Terms sample. touch contract chromium terms trusted touch stationary singleton focused. Source13fef8d8; 110% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:27:56.784972+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "1c55aaf87e75dbaa981236d7d54165bf37e3456d4b89398352299d6efda26a9a",
+      "fixture": "Actual public Terms sample",
+      "acceptance": "PASS for named state",
+      "limitations": []
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-touch-contract-chromium-fspo-trusted-touch-stationary-singleton-focused.png",
+      "caption": "Actual public FSPO sample. touch contract chromium fspo trusted touch stationary singleton focused. Source13fef8d8; 234% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:28:12.021672+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 234,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "805498c13b0b6a546e44c6e7c33d95d1ed7287abc800754b04412c4b4a0ac6d2",
+      "fixture": "Actual public FSPO sample",
+      "acceptance": "PASS for named state",
+      "limitations": []
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-122-terms-native-grid-view-sources-two-members.png",
+      "caption": "Actual public Terms sample. chromium 122 terms native grid view sources two members. Source13fef8d8; 227% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T02:58:03.009108+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 227,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "64e66ff8d7d6f7472ebd520198d6946cfb6534fdc7c2f5fa5cd60100a7706579",
+      "fixture": "Actual public Terms sample",
+      "acceptance": "PASS for named state",
+      "limitations": []
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-122-fspo-native-grid-view-sources-two-members.png",
+      "caption": "Actual public FSPO sample. chromium 122 fspo native grid view sources two members. Source13fef8d8; 234% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:07:50.721709+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 234,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "18c6aafe4dad5c0eea5636bebd664da9faa67c6e04077fac84392a7acfbffdf5",
+      "fixture": "Actual public FSPO sample",
+      "acceptance": "PASS for named state",
+      "limitations": []
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-proof-chromium-123-version-v2-stale-target-no-highlight.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. proof chromium 123 version v2 stale target no highlight. Source13fef8d8; 115% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:31:53.032663+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 115,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "59298355f369cad7a8cff5cddd98d2a808bbcab2f8a2338b8df982c8421114d8",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-owned-native-Add-link-settled-before-Cancel.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. chromium owned native Add link settled before Cancel. Source13fef8d8; 110% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:43:08.762297+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "0a5bd9baef59876b57de0bbf90e5092ddbfd5ec37ba3186c9048f731aedceb4c",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-122-native-mouse-copy-public-text-focus-preserved.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. chromium 122 native mouse copy public text focus preserved. Source13fef8d8; 110% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:43:20.447118+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "7b5546e2a701f14e24a79a2a9a184f2e9fd1ac889a11f0fe0994276857b8d028",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-dense-firefox-owned-sme-extract-evidence-167-editor-open-e.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. dense firefox owned sme extract evidence 167 editor open e. Source13fef8d8; 167% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:16:29.915294+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 167,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "aa312cc7f9e35219f4e62a635f0c52a85098ca5e5f668a59c6435ea2984b4e3c",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-124-fullwidth-temporary-protected-confirmation-open-before-No.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox 124 fullwidth temporary protected confirmation open before No. Source13fef8d8; 127% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:37:30.021009+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 127,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "45fafd1773f74611936e976f4b219edc24ae472910ebac101318ca3d3f1b6f7a",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-124-floating-Settings-first-Escape-focus-retained.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox 124 floating Settings first Escape focus retained. Source13fef8d8; 110% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:49:08.444076+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "4847a98b59d22f431d87eec81e1daf072d4339f8469e879896917c1368d123d6",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-122-strict-chain-C-E-stop-2.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox 122 strict chain C E stop 2. Source13fef8d8; 110% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T02:52:36.107665+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "d83f6c5b202039f6203220450170567ae41e56d2c55d6d07e1635618bb146442",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-trusted-touch-blank-focus-cleared-pane-effectively-closed.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox trusted touch blank focus cleared pane effectively closed. Source13fef8d8; 110% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:27:00.180855+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "85414a8a29d77183fbb1ef3bc6b1e182ec476894619c6644d48229bad7d14804",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-trusted-touch-partial-four-cycle-stop-5.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox trusted touch partial four cycle stop 5. Source13fef8d8; 110% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:26:50.529235+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "bce936a8d7d1c46d41f53bee555cbb4d96cd687b40a715721b9bef1ca745627e",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-touch-contract-firefox-terms-trusted-touch-stationary-singleton-focused.png",
+      "caption": "Actual public Terms sample. touch contract firefox terms trusted touch stationary singleton focused. Source13fef8d8; 110% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:27:51.236558+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "55f4328a234255e279bed34342b04976369174bd326d1a7efac6b81ac19e6613",
+      "fixture": "Actual public Terms sample",
+      "acceptance": "PASS for named state",
+      "limitations": []
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-touch-contract-firefox-fspo-trusted-touch-stationary-singleton-focused.png",
+      "caption": "Actual public FSPO sample. touch contract firefox fspo trusted touch stationary singleton focused. Source13fef8d8; 113% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:28:04.498816+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 113,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "d829dd7eac8e486cfc5858dada77cc7e50713c4c4d6c312579b24f0297d97105",
+      "fixture": "Actual public FSPO sample",
+      "acceptance": "PASS for named state",
+      "limitations": []
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-122-terms-native-grid-view-sources-two-members.png",
+      "caption": "Actual public Terms sample. firefox 122 terms native grid view sources two members. Source13fef8d8; 227% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T02:58:10.626301+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 227,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "7020e3a1afe63a7a79bca3edf376e75abfacff1ae312fd6e1b2f7ea2fa315fb0",
+      "fixture": "Actual public Terms sample",
+      "acceptance": "PASS for named state",
+      "limitations": []
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-122-fspo-native-grid-view-sources-two-members.png",
+      "caption": "Actual public FSPO sample. firefox 122 fspo native grid view sources two members. Source13fef8d8; 234% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:07:54.114856+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 234,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "02fdd1de8fe9b158f1c687bd3aca280f72b410d306e8d9ff28e309268dd2c33f",
+      "fixture": "Actual public FSPO sample",
+      "acceptance": "PASS for named state",
+      "limitations": []
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-proof-firefox-123-version-v2-stale-target-no-highlight.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. proof firefox 123 version v2 stale target no highlight. Source13fef8d8; 115% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:32:02.894236+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 115,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "183116a5e4c481077e075e8649c328578806bd9b5dafa9754e5e46a15bda4cf7",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-owned-native-Add-link-settled-before-Cancel.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox owned native Add link settled before Cancel. Source13fef8d8; 110% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:43:10.771617+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "17e65f965550a96d64c26a1f8231e767ecaf3f85a7dfe376fc0c38e623d42324",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-122-native-mouse-copy-public-text-focus-preserved.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox 122 native mouse copy public text focus preserved. Source13fef8d8; 110% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T03:43:24.817859+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "21d2f73108a68bca7d2d534faef6c90d8466ebcbdcce5ed97332b17f99aff4e7",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-custom-OC-URL-same-document-focus-retained.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. chromium custom OC URL same document focus retained. Source13fef8d8; 107% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:05:44.878993+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 107,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "e05a5b99fbd94c57f377c8e07017e6e26f159b4f3ee475d0f50e4185efd89f11",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-chromium-122-real-embedded-URI-native-popup-rendered-owned-PDF.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. chromium 122 real embedded URI native popup rendered owned PDF. Source13fef8d8; 227% PDF zoom; chromium;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:05:55.485148+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 227,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "cf9316d9f409fce2db88185e962a568ad29d26e9e736914cb696536c3122ba76",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-custom-OC-URL-same-document-focus-retained.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox custom OC URL same document focus retained. Source13fef8d8; 107% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:18:20.213384+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 107,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "eecde421a7674ea8e6ee76da855662410217193b9e57bd1f96096b6a16a12714",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox-122-real-embedded-URI-native-popup-rendered-owned-PDF.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox 122 real embedded URI native popup rendered owned PDF. Source13fef8d8; 227% PDF zoom; firefox;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:18:31.423730+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 227,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "681fa07f94b432fb915949b3508fdaec7e63b8bea0b219296a1aa55927cef54a",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox157-multitouch-no-inspection.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox157 multitouch no inspection. Source13fef8d8; 109% PDF zoom; Firefox157 native software touch;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:23:03.038641+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 109,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "25d23f5d8be1381b798d01be20f27e5a27ccac00377148a523e20ebe88011547",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox157-overlapping-saved-highlight-held-copy-menu.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox157 overlapping saved highlight held copy menu. Source13fef8d8; 104% PDF zoom; Firefox157 native software touch;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:23:16.759919+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 104,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "0cc535ccd97a492efb42894c59e78f9a64951297f677716b85b77d7819f55ed6",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox157-overlapping-saved-highlight-public-copy-focus-retained.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox157 overlapping saved highlight public copy focus retained. Source13fef8d8; 104% PDF zoom; Firefox157 native software touch;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:23:17.818161+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 104,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "bcd03970022742cfa60e461f7ab334182c0869d512a7f49e65ec13c20ac62535",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox157-pending-hold-Escape-no-selection.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox157 pending hold Escape no selection. Source13fef8d8; 110% PDF zoom; Firefox157 native software touch;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:23:09.162899+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 110,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "6555f3f50de8cc9d3df300ab5dc53978cc6b321eb1296c149b56d0b60939db7c",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "databricks/docs/verification/2026-10-12-extract-label-focus/after/correction120-final-source-selected-originals/after-reviewed-correction120-firefox157-prehold-movement-no-selection.png",
+      "caption": "Owned synthetic public-PDF native UI fixture. firefox157 prehold movement no selection. Source13fef8d8; 109% PDF zoom; Firefox157 native software touch;1440\u00d71000. Technical fixtures verify UI behavior, not domain/model accuracy.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T04:22:56.536746+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "pdf_zoom": 109,
+      "pdf_zoom_unavailable_reason": null,
+      "source_commit": "13fef8d8f6fa1d0fa1cc2b9b6e94bbb29a101df1",
+      "recipe_sha256": "6735ceec8c462436ed825c7764a38f97f8a21c37524321dc7525c5e5cfd3777e",
+      "sha256": "656da8642e01da467eaf058e1b805132ec7f3fbaaf42236294a7f7b8364e271e",
+      "fixture": "Owned synthetic public-PDF native UI fixture",
+      "acceptance": "PASS for named state",
+      "limitations": [
+        "Synthetic fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    }
+  ],
+  "new_source_native_saves": 0,
+  "retained_native_creation_source": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+  "image_path_base": "repository root",
+  "root_publication_review_accepted": true
+}

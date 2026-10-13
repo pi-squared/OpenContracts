@@ -1,0 +1,28 @@
+{
+  "verified_at": "2026-10-12T18:23:00Z",
+  "issues": [120, 122],
+  "hosted_acceptance": false,
+  "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+  "assembly_recipe_sha256": "e4fa3979fc5fcf948ee053f2a4fbca5531d464e5b38bc98821fb6e711f3098d3",
+  "fixture": "Owned technical evidence fixture using unchanged public SME PDF bytes",
+  "browser_engines": ["Chromium 151.0.7922.34", "Firefox 153.0"],
+  "viewport": {"width": 1440, "height": 1000},
+  "observations": {
+    "eligible_point_candidates": 3,
+    "stationary_click_focused_labels": 0,
+    "stationary_click_source_emphasis": 0,
+    "hover_visible_labels": 1,
+    "point_and_bounds_in_pdf_viewport": true,
+    "fullscreen_viewer_dialog_ancestor_suppresses_pdf_interaction": true,
+    "plural_selection_finding_and_zoom_unchanged": true,
+    "inspection_writes": 0,
+    "model_invocations": 0
+  },
+  "retained_attempts": [
+    "Native wheel established the visible PDF region before activation after source-row expansion.",
+    "An initial Firefox asset-transport failure produced an empty body; native reload succeeded before the behavior replay.",
+    "The PDF viewport was not adjusted after the failing activation."
+  ],
+  "process_status": "Hosted query-only drivers remained open at capture; failed assertions are retained privately. Independent dense Chromium and Firefox campaigns corroborated the hover failure.",
+  "completion": "Issue 122 remains open. No hosted overlap acceptance is claimed; a maintained-source correction and fresh replay are required."
+}

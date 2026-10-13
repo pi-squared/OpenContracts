@@ -1,0 +1,85 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-settled-chromium-121-owned-edit-label-cancel.png",
+      "caption": "AFTER #121: native Cancel closes the dialog and retains focused A; no saved changes",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:52:54.706294+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "bade34eb8e7ff051baab59e3935adacf6fa2da0e92f9f186f214b5deb5768a45",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; original public PDF bytes",
+      "limitations": "Edit control opened and cancelled only; no annotation or label changes saved"
+    },
+    {
+      "image": "after-settled-chromium-121-owned-edit-label-open.png",
+      "caption": "AFTER #121: settled native Edit Label dialog visibly open; Cancel pointer hit target proven",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:51:58.093354+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "3be6379cd173cee0998199b76b7905db9bf0677fad777e0f0571e517e8634717",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; original public PDF bytes",
+      "limitations": "Edit control opened and cancelled only; no annotation or label changes saved"
+    },
+    {
+      "image": "after-settled-firefox-121-owned-edit-label-cancel.png",
+      "caption": "AFTER #121: native Cancel closes the dialog and retains focused A; no saved changes",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:52:53.643845+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "f2e0ee14db950a6618698c659532751beea28cf4e46b13c9c9d508bb132fb356",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; original public PDF bytes",
+      "limitations": "Edit control opened and cancelled only; no annotation or label changes saved"
+    },
+    {
+      "image": "after-settled-firefox-121-owned-edit-label-open.png",
+      "caption": "AFTER #121: settled native Edit Label dialog visibly open; Cancel pointer hit target proven",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:51:59.446272+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "eca64a43867186809904d6ba00109118bee62ce124c0f180f92d907febf215bb",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; original public PDF bytes",
+      "limitations": "Edit control opened and cancelled only; no annotation or label changes saved"
+    }
+  ]
+}

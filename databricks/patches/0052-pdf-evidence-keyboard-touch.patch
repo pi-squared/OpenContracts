@@ -1,0 +1,597 @@
+--- a/frontend/src/components/annotator/display/components/Selection.tsx
++++ b/frontend/src/components/annotator/display/components/Selection.tsx
+@@ -50,6 +50,7 @@
+ interface SelectionProps {
+   selected: boolean;
+   evidenceHovered?: boolean;
++  onEvidenceActivate?: (clientX: number, clientY: number) => void;
+   pageInfo: PDFPageInfo;
+   annotation: ServerTokenAnnotation;
+   showInfo?: boolean;
+@@ -121,6 +122,7 @@
+ export const Selection: React.FC<SelectionProps> = ({
+   selected,
+   evidenceHovered = false,
++  onEvidenceActivate,
+   pageInfo,
+   annotation,
+   children,
+@@ -136,7 +138,8 @@
+   const focused =
+     annotation.isEvidenceQuote && focusedEvidenceId === annotation.id;
+   const [locallyHovered, setHovered] = useState(false);
+-  const hovered = locallyHovered || evidenceHovered;
++  const [keyboardFocused, setKeyboardFocused] = useState(false);
++  const hovered = locallyHovered || evidenceHovered || keyboardFocused;
+   const hoverExitTimer = useRef<ReturnType<typeof setTimeout>>();
+   const handleHover = useCallback((active: boolean) => {
+     clearTimeout(hoverExitTimer.current);
+@@ -322,7 +325,11 @@
+         color={color}
+         bounds={bounds}
+         onHover={handleHover}
+-        foreground={locallyHovered}
++        foreground={locallyHovered || keyboardFocused}
++        evidenceTarget={annotation.isEvidenceQuote}
++        onKeyboardFocus={setKeyboardFocused}
++        keyboardFocusLocked={isEditLabelModalVisible || isEditUrlModalVisible}
++        onEvidenceActivate={onEvidenceActivate}
+         onClick={onShiftClick}
+         clickThroughOnPlainClick={isLinkAnnotation}
+         approved={approved}
+--- a/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
++++ b/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
+@@ -28,6 +28,10 @@
+   children?: React.ReactNode;
+   annotationId?: string;
+   onHover?: (hovered: boolean) => void;
++  evidenceTarget?: boolean;
++  onKeyboardFocus?: (focused: boolean) => void;
++  keyboardFocusLocked?: boolean;
++  onEvidenceActivate?: (clientX: number, clientY: number) => void;
+   onClick?: (event?: React.MouseEvent) => void;
+   /**
+    * When true, plain (non-shift) clicks also invoke ``onClick``. Used for
+@@ -111,6 +115,10 @@
+   children,
+   label,
+   onHover,
++  evidenceTarget = false,
++  onKeyboardFocus,
++  keyboardFocusLocked = false,
++  onEvidenceActivate,
+   onClick,
+   clickThroughOnPlainClick = false,
+   selected,
+@@ -191,11 +199,50 @@
+     }
+   };
+ 
++  const handleBlur = (event: React.FocusEvent) => {
++    if (keyboardFocusLocked) return;
++    const next = event.relatedTarget;
++    if (
++      next instanceof Node &&
++      (boundaryRef.current?.contains(next) ||
++        labelAnchorRef.current?.contains(next))
++    )
++      return;
++    onKeyboardFocus?.(false);
++  };
++
+   return (
+     <>
+       <BoundarySpan
+         id={`SELECTION_${id}`}
+         ref={boundaryRef}
++        role={evidenceTarget && !hidden ? "button" : undefined}
++        tabIndex={evidenceTarget && !hidden ? 0 : undefined}
++        aria-label={evidenceTarget ? "Inspect evidence" : undefined}
++        data-pdf-evidence-target={evidenceTarget ? id : undefined}
++        onFocusCapture={(event) =>
++          onKeyboardFocus?.(
++            event.target instanceof Element &&
++              event.target.matches(":focus-visible")
++          )
++        }
++        onBlurCapture={handleBlur}
++        onKeyDown={(event) => {
++          if (
++            !evidenceTarget ||
++            hidden ||
++            isCreatingAnnotation ||
++            event.target !== event.currentTarget ||
++            (event.key !== "Enter" && event.key !== " ")
++          )
++            return;
++          event.preventDefault();
++          const rect = event.currentTarget.getBoundingClientRect();
++          onEvidenceActivate?.(
++            rect.left + rect.width / 2,
++            rect.top + rect.height / 2
++          );
++        }}
+         onClick={handleClick}
+         onMouseDown={handleMouseDown}
+         onMouseEnter={
+@@ -231,6 +278,13 @@
+       {label && (
+         <BoundarySpan
+           ref={labelAnchorRef}
++          onFocusCapture={(event) =>
++            onKeyboardFocus?.(
++              event.target instanceof Element &&
++                event.target.matches(":focus-visible")
++            )
++          }
++          onBlurCapture={handleBlur}
+           onClick={handleClick}
+           onMouseDown={handleMouseDown}
+           $width={width}
+--- a/frontend/src/components/annotator/renderers/pdf/PDF.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/PDF.tsx
+@@ -1,6 +1,7 @@
+ import {
+   useEvidenceFocus,
+   useEvidenceFocusNavigation,
++  useEvidenceFocusEscape,
+ } from "../../../../hooks/useEvidenceFocus";
+ import styled from "styled-components";
+ import { PDFPageProxy } from "pdfjs-dist/types/src/display/api";
+@@ -175,6 +176,7 @@
+   /* ------------------------------------------------------------------ */
+   /* reference to the scrolling element                                 */
+   const scrollContainerRef = useAtomValue(scrollContainerRefAtom);
++  useEvidenceFocusEscape(scrollContainerRef);
+   const [pageHeights, setPageHeights] = useState<number[]>([]);
+   const allAnnotations = useAllAnnotations();
+ 
+--- a/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
+@@ -384,12 +384,17 @@
+     });
+   }, [visibleAnnotations, pageIndex]);
+ 
+-  const renderedAnnotations = useMemo(() => annots_to_render.filter(annotation =>
+-    !(selectedMessage || showSelectedOnly) || selectedAnnotations.includes(annotation.id)
+-  ), [annots_to_render, selectedMessage, showSelectedOnly, selectedAnnotations]);
+-  const { hoveredEvidenceIds, mouseHandlers } = usePdfEvidenceInteraction(
+-    canvasRef, updatedPageInfo, renderedAnnotations
++  const renderedAnnotations = useMemo(
++    () =>
++      annots_to_render.filter(
++        (annotation) =>
++          !(selectedMessage || showSelectedOnly) ||
++          selectedAnnotations.includes(annotation.id)
++      ),
++    [annots_to_render, selectedMessage, showSelectedOnly, selectedAnnotations]
+   );
++  const { hoveredEvidenceIds, mouseHandlers, activateAt } =
++    usePdfEvidenceInteraction(canvasRef, updatedPageInfo, renderedAnnotations);
+   const pageAnnotationComponents = useMemo(() => {
+     if (!hasPdfPageRendered || !zoomLevel || !pageBounds) return [];
+     return renderedAnnotations.map((annotation) => (
+@@ -399,10 +404,19 @@
+         pageInfo={updatedPageInfo}
+         annotation={annotation}
+         evidenceHovered={hoveredEvidenceIds.includes(annotation.id)}
++        onEvidenceActivate={activateAt}
+       />
+     ));
+-  }, [renderedAnnotations, selectedAnnotations, hasPdfPageRendered, zoomLevel,
+-    pageBounds, updatedPageInfo, hoveredEvidenceIds]);
++  }, [
++    renderedAnnotations,
++    selectedAnnotations,
++    hasPdfPageRendered,
++    zoomLevel,
++    pageBounds,
++    updatedPageInfo,
++    hoveredEvidenceIds,
++    activateAt,
++  ]);
+ 
+   /**
+    * Once the PDF is rendered, scroll to the first chat source (if any)
+--- a/frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx
+@@ -71,7 +71,10 @@
+   pageNumber,
+   mouseEventContainerRef,
+ }: SelectionLayerProps) => {
+-  const [pendingMouseStart, setPendingMouseStart] = useState<{ x: number; y: number } | null>(null);
++  const [pendingMouseStart, setPendingMouseStart] = useState<{
++    x: number;
++    y: number;
++  } | null>(null);
+   const location = useLocation();
+   const containerRef = useRef<HTMLDivElement>(null);
+   const scrollContainerRef = useAtomValue(scrollContainerRefAtom);
+@@ -496,10 +499,15 @@
+     const wrapper = mouseEventContainerRef?.current;
+     if (!wrapper) return;
+     const down = (event: MouseEvent) => {
+-      if (event.shiftKey || event.ctrlKey || event.metaKey || event.altKey) return;
+-      if (event.target instanceof Element && event.target.closest(
+-        "[data-annotation-label], a, button, [role=button], [role=dialog]:not(#knowledge-base-modal):not(#mobile-knowledge-base-modal), [data-testid=selection-action-menu]"
+-      )) return;
++      if (event.shiftKey || event.ctrlKey || event.metaKey || event.altKey)
++        return;
++      if (
++        event.target instanceof Element &&
++        event.target.closest(
++          "[data-annotation-label], a, button, [role=button]:not([data-pdf-evidence-target]), [role=dialog]:not(#knowledge-base-modal):not(#mobile-knowledge-base-modal), [data-testid=selection-action-menu]"
++        )
++      )
++        return;
+       handleMouseDown(event);
+     };
+     wrapper.addEventListener("mousedown", down, true);
+@@ -520,12 +528,15 @@
+       const bounds = canvas.getBoundingClientRect();
+       setSelectedAnnotations([]);
+       if (!read_only && canUpdateCorpus) setIsCreatingAnnotation(true);
+-      setLocalPageSelection({ pageNumber, bounds: {
+-        left: pendingMouseStart.x - bounds.left,
+-        top: pendingMouseStart.y - bounds.top,
+-        right: event.clientX - bounds.left,
+-        bottom: event.clientY - bounds.top,
+-      }});
++      setLocalPageSelection({
++        pageNumber,
++        bounds: {
++          left: pendingMouseStart.x - bounds.left,
++          top: pendingMouseStart.y - bounds.top,
++          right: event.clientX - bounds.left,
++          bottom: event.clientY - bounds.top,
++        },
++      });
+       setPendingMouseStart(null);
+     };
+     const up = () => setPendingMouseStart(null);
+@@ -535,14 +546,35 @@
+       document.removeEventListener("mousemove", move);
+       document.removeEventListener("mouseup", up);
+     };
+-  }, [pendingMouseStart, pageNumber, read_only, canUpdateCorpus,
+-    setIsCreatingAnnotation, setSelectedAnnotations]);
++  }, [
++    pendingMouseStart,
++    pageNumber,
++    read_only,
++    canUpdateCorpus,
++    setIsCreatingAnnotation,
++    setSelectedAnnotations,
++  ]);
+ 
+   /**
+    * Handles touch start for mobile long press detection
+    */
++  const handleTouchCancel = useCallback(() => {
++    if (longPressTimer) clearTimeout(longPressTimer);
++    setLongPressTimer(null);
++    setTouchStartPos(null);
++    if (isLongPressActive) {
++      setLocalPageSelection(undefined);
++      setIsCreatingAnnotation(false);
++    }
++    setIsLongPressActive(false);
++  }, [longPressTimer, isLongPressActive, setIsCreatingAnnotation]);
++
+   const handleTouchStart = useCallback(
+-    (event: React.TouchEvent<HTMLDivElement>) => {
++    (event: React.TouchEvent<HTMLDivElement> | TouchEvent) => {
++      if (event.touches.length !== 1) {
++        handleTouchCancel();
++        return;
++      }
+       if (containerRef.current === null) {
+         throw new Error("No Container");
+       }
+@@ -618,6 +650,7 @@
+       setSelectedAnnotations,
+       setIsCreatingAnnotation,
+       showActionMenu,
++      handleTouchCancel,
+     ]
+   );
+ 
+@@ -625,8 +658,11 @@
+    * Handles touch move - cancels long press if moved too much, or updates selection if active
+    */
+   const handleTouchMove = useCallback(
+-    (event: React.TouchEvent<HTMLDivElement>) => {
+-      if (event.touches.length !== 1) return;
++    (event: React.TouchEvent<HTMLDivElement> | TouchEvent) => {
++      if (event.touches.length !== 1) {
++        handleTouchCancel();
++        return;
++      }
+ 
+       const touch = event.touches[0];
+ 
+@@ -677,6 +713,7 @@
+       localPageSelection,
+       containerRef,
+       pageNumber,
++      handleTouchCancel,
+     ]
+   );
+ 
+@@ -684,7 +721,11 @@
+    * Handles touch end - finalize selection if active
+    */
+   const handleTouchEnd = useCallback(
+-    (event: React.TouchEvent<HTMLDivElement>) => {
++    (event: React.TouchEvent<HTMLDivElement> | TouchEvent) => {
++      if (event.touches.length) {
++        handleTouchCancel();
++        return;
++      }
+       // Clear long press timer if still running
+       if (longPressTimer) {
+         clearTimeout(longPressTimer);
+@@ -696,6 +737,9 @@
+ 
+       // If long press was active and we have a selection, finalize it
+       if (isLongPressActive && localPageSelection) {
++        // An admitted native hold owns the gesture and its compatibility click.
++        event.preventDefault();
++        event.stopPropagation();
+         const pageNum = pageNumber;
+ 
+         setMultiSelections((prev) => {
+@@ -727,8 +771,60 @@
+       localPageSelection,
+       pageNumber,
+       setIsCreatingAnnotation,
++      handleTouchCancel,
+     ]
+   );
++
++  useEffect(() => {
++    const wrapper = mouseEventContainerRef?.current;
++    if (!wrapper) return;
++    const start = (event: TouchEvent) => {
++      if (
++        event.target instanceof Element &&
++        event.target.closest(
++          "[data-annotation-label], a, button, [role=button]:not([data-pdf-evidence-target]), [role=dialog]:not(#knowledge-base-modal):not(#mobile-knowledge-base-modal), [data-testid=selection-action-menu]"
++        )
++      )
++        return;
++      handleTouchStart(event);
++    };
++    const move = (event: TouchEvent) => {
++      if (touchStartPos || isLongPressActive) handleTouchMove(event);
++    };
++    const end = (event: TouchEvent) => {
++      if (touchStartPos || isLongPressActive) handleTouchEnd(event);
++    };
++    wrapper.addEventListener("touchstart", start, {
++      capture: true,
++      passive: false,
++    });
++    wrapper.addEventListener("touchmove", move, {
++      capture: true,
++      passive: false,
++    });
++    wrapper.addEventListener("touchend", end, {
++      capture: true,
++      passive: false,
++    });
++    wrapper.addEventListener("touchcancel", handleTouchCancel, {
++      capture: true,
++      passive: false,
++    });
++    return () => {
++      wrapper.removeEventListener("touchstart", start, true);
++      wrapper.removeEventListener("touchmove", move, true);
++      wrapper.removeEventListener("touchend", end, true);
++      wrapper.removeEventListener("touchcancel", handleTouchCancel, true);
++    };
++  }, [
++    mouseEventContainerRef,
++    handleTouchStart,
++    handleTouchMove,
++    handleTouchEnd,
++    touchStartPos,
++    isLongPressActive,
++    handleTouchCancel,
++  ]);
+ 
+   /**
+    * Handles the mouse move event to update the selection.
+@@ -803,10 +899,20 @@
+   // Handle ESC key during selection
+   useEffect(() => {
+     const handleEscapeDuringSelection = (event: KeyboardEvent) => {
+-      if (event.key === "Escape" && localPageSelection) {
++      if (
++        event.key === "Escape" &&
++        !event.defaultPrevented &&
++        (localPageSelection ||
++          pendingMouseStart ||
++          touchStartPos ||
++          isLongPressActive ||
++          pageQueuedSelections.length > 0)
++      ) {
+         event.preventDefault();
+         event.stopPropagation();
+         setLocalPageSelection(undefined);
++        setPendingMouseStart(null);
++        setTouchStartPos(null);
+         setIsCreatingAnnotation(false);
+         setMultiSelections({});
+         setIsLongPressActive(false);
+@@ -817,13 +923,27 @@
+       }
+     };
+ 
+-    if (localPageSelection) {
++    if (
++      localPageSelection ||
++      pendingMouseStart ||
++      touchStartPos ||
++      isLongPressActive ||
++      pageQueuedSelections.length > 0
++    ) {
+       document.addEventListener("keydown", handleEscapeDuringSelection);
+       return () => {
+         document.removeEventListener("keydown", handleEscapeDuringSelection);
+       };
+     }
+-  }, [localPageSelection, setIsCreatingAnnotation, longPressTimer]);
++  }, [
++    localPageSelection,
++    pendingMouseStart,
++    touchStartPos,
++    isLongPressActive,
++    pageQueuedSelections.length,
++    setIsCreatingAnnotation,
++    longPressTimer,
++  ]);
+ 
+   // Document-level mouseup / mousemove during an in-progress selection so
+   // gestures that release (or drift) over an overlapping fixed-positioned
+@@ -964,9 +1084,10 @@
+       }}
+       onMouseMove={localPageSelection ? handleMouseMove : undefined}
+       onMouseUp={handleMouseUp}
+-      onTouchStart={handleTouchStart}
+-      onTouchMove={handleTouchMove}
+-      onTouchEnd={handleTouchEnd}
++      onTouchStart={!mouseEventContainerRef ? handleTouchStart : undefined}
++      onTouchMove={!mouseEventContainerRef ? handleTouchMove : undefined}
++      onTouchEnd={!mouseEventContainerRef ? handleTouchEnd : undefined}
++      onTouchCancel={!mouseEventContainerRef ? handleTouchCancel : undefined}
+       style={{
+         position: "absolute",
+         top: 0,
+--- a/frontend/src/components/knowledge_base/document/FloatingDocumentControls.tsx
++++ b/frontend/src/components/knowledge_base/document/FloatingDocumentControls.tsx
+@@ -376,6 +376,24 @@
+           setExpandedWidthMenu(false);
+         }
+       }, [showRightPanel]);
++
++      // Native settings/width menus own Escape before PDF inspection.
++      useEffect(() => {
++        if (
++          !visible ||
++          (!expandedSettings && !(expandedWidthMenu && showRightPanel))
++        )
++          return;
++        const escape = (event: KeyboardEvent) => {
++          if (event.key !== "Escape" || event.defaultPrevented) return;
++          event.preventDefault();
++          event.stopPropagation();
++          setExpandedSettings(false);
++          setExpandedWidthMenu(false);
++        };
++        document.addEventListener("keydown", escape);
++        return () => document.removeEventListener("keydown", escape);
++      }, [visible, showRightPanel, expandedSettings, expandedWidthMenu]);
+ 
+       // Add logging for early return
+       if (!visible) {
+--- a/frontend/src/components/knowledge_base/document/LayoutComponents.tsx
++++ b/frontend/src/components/knowledge_base/document/LayoutComponents.tsx
+@@ -33,7 +33,8 @@
+       const dialog = dialogRef.current;
+       if (!open || !dialog) return;
+       const launcher =
+-        document.activeElement instanceof HTMLElement
++        document.activeElement instanceof HTMLElement ||
++        document.activeElement instanceof SVGElement
+           ? document.activeElement
+           : null;
+       childDialogStack.push(dialog);
+--- a/frontend/src/components/knowledge_base/document/unified_feed/CollapsibleAnnotationControls.tsx
++++ b/frontend/src/components/knowledge_base/document/unified_feed/CollapsibleAnnotationControls.tsx
+@@ -292,6 +292,8 @@
+   useEffect(() => {
+     const handleEscape = (event: KeyboardEvent) => {
+       if (event.key === "Escape") {
++        event.preventDefault();
++        event.stopPropagation();
+         setIsOpen(false);
+       }
+     };
+@@ -318,6 +320,7 @@
+         whileHover={{ scale: 1.02 }}
+         whileTap={{ scale: triggerMode === "click" ? 0.98 : 1 }}
+         data-testid="annotation-controls-toggle"
++        aria-expanded={isOpen}
+         style={{
+           cursor: triggerMode === "click" ? "pointer" : "default",
+           position: "relative",
+--- a/frontend/src/components/widgets/buttons/RadialButtonCloud.tsx
++++ b/frontend/src/components/widgets/buttons/RadialButtonCloud.tsx
+@@ -173,6 +173,15 @@
+ 
+   const { height, width } = useWindowDimensions();
+   const cloudRef = useRef<HTMLDivElement | null>(null);
++  const launcherRef = useRef<HTMLDivElement | null>(null);
++  const returnToLauncher = useRef(false);
++
++  useEffect(() => {
++    if (!confirmModal.open && returnToLauncher.current) {
++      returnToLauncher.current = false;
++      launcherRef.current?.focus();
++    }
++  }, [confirmModal.open]);
+ 
+   const handleClickOutside = (event: MouseEvent) => {
+     if (
+@@ -276,9 +285,39 @@
+   const dotColor = getContrastColor(parentBackgroundColor);
+ 
+   return (
+-    <div style={{ position: "relative", display: "inline-block" }}>
++    <div
++      style={{ position: "relative", display: "inline-block" }}
++      onKeyDown={(event) => {
++        if (event.key !== "Escape" || !cloudVisible || confirmModal.open)
++          return;
++        event.preventDefault();
++        event.stopPropagation();
++        setCloudVisible(false);
++        launcherRef.current?.focus();
++      }}
++    >
+       <PulsingDot
++        ref={launcherRef}
+         className="pulsing-dot"
++        role="button"
++        tabIndex={0}
++        aria-label="Annotation actions"
++        aria-expanded={cloudVisible}
++        onClick={(event) => {
++          event.stopPropagation();
++          setCloudVisible((visible) => !visible);
++        }}
++        onKeyDown={(event) => {
++          if (event.key === "Enter" || event.key === " ") {
++            event.preventDefault();
++            event.stopPropagation();
++            setCloudVisible((visible) => !visible);
++          } else if (event.key === "Escape" && cloudVisible) {
++            event.preventDefault();
++            event.stopPropagation();
++            setCloudVisible(false);
++          }
++        }}
+         onMouseEnter={() => setCloudVisible(true)}
+         $backgroundColor={dotColor}
+       />
+@@ -313,6 +352,9 @@
+           <Button
+             variant="danger"
+             onClick={() => {
++              // Cancellation removes the action button that opened the dialog.
++              // Restore the persistent launcher after the child modal releases focus.
++              returnToLauncher.current = true;
+               setConfirmModal({ ...confirmModal, open: false });
+               setCloudVisible(false);
+             }}

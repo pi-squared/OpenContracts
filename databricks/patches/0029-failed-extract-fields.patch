@@ -1,0 +1,62 @@
+--- a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
++++ b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+@@ -171,6 +171,7 @@
+ }) => {
+   const [isPopupOpen, setIsPopupOpen] = useState(false);
+   const [isEditing, setIsEditing] = useState(false);
++  const [failureOpen, setFailureOpen] = useState(false);
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   const [isOriginalModalOpen, setIsOriginalModalOpen] = useState(false);
+   const [showRawJson, setShowRawJson] = useState(false);
+@@ -392,6 +393,12 @@
+   const findingValue = findingFrom(displayedValue);
+ 
+   const displayValue = () => {
++    if (cellStatus?.error) return (
++      <div role="status">
++        <strong>Extraction failed</strong>
++        <Button size="sm" variant="secondary" aria-label={`View failure: ${column.name}`} onClick={() => setFailureOpen(true)}>View failure</Button>
++      </div>
++    );
+     if (findingValue && !cellStatus?.isLoading && !cellStatus?.error) {
+       return (
+         <FindingPreview
+@@ -449,6 +456,15 @@
+ 
+   return (
+     <CellContainer ref={cellRef} style={{ background: getCellBackground() }}>
++      <Modal open={failureOpen} onClose={() => setFailureOpen(false)}>
++        <ModalHeader>Extraction failed: {column.name}</ModalHeader>
++        <ModalBody>
++          <p>No finding was produced for this field in {extract.name}.</p>
++          {cell?.failed && <p>Failed at {new Date(cell.failed).toLocaleString()}.</p>}
++          <p>Successful fields remain available for review. Check the extraction configuration, then use Iterations to create a new run. Opening this notice does not rerun extraction.</p>
++        </ModalBody>
++        <ModalFooter><Button onClick={() => setFailureOpen(false)}>Close</Button></ModalFooter>
++      </Modal>
+       <div style={{ minWidth: 0 }}>
+         {displayValue()}
+         {evidenceIntent === "sources" &&
+@@ -481,7 +497,7 @@
+         </Button>
+       )}
+       {cellStatus?.isLoading && <div className="cell-loader">Loading...</div>}
+-      {!cellStatus?.isLoading && isExtractComplete && (
++      {!cellStatus?.isLoading && !cellStatus?.error && isExtractComplete && (
+         <>
+           <StatusDot
+             ref={statusDotRef}
+--- a/frontend/src/views/ExtractDetail.tsx
++++ b/frontend/src/views/ExtractDetail.tsx
+@@ -806,6 +806,11 @@
+           </Actions>
+         </Header>
+ 
++        {isComplete && cells.some((cell) => cell.failed) && (
++          <div role="status" style={{ padding: 12, background: "#fff4e5" }}>
++            Extraction finished with {cells.filter((cell) => cell.failed).length} failed field(s). Successful fields remain available for review.
++          </div>
++        )}
+         {/* Stats */}
+         <StatsSection>
+           <StatGrid columns={4}>

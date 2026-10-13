@@ -1,0 +1,10 @@
+--- a/frontend/src/components/widgets/modals/CreateExtractModal.tsx
++++ b/frontend/src/components/widgets/modals/CreateExtractModal.tsx
+@@ -588,7 +588,6 @@
+                   value={name}
+                   onChange={(e) => setName(e.target.value)}
+                   disabled={isLoading}
+-                  autoFocus
+                 />
+               </InputWrapper>
+               <HelperText>

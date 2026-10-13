@@ -83,6 +83,146 @@
     {
       "path": "patches/0020-source-bound-docling-jobs.patch",
       "sha256": "f52dc55e7cc6bb353403cb76a54b58ae9851e6e1cfd8d173bde0eb5ef14ff4bd"
+    },
+    {
+      "path": "patches/0021-port-startup-without-demo-consent.patch",
+      "sha256": "38a5ab10dfdffbbc13e0b62322023e3c6f730f17287425f29b7e221958440a27"
+    },
+    {
+      "path": "patches/0022-keyboard-dialogs.patch",
+      "sha256": "10a463b392b1b0be1af65c030594a4510075809f4397055511fc4d82d8e76581"
+    },
+    {
+      "path": "patches/0023-document-search-empty-state.patch",
+      "sha256": "6812c5f564c4c0efab16a614cf6260fb2693ce327accc165081027556f645266"
+    },
+    {
+      "path": "patches/0024-label-set-search.patch",
+      "sha256": "e86760f9dbe8484c6224062f9595d1cf7510e319b652eb221b6cca226ea45bf8"
+    },
+    {
+      "path": "patches/0025-title-search.patch",
+      "sha256": "05c0b89c1607e4f8a1156f18c2f8286e604e4f6811bb9e56b8eca7a84e9f2927"
+    },
+    {
+      "path": "patches/0026-corpus-library-sort.patch",
+      "sha256": "e1fd4a34b10dfa53a570b312f7feb43307fa4fd83278ed2e3603a244eefef90a"
+    },
+    {
+      "path": "patches/0027-extract-progress.patch",
+      "sha256": "816e7c525b5f1dae3653da1d502a8864bf9657fe9eec4b9213f9af3d72ef5d41"
+    },
+    {
+      "path": "patches/0028-extract-original-pdf.patch",
+      "sha256": "4d61e9b85918aee3563d2e7c67ef9ffdaf7aa1d6ece13ff6fd2dab5c91c6151d"
+    },
+    {
+      "path": "patches/0029-failed-extract-fields.patch",
+      "sha256": "83b6add08f05161c0337f502642c7143d705cf00d7ad8747c01699d4c71c780e"
+    },
+    {
+      "path": "patches/0030-extract-source-route-fields.patch",
+      "sha256": "ff7cb49eda85ffe29e4f0b07a044185ff7c1280c6312f3bc26a839bcad671d45"
+    },
+    {
+      "path": "patches/0031-extract-tab-downloads.patch",
+      "sha256": "fc9b23cb87a44cb7381ff4b788484603b8e0da64dd7da567fe5f6a56e9757ae4"
+    },
+    {
+      "path": "patches/0032-mobile-source-focus.patch",
+      "sha256": "6b4132b0402829e79bf8f259fa63b13ddcd379377a3ad413a796a5ba3533909d"
+    },
+    {
+      "path": "patches/0033-extract-panel-loading.patch",
+      "sha256": "20ae0b84ba38a73bafd0e7a170d1ded585470e97226d4e4061a17415df4ee5ed"
+    },
+    {
+      "path": "patches/0034-corpus-summary-edit.patch",
+      "sha256": "0b02b2dcc43df6525c0f124239498e665ad632dfaad0a39525fb52c6f13838d3"
+    },
+    {
+      "path": "patches/0035-readable-pdf-labels.patch",
+      "sha256": "c9b657e305e7bac402e754f25b807c031afe39560958c64e420d2ca9494df200"
+    },
+    {
+      "path": "patches/0036-ui-type-contracts.patch",
+      "sha256": "d4e9fd0b193ec17b2b48a6a896a38c1c4b77e5cc1fb0330779947a37d9933d2d"
+    },
+    {
+      "path": "patches/0037-ui-recovery-details.patch",
+      "sha256": "4de7083e6a464096f761edbf29f8b9a70ea0c7abd77f01974363e1610d48399b"
+    },
+    {
+      "path": "patches/0038-ui-format-and-edge-states.patch",
+      "sha256": "2a467e0fd04b8ed09cc2140b21567c29a1208f56eb2ed24a595b4c94c2d4758f"
+    },
+    {
+      "path": "patches/0039-dialog-launcher-focus.patch",
+      "sha256": "f1f6cb9fca45396f5c34a4d3b64b6939a7dcf1ccdaf10098a0e0d846aed4c660"
+    },
+    {
+      "path": "patches/0040-extract-pdf-availability-query.patch",
+      "sha256": "0864139649445a192552b7b35c4948e44e0d2975258d545f4d06c4a08aa1f51c"
+    },
+    {
+      "path": "patches/0041-tree-sort-queryset-contract.patch",
+      "sha256": "abde0c4d22502da5c7472d057c50e0057bad128be157f57292885b599eb9d00d"
+    },
+    {
+      "path": "patches/0042-extract-close-accessible-name.patch",
+      "sha256": "fcf1d1724c830224df0eabb7f39b9ea31dc20c29c0f1142b3d8b4dbc46ce806c"
+    },
+    {
+      "path": "patches/0043-upload-search-cache-refresh.patch",
+      "sha256": "86d8d94a4aa2bf18437aac5a0fa3bb24fcdb4f341428e4bab63d6e05ea2724cf"
+    },
+    {
+      "path": "patches/0044-canonical-corpus-summary-save.patch",
+      "sha256": "50246ff6da5d998342a724f497bd5dd69003f86791e329a216def268fb725b94"
+    },
+    {
+      "path": "patches/0045-extract-completion-wording.patch",
+      "sha256": "d3796cb5927bb6a95dc15db88507937c4d668be1f2140e9b46c7275b15b9e484"
+    },
+    {
+      "path": "patches/0046-nested-extract-dialogs.patch",
+      "sha256": "d9233950e041b430ecc53c5f556aebb6610512b8cd7fe71ae662eeb222fe51a2"
+    },
+    {
+      "path": "patches/0047-shared-extract-behavior.patch",
+      "sha256": "762c609002aa719226332e086c75410ddeae18a43ea048c0b302a2c705801bf4"
+    },
+    {
+      "path": "patches/0048-selected-document-row-label.patch",
+      "sha256": "288b6cf3b3b0cd02b59ddedc13cb30781c5c6ff0cbde576b5626d738f5a9cf33"
+    },
+    {
+      "path": "patches/0049-extract-evidence-focus.patch",
+      "sha256": "e88203fa4dec3e6177ef8f78779ae9c1d3430bf1092cadeae26acae4ca0c1ed0"
+    },
+    {
+      "path": "patches/0050-pdf-evidence-mouse-inspection.patch",
+      "sha256": "b77422bdd64b23e2eed65e5ceea1cbc166284ea3eead468669df21bf12c2c97b"
+    },
+    {
+      "path": "patches/0051-extract-evidence-lifecycle.patch",
+      "sha256": "6a847f424e5c473bfd97ff0f55d2ffe23b5083b5cacd59dade160ef887aa8ecf"
+    },
+    {
+      "path": "patches/0052-pdf-evidence-keyboard-touch.patch",
+      "sha256": "fbe8364e31057590b5d8d9b75aa7859c1474dd1046f26290619e3b29d402c7ca"
+    },
+    {
+      "path": "patches/0053-pdf-evidence-review-conventions.patch",
+      "sha256": "a2902e4b94c96e1594f1023970bdd47b7d90feeb8d36cf8743596e9680c28bbf"
+    },
+    {
+      "path": "patches/0054-retained-partial-extract-results.patch",
+      "sha256": "e56172c2504475ea069a743e47cc9abbedb76d071fdf834b815180d1b1051f03"
+    },
+    {
+      "path": "patches/0055-shared-extract-outcome-notice.patch",
+      "sha256": "a1ae5ef1dcfe260a045f4a00400354ce63ebc22a55ad50910e52acbcfb333cf2"
     }
   ],
   "unchanged_stock_files": {
@@ -119,7 +259,17 @@
     {
       "source": "port/python/databricks_port/lakebase.py",
       "target": "databricks_port/lakebase.py",
-      "sha256": "598230502bae36ae1fab89747bebd3d3a5e7c22f397ba8d6406d5a2350f8c0bb"
+      "sha256": "c1937db944ec489cb85c1e96208c545d3f991912f31cb692324a343e085b0316"
+    },
+    {
+      "source": "tools/database_privileges.py",
+      "target": "databricks_port/database_privileges.py",
+      "sha256": "fc1ea0d45d0475847fb9e9bdf3b6f35398a0a070eb72f4d48eac4e338c905db4"
+    },
+    {
+      "source": "port/python/databricks_port/startup.py",
+      "target": "databricks_port/startup.py",
+      "sha256": "8e71ecafdede219ae8303662d2f72f35ed6bdfdcb38599e0a694c0340ae063dd"
     },
     {
       "source": "port/python/databricks_port/settings.py",
@@ -154,7 +304,7 @@
     {
       "source": "port/runtime/app.py",
       "target": "app.py",
-      "sha256": "069e2c5b1a9dc8ff5da0b7f9aa5e3d564d1cb6f0b5119ba8ef37f3467fa0c15f"
+      "sha256": "eabccb5cef1a5f4cd40b84fd048d26c2d39d683b690f02b127a19e86c033b371"
     },
     {
       "source": "port/python/databricks_port/retained_parser.py",
@@ -219,7 +369,7 @@
     {
       "source": "port/python/databricks_port/definitions.py",
       "target": "databricks_port/definitions.py",
-      "sha256": "9bb5d1bf6222bf5ed38a02ba748c78b31a2608569e1b89c4cba00fda9d38c132"
+      "sha256": "6fb0a2d198f184f1f46e08662a3c90a02f5f982615903e4167137fdd7600aa28"
     },
     {
       "source": "port/python/databricks_port/quote_repair.py",
@@ -275,14 +425,49 @@
       "source": "port/python/docling_job_parser.py",
       "target": "opencontractserver/pipeline/parsers/docling_job_parser.py",
       "sha256": "28484a466e49cb45cd163ee7503a41d6aab39639f47f7c9e9dfe9a8109e83f00"
+    },
+    {
+      "source": "port/frontend/useDialogFocus.ts",
+      "target": "frontend/src/hooks/useDialogFocus.ts",
+      "sha256": "0a921b824e5ddd1fe910520fec8544ef1d645f6df6b7cdcd48bdeb2736dda3ef"
+    },
+    {
+      "source": "port/frontend/extractDownloads.ts",
+      "target": "frontend/src/utils/extractDownloads.ts",
+      "sha256": "f5054df85ef5732beb30505cb9b4b2e12b121c99559b2a4794494810c1bfe4dd"
+    },
+    {
+      "source": "port/frontend/useAnnotationLabelLayout.ts",
+      "target": "frontend/src/hooks/useAnnotationLabelLayout.ts",
+      "sha256": "a960636c1afe2078f0964f863626228824978f47140b801baa41cdb03ca12915"
+    },
+    {
+      "source": "port/frontend/extractDetails.ts",
+      "target": "frontend/src/utils/extractDetails.ts",
+      "sha256": "4a31064a62171f265da7c0eaad255df718ba183660b2ac0a710809264d67e0a7"
+    },
+    {
+      "source": "port/frontend/useEvidenceFocus.ts",
+      "target": "frontend/src/hooks/useEvidenceFocus.ts",
+      "sha256": "b52552025a51a9c4d617f7a54ab52ecefe855950e9f6d814bc4a54e81926b303"
+    },
+    {
+      "source": "port/frontend/usePdfEvidenceInteraction.ts",
+      "target": "frontend/src/hooks/usePdfEvidenceInteraction.ts",
+      "sha256": "c4b292c4c43dec209b0e5ff41c37140bd24ee5d3436a638b94c0715a8b1655ed"
+    },
+    {
+      "source": "port/frontend/pdfEvidenceInteraction.ts",
+      "target": "frontend/src/utils/pdfEvidenceInteraction.ts",
+      "sha256": "53614e03f2c217e1b00e5636949792c4ce813dc39981a7d33dbc49f62291afda"
     }
   ],
   "patched_files": {
     "config/graphql/extract_mutations.py": "9f7352e8a62b30ce5d915b88a2544ad46beff3cc76cc8a4ec0058f22281f4d3b",
     "config/graphql/extract_types.py": "0b4ef31627195858ac00d75ea21a6dc2eb2afd96ca0b7061e7a3bdb8f73d364c",
-    "frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx": "405c519cb60694f1af4cc06c699054540e237b72098e29211187788208abde40",
-    "frontend/src/graphql/queries.ts": "a41b034fe2a460a82920347f8f64c29fb3d4ab53f342cda7b98f2f32895da460",
-    "frontend/src/routing/CentralRouteManager.tsx": "0ae8119906219f031106dfdd79e35f71afcf11d9f1d653fabe1925a242bd2752",
+    "frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx": "52f48294dedae672098dcbfa9072aace91b3d73562ce026205d77d01315c483d",
+    "frontend/src/graphql/queries.ts": "f2fe31100efe493281fb7052f7202662bad3ff78bfaf2b858d9742b3929c9cd7",
+    "frontend/src/routing/CentralRouteManager.tsx": "175dcf04e52d7922c50f41b8c10bee5220e9e777e0ae144a8c0d934e617af1c0",
     "frontend/src/types/graphql-api.ts": "538b38af1d4d6ad0d274654d15fc0828abeaf5b314855c6d5118bc8dcdad5a02",
     "opencontractserver/annotations/migrations/0066_reset_database_level_hnsw_settings.py": "689085b4377a76ff6b0b88381d705acbcbcf50d3bf877507da1b41fec02fdb71",
     "opencontractserver/constants/llm.py": "508fc3cc860a2e1f673cac1c27e04c254f86b24f1d8de73e6e6c203b1e6c7395",
@@ -293,26 +478,26 @@
     "opencontractserver/utils/etl.py": "54a5352786453da7656ad8452e34a0a3bcb5c068da2bb63ab420047ab4edc26e",
     "opencontractserver/utils/structural_sets.py": "631a191e3b64f6820e15a3d2fcc8edf44207fbbfcac6368545ac8a4c1dd39bf6",
     "frontend/src/graphql/mutations.ts": "e13c9c4e93f2da877b602cb0047980243ded3531487b86de9fb26dcdaf52dfb0",
-    "frontend/src/components/extracts/datagrid/DataGrid.tsx": "32d2105f26fc7a2ff557b6f83d1121cfefdeb86b9ddd57f8220fe244a7f049a8",
+    "frontend/src/components/extracts/datagrid/DataGrid.tsx": "ace61ba7a0be8353a95b0ab31a78a8df054e1bdcca07741e25606c1ca0d8ff06",
     "frontend/src/components/annotator/components/modals/EditLabelModal.tsx": "99bfe818c44db21fc3271daaf317d4b3b19aa8bdbcc6aafcb399717b3c88ef49",
-    "frontend/src/components/annotator/display/components/Selection.tsx": "03509979923337be2f632d98a4455ca3ed89e04c35299c23d2204b73e1bd1291",
+    "frontend/src/components/annotator/display/components/Selection.tsx": "2b3a0637555948c79a86937c3bfeda60788826833c01ff61e434ec3dcb7a1a32",
     "frontend/src/components/annotator/hooks/useAllAnnotations.ts": "6a31e9a0dbc3d8d51e74252ed8c5b2262ce5191f34fa7ff6777e0ecf20316dfb",
     "frontend/src/components/annotator/labels/EnhancedLabelSelector.tsx": "1f32b28dc2eeaa5d72c45eb34f6c6f8ad2e5af59737573bd033270e80344ac05",
     "frontend/src/components/annotator/labels/view_labels_selector/ViewLabelSelector.tsx": "a2b82be089e9b36881f9394c5747a2857195e2bf6fa7dad4da401d6f0b1850a8",
-    "frontend/src/components/annotator/renderers/pdf/PDF.tsx": "7fb01f48ce8ed20a5bace2d38c66aaaf4dffdf15398f548d439309c21073cb93",
-    "frontend/src/components/annotator/renderers/pdf/PDFPage.tsx": "c83519368744c26d71f6cd90265f78bcca4483518e7fc63d0807c0cfb0a150f1",
-    "frontend/src/components/annotator/sidebar/HighlightItem.tsx": "f58d72dd54e723030e37343e8e228bc72747299ae3732f52c135dcdfa2c3447c",
-    "frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx": "ed416175b060f99534377c31a1a94006725b8d1357d8ebc8d54d3c66b26cc366",
+    "frontend/src/components/annotator/renderers/pdf/PDF.tsx": "42e59acbb8b99f118a5b92fa01ae1dd08f967469b4607bb78db82804e1d15067",
+    "frontend/src/components/annotator/renderers/pdf/PDFPage.tsx": "77c8322968cc2ef2a16979df12e4683aade696cad50870e265999ca76b47b221",
+    "frontend/src/components/annotator/sidebar/HighlightItem.tsx": "f47f9c0a2cdf5ef03e22c1f64ec496aa696dfa3818870feb3b1ffe14608a6395",
+    "frontend/src/components/annotator/sidebar/SingleDocumentExtractResults.tsx": "a16f69afe82c780b805b6f3e90aab107bbafab0668249093ff228503a0b5aa0f",
     "frontend/src/components/annotator/types/annotations.ts": "50f5ffacabc3b8f7a2a21330db4dc09e627e9d1e1e66216c6fa6d1241a6b7ae2",
     "frontend/src/components/documents/CorpusDocumentCards.tsx": "cece59fdbe6125408752165b06f7072b1b051a171be05543ee989d3ad5cf89cf",
     "frontend/src/components/extracts/datagrid/FindingView.tsx": "0a133273954c24369da2e94a89b6da1e94d67b16929ad1d57ee8808c0313d380",
-    "frontend/src/components/knowledge_base/document/LayoutComponents.tsx": "ad6783bd4b06647147ea5b55624333de04798105cd930d26403859a1baee6e0e",
+    "frontend/src/components/knowledge_base/document/LayoutComponents.tsx": "714e8a84cbcf766956d3a73a61abc06a0396a26575da15bf62221cc62d62b22a",
     "frontend/src/components/knowledge_base/document/ZoomControls.tsx": "1da97705e6366e5ac3ab1f1a3ddbcc1d88fa7469e018ec5169cc2b5b747132ee",
-    "frontend/src/components/knowledge_base/document/layouts/DesktopDocumentLayout.tsx": "4eba3a1b299878db9e3f5e24646301241da7ddf5f5cffc7bddd9f72d8abfb122",
-    "frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx": "67ffe81a4e3054b57590ab9b7877b1f1be126a0b1a581a6c21432a208ab4b37e",
+    "frontend/src/components/knowledge_base/document/layouts/DesktopDocumentLayout.tsx": "5d01c7355f472297122d61e8ab33ddbeada4e9101d5ffe43993fe48c042145e8",
+    "frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx": "b6ecae374f94601f257f5d6020b192c56127c80acffc0e7aa0ef2d9232adb977",
     "frontend/src/components/knowledge_base/document/layouts/mobile/MobileDocToolbar.tsx": "a69b381a540aa87bdfe4c0e0e7b4c4d2b4a1d8a3d3d1cfdc1ceb1b1492ef1f81",
     "frontend/src/components/knowledge_base/document/unified_feed/RelationshipActionModal.tsx": "3a2ab0aa4b73d60ef239de33423eec0ae6c1a474393530bb7cedc23e02124f6c",
-    "frontend/src/components/widgets/buttons/RadialButtonCloud.tsx": "de4afc44680c8419482700840389efffbc2c5e0d5278a37d972384b513b97282",
+    "frontend/src/components/widgets/buttons/RadialButtonCloud.tsx": "2b7dfb34db9552c356d97effdd614e611a16f3d6f548a6f06f62e3fd589d7540",
     "frontend/src/components/widgets/model-filters/FilterToLabelSelector.tsx": "c1f1899b17ef7366a078dc7b06de0545f600f039e573dab7f412e52fde85eda5",
     "frontend/src/utils/navigationUtils.ts": "5eb38df2a264a1b97a1b76eb8d915d0d6f07a2f108ca3700e6ffc6e20ceebea8",
     "frontend/src/utils/transform.tsx": "670c0b1588697495088a40422bc4bda50823396cd210638fb7b3c6dc40c4cfb0",
@@ -322,19 +507,47 @@
     "config/graphql/document_types.py": "4c2af1a5329f090f3c07e91314905776b004ff927fc6c043b111913c4bd09f30",
     "opencontractserver/corpuses/models.py": "b1e8c97ceb02f49dd642e0653bf3834b9972a6246f47d588b5781fa3daddac67",
     "opencontractserver/annotations/services/annotation_service.py": "b5edcb4afe18d59104692f8ee7f94727b078dee23735c9502e43327e8f2f2bde",
-    "frontend/src/assets/configurations/constants.ts": "7ed0c7896b2eb0eb3a936c1199ab9826a2612633ddd1bf66a8acf44516f66512",
+    "frontend/src/assets/configurations/constants.ts": "5214cfe8bca243f68097061b0471aaac6088998e8de74b2412bca48d47791179",
     "frontend/src/components/annotator/hooks/useVisibleAnnotations.ts": "078036cba37b05b56249f9c34a41fed1d8051bc9680fd3f6258310bf133b1b3f",
     "frontend/src/utils/annotationVisibility.ts": "2178681d44a055637e4517b338770698d27c143e74329e8c0e61f5eb8a8dbd19",
-    "frontend/src/utils/extractUtils.ts": "cefcce68064305bc14ff428afd04f161277ac77e39c5085f4d01afe47589a6ee",
+    "frontend/src/utils/extractUtils.ts": "52fea3a8abc08c9e880b19ca9923fdd31a6db6b82eebf0eaa992c4ab3b0fb175",
     "frontend/src/components/knowledge_base/document/document_kb/useDocumentLoader.ts": "e80c5a0055000a0bb8c5f254302029ba601bccfd6e67e9fafc1447fdd76c1e08",
-    "frontend/src/components/annotator/hooks/AnalysisHooks.tsx": "d9a5102e0a4b24e710cd9db4863772371a3a848a3e2fb03cf35df7ab7e70fd81",
+    "frontend/src/components/annotator/hooks/AnalysisHooks.tsx": "61cb55afb97f7cf687b5c83d690fe16e71dfb47e8da4c466e8c534ba031fdf28",
     "config/graphql/schema.graphql": "56cbbba5c1981e8122dea4dbd8f336271e5248217307f36c15195590a0b77daa",
     "opencontractserver/users/signals.py": "fd754b6a02a89579bfe31ac14e3f4ac0d619296116525ed1fe3d3994d9eabf69",
     "opencontractserver/tasks/extract_orchestrator_tasks.py": "0535a4f421e6aa0923dfa872d2a738c46bb473fa22abe10662bf0005c0e9ad52",
-    "frontend/src/components/extracts/CorpusExtractDetail.tsx": "5f9e7bce3ae8fc0e7f0d2eb686cc0d2fb86a1caa786b6921dddb77f52a6cb3ad",
-    "frontend/src/components/extracts/ExtractDetailContent.tsx": "a5f389c8cfb6dd7f7a3cb96e6a00c43263964c5e42eb48b2e915622ed956b3ea",
-    "frontend/src/views/ExtractDetail.tsx": "03ceb5183348ab30afd57868e3cfc6577def60733533bab119640c7ed5b71d9e",
-    "opencontractserver/tasks/doc_tasks.py": "cc9d8f9870b43066697c91e334c9236fc2fcfe76809aa2693372e2dff5a47f73"
+    "frontend/src/components/extracts/CorpusExtractDetail.tsx": "ca2caba9992cce0f07a50c87ec6cb421cb0069436521affb950d3dce9406d538",
+    "frontend/src/components/extracts/ExtractDetailContent.tsx": "4add6f74386c385ae82578db3f13f03a22b8d52b5704491372ae62525ddc9e75",
+    "frontend/src/views/ExtractDetail.tsx": "b0a88e8e736df9982c734466889d16bdbf4bddc1dd3541f6ee897d716b7b489f",
+    "opencontractserver/tasks/doc_tasks.py": "cc9d8f9870b43066697c91e334c9236fc2fcfe76809aa2693372e2dff5a47f73",
+    "frontend/src/App.tsx": "0ad34d64f8c9fb515fe0bf88317703a1d893e236105ed4b0072b91669586c703",
+    "frontend/src/components/widgets/modals/CreateExtractModal.tsx": "aeb329fd5e5c8fa9978ed643e3dd16293b47a2927839cc4b3e4875fd14ebd4d2",
+    "frontend/src/views/Documents.tsx": "3deac09253d95a4627933aeb67028c4e36047308651d6a8be9ebc3d77539b6ff",
+    "frontend/src/graphql/cache.ts": "5da8c3a3fb2a546d477d374f1525ff13ee01b9baeac551a940318d39915d0943",
+    "frontend/src/views/LabelSets.tsx": "1ea7addebb98c6a38e7ae6f979345861649d584c18a32f4f7628ac7518ffbf1b",
+    "config/graphql/filters.py": "99f6b3c2c1b56244a7068dda56b1d8c194fc9dfdd53266339eb4acbccadfd793",
+    "frontend/package.json": "c76697f28bb4a64d95f93d0691e95b8a88a3bd2a62802627a812d8a842125a07",
+    "frontend/src/components/knowledge_base/document/layouts/mobile/MobileSheet.tsx": "6494956b6dead7e0ddcfbca3f5e0349d9c65a0794755c930914dd4eb3bac7f81",
+    "frontend/src/components/knowledge_base/document/DocumentKnowledgeBase.tsx": "92714d3a88b48fbd5b01adb9e905a6efd1e9b4d37901b72db018b9bad581522f",
+    "frontend/src/components/knowledge_base/document/FloatingExtractsPanel.tsx": "97956384ef75623518ce065f21648b23f8cf4d1e81067e9d9224d32d42369820",
+    "frontend/src/components/knowledge_base/document/layouts/types.ts": "083730aced5c3a0b6804a0a4f7da3229310c7840c37c4932c518a8c2b14a3604",
+    "frontend/src/components/corpuses/CorpusModal.tsx": "80473714d65343333c7307824bfbe01b92a5153145b2c5e9b916ee622b022e08",
+    "frontend/src/components/annotator/display/components/Containers.tsx": "a599e27c6a6b136dda87b01f07b3ce019379c493d072488ab7504e55fc93515c",
+    "opencontractserver/shared/QuerySets.py": "f6b0f1cfefb42977b3770f7adcb3324f6bd20fe969a6e024d0bbc19aff507b6a",
+    "frontend/src/components/widgets/modals/UploadModal/hooks/useUploadMutations.ts": "0f9d78a6ed7136ebab86eba3225dcc2483e5bc12581538b13604f6d36f7ed1a0",
+    "config/graphql/corpus_mutations.py": "8a3f48b3cbd66c50fb3cba5cc3db16fc9e81051d13b0cfb9cf8995f761ccdc63",
+    "frontend/src/views/Extracts.tsx": "3e6f70fa5286f399c7dfd7e6a8995bb0e22bd7bc2b2d5a5bd420233163706bc9",
+    "frontend/src/components/widgets/modals/CreateColumnModal.tsx": "1f227d5adc318e1d0b43c2f98c20394ad0a4974789452dddcfa5e54eb3004b45",
+    "frontend/src/components/widgets/modals/FieldsetModal.tsx": "5dd4a1c172da33645142d05ab7de1b0a6ecec15951ae4c36476191a11c964762",
+    "frontend/src/components/annotator/display/components/SelectionBoundary.tsx": "b313bf6fb69d13af85c6ad05fee04b2af057c07187fc851ddd5f2aac31a4c304",
+    "frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx": "72edd6f633a3aa819d69132ff6622a3fc3a7db635447bd26b70913806eaa5a91",
+    "frontend/src/components/annotator/components/modals/CreateUrlAnnotationModal.tsx": "91411048b6d6185f2badeefc119b65e60cc85e75697b4befd860ed1b9262556c",
+    "frontend/src/components/knowledge_base/document/unified_feed/CollapsibleAnnotationControls.tsx": "cdc32f507728d86bf4359a8f057294989b91d28d67b19f59fb2f81d8315525e6",
+    "frontend/src/components/knowledge_base/document/FloatingDocumentControls.tsx": "1afc7ad87232288d8269870aa3196126143df6f92a9033207c57e94bad28736a",
+    ".cursor/rules/pdf-viewer-and-annotator-architecture.mdc": "6b47cab6639cd32ad724af984398c40947a8192a89facafecc1daef1fa43b5d1",
+    "frontend/src/utils/extractDetails.ts": "cce6d2e72855d32bc8ebc9211e1f29ca89cc05ac8c961ecd0a6954fce107e39e",
+    "frontend/src/utils/__tests__/extractUtils.test.ts": "e945e1a2e0fcd1a62435692a8f856cd9058f6a9c6aeae64eba593ae1af49e56a",
+    "frontend/src/components/extracts/ExtractOutcomeNotice.tsx": "d8c5e99a02eb2a2d280dec50058e82d2243d3cbdfdd169815bfecd620d4b147c"
   },
   "port_baseline": {
     "repository": "pi-squared/OpenContracts-Databricks",

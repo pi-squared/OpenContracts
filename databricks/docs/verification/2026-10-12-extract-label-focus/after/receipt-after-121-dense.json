@@ -1,0 +1,36 @@
+{
+  "phase": "after",
+  "verified_at_utc": "2026-10-12T15:40:01.537735+00:00",
+  "acceptance": "PASS: #121 dense page-1 display continuity and evidence focus at measured 127% and 167% in Chromium and Firefox",
+  "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+  "verification": {
+    "browser_engines": [
+      "chromium",
+      "firefox"
+    ],
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "pdf_zoom_percent": [
+      127,
+      167
+    ],
+    "public_sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+    "screenshot_bytes_unchanged": true,
+    "actual_native_graphql": true,
+    "read_only_guard_unchanged": true,
+    "model_or_record_writes": 0,
+    "deployment_and_source_stable": true,
+    "native_frontend_matches_staged_build": true,
+    "queried_annotation_projections_unchanged": true,
+    "always_label_bars_readable_without_overlap": true
+  },
+  "limitations": [
+    "Original #116 manual fixture covers display continuity; persistent focus uses the owned native evidence-quote extract fixture.",
+    "Observed page-1 region of one unchanged public PDF, two PDF zoom values, and two browser versions at 1440\u00d71000.",
+    "These checks cover dense rendering and mode visibility; the separate QA campaign owns source-card, pane, Terms, FSPO and warm SPA acceptance.",
+    "Overlapping-target cycling and later ticket behavior were not exercised."
+  ],
+  "artifact_count": 36
+}

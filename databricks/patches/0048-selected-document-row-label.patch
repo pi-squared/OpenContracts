@@ -1,0 +1,11 @@
+--- a/frontend/src/components/extracts/ExtractDetailContent.tsx
++++ b/frontend/src/components/extracts/ExtractDetailContent.tsx
+@@ -752,7 +752,7 @@
+                 <div style={{ marginTop: 20 }}>
+                   <DataHeader>
+                     <DataTitle>Extracted Data</DataTitle>
+-                    <DataCount>{rows.length} rows</DataCount>
++                    <DataCount>{rows.length} selected document rows</DataCount>
+                   </DataHeader>
+                   <GridContainer $compact={compact}>
+                     <ExtractDataGrid

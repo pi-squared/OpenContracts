@@ -1,0 +1,106 @@
+{
+  "phase": "before",
+  "acceptance": "Current reviewed 442a before-124 desktop observations only; no #124 acceptance or readiness claim",
+  "prepared_at_utc": "2026-10-12T21:13:38.346221+00:00",
+  "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+  "recipe_sha256": "a08536950d30a40ac26e48e5cfff3a5f3c97486030de85960175d252de779735",
+  "measured_pdf_zoom_percent": 110,
+  "source_and_live_bundle_checked_each_browser": true,
+  "observations": [
+    {
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "native_tab_presses": 70,
+      "page_1_quote_identity_count": 5,
+      "mounted_viewer_target_element_count": 6,
+      "target_tab_index_values": [
+        -1
+      ],
+      "actual_evidence_target_focus_stops": 0,
+      "temporary_label_observations": 0,
+      "unique_active_element_count": 36,
+      "tab_pdf_reading_state_unchanged": true,
+      "eligible_pdf_escape_cleared_focus": false,
+      "escape_pdf_reading_state_unchanged": true,
+      "escape_viewer_remains": true,
+      "escape_owner_active_tag": "BODY",
+      "child_dialog_filter_menu_and_native_selection_absent": true,
+      "visible_focused_label_count_before_escape": 1,
+      "visible_focused_label_count_after_escape": 1,
+      "emphasized_matching_source_cards_before_escape": 2,
+      "emphasized_matching_source_cards_after_escape": 2,
+      "retained_prior_shared_projection_fingerprints": 10,
+      "fresh_native_projection_fingerprints_collected": 15,
+      "guard_events": 0,
+      "record_changes": 0,
+      "saved_writes": 0,
+      "model_invocations": 0,
+      "observations_complete": true,
+      "driver_exit_code": 1,
+      "wrapper_exit_code": 1,
+      "explicit_context_close_failed": true
+    },
+    {
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "native_tab_presses": 70,
+      "page_1_quote_identity_count": 5,
+      "mounted_viewer_target_element_count": 6,
+      "target_tab_index_values": [
+        -1
+      ],
+      "actual_evidence_target_focus_stops": 0,
+      "temporary_label_observations": 0,
+      "unique_active_element_count": 18,
+      "tab_pdf_reading_state_unchanged": true,
+      "eligible_pdf_escape_cleared_focus": false,
+      "escape_pdf_reading_state_unchanged": true,
+      "escape_viewer_remains": true,
+      "escape_owner_active_tag": "BODY",
+      "child_dialog_filter_menu_and_native_selection_absent": true,
+      "visible_focused_label_count_before_escape": 1,
+      "visible_focused_label_count_after_escape": 1,
+      "emphasized_matching_source_cards_before_escape": 2,
+      "emphasized_matching_source_cards_after_escape": 2,
+      "retained_prior_shared_projection_fingerprints": 10,
+      "fresh_native_projection_fingerprints_collected": 15,
+      "guard_events": 0,
+      "record_changes": 0,
+      "saved_writes": 0,
+      "model_invocations": 0,
+      "observations_complete": true,
+      "driver_exit_code": 1,
+      "wrapper_exit_code": 1,
+      "explicit_context_close_failed": true
+    }
+  ],
+  "teardown": {
+    "original_driver_exit_codes": [
+      1,
+      1
+    ],
+    "original_wrapper_exit_codes": [
+      1,
+      1
+    ],
+    "original_explicit_context_close_failed": true,
+    "private_script_name_collision": "Fixture dictionary replaced the browser context variable",
+    "read_only_host_inspection_found_remaining_original_owned_drivers": 0,
+    "native_browser_or_transport_processes_created_since_owned_protocol_preparation": 0,
+    "original_pid_numbers_not_recorded": true,
+    "cleanup_signals_sent": 0,
+    "corrected_blank_context_not_executed": true
+  },
+  "retained_failed_setup_attempts": {
+    "collapsed_source_disclosures": 2,
+    "unnecessary_zoom_loop": 2,
+    "all_before_input_observations": true
+  },
+  "scope_limits": [
+    "Desktop Chromium 151 and Firefox 153 only, actual 110% native fit; this is separate from the accepted 127%/167% #122 dense packet.",
+    "The 70-Tab sample is bounded; it does not claim exhaustive keyboard or assistive-technology coverage.",
+    "PDF reading state and route selection parameters were measured externally; no hidden atom inspection or exhaustive database audit.",
+    "Original image bytes retained; source pane scroll can move naturally during Tab traversal.",
+    "Original explicit teardown failed after complete observations; read-only process enumeration found no owned processes remaining, without original numeric PID records."
+  ]
+}

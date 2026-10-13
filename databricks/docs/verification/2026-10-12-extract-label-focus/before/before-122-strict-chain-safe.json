@@ -1,0 +1,72 @@
+{
+  "verified_at_utc": "2026-10-12T16:56:40.878681+00:00",
+  "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+  "fixture": "Owned synthetic UI fixture; new E source only",
+  "strict_chain": "A overlaps C; C overlaps E; A and E never directly overlap",
+  "all_existing_original_and_owned_rows_preserved": true,
+  "models": 0,
+  "task_admissions": 0,
+  "browser_mutations": 0,
+  "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+  "browsers": {
+    "chromium": {
+      "pdf_zoom": 90,
+      "all_five_exact_regions_preserve_A_without_click_cycle": true,
+      "regions": {
+        "full_A_B_D_only": [
+          "A",
+          "B",
+          "D"
+        ],
+        "partial_A_B_C_D_shared": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "C_only": [
+          "C"
+        ],
+        "C_E_shared": [
+          "C",
+          "E"
+        ],
+        "E_only": [
+          "E"
+        ]
+      }
+    },
+    "firefox": {
+      "pdf_zoom": 110,
+      "all_five_exact_regions_preserve_A_without_click_cycle": true,
+      "regions": {
+        "full_A_B_D_only": [
+          "A",
+          "B",
+          "D"
+        ],
+        "partial_A_B_C_D_shared": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "C_only": [
+          "C"
+        ],
+        "C_E_shared": [
+          "C",
+          "E"
+        ],
+        "E_only": [
+          "E"
+        ]
+      }
+    }
+  },
+  "retained_attempt": "Initial Chromium129% attempt stopped at an offscreen hit point before C/E; native zoom correction and fresh immutable capture passed all regions. This was a driver visibility precondition, not an app result.",
+  "limitations": [
+    "Five distinct native evidence identities, with A reused across findings and physical pages1/2",
+    "New E deliberate geometry is synthetic interaction input, not a model or actual location claim"
+  ]
+}

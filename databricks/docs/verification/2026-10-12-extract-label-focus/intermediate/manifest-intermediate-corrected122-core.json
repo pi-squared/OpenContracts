@@ -1,0 +1,727 @@
+{
+  "phase": "intermediate",
+  "artifacts": [
+    {
+      "image": "intermediate-corrected122-chromium-122-blank-background-focus-cleared-pane-open.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: blank background focus cleared pane open; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:49.587774+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "99692c4b7ee9819a8f54ed922873de0298c109f6d0819d5a15ee26b36fa39db0",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-closed-pane-blank-focus-cleared.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: closed pane blank focus cleared; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:20:24.971287+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "169f0535e6a4aba761f319a092038f887e103f1033e7ba1be0517feb66369129",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-closed-pane-cycle-focus-retained.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: closed pane cycle focus retained; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:20:24.274326+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f3544acb795630c667ee1264b8ac253c72b59680308009a05824aded9ecea67b",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-full-identical-cycle-stop-1.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: full identical cycle stop 1; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:12.378781+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c99609ed4bf9760fd965b2ed8dfd683ac40e93cfa100aad25e0d5ce090e36d5c",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-full-identical-cycle-stop-2.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: full identical cycle stop 2; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:13.289777+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "04994c780729f0e69a09bdfec2afba3ec6edfba32d5be20e1dac1e062e6c090b",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-full-identical-cycle-stop-3.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: full identical cycle stop 3; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:14.165506+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6e38c4833b00ebbd07c7730db5396a5c6442d389acab180bc0c686f1391c4952",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-full-identical-cycle-stop-4.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: full identical cycle stop 4; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:14.955257+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3376c8e19f055a85a34764cfdec7b35f69dfe807e6d5855d9dd829c7dc28d987",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-partial-C-only-no-transitive-E.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial C only no transitive E; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:20.237443+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f12ead327a2db1c260ab67e47f7ab9fde829a0941c01ad1fb678c58c28a08b6e",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-partial-E-only.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial E only; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:48.911772+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6b5f0f32ca0a7dc70dc695e92d627aceeea3fa7e7534a06956d5ddacd3e72789",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-partial-shared-cycle-stop-1.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial shared cycle stop 1; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:15.984868+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "60813242e08c0ebade0faeb9242f530429865c0708d7f2fac4505a597561acc2",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-partial-shared-cycle-stop-2.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial shared cycle stop 2; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:16.880858+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a06ee06fd1ff2b8eb907790a17838c7c76029d04586300e8af13ec33d91ba39c",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-partial-shared-cycle-stop-3.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial shared cycle stop 3; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:17.958433+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d7711f4e48c3cafb5779da58fdffcf2324eaa9318d88f1e3af683aed801879fc",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-partial-shared-cycle-stop-4.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial shared cycle stop 4; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:18.730661+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "589d23099f82293150f1aac4c8a8224ca1d3d390e5159134fe5c3776e4eb9f5b",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-partial-shared-cycle-stop-5.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial shared cycle stop 5; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:19.529816+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3f76798bac9c77355ba1670ceb077c9a105bb2fd6ae0a6ca79a58ea9c114b58b",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-shared-hover-four-readable-labels.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: shared hover four readable labels; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:50.293517+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c9a3d68de0fc9dd721e3fd0a4486620dc41982c1e3ec70a26727b46ec2e0bac2",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-strict-chain-C-E-stop-1.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: strict chain C E stop 1; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:46.563966+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0dcb7566c10a3b76797e167f5330b00658b942f4b6b21bf4bf05cdbb605f4462",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-strict-chain-C-E-stop-2.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: strict chain C E stop 2; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:47.328335+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "76b4198672a0f1977b0780b71fd8b2fa2a3c12b1b7fb7171ce02a5fd2e48f96f",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-chromium-122-strict-chain-C-E-stop-3.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: strict chain C E stop 3; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:48.209635+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6c79aff687e08f08ec5a5aae1dc7ac68940d64097921f7bb3ffe758957612ead",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-blank-background-focus-cleared-pane-open.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: blank background focus cleared pane open; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:50.318879+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a4af6c24185e121592e0fb11fe65090c14d3902c0a15ca3f7dd84f7d87c800b2",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-closed-pane-blank-focus-cleared.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: closed pane blank focus cleared; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:20:25.540125+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "104ed905e6d806c470d58eed34ec4d618be83d904edf75deb341fbe81802e413",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 104
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-closed-pane-cycle-focus-retained.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: closed pane cycle focus retained; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:20:24.796342+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3b7fc7fe367b4886cc6c7899710c58d6139c2ab7e3675f74ce69e85b20f40864",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 104
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-full-identical-cycle-stop-1.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: full identical cycle stop 1; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:14.745524+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "dda2f9bbac9340768a2b4b33f3c7c504c24dba78b508c0633956d542c7b89a46",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-full-identical-cycle-stop-2.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: full identical cycle stop 2; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:15.555837+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c9b8854220e6273968f739202258aa7c4ff68973f14872b546a05199f52cb24e",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-full-identical-cycle-stop-3.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: full identical cycle stop 3; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:16.367904+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d864acd46892fd476ee40e81f12cafd8863cdd91c549e569543b1809acf100be",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-full-identical-cycle-stop-4.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: full identical cycle stop 4; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:17.174539+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6213dbf7a82eeb57f0961667496c7289bcfee867bd30aefe11884c4ec194b39e",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-partial-C-only-no-transitive-E.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial C only no transitive E; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:23.139829+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b4a0cb18e3d570712072a312e85c67763cdd4883fa534a7c0e545260fa80f22f",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-partial-E-only.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial E only; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:49.463607+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "24889abd90d30e06875e4a28f78daf93a8f4b3efba2908d624fe326f05443786",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-partial-shared-cycle-stop-1.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial shared cycle stop 1; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:18.453672+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "af45a7c00d33a1a170a73bd5226bdbe11545b3f1aabe9e7c1766800ed6e570b0",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-partial-shared-cycle-stop-2.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial shared cycle stop 2; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:19.335027+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a945b02dba202db3863731f9c9aa592019a80a0f6a90470f2fb500b354052e44",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-partial-shared-cycle-stop-3.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial shared cycle stop 3; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:20.204375+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e164378769c32ecc3fb8922ce88a43d344d358dd4c6815d8aab8a9fa39bd7559",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-partial-shared-cycle-stop-4.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial shared cycle stop 4; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:21.411230+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "96d2c852dade956b47ceacf75f41fd2987d579ff018be2ac0cf83f744717ddcc",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-partial-shared-cycle-stop-5.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: partial shared cycle stop 5; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:12:22.232843+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "de861df09695b995baebb34fa202b70be4fd7df2e99003881e8df3c90d8f96e2",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-shared-hover-four-readable-labels.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: shared hover four readable labels; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:51.025549+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0c091ca68cbfe4456489c64f38fe55962f206e0f63c4d2f678217ce44772ce8e",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-strict-chain-C-E-stop-1.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: strict chain C E stop 1; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:46.738625+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "bc0428a84eb439027576e54ac159a393540f9b45bc90521875befec627b38a88",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-strict-chain-C-E-stop-2.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: strict chain C E stop 2; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:47.675411+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f0d264020a97f54d9f0594047b2a1784112ede28bac32ae07d4026a0590e7e89",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    },
+    {
+      "image": "intermediate-corrected122-firefox-122-strict-chain-C-E-stop-3.png",
+      "caption": "INTERMEDIATE #122 core observed PASS: strict chain C E stop 3; full hosted acceptance pending separate Always native-control failure",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:14:48.600743+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "597f5394ee149632715636e7c269523b32d31dce6623e44a526593a7e2051789",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF with5 intentional native identities",
+      "limitations": "Synthetic UI verification; core groups pass, full release remains pending control fix; no domain/model assessment",
+      "pdf_zoom": 102
+    }
+  ],
+  "acceptance": "Corrected24c6 core mouse geometry/hover/pane groups PASS both browsers; full122 hosted acceptance remains FAILED at separately demonstrated dense Always control transfer",
+  "hosted_acceptance": false
+}

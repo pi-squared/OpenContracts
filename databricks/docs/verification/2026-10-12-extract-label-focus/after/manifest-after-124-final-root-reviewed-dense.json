@@ -1,0 +1,1018 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-127-always-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 127 always pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:51.757017+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "6847e5c3865b7f73d5774bd4cd9d61e280c325ddc79c19a3379d31c4ce4806c0",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 127 default hovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:18.551766+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "b99a21330c858a160dfe445e60d2cca12e4c835d9de41ee9be3661ee1c8391b2",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 127 default unhovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:17.600390+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "88452b466e3c1f6c19caac4f7fed61ca2f36ec94e21647e1af55060ab8e8d30a",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-127-editor-open-e.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 127 editor open e. Actual foreground Edit Label captured before Cancel, with exact Cancel/Save Change controls, all ancestors settled and center-hittable in two equal observations.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:47:50.607961+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "9d148c0baa2aaf9016017a2dcd027e0adc9b0ee0f531bcff691e14b0dc401a8f",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-127-focus-c-retained-after-all-cancels.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 127 focus c retained after all cancels.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:47:57.417229+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "8cc2eb5a9e189805f8c87f932987a8d6b22c5c210f44988394601396baa371a7",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 127 focused pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:35.905709+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "a46748d0038237d5ccd4561409d1a44195cf5cda7a5e602bf5a7f4dbfb0d5a12",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-127-hide-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 127 hide pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:48:13.760574+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "4e1fcc659aa63620d212e0eb33ca672ad51b15232bf4dc9015c01ffeec8b992d",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-167-always-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 167 always pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:49:07.876597+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "09950b6d875d990cd0d805ecfa109f7fddd7ceb88d35a7f0e4c833689fe52345",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-167-default-hovered.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 167 default hovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:48:36.548568+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "64a1a8437a6af84cdb73e0937b7911e642cec43b4aaf1ab1c4a5ed1a5f84549f",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-167-default-unhovered.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 167 default unhovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:48:35.703197+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "3f685fa8e7e35d2fce9fbcc3b8d0104b518f92ba5271ec74314db50dfdb6ea70",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-167-editor-open-e.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 167 editor open e. Actual foreground Edit Label captured before Cancel, with exact Cancel/Save Change controls, all ancestors settled and center-hittable in two equal observations.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:50:05.961473+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "8e5b0a6dace0e08fe0b3428af03b72a08d0f46929a06cf83250e24c68858306a",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-167-focus-c-retained-after-all-cancels.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 167 focus c retained after all cancels.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:50:15.202434+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7ecdc6a3917d4592f4420cc5b07a27104f29792a2039ec0a973209e760694136",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-167-focused-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 167 focused pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:48:54.332541+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7d96d8f2c9cc355782b14e5a03ec3ab0848ce885768f245527e2c50dfe7f4c15",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-167-hide-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense chromium owned sme extract evidence 167 hide pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:50:31.256639+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "e5757a11980a4881679af4fba132c09c1b93f160078584f35910c06efd570db7",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-public-sme-manual-display-127-always-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense chromium public sme manual display 127 always pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:44:45.991545+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "d9ae6ccff50d749d933ab0bc2eb66c3eeb4dbfff6324a41b9299982d215b1ff8",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-public-sme-manual-display-127-default-hovered.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense chromium public sme manual display 127 default hovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:44:22.070044+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "55617e1f32522bdc2f9ea4aa8939b10906b05e00a767319ca549f0bafa865706",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-public-sme-manual-display-127-default-unhovered.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense chromium public sme manual display 127 default unhovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:44:20.731809+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "ca2f11f205b2fb241064d31d26b92cf9f219334c350ad447841b3e1823981e8f",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-public-sme-manual-display-127-hide-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense chromium public sme manual display 127 hide pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:11.711654+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "2ee5abd09a7a4ba523ebdf7f7aea28679e19cf825eb60aa0acf073c99a776c72",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense chromium public sme manual display 167 always pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:42.202906+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "977ad9c5d2c8913be2bd86ce8849f2d639dfb3d223bfbf121a07fa53d0a592ed",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-public-sme-manual-display-167-default-hovered.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense chromium public sme manual display 167 default hovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:30.880195+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "9fb10e36a57cb46844a3d3ba227337e6f73f71e7cc90e1e63cc71f8a6ec57d88",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-public-sme-manual-display-167-default-unhovered.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense chromium public sme manual display 167 default unhovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:29.831760+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "8f952fbdb276daaba9dffe0edb4ada8eee1c7a07054ecba6c71ee328ae4cc416",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-chromium-public-sme-manual-display-167-hide-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense chromium public sme manual display 167 hide pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:54.247848+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "c6ec3a6279bdfc3e784e9d6ef2672ccd8d022d7110654166e4eeef930facb5cf",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-127-always-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 127 always pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:55.612356+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "f0bdeb42e188d0a49acec270bbf83ae6d7c3868b5663042edb801249da76b0b6",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 127 default hovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:17.318720+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "f691b302e0578ed226863d4572800e7d0af11c6bcc2b641e5f2d5ec22408716b",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 127 default unhovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:16.113235+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "36207bc0fc01b3a266f1760aff0231a2ced569542913d2a17373d84abc468c31",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-127-editor-open-e.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 127 editor open e. Actual foreground Edit Label captured before Cancel, with exact Cancel/Save Change controls, all ancestors settled and center-hittable in two equal observations.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:48:17.167299+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "ea5f88950589cf55dbba433f50680470dd4d8aeaab96f2ea3ecc79ac2bd5a974",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-127-focus-c-retained-after-all-cancels.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 127 focus c retained after all cancels.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:48:32.886015+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "88136edc52184564b668519466fa8d46321a1c5d9563177875001c0a06db5c67",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 127 focused pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:37.912482+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "67ec0fddd123739a7dd056ead5512bc54ce9cae04db7b8e1a062901d9d82563c",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-127-hide-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 127 hide pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:48:58.058196+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "36207bc0fc01b3a266f1760aff0231a2ced569542913d2a17373d84abc468c31",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-167-always-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 167 always pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:50:12.540121+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "2142cec0ec104ee5c5fa5d497a1a8df67ade829335ffb4fb7526daf0028c42f7",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-167-default-hovered.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 167 default hovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:49:16.685495+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "2785c299d9b1ebe98cd138a9c2974bfc645cabd292ed4cbe8d88e37d788a5aaa",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-167-default-unhovered.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 167 default unhovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:49:15.450369+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "0c8d9fd54d7c2428261dd647e6073faf13cd304a177f384913f36f1765a7b5be",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-167-editor-open-e.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 167 editor open e. Actual foreground Edit Label captured before Cancel, with exact Cancel/Save Change controls, all ancestors settled and center-hittable in two equal observations.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:51:37.484578+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "1bf12b86aafb65acdc0ed1d2b9fd14301fa20ea6ce0ecb0e2dbaeedf6c28523b",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-167-focus-c-retained-after-all-cancels.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 167 focus c retained after all cancels.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:51:50.006771+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "de55f5fbb989fb4c99a4633d0fad9ea22918ba2b0e2932df06b225d3f1486927",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-167-focused-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 167 focused pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:49:48.468140+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "b9f812e0e26c9cd421bd5a432da995f4021ae6bcabd8d43396ba29bbf69937dc",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-167-hide-pointer-away.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). dense firefox owned sme extract evidence 167 hide pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:52:20.760309+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "546df0af9eb344eea1590054b5deaaa963b16a45614eadef41d039c6f2b91842",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-public-sme-manual-display-127-always-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense firefox public sme manual display 127 always pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:44:33.005004+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "4d3376d86a2f19e7163d178abf513ad5787e5b061ff1ed815a0e5d143d9191d7",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-public-sme-manual-display-127-default-hovered.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense firefox public sme manual display 127 default hovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:44:16.941978+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "46edfb6c9e5ef44c5b8a92ce10621fff8c024ec9e2d0032596d67175551955ca",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-public-sme-manual-display-127-default-unhovered.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense firefox public sme manual display 127 default unhovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:44:15.833900+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "d37e4b2bb9b63599a79d52c8fed7d37e84b402d973ff4069395483ec491dd1ac",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-public-sme-manual-display-127-hide-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense firefox public sme manual display 127 hide pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:01.658040+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "a8ac88d92db27a2d3a8f090b5559213f0b4db9455a112988216d99caa26d594b",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense firefox public sme manual display 167 always pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:38.862891+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "0a060ab44412656f0f5ed3fa67637ea7cf1389dde2144eca292aa5211ef93f17",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-public-sme-manual-display-167-default-hovered.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense firefox public sme manual display 167 default hovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:25.310130+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "8d72aba0e1fc0e3989a5a1bbc198c6ff14ebb152cfd579d0126a041b43722d0c",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-public-sme-manual-display-167-default-unhovered.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense firefox public sme manual display 167 default unhovered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:24.410403+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "775fe70ebb5dea3f076eff4e8cddef7fd3aae93919d966e38e411a99b921ffc5",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-dense-firefox-public-sme-manual-display-167-hide-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture (not extract evidence quotes). dense firefox public sme manual display 167 hide pointer away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:52.056145+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "b3ad2f43637d0813dc3d04a55c8310e2441a8b717d854a0d0f4624ac5cb0c6c7",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    }
+  ],
+  "acceptance": "Root accepted the named deployed states on d9ace483 / recipe 61e9842c. Full branch review and tracker closure are recorded separately."
+}

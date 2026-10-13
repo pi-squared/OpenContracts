@@ -44,7 +44,7 @@ function RouteSelection() {
   return null;
 }
 
-it("alternating extract sources and deselecting compose selection and display in one URL transition", async () => {
+it("alternating extract sources composes navigation while clearing focus retains selection", async () => {
   const source = (id: string, page: number) => ({
     id,
     page,
@@ -110,7 +110,10 @@ it("alternating extract sources and deselecting compose selection and display in
   await act(async () =>
     (host.querySelector('[data-annotation-id="B"]') as HTMLElement).click()
   );
-  expect(new URLSearchParams(window.location.search).has("ann")).toBe(false);
+  expect(new URLSearchParams(window.location.search).get("ann")).toBe("B");
+  expect(
+    host.querySelector('[data-annotation-id="B"]')?.hasAttribute("aria-current")
+  ).toBe(false);
 });
 
 it("a review-only mutation preserves the loaded heading's quotations and source cards", async () => {

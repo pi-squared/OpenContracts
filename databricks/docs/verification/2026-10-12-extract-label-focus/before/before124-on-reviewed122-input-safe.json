@@ -1,0 +1,68 @@
+{
+  "phase": "before",
+  "verified_at": "2026-10-12T18:55:41Z",
+  "issues": [
+    120,
+    124
+  ],
+  "completion": "Before behavior only; issue124 remains blocked by open issue122. No final input acceptance.",
+  "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+  "assembly_recipe_sha256": "e4fa3979fc5fcf948ee053f2a4fbca5531d464e5b38bc98821fb6e711f3098d3",
+  "fixture": "Owned technical evidence fixture using unchanged public SME PDF",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "keyboard_escape": {
+    "images": 8,
+    "browsers": [
+      "Chromium151.0.7922.34",
+      "Firefox153.0"
+    ],
+    "observations": {
+      "both_browsers": true,
+      "native_tab_presses_per_browser": 70,
+      "reachable_evidence_targets": 0,
+      "native_span_tabIndex": -1,
+      "temporary_label_keyboard_target_missing": true,
+      "first_trusted_escape_retains_evidence_focus": true,
+      "saved_writes": 0,
+      "models": 0,
+      "eligible_pdf_escape_after_native_pdf_interaction_keeps_focus": true,
+      "pdf_escape_activeElement": "BODY",
+      "no_nested_dialog_filter_or_selection_menu_on_pdf_escape": true
+    },
+    "process_status": "Both desktop query-only wrappers closed normally with actual exit0; these are successful baseline observations, not implementation acceptance."
+  },
+  "touch": {
+    "images": 4,
+    "browser": "Native trusted Firefox157.0.1, separate from desktop153",
+    "observations": {
+      "native_main_js_bytes_match_reviewed_source": true,
+      "touch_events_isTrusted": true,
+      "held_moved_copy_menu_and_focus_preserved": true,
+      "actual_native_copy_text_and_trusted_paste_expected_match": true,
+      "expected_public_text_sha256": "c282b550e3b2da888a673b9d12bbcee147cef38d74f40815a85a92c05d14baa3",
+      "clipboard_contents_not_published": true,
+      "system_access": false,
+      "stationary_overlap_tap_does_not_advance_focus": true,
+      "prethreshold_movement_no_menu_no_focus_change": true,
+      "overflow_touch_action_and_scroll_position_preserved": true,
+      "panning_not_claimed": true,
+      "app_mutations": 0,
+      "models": 0,
+      "pdf_zoom": 189,
+      "numeric_zoom_confirmed_from_native_toolbar": true
+    },
+    "process_status": "Current trusted native touch bridge quiescent at capture. An older own-session cleanup bridge exit1 is retained separately and is not a passed verification."
+  },
+  "limits": [
+    "The current122 release failed fullscreen mouse acceptance, so its non-cycling tap is not independent proof of a124-only defect.",
+    "Touch zoom is measured189%; this does not supply the required dense127%/167% checks.",
+    "Pre-threshold movement proves cancellation and preserved styles/scroll position; panning is not claimed.",
+    "Source-card-only Escape images retain their narrower captions; the two PDF-interaction Escape images supply eligible BODY/no-priority-owner proof.",
+    "Native Tab traversal naturally scrolls ordinary controls; the terminal traversal images do not prove an evidence navigation target.",
+    "No physical-device test is claimed.",
+    "Credentials, clipboard contents, connection details, raw data projections and operational logs remain private."
+  ]
+}

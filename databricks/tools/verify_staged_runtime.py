@@ -28,16 +28,32 @@ SOURCE_FILES = (
     "upstream.lock.json",
     "port/dependencies/warp/lock.json",
     "port/runtime/launch.py",
+    "port/runtime/staged_dependencies.py",
     "port/runtime/requirements.lock",
+    "tools/installation_configuration.py",
 )
 IMPORTS = """
 import json, sys
+from pathlib import Path
+from importlib import metadata
 sys.path.insert(0, sys.argv[1])
 from databricks_port import warp_pdf, parser_exports
 assert all(module.__file__.startswith(sys.argv[1] + '/') for module in (warp_pdf, parser_exports))
 assert callable(warp_pdf.parse_warp_pdf) and callable(parser_exports.warp_export)
+vendor_origins = {name: str(metadata.distribution(name).locate_file(package))
+                  for name, package in [('warp-ingest', 'warp_ingest'),
+                                        ('rapidocr-onnxruntime', 'rapidocr_onnxruntime')]}
+assert all(Path(origin).resolve().parent == Path(sys.argv[1]).resolve()
+           for origin in vendor_origins.values())
 print(json.dumps({'imports': ['databricks_port.warp_pdf', 'databricks_port.parser_exports'],
-                  'version': warp_pdf.VERSION}))
+                  'version': warp_pdf.VERSION, 'vendor_origins': vendor_origins}))
+"""
+INSTALL = """
+import json, runpy, sys
+from pathlib import Path
+installer, manifest, runtime = map(Path, sys.argv[1:4])
+api = runpy.run_path(str(installer))
+api['install_vendor'](json.loads(manifest.read_text()), runtime, sys.executable)
 """
 PROBE = """
 import json, sys
@@ -115,8 +131,8 @@ def inventory(release):
     return files
 
 
-def source_identity():
-    return {name: digest(ROOT / name) for name in SOURCE_FILES}
+def source_identity(source_root=ROOT):
+    return {name: digest(source_root / name) for name in SOURCE_FILES}
 
 
 def validate_release(release, directory):
@@ -126,6 +142,13 @@ def validate_release(release, directory):
     ):
         raise GateFailure("release_inputs_missing")
     manifest = json.loads((release / "release.json").read_text())
+    if "installation_configuration_sha256" in manifest and (
+        digest(release / "installation_configuration.py")
+        != manifest["installation_configuration_sha256"]
+        or manifest["installation_configuration_sha256"]
+        != digest(ROOT / "tools/installation_configuration.py")
+    ):
+        raise GateFailure("installation_configuration_source_mismatch")
     lock = json.loads((ROOT / "upstream.lock.json").read_text())
     if (
         manifest["lock_sha256"] != digest(ROOT / "upstream.lock.json")
@@ -134,6 +157,13 @@ def validate_release(release, directory):
         raise GateFailure("release_source_mismatch")
     if digest(release / "app.py") != digest(ROOT / "port/runtime/launch.py"):
         raise GateFailure("launcher_source_mismatch")
+    installer = release / "staged_dependencies.py"
+    if (
+        not installer.is_file()
+        or digest(installer) != manifest.get("dependency_installer_sha256")
+        or digest(installer) != digest(ROOT / "port/runtime/staged_dependencies.py")
+    ):
+        raise GateFailure("dependency_installer_source_mismatch")
     if digest(release / "requirements.txt") != manifest[
         "requirements_sha256"
     ] or manifest["requirements_sha256"] != digest(
@@ -202,7 +232,7 @@ def validate_release(release, directory):
         name = vendor["wheel_filename"]
         if (
             Path(name).name != name
-            or digest(release / "vendor" / name) != vendor["wheel_sha256"]
+            or digest(extracted / "vendor" / name) != vendor["wheel_sha256"]
         ):
             raise GateFailure("vendor_wheel_changed")
     if runtime["nltk_assets"] != parser_lock["nltk_assets"]:
@@ -272,7 +302,19 @@ def verify(release, python, output, report):
             raise GateFailure("python_runtime_unsupported")
         report["python"] = info
         result = run_python(
-            python, IMPORTS, [archive], directory, diagnostics, "imports", 60
+            python,
+            INSTALL,
+            [release / "staged_dependencies.py", release / "release.json", extracted],
+            directory,
+            diagnostics,
+            "vendor-install",
+            120,
+        )
+        report["checks"]["vendor_install"] = {"actual_exit_code": result.returncode}
+        if result.returncode:
+            raise GateFailure("offline_vendor_install_failed")
+        result = run_python(
+            python, IMPORTS, [extracted], directory, diagnostics, "imports", 60
         )
         if result.returncode:
             raise GateFailure("isolated_archive_import_failed")
@@ -305,7 +347,7 @@ def verify(release, python, output, report):
     report.update(passed=True, reason="verified")
 
 
-def revalidate(release, python, baseline, report):
+def revalidate(release, python, baseline, report, *, source_root=ROOT):
     if not baseline.is_file():
         raise GateFailure("receipt_missing")
     previous = json.loads(baseline.read_text())
@@ -325,13 +367,13 @@ def revalidate(release, python, baseline, report):
         raise GateFailure("receipt_not_verified")
     if (
         previous.get("release_directory") != str(release.resolve())
-        or previous.get("source_directory") != str(ROOT)
+        or previous.get("source_directory") != str(source_root.resolve())
         or previous.get("python", {}).get("executable") != os.path.abspath(python)
     ):
         raise GateFailure("receipt_identity_mismatch")
     if previous.get("staged_files") != inventory(release):
         raise GateFailure("staged_files_changed")
-    if previous.get("source_files") != source_identity():
+    if previous.get("source_files") != source_identity(source_root):
         raise GateFailure("verification_source_changed")
     if not python.is_file():
         raise GateFailure("python_missing")

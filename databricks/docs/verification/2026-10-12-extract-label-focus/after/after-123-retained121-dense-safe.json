@@ -1,0 +1,189 @@
+{
+  "verified_at_utc": "2026-10-12T17:23:38.634384+00:00",
+  "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+  "acceptance": "PASS: #123 retained #121 dense page-1 display continuity and evidence focus at measured 127% and 167% in Chromium and Firefox; not final #120/#124 integrated acceptance",
+  "images": 36,
+  "verification": {
+    "browser_engines": [
+      "chromium",
+      "firefox"
+    ],
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "pdf_zoom_percent": [
+      127,
+      167
+    ],
+    "public_sample_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+    "screenshot_bytes_unchanged": true,
+    "actual_native_graphql": true,
+    "read_only_guard_unchanged": true,
+    "model_or_record_writes": 0,
+    "deployment_and_source_stable": true,
+    "native_frontend_matches_staged_build": true,
+    "page_1_region_established_with_trusted_native_wheel_independent_of_label_success": true,
+    "queried_annotation_projections_unchanged": true,
+    "existing_fixture_identities_match_prior_121_fingerprints": true,
+    "deliberately_added_source_E_marker_and_geometry_match_native_projection": true,
+    "always_label_bars_readable_without_overlap": true,
+    "browser_matrix_protocols_complete": true,
+    "matrix_wrapper_exit_codes": {
+      "chromium": 143,
+      "firefox": 0
+    },
+    "narrow_native_E_and_chromium_closure_exit_code": 0
+  },
+  "limitations": [
+    "Original #116 manual fixture covers display continuity; persistent focus uses the owned native evidence-quote extract fixture.",
+    "The owned quote fixture now includes deliberately added source E (five page-1 identities); the twelve prior #121 projection fingerprints cover the preserved original identities.",
+    "#123 preserves the reading point during zoom; native wheel first establishes the page-1 source region in view independently of label success. Initial unshifted driver failures and measurements remain retained privately.",
+    "Observed page-1 region of one unchanged public PDF, two PDF zoom values, and two browser versions at 1440\u00d71000.",
+    "These checks cover dense rendering and mode visibility; the separate QA campaign owns source-card, pane, Terms, FSPO and warm SPA acceptance.",
+    "Chromium matrix wrapper returned143 after complete native assertions and durable receipt; its signal cause is undetermined. A separate native E integrity/browser-close check exited0. The original wrapper is not claimed green.",
+    "The separate QA campaign owns actual Terms/FSPO oracles and #123-specific acceptance; this helper does not establish final #120/#124 integrated acceptance."
+  ],
+  "scope": "Issue123 retained issue121 dense acceptance; final issue120/124 replay remains pending",
+  "owned_page1_evidence_identities": 5,
+  "preserved_prior_annotation_projections": 12,
+  "manual_page1_identities": 2,
+  "initial_precondition": {
+    "acceptance": "Two initial driver failures retained; independently measured page-position precondition differs from accepted #121",
+    "correction": "Before the separate matrix replay, trusted native wheel establishes the requested page-1 origin/source region fully in view independently of label-bar success; viewport and PDF zoom remain fixed.",
+    "measurements": [
+      {
+        "browser_engine": "chromium",
+        "browser_version": "151.0.7922.34",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "pdf_zoom": 127,
+        "native_scroll_top": 117,
+        "native_page_origin_y": 51.75,
+        "visible_pdf_viewport_top": 136.75,
+        "canvas": {
+          "width": 779,
+          "height": 1009,
+          "cssWidth": 781,
+          "cssHeight": 1011
+        },
+        "label_translation_comparison": [
+          {
+            "accepted_121_rect": {
+              "left": 93.484375,
+              "right": 344.234375,
+              "top": 214.71875,
+              "bottom": 234.71875,
+              "width": 250.75,
+              "height": 20
+            },
+            "unshifted_123_rect": {
+              "left": 93.484375,
+              "right": 344.234375,
+              "top": 97.71875,
+              "bottom": 117.71875,
+              "width": 250.75,
+              "height": 20
+            },
+            "upward_translation_pixels": 117
+          },
+          {
+            "accepted_121_rect": {
+              "left": 158.359375,
+              "right": 419.09375,
+              "top": 190.71875,
+              "bottom": 210.71875,
+              "width": 260.734375,
+              "height": 20
+            },
+            "unshifted_123_rect": {
+              "left": 158.359375,
+              "right": 419.09375,
+              "top": 73.71875,
+              "bottom": 93.71875,
+              "width": 260.734375,
+              "height": 20
+            },
+            "upward_translation_pixels": 117
+          }
+        ],
+        "settling_seconds_after_initial_measurement": [
+          0,
+          1,
+          3
+        ],
+        "result": "Initial acceptance assertion failed: page-1 label bars lie above the visible PDF viewport; longer settling preserves their bounds"
+      },
+      {
+        "browser_engine": "firefox",
+        "browser_version": "153.0",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "pdf_zoom": 127,
+        "native_scroll_top": 117,
+        "native_page_origin_y": 51.79999923706055,
+        "visible_pdf_viewport_top": 136.8000030517578,
+        "canvas": {
+          "width": 779,
+          "height": 1009,
+          "cssWidth": 781,
+          "cssHeight": 1011
+        },
+        "label_translation_comparison": [
+          {
+            "accepted_121_rect": {
+              "left": 93.48333740234375,
+              "right": 372.6333312988281,
+              "top": 213.78334045410156,
+              "bottom": 234.78334045410156,
+              "width": 279.1499938964844,
+              "height": 21
+            },
+            "unshifted_123_rect": {
+              "left": 93.48333740234375,
+              "right": 372.6333312988281,
+              "top": 96.78334045410156,
+              "bottom": 117.78334045410156,
+              "width": 279.1499938964844,
+              "height": 21
+            },
+            "upward_translation_pixels": 117
+          },
+          {
+            "accepted_121_rect": {
+              "left": 158.36666870117188,
+              "right": 454.8500061035156,
+              "top": 188.78334045410156,
+              "bottom": 209.78334045410156,
+              "width": 296.48333740234375,
+              "height": 21
+            },
+            "unshifted_123_rect": {
+              "left": 158.36666870117188,
+              "right": 454.8500061035156,
+              "top": 71.78334045410156,
+              "bottom": 92.78334045410156,
+              "width": 296.48333740234375,
+              "height": 21
+            },
+            "upward_translation_pixels": 117
+          }
+        ],
+        "settling_seconds_after_initial_measurement": [
+          0,
+          1,
+          3
+        ],
+        "result": "Initial acceptance assertion failed: page-1 label bars lie above the visible PDF viewport; longer settling preserves their bounds"
+      }
+    ],
+    "limitations": [
+      "This packet records the initial failed measurements and does not constitute an acceptance pass.",
+      "No source, deployment, saved data or model changes were made."
+    ]
+  }
+}

@@ -1,0 +1,535 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-124-local-keyboard-temporary-label-chromium.png",
+      "caption": "Native keyboard target reveals a temporary label with no focused source card. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:01:59.630408+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "ceeb88938005bde5d5cbd8dc41724199de3ad5198b1cc396ee78025b9e27f290",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-native-actions-chromium.png",
+      "caption": "Native keyboard traversal reaches the label action controls without persisting evidence focus. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:01:59.878406+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "1d137d14b9de0f7b56daa655b8747099dcff575ae44cce43a26c5f3ba8b76297",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-escape-clears-persistent-focus-chromium.png",
+      "caption": "Eligible PDF Escape clears persistent focus; the source cards provide the separate focus oracle. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:00.382404+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "f514f7a3e91ec010d039e89fd970115e0bc946853fa5f3ffa9c3de21ece88a67",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-overlap-cycle-chromium.png",
+      "caption": "Native Enter and Space inspect the overlapping eligible point candidates while preserving the source context. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:01.526398+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "49f5ff43e75aae0e6e693eeb237c71fac505dcee42a372a7cf3e72f3a97411f4",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 1
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-native-child-dialog-chromium.png",
+      "caption": "Native keyboard activation opens a painted foreground Edit Label dialog before dismissal; no save occurs. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:20.118305+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "17b783b7b36709dd0871cd001db95a02faeb4228e8a17bacb5e958b1ca79d274",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-child-cancel-return-chromium.png",
+      "caption": "Dismissing the native editor returns keyboard focus to its launcher and keeps the temporary label accessible. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:20.502303+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "91d6cd571b10c7ee331a9e0fadb7f46d70a89ad5c7a5071c4e64e5e0f63a56b1",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-protected-confirmation-chromium.png",
+      "caption": "Keyboard opens the native protected confirmation; only No is used in this test, and no deletion occurs. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:21.534298+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "d035c357497c68581e11319ad54c39e209e44801a517dd29b9ccc5397bba1b03",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-protected-cancel-return-chromium.png",
+      "caption": "Native No cancellation returns focus to the surviving Annotation actions launcher without persistent source focus. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:21.926296+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "df2351c4fd6ba2096ac6f03f1169cf0b72b15959f822178383843618de53b73f",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-stationary-touch-cycle-chromium.png",
+      "caption": "A trusted stationary touch uses the same evidence cycle with one step per activation. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:25.478278+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "defa0e89b91123f39fc5d9acdbe256c37000ce6dc8b15cfc31a24fa68c81d7fb",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 1
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-native-held-touch-selection-chromium.png",
+      "caption": "A trusted hold starting on a saved evidence highlight opens the native text selection menu without cycling evidence. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:27.726267+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "f401dba13d5d8feeca876131e593457fcf7af89901c9609648b6054cab77b541",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 1
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-native-touch-escape-chromium.png",
+      "caption": "Escape handles the pending native touch selection before evidence focus and release does not cycle. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:30.778251+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "ea5ffc2c972b0c5c08f7f32770a295cf91fef4cf87ad4f996d6af63bf95b4df1",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 1
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-native-touch-pan-chromium.png",
+      "caption": "Trusted touch movement changes native PDF scroll without cycling or opening a selection menu. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:35.122230+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "18049b15ebd1ab28cb1d3a38425cc469604b0dff33acacfdbd25bb2226e1e756",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 1
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-blank-touch-clears-focus-chromium.png",
+      "caption": "A stationary touch on empty PDF background clears evidence focus while the extract pane remains closed. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:36.462223+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533854,
+      "sha256": "23c3f7df5a3686c6860add9e9e67b2978b3d869803d762276005e1cf4e0a87cd",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-temporary-label-firefox.png",
+      "caption": "Native keyboard target reveals a temporary label with no focused source card. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:39.518208+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533335,
+      "sha256": "569c8f85f5a2089224d2f1b235bea450abb4f3e03c61a48f00f1bbe3505e14ef",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-native-actions-firefox.png",
+      "caption": "Native keyboard traversal reaches the label action controls without persisting evidence focus. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:39.738207+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533335,
+      "sha256": "efd6c82611c344fc5eaf7d6ae05ab1dc25afed03e8f84eb5628a6b9d2832a5a5",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-escape-clears-persistent-focus-firefox.png",
+      "caption": "Eligible PDF Escape clears persistent focus; the source cards provide the separate focus oracle. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:40.710202+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533335,
+      "sha256": "008846c7987864170fda783013b34ce5c8535015782f7087215952869a6d2d40",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-overlap-cycle-firefox.png",
+      "caption": "Native Enter and Space inspect the overlapping eligible point candidates while preserving the source context. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:02:43.266189+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533335,
+      "sha256": "c563ecbf804563bb6f4230d39e8ffe27939538a263363e5bb44ca663d6b2e9be",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 1
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-native-child-dialog-firefox.png",
+      "caption": "Native keyboard activation opens a painted foreground Edit Label dialog before dismissal; no save occurs. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:03:11.614047+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533335,
+      "sha256": "720f95c6930410ee92f76e4ab4871944019e819342464bfc383f15cc96e65f2b",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-child-cancel-return-firefox.png",
+      "caption": "Dismissing the native editor returns keyboard focus to its launcher and keeps the temporary label accessible. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:03:11.970045+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533335,
+      "sha256": "e0eea6e0c478df24dec2ebb01ff93c97e6ab792f910a29a00f7548fbf695e7f2",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-protected-confirmation-firefox.png",
+      "caption": "Keyboard opens the native protected confirmation; only No is used in this test, and no deletion occurs. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:03:13.282039+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533335,
+      "sha256": "9caa30fe013304bfebf65c8a470240f1d909b06db53326c9753efbd012255ce6",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-keyboard-protected-cancel-return-firefox.png",
+      "caption": "Native No cancellation returns focus to the surviving Annotation actions launcher without persistent source focus. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:03:13.486038+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533335,
+      "sha256": "9d4479f070900bcc636a49a065f5e28efada0c79e5f395ca56212a997c1071bf",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-stationary-touch-cycle-firefox.png",
+      "caption": "A trusted stationary touch uses the same evidence cycle with one step per activation. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:03:15.438028+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533335,
+      "sha256": "31b37a6c61861e61a1bf1866414d4cff95b00cfe4ab46fa0a3df7602453319c2",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 1
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    },
+    {
+      "image": "after-124-local-blank-touch-clears-focus-firefox.png",
+      "caption": "A stationary touch on empty PDF background clears evidence focus while the extract pane remains closed. Local synthetic composed viewer on the final frozen source.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:03:17.194019+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 160.533335,
+      "sha256": "cacadc361a0ec775f265173f82c29d8366456e593d99683ec429dba042549da3",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Local native document/extract viewer with external GraphQL and PDF decoding/canvas mocks",
+      "interactions": {
+        "focused_source_card_count": 0
+      },
+      "limitations": "Local regression evidence only. Capture time is the original PNG write time. Native routing/loaders/rendering are exercised; blank mocked PDF canvas is not hosted document-rendering proof. Firefox153 held/moved/multitouch/panning is not covered here. Deployed oc-qa acceptance remains pending."
+    }
+  ],
+  "acceptance": "Local maintained-source regression evidence for issues120/124. This does not establish deployed oc-qa acceptance or tracker completion."
+}

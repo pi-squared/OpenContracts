@@ -1,0 +1,106 @@
+--- a/frontend/package.json
++++ b/frontend/package.json
+@@ -93,7 +93,8 @@
+     "vite": "^7.3.5",
+     "vite-plugin-svgr": "^4.3.0",
+     "vite-tsconfig-paths": "^5.1.4",
+-    "web-vitals": "^2.1.2"
++    "web-vitals": "^2.1.2",
++    "fflate": "^0.4.8"
+   },
+   "scripts": {
+     "start": "node scripts/env.js && vite",
+--- a/frontend/src/components/extracts/CorpusExtractDetail.tsx
++++ b/frontend/src/components/extracts/CorpusExtractDetail.tsx
+@@ -123,7 +123,7 @@
+   };
+ 
+   const handleExportCsv = () => {
+-    contentRef.current?.exportToCsv();
++    contentRef.current?.exportToExcel();
+   };
+ 
+   const handleRefresh = () => {
+@@ -164,7 +164,7 @@
+             <RefreshCw size={14} />
+           </IconButton>
+           <IconButton
+-            aria-label="Export CSV"
++            aria-label="Export Excel"
+             onClick={handleExportCsv}
+             disabled={!extract || Boolean(isRunning)}
+           >
+--- a/frontend/src/components/extracts/datagrid/DataGrid.tsx
++++ b/frontend/src/components/extracts/datagrid/DataGrid.tsx
+@@ -1,3 +1,4 @@
++import { downloadExcel } from "../../../utils/extractDownloads";
+ import React, {
+   forwardRef,
+   useCallback,
+@@ -270,6 +271,7 @@
+ // Add interface for the exposed methods
+ export interface ExtractDataGridHandle {
+   exportToCsv: () => void;
++  exportToExcel: () => void;
+ }
+ 
+ // Column pending deletion (null = modal closed)
+@@ -779,7 +781,15 @@
+       URL.revokeObjectURL(url);
+     }, [columns, sortedRows, extract.name]);
+ 
++    const exportToExcel = useCallback(() => {
++      downloadExcel(`${extract.name || "data"}.xlsx`, [
++        ["Document", ...columns.map((column) => column.name)],
++        ...sortedRows.map((row) => [row.documentTitle, ...columns.map((column) => row[column.id])]),
++      ]);
++    }, [extract.name, columns, sortedRows]);
++
+     useImperativeHandle(ref, () => ({
++      exportToExcel,
+       exportToCsv,
+     }));
+ 
+--- a/frontend/src/views/ExtractDetail.tsx
++++ b/frontend/src/views/ExtractDetail.tsx
+@@ -1,3 +1,4 @@
++import { downloadJson } from "../utils/extractDownloads";
+ import { getDocumentUrl } from "../utils/navigationUtils";
+ import { SourceReadinessNotice } from "../components/extracts/SourceReadinessNotice";
+ import React, {
+@@ -676,8 +677,19 @@
+     setEditingColumn(null);
+   };
+ 
+-  const handleExportCsv = () => {
+-    dataGridRef.current?.exportToCsv();
++  const handleExport = () => {
++    try {
++      if (activeTab === "data") {
++        if (!dataGridRef.current) throw new Error("The data grid is not ready. Retry after it loads.");
++        dataGridRef.current.exportToExcel();
++      } else if (activeTab === "schema") {
++        downloadJson(`${extract?.name || "extract"}-schema.json`, { fieldset: extract?.fieldset, columns });
++      } else if (activeTab === "iterations") {
++        downloadJson(`${extract?.name || "extract"}-iterations.json`, { current: extract?.id, parent: extract?.parentExtract, iterations: [extract, ...(extract?.fullIterationList ?? [])].map((run) => run && ({ id: run.id, name: run.name, created: run.created, started: run.started, finished: run.finished, error: run.error, modelConfig: run.modelConfig, iterationAxis: run.iterationAxis })) });
++      }
++    } catch (error) {
++      toast.error(`Export failed: ${error instanceof Error ? error.message : "Please retry."}`);
++    }
+   };
+ 
+   const handleRowUpdate = useCallback((updatedRow: DocumentType) => {
+@@ -798,10 +810,10 @@
+               variant="secondary"
+               size="sm"
+               leftIcon={<Download size={16} />}
+-              onClick={handleExportCsv}
+-              disabled={loading || Boolean(isRunning)}
++              onClick={handleExport}
++              disabled={loading || Boolean(isRunning) || activeTab === "documents"}
+             >
+-              Export CSV
++              {activeTab === "data" ? "Export Excel" : activeTab === "schema" ? "Export Schema JSON" : activeTab === "iterations" ? "Export Iterations JSON" : "Export"}
+             </Button>
+           </Actions>
+         </Header>

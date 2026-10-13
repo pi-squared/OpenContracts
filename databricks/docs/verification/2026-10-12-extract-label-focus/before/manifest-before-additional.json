@@ -1,0 +1,157 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before-firefox-121-terms-default-127.png",
+      "caption": "BEFORE: native Terms workflow evidence labels remain visible without hovering, default mode, 127%",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T14:01:45.627869+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9380dd25a6f1a89a0cd9a0b50eeafcbbb68971f484bd66885e5fa659f2c7fea4",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained native Terms Currency recovery extract69 public SME PDF",
+      "limitations": null
+    },
+    {
+      "image": "before-firefox-121-terms-default-167.png",
+      "caption": "BEFORE: native Terms workflow evidence labels remain visible without hovering, default mode, 167%",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T14:01:48.060993+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4e8eb5222fb5a21d0ebe10d0fed5de9c68dd561474809e498f6ebb0d2716fa3a",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained native Terms Currency recovery extract69 public SME PDF",
+      "limitations": null
+    },
+    {
+      "image": "before-chromium-122-fspo-overlap-hover-167.png",
+      "caption": "BEFORE: shared FSPO evidence region hover at 167%",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T13:57:09.883524+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8593748f9ea0cb8503f648b823771c7d5bc072ebfbfef264705a3b0000559fb1",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained native FSPO extract1 public 2020-0299.pdf",
+      "limitations": null
+    },
+    {
+      "image": "before-chromium-122-fspo-overlap-two-clicks-167.png",
+      "caption": "BEFORE: two plain clicks at shared FSPO evidence geometry do not cycle focused evidence",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T13:57:10.829723+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7517f4c34dcb1cf98c10d7868d8bb2060de24a7f7e311a9fe612389d28309105",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained native FSPO extract1 public 2020-0299.pdf",
+      "limitations": null
+    },
+    {
+      "image": "before-chromium-121-fspo-explicit-hide.png",
+      "caption": "BEFORE: explicit Hide still leaves native extract evidence labels visible",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T13:59:58.138537+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6813f329d7b6bf03cbbcba7bc498fbe0fd28e6b39b977f50b68b3cafaedfe5d5",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained native FSPO extract1 public 2020-0299.pdf",
+      "limitations": null
+    },
+    {
+      "image": "before-chromium-123-fspo-selected-only-native.png",
+      "caption": "BEFORE: selected-only FSPO source filter and explicit Hide baseline",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T14:03:24.691385+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ce39b5531fdf1d8540f4323509484df669443da3ac5ad185315213d26318df01",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained native FSPO extract1 public 2020-0299.pdf",
+      "limitations": "No retained annotation spans multiple pages; dedicated technical fixture pending."
+    },
+    {
+      "image": "before-chromium-124-fspo-escape.png",
+      "caption": "BEFORE: Escape leaves selected evidence and persistent labels",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T14:03:26.093781+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "021342142916829d4250b85d8e7275e7f48441af1335f682b7a2fbd26659443a",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained native FSPO extract1 public 2020-0299.pdf",
+      "limitations": null
+    },
+    {
+      "image": "before-chromium-124-fspo-keyboard-no-evidence-target.png",
+      "caption": "BEFORE: PDF evidence has no native keyboard focus targets",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T14:04:26.438624+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "87c7f0540dcbca20504a8359b2f01cb6407301e45245fc013821a7e3809e9021",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained native FSPO extract1 public 2020-0299.pdf",
+      "limitations": null
+    }
+  ]
+}

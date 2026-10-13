@@ -1,0 +1,166 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before124-on122-chromium-source-focus-pdf-targets-not-tabbable.png",
+      "caption": "BEFORE #124 on reviewed122: source focus visible; native evidence spans have tabIndex -1 and no keyboard target",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T18:23:33.987864+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "89153a6af93b88f6acf982d6137302cd8dd45db934b28df9569603a26125a65a",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Read-only input baseline; keyboard temporary-label and Escape focus handling are pending124; current122 mouse slice remains held after hosted failure",
+      "pdf_zoom": 123
+    },
+    {
+      "image": "before124-on122-chromium-first-escape-evidence-focus-retained.png",
+      "caption": "BEFORE #124 on reviewed122: after native source-card focus, trusted Escape leaves the source focus/PDF label visible; this card-interaction observation alone does not establish eligible PDF Escape",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T18:23:35.606371+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c889f8cf7a3f861541326d70992c053063d9d1eefcf22dd726973dd320ae71ec",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Read-only input baseline; keyboard temporary-label and Escape focus handling are pending124; current122 mouse slice remains held after hosted failure",
+      "pdf_zoom": 123
+    },
+    {
+      "image": "before124-on122-chromium-native-tab-traversal-no-evidence-target.png",
+      "caption": "BEFORE #124 on reviewed122:70 native Tab presses reach no evidence highlight target and reveal no temporary evidence label",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T18:30:19.313629+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "98dffac9d15228f55461bc313087d46ab7d5212fb1a24274b24c004eda7c829f",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Read-only input baseline; keyboard temporary-label and Escape focus handling are pending124; current122 mouse slice remains held after hosted failure",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before124-on122-firefox-source-focus-pdf-targets-not-tabbable.png",
+      "caption": "BEFORE #124 on reviewed122: source focus visible; native evidence spans have tabIndex -1 and no keyboard target",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T18:23:36.726852+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "eda1203f2bab57501bbc81e0d41d7aaece56c5afbd9ccaa8437195fbced5139c",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Read-only input baseline; keyboard temporary-label and Escape focus handling are pending124; current122 mouse slice remains held after hosted failure",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before124-on122-firefox-first-escape-evidence-focus-retained.png",
+      "caption": "BEFORE #124 on reviewed122: after native source-card focus, trusted Escape leaves the source focus/PDF label visible; this card-interaction observation alone does not establish eligible PDF Escape",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T18:23:38.046820+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3f92326f09ba3680f3fa9c17d6fb7746760cfb377561c1a38fb1df437d784ad9",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Read-only input baseline; keyboard temporary-label and Escape focus handling are pending124; current122 mouse slice remains held after hosted failure",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before124-on122-firefox-native-tab-traversal-no-evidence-target.png",
+      "caption": "BEFORE #124 on reviewed122:70 native Tab presses reach no evidence highlight target and reveal no temporary evidence label",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T18:30:23.526752+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c8af667b0adc954ad21d0db4f4fe077121bb67ae2e8c1ec48fba9d2daae76993",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Read-only input baseline; keyboard temporary-label and Escape focus handling are pending124; current122 mouse slice remains held after hosted failure",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before124-on122-chromium-pdf-interaction-eligible-escape-focus-retained.png",
+      "caption": "BEFORE #124 on reviewed122: after native in-view PDF highlight click, BODY is active and no child dialog/filter/text-selection menu owns Escape; trusted Escape still leaves evidence focus and PDF label visible",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T18:37:12.800148+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1be8f4df2550218790af86566c85dac01363c16df19540a686e57ba95bb2e240",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI input baseline; fullscreen viewer shell alone is role=dialog; no124 acceptance claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before124-on122-firefox-pdf-interaction-eligible-escape-focus-retained.png",
+      "caption": "BEFORE #124 on reviewed122: after native in-view PDF highlight click, BODY is active and no child dialog/filter/text-selection menu owns Escape; trusted Escape still leaves evidence focus and PDF label visible",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T18:37:15.850190+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8104f396c0b260561ba61eaa8c641311ea4a3753949a1e9a19df82be413b5963",
+      "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "fixture": "Owned Issue120 synthetic interaction fixture using unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI input baseline; fullscreen viewer shell alone is role=dialog; no124 acceptance claim",
+      "pdf_zoom": 110
+    }
+  ],
+  "acceptance": "Current-source #124 keyboard/Escape baseline only; no124 acceptance claim"
+}

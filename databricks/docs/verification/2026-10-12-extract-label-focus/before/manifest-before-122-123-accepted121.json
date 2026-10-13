@@ -1,0 +1,339 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before-accepted121-chromium-122-full-identical-no-cycle.png",
+      "caption": "BEFORE #122 on accepted #121: full identical no cycle",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T15:54:47.505973+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "50d1b0f877bd4a88f8d3a83dc9e8f1d3bb1f58b7deb9d4c708eaa702ef67be38",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-chromium-122-partial-exclusive-click.png",
+      "caption": "BEFORE #122 on accepted #121: partial exclusive click",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T15:54:48.373144+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "424e82083f159c675aff81e09a8d49759b9d365072c81c6481bcd6a1a91f74a5",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-chromium-122-source-A-focused.png",
+      "caption": "BEFORE #122 on accepted #121: source A focused",
+      "issues": [
+        120,
+        122,
+        123
+      ],
+      "captured_at": "2026-10-12T15:54:45.689973+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "4132a269a60fc378e085639545f33ba06cd5bafe7e457ba663662112eff59330",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-chromium-123-manual-page2-pane-close-jump.png",
+      "caption": "BEFORE #123 on accepted #121: closing pane jumps from physical PDF page 2 (printed page 3) to physical PDF page 1 (printed page 2), while focus remains A",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T15:59:36.895038+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "6bb088b320f4d2ebdb4f23d2c9db964d7fa2088f8ecd92794decd592444f1a95",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment",
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "source_printed_page_number": 2
+    },
+    {
+      "image": "before-accepted121-chromium-123-multipage-A-focused.png",
+      "caption": "BEFORE #123 on accepted #121: focused A second occurrence on physical PDF page 2 (zero-based geometry key 1; source-printed footer Page 3 of 9)",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T15:54:50.433634+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "c19d45a55a4428421d5cb9d6e94caa9723a9c9a481cf33277b1f0b332743c951",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment",
+      "geometry_page_index": 1,
+      "pdf_page_number": 2,
+      "source_printed_page_number": 3
+    },
+    {
+      "image": "before-accepted121-chromium-123-selected-filter-excludes-focused-A.png",
+      "caption": "BEFORE #123 on accepted #121: selected filter excludes focused A",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T15:59:38.420456+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "2a8251416b44dc166dd0d98aa7d6b8f55d33dedc146e605968d9573876d7d91a",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-chromium-123-selected-filter-restores-A.png",
+      "caption": "BEFORE #123 on accepted #121: selected filter restores A",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T15:59:39.316168+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "6724ecca493b977462e31d0cf75042f62bdb8a47f76b5beb1f284ee142ae411d",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-chromium-123-zoom-focused-A.png",
+      "caption": "BEFORE #123 on accepted #121: zoom focused A",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T15:59:40.800413+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 230,
+      "sha256": "5aeef61f38246deea78675b82537e61bdb3df18853ad42bcd1a9e103241542ca",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-firefox-122-full-identical-no-cycle.png",
+      "caption": "BEFORE #122 on accepted #121: full identical no cycle",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T15:54:47.457339+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "61e6c8aec7af13e24e17ac859da70841ff7d4be20311e52fdad2e8c4829fa0cb",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-firefox-122-partial-exclusive-click.png",
+      "caption": "BEFORE #122 on accepted #121: partial exclusive click",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T15:54:48.264009+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "e75985989064333b244a5c693634ab1a95f233425836b341bb121fd91160861b",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-firefox-122-source-A-focused.png",
+      "caption": "BEFORE #122 on accepted #121: source A focused",
+      "issues": [
+        120,
+        122,
+        123
+      ],
+      "captured_at": "2026-10-12T15:54:45.164534+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "d4e0af9c2d249575b843cbbc96152aabe4a90044c496bdb3fdb1a1813401c13e",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-firefox-123-manual-page2-pane-close-jump.png",
+      "caption": "BEFORE #123 on accepted #121: closing pane jumps from physical PDF page 2 (printed page 3) to physical PDF page 1 (printed page 2), while focus remains A",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T15:59:35.340793+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "128d8d6236ce3870501f2b9f1ca47e240117fdff6830ff386a82c80c0c359d18",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment",
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "source_printed_page_number": 2
+    },
+    {
+      "image": "before-accepted121-firefox-123-multipage-A-focused.png",
+      "caption": "BEFORE #123 on accepted #121: focused A second occurrence on physical PDF page 2 (zero-based geometry key 1; source-printed footer Page 3 of 9)",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T15:54:49.921469+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "7eb51fca2b9c0f8bec2c0ee59791506f79f3ea1fd3d2b8b393e56c94be1fc24d",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment",
+      "geometry_page_index": 1,
+      "pdf_page_number": 2,
+      "source_printed_page_number": 3
+    },
+    {
+      "image": "before-accepted121-firefox-123-selected-filter-excludes-focused-A.png",
+      "caption": "BEFORE #123 on accepted #121: selected filter excludes focused A",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T15:59:37.231366+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "d867337e056faa27d287468e07f11d0973509380c13498daa45439f0e7b8acad",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-firefox-123-selected-filter-restores-A.png",
+      "caption": "BEFORE #123 on accepted #121: selected filter restores A",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T15:59:38.382466+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "848cdabe6024f8a9e0073bbfd2fa7b385cb59c7abc88cb90f21e662488ebbf3c",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    },
+    {
+      "image": "before-accepted121-firefox-123-zoom-focused-A.png",
+      "caption": "BEFORE #123 on accepted #121: zoom focused A",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T15:59:40.750192+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 230,
+      "sha256": "51169a48a69228fa7c8006fa5bc143e41fc6b43c376576c82a780512978795de",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored interaction geometry and native source projections; no model/domain assessment"
+    }
+  ]
+}

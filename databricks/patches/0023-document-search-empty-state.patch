@@ -1,0 +1,51 @@
+--- a/frontend/src/views/Documents.tsx
++++ b/frontend/src/views/Documents.tsx
+@@ -626,7 +626,7 @@
+             <StatBlock
+               value={stats.totalDocs.toString()}
+               label="Documents"
+-              sublabel="in your library"
++              sublabel={document_search_term || hasAdvancedFilters ? "matching your search and filters" : "in your library"}
+             />
+             <StatBlock
+               value={stats.totalPages.toLocaleString()}
+@@ -806,6 +806,8 @@
+                 title={
+                   activeStatusFilter !== STATUS_FILTERS.ALL
+                     ? `No ${getSectionTitle().toLowerCase()}`
++                    : document_search_term
++                    ? "No documents match your search"
+                     : hasAdvancedFilters
+                     ? "No documents match your filters"
+                     : "No documents yet"
+@@ -813,6 +815,8 @@
+                 description={
+                   activeStatusFilter !== STATUS_FILTERS.ALL
+                     ? "Try selecting a different filter to see more documents."
++                    : document_search_term
++                    ? "Try a different search or clear your search and filters."
+                     : hasAdvancedFilters
+                     ? "Try adjusting your filters or clearing them to see more documents."
+                     : "Upload your first document to get started with document analysis, annotation, and AI-powered insights."
+@@ -821,6 +825,7 @@
+                 action={
+                   activeStatusFilter === STATUS_FILTERS.ALL &&
+                   !hasAdvancedFilters &&
++                  !document_search_term &&
+                   isAuthenticated ? (
+                     <Button
+                       variant="primary"
+@@ -829,6 +834,13 @@
+                     >
+                       Upload Your First Document
+                     </Button>
++                  ) : document_search_term || hasAdvancedFilters ? (
++                    <Button variant="secondary" onClick={() => {
++                      debouncedSearch.current.cancel();
++                      setSearchCache("");
++                      documentSearchTerm("");
++                      handleClearFilters();
++                    }}>Clear search and filters</Button>
+                   ) : undefined
+                 }
+               />

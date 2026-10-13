@@ -1,0 +1,646 @@
+--- a/frontend/src/App.tsx
++++ b/frontend/src/App.tsx
+@@ -196,7 +196,6 @@
+   // Auth logic has been moved to AuthGate component to ensure it completes
+   // before any components that need authentication are rendered
+ 
+-
+   const onDrop = useCallback((acceptedFiles: File[]) => {
+     const filePackages: FileUploadPackageProps[] = acceptedFiles.map(
+       (file) => ({
+--- a/frontend/src/components/annotator/display/components/Selection.tsx
++++ b/frontend/src/components/annotator/display/components/Selection.tsx
+@@ -30,9 +30,7 @@
+ } from "../../utils/urlAnnotation";
+ import { useUpdateAnnotation } from "../../hooks/AnnotationHooks";
+ import { LabelDisplayBehavior } from "../../../../types/graphql-api";
+-import {
+-  OC_URL_LABEL,
+-} from "../../../../assets/configurations/constants";
++import { OC_URL_LABEL } from "../../../../assets/configurations/constants";
+ import { useReactiveVar } from "@apollo/client";
+ import { authToken } from "../../../../graphql/cache";
+ import { PDFPageInfo } from "../../types/pdf";
+@@ -152,8 +150,6 @@
+   useEffect(() => {
+     setHidden(showSelectedOnly && !selected);
+   }, [showSelectedOnly, selected]);
+-
+-
+ 
+   const label = annotation.annotationLabel;
+   const color = label?.color || "#616a6b"; // grey as the default
+@@ -386,8 +382,17 @@
+                           <Pencil
+                             role="button"
+                             tabIndex={0}
+-                            aria-label={`Edit label: ${annotationChipLabel(annotation)}`}
+-                            onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.currentTarget.dispatchEvent(new MouseEvent("click", { bubbles: true })); } }}
++                            aria-label={`Edit label: ${annotationChipLabel(
++                              annotation
++                            )}`}
++                            onKeyDown={(event) => {
++                              if (event.key === "Enter" || event.key === " ") {
++                                event.preventDefault();
++                                event.currentTarget.dispatchEvent(
++                                  new MouseEvent("click", { bubbles: true })
++                                );
++                              }
++                            }}
+                             size={14}
+                             style={{
+                               marginLeft: ".25rem",
+--- a/frontend/src/components/annotator/hooks/AnalysisHooks.tsx
++++ b/frontend/src/components/annotator/hooks/AnalysisHooks.tsx
+@@ -530,7 +530,10 @@
+     analyses,
+     extracts,
+     fetchDocumentAnalysesAndExtracts,
+-    extractsLoading: !selectedDocument?.id || analysesLoading || (!analysesData && !analysesError),
++    extractsLoading:
++      !selectedDocument?.id ||
++      analysesLoading ||
++      (!analysesData && !analysesError),
+     extractsError: analysesError,
+     resetStates,
+     onSelectAnalysis,
+--- a/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
+@@ -569,7 +569,11 @@
+     }
+   }, [zoomLevel, hasPdfPageRendered, pageInfo.page]);
+ 
+-  useAnnotationLabelLayout(pageContainerRef, pageAnnotationComponents, zoomLevel);
++  useAnnotationLabelLayout(
++    pageContainerRef,
++    pageAnnotationComponents,
++    zoomLevel
++  );
+ 
+   return (
+     <PageAnnotationsContainer
+--- a/frontend/src/components/corpuses/CorpusModal.tsx
++++ b/frontend/src/components/corpuses/CorpusModal.tsx
+@@ -501,7 +501,9 @@
+       // editing changes only its leading summary; retain the layout verbatim.
+       const article = corpus.description || "";
+       const layoutStart = article.search(/^::: oc-component\b/m);
+-      const corpusDescription = (layoutStart >= 0 ? article.slice(0, layoutStart) : article).trim();
++      const corpusDescription = (
++        layoutStart >= 0 ? article.slice(0, layoutStart) : article
++      ).trim();
+       setArticleLayout(layoutStart >= 0 ? article.slice(layoutStart) : "");
+       const corpusIcon = corpus.icon || null;
+       const corpusLabelSetId = corpus.labelSet?.id || null;
+@@ -647,7 +649,7 @@
+   // and CorpusSerializer.validate() (GraphQL serializer) for defense-in-depth.
+   const isFormValid =
+     title.trim().length > 0 &&
+-    description.trim().length > 0 &&
++    (description.trim().length > 0 || articleLayout.length > 0) &&
+     (license !== "CUSTOM" || licenseLink.trim().length > 0);
+ 
+   // Compute isDirty by comparing current values against original values
+@@ -685,7 +687,8 @@
+         formData.slug = slug.trim();
+       }
+       if (description.trim() !== originalValues.description) {
+-        formData.description = description.trim() + (articleLayout ? "\n\n" + articleLayout : "");
++        formData.description =
++          description.trim() + (articleLayout ? "\n\n" + articleLayout : "");
+       }
+       if (icon !== originalValues.icon) {
+         formData.icon = icon;
+@@ -849,7 +852,11 @@
+                 autoResize
+                 maxRows={6}
+               />
+-              <p id="corpus-summary-help">Summary shown above the collection page. Generated layout is preserved. Use Edit Article on the corpus page to deliberately change the article and its components.</p>
++              <p id="corpus-summary-help">
++                Summary shown above the collection page. Generated layout is
++                preserved. Use Edit Article on the corpus page to deliberately
++                change the article and its components.
++              </p>
+             </CorpusFormField>
+           </FormSection>
+ 
+--- a/frontend/src/components/extracts/datagrid/DataGrid.tsx
++++ b/frontend/src/components/extracts/datagrid/DataGrid.tsx
+@@ -784,7 +784,10 @@
+     const exportToExcel = useCallback(() => {
+       downloadExcel(`${extract.name || "data"}.xlsx`, [
+         ["Document", ...columns.map((column) => column.name)],
+-        ...sortedRows.map((row) => [row.documentTitle, ...columns.map((column) => row[column.id])]),
++        ...sortedRows.map((row) => [
++          row.documentTitle,
++          ...columns.map((column) => row[column.id]),
++        ]),
+       ]);
+     }, [extract.name, columns, sortedRows]);
+ 
+--- a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
++++ b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+@@ -393,12 +393,20 @@
+   const findingValue = findingFrom(displayedValue);
+ 
+   const displayValue = () => {
+-    if (cellStatus?.error) return (
+-      <div role="status">
+-        <strong>Extraction failed</strong>
+-        <Button size="sm" variant="secondary" aria-label={`View failure: ${column.name}`} onClick={() => setFailureOpen(true)}>View failure</Button>
+-      </div>
+-    );
++    if (cellStatus?.error)
++      return (
++        <div role="status">
++          <strong>Extraction failed</strong>
++          <Button
++            size="sm"
++            variant="secondary"
++            aria-label={`View failure: ${column.name}`}
++            onClick={() => setFailureOpen(true)}
++          >
++            View failure
++          </Button>
++        </div>
++      );
+     if (findingValue && !cellStatus?.isLoading && !cellStatus?.error) {
+       return (
+         <FindingPreview
+@@ -459,11 +467,22 @@
+       <Modal open={failureOpen} onClose={() => setFailureOpen(false)}>
+         <ModalHeader>Extraction failed: {column.name}</ModalHeader>
+         <ModalBody>
+-          <p>No finding was produced for this field in {extract?.name || "this extract"}.</p>
+-          {cell?.failed && <p>Failed at {new Date(cell.failed).toLocaleString()}.</p>}
+-          <p>Successful fields remain available for review. Check the extraction configuration, then use Iterations to create a new run. Opening this notice does not rerun extraction.</p>
++          <p>
++            No finding was produced for this field in{" "}
++            {extract?.name || "this extract"}.
++          </p>
++          {cell?.failed && (
++            <p>Failed at {new Date(cell.failed).toLocaleString()}.</p>
++          )}
++          <p>
++            Successful fields remain available for review. Check the extraction
++            configuration, then use Iterations to create a new run. Opening this
++            notice does not rerun extraction.
++          </p>
+         </ModalBody>
+-        <ModalFooter><Button onClick={() => setFailureOpen(false)}>Close</Button></ModalFooter>
++        <ModalFooter>
++          <Button onClick={() => setFailureOpen(false)}>Close</Button>
++        </ModalFooter>
+       </Modal>
+       <div style={{ minWidth: 0 }}>
+         {displayValue()}
+--- a/frontend/src/components/knowledge_base/document/DocumentKnowledgeBase.tsx
++++ b/frontend/src/components/knowledge_base/document/DocumentKnowledgeBase.tsx
+@@ -839,7 +839,9 @@
+     extracts,
+     extractsLoading,
+     extractsError: extractsError || queryError,
+-    retryExtracts: () => { void fetchDocumentAnalysesAndExtracts().catch(() => {}); },
++    retryExtracts: () => {
++      void fetchDocumentAnalysesAndExtracts().catch(() => {});
++    },
+     selectedAnalysis,
+     selectedExtract,
+     threadCount,
+--- a/frontend/src/components/knowledge_base/document/FloatingExtractsPanel.tsx
++++ b/frontend/src/components/knowledge_base/document/FloatingExtractsPanel.tsx
+@@ -184,8 +184,14 @@
+   display: flex;
+   align-items: center;
+   gap: 8px;
+-  @keyframes extract-spin { to { transform: rotate(360deg); } }
+-  svg { animation: extract-spin 1s linear infinite; }
++  @keyframes extract-spin {
++    to {
++      transform: rotate(360deg);
++    }
++  }
++  svg {
++    animation: extract-spin 1s linear infinite;
++  }
+ `;
+ 
+ const Content = styled.div`
+@@ -343,12 +349,16 @@
+             <Content>
+               {error ? (
+                 <div role="alert" style={{ padding: 24 }}>
+-                  <p>Could not load extracts. Check document access and try again.</p>
++                  <p>
++                    Could not load extracts. Check document access and try
++                    again.
++                  </p>
+                   <button onClick={onRetry}>Retry extracts</button>
+                 </div>
+               ) : loading ? (
+                 <LoadingStatus role="status" aria-live="polite">
+-                  <Loader2 size={18} aria-hidden="true" />Loading extracts…
++                  <Loader2 size={18} aria-hidden="true" />
++                  Loading extracts…
+                 </LoadingStatus>
+               ) : selectedExtract ? (
+                 <>
+--- a/frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx
++++ b/frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx
+@@ -211,10 +211,13 @@
+     "new-chat" | "history" | null
+   >(null);
+ 
+-  const { selectedAnnotations, setSelectedAnnotations } = useAnnotationSelection();
++  const { selectedAnnotations, setSelectedAnnotations } =
++    useAnnotationSelection();
+   const [annotationDetailsOpen, setAnnotationDetailsOpen] = useState(false);
+   const selectedAnnotationKey = selectedAnnotations.join(",");
+-  useEffect(() => { setAnnotationDetailsOpen(false); }, [selectedAnnotationKey]);
++  useEffect(() => {
++    setAnnotationDetailsOpen(false);
++  }, [selectedAnnotationKey]);
+ 
+   // A chat source citation click sets a non-null `selectedSourceIndex` on the
+   // shared chat-source atom (see ChatTray's per-source `onClick`). When that
+@@ -285,7 +288,12 @@
+           {!queryError && activeTab === "document" && (
+             <DocumentSurface data-testid="mobile-surface-document">
+               {selectedAnnotations.length > 0 && (
+-                <button style={{ flexShrink: 0, padding: 8 }} onClick={() => setAnnotationDetailsOpen(true)}>Annotation details</button>
++                <button
++                  style={{ flexShrink: 0, padding: 8 }}
++                  onClick={() => setAnnotationDetailsOpen(true)}
++                >
++                  Annotation details
++                </button>
+               )}
+               <ViewerArea>
+                 {viewerContent}
+--- a/frontend/src/components/knowledge_base/document/layouts/mobile/MobileSheet.tsx
++++ b/frontend/src/components/knowledge_base/document/layouts/mobile/MobileSheet.tsx
+@@ -92,35 +92,37 @@
+   const panelRef = useRef<HTMLDivElement>(null);
+   const titleId = useId();
+   useDialogFocus(open, panelRef, onClose);
+-  return <AnimatePresence>
+-    {open && (
+-      <>
+-        <Scrim
+-          initial={{ opacity: 0 }}
+-          animate={{ opacity: 1 }}
+-          exit={{ opacity: 0 }}
+-          onClick={onClose}
+-        />
+-        <Panel
+-          ref={panelRef}
+-          role="dialog"
+-          aria-modal="true"
+-          aria-labelledby={titleId}
+-          tabIndex={-1}
+-          initial={{ y: "100%" }}
+-          animate={{ y: 0 }}
+-          exit={{ y: "100%" }}
+-          transition={{ type: "tween", duration: 0.22 }}
+-        >
+-          <Header>
+-            <Title id={titleId}>{title}</Title>
+-            <CloseButton aria-label="Close" onClick={onClose}>
+-              <X size={18} />
+-            </CloseButton>
+-          </Header>
+-          <Body>{children}</Body>
+-        </Panel>
+-      </>
+-    )}
+-  </AnimatePresence>;
++  return (
++    <AnimatePresence>
++      {open && (
++        <>
++          <Scrim
++            initial={{ opacity: 0 }}
++            animate={{ opacity: 1 }}
++            exit={{ opacity: 0 }}
++            onClick={onClose}
++          />
++          <Panel
++            ref={panelRef}
++            role="dialog"
++            aria-modal="true"
++            aria-labelledby={titleId}
++            tabIndex={-1}
++            initial={{ y: "100%" }}
++            animate={{ y: 0 }}
++            exit={{ y: "100%" }}
++            transition={{ type: "tween", duration: 0.22 }}
++          >
++            <Header>
++              <Title id={titleId}>{title}</Title>
++              <CloseButton aria-label="Close" onClick={onClose}>
++                <X size={18} />
++              </CloseButton>
++            </Header>
++            <Body>{children}</Body>
++          </Panel>
++        </>
++      )}
++    </AnimatePresence>
++  );
+ };
+--- a/frontend/src/graphql/cache.ts
++++ b/frontend/src/graphql/cache.ts
+@@ -339,7 +339,12 @@
+           "orderBy",
+         ]),
+         userexports: relayStylePagination(),
+-        labelsets: relayStylePagination(["textSearch", "title_Contains", "labelsetId", "description_Contains"]),
++        labelsets: relayStylePagination([
++          "textSearch",
++          "title_Contains",
++          "labelsetId",
++          "description_Contains",
++        ]),
+         annotationLabels: relayStylePagination(),
+         relationshipLabels: relayStylePagination(),
+         extracts: relayStylePagination([
+--- a/frontend/src/graphql/queries.ts
++++ b/frontend/src/graphql/queries.ts
+@@ -3292,7 +3292,10 @@
+       corpus {
+         id
+         slug
+-        creator { id slug }
++        creator {
++          id
++          slug
++        }
+         title
+       }
+       name
+--- a/frontend/src/views/Documents.tsx
++++ b/frontend/src/views/Documents.tsx
+@@ -195,7 +195,9 @@
+ 
+   const navigate = useNavigate();
+ 
+-  useDialogFocus(showFilterPopup, filterDialogRef, () => setShowFilterPopup(false));
++  useDialogFocus(showFilterPopup, filterDialogRef, () =>
++    setShowFilterPopup(false)
++  );
+ 
+   // Build query variables. Memoized on the underlying primitives so Apollo's
+   // ``useQuery`` only re-fetches when something the user actually changed (a
+@@ -578,10 +580,19 @@
+                 )}
+               </FilterButton>
+               {showFilterPopup && (
+-                <FilterPopup ref={filterDialogRef} role="dialog" aria-modal="true" aria-label="Advanced filters" tabIndex={-1}>
++                <FilterPopup
++                  ref={filterDialogRef}
++                  role="dialog"
++                  aria-modal="true"
++                  aria-label="Advanced filters"
++                  tabIndex={-1}
++                >
+                   <FilterPopupHeader>
+                     <FilterPopupTitle>Advanced Filters</FilterPopupTitle>
+-                    <FilterPopupClose aria-label="Close advanced filters" onClick={() => setShowFilterPopup(false)}>
++                    <FilterPopupClose
++                      aria-label="Close advanced filters"
++                      onClick={() => setShowFilterPopup(false)}
++                    >
+                       <X size={16} />
+                     </FilterPopupClose>
+                   </FilterPopupHeader>
+@@ -627,7 +638,11 @@
+             <StatBlock
+               value={stats.totalDocs.toString()}
+               label="Documents"
+-              sublabel={document_search_term || hasAdvancedFilters ? "matching your search and filters" : "in your library"}
++              sublabel={
++                document_search_term || hasAdvancedFilters
++                  ? "matching your search and filters"
++                  : "in your library"
++              }
+             />
+             <StatBlock
+               value={stats.totalPages.toLocaleString()}
+@@ -836,12 +851,17 @@
+                       Upload Your First Document
+                     </Button>
+                   ) : document_search_term || hasAdvancedFilters ? (
+-                    <Button variant="secondary" onClick={() => {
+-                      debouncedSearch.current.cancel();
+-                      setSearchCache("");
+-                      documentSearchTerm("");
+-                      handleClearFilters();
+-                    }}>Clear search and filters</Button>
++                    <Button
++                      variant="secondary"
++                      onClick={() => {
++                        debouncedSearch.current.cancel();
++                        setSearchCache("");
++                        documentSearchTerm("");
++                        handleClearFilters();
++                      }}
++                    >
++                      Clear search and filters
++                    </Button>
+                   ) : undefined
+                 }
+               />
+--- a/frontend/src/views/ExtractDetail.tsx
++++ b/frontend/src/views/ExtractDetail.tsx
+@@ -680,15 +680,39 @@
+   const handleExport = () => {
+     try {
+       if (activeTab === "data") {
+-        if (!dataGridRef.current) throw new Error("The data grid is not ready. Retry after it loads.");
++        if (!dataGridRef.current)
++          throw new Error("The data grid is not ready. Retry after it loads.");
+         dataGridRef.current.exportToExcel();
+       } else if (activeTab === "schema") {
+-        downloadJson(`${extract?.name || "extract"}-schema.json`, { fieldset: extract?.fieldset, columns });
++        downloadJson(`${extract?.name || "extract"}-schema.json`, {
++          fieldset: extract?.fieldset,
++          columns,
++        });
+       } else if (activeTab === "iterations") {
+-        downloadJson(`${extract?.name || "extract"}-iterations.json`, { current: extract?.id, parent: extract?.parentExtract, iterations: [extract, ...(extract?.fullIterationList ?? [])].map((run) => run && ({ id: run.id, name: run.name, created: run.created, started: run.started, finished: run.finished, error: run.error, modelConfig: run.modelConfig, iterationAxis: run.iterationAxis })) });
++        downloadJson(`${extract?.name || "extract"}-iterations.json`, {
++          current: extract?.id,
++          parent: extract?.parentExtract,
++          iterations: [extract, ...(extract?.fullIterationList ?? [])].map(
++            (run) =>
++              run && {
++                id: run.id,
++                name: run.name,
++                created: run.created,
++                started: run.started,
++                finished: run.finished,
++                error: run.error,
++                modelConfig: run.modelConfig,
++                iterationAxis: run.iterationAxis,
++              }
++          ),
++        });
+       }
+     } catch (error) {
+-      toast.error(`Export failed: ${error instanceof Error ? error.message : "Please retry."}`);
++      toast.error(
++        `Export failed: ${
++          error instanceof Error ? error.message : "Please retry."
++        }`
++      );
+     }
+   };
+ 
+@@ -715,12 +739,20 @@
+     return {
+       documents: rows.filter((doc) => {
+         const docCells = cells.filter((cell) => cell.document?.id === doc.id);
+-        return columns.length > 0 && columns.every((column) =>
+-          docCells.some((cell) => cell.column?.id === column.id && (cell.completed || cell.failed))
++        return (
++          columns.length > 0 &&
++          columns.every((column) =>
++            docCells.some(
++              (cell) =>
++                cell.column?.id === column.id && (cell.completed || cell.failed)
++            )
++          )
+         );
+       }).length,
+       columns: columns.length,
+-      rows: rows.filter((doc) => cells.some((cell) => cell.document?.id === doc.id && cell.completed)).length,
++      rows: rows.filter((doc) =>
++        cells.some((cell) => cell.document?.id === doc.id && cell.completed)
++      ).length,
+       successRate: isComplete ? `${successRate}%` : "—",
+     };
+   }, [rows, columns, cells, isComplete]);
+@@ -811,16 +843,26 @@
+               size="sm"
+               leftIcon={<Download size={16} />}
+               onClick={handleExport}
+-              disabled={loading || Boolean(isRunning) || activeTab === "documents"}
++              disabled={
++                loading || Boolean(isRunning) || activeTab === "documents"
++              }
+             >
+-              {activeTab === "data" ? "Export Excel" : activeTab === "schema" ? "Export Schema JSON" : activeTab === "iterations" ? "Export Iterations JSON" : "Export"}
++              {activeTab === "data"
++                ? "Export Excel"
++                : activeTab === "schema"
++                ? "Export Schema JSON"
++                : activeTab === "iterations"
++                ? "Export Iterations JSON"
++                : "Export"}
+             </Button>
+           </Actions>
+         </Header>
+ 
+         {isComplete && cells.some((cell) => cell.failed) && (
+           <div role="status" style={{ padding: 12, background: "#fff4e5" }}>
+-            Extraction finished with {cells.filter((cell) => cell.failed).length} failed field(s). Successful fields remain available for review.
++            Extraction finished with{" "}
++            {cells.filter((cell) => cell.failed).length} failed field(s).
++            Successful fields remain available for review.
+           </div>
+         )}
+         {/* Stats */}
+@@ -914,7 +956,9 @@
+                   <div style={{ marginTop: 24 }}>
+                     <DataHeader>
+                       <DataTitle>Extracted Data</DataTitle>
+-                      <DataCount>{rows.length} selected document rows</DataCount>
++                      <DataCount>
++                        {rows.length} selected document rows
++                      </DataCount>
+                     </DataHeader>
+                     <GridContainer>
+                       <ExtractDataGrid
+@@ -953,18 +997,48 @@
+                               <DocumentMeta>
+                                 <span>PDF</span>
+                                 <span>-</span>
+-                                <span>{(() => {
+-                                  const docCells = cells.filter((cell) => cell.document?.id === doc.id);
+-                                  const completed = docCells.filter((cell) => cell.completed).length;
+-                                  const failed = docCells.filter((cell) => cell.failed).length;
+-                                  if (completed || failed) return `${completed} of ${columns.length} fields extracted${failed ? ` · ${failed} failed` : ""}`;
+-                                  return extract.started ? "Awaiting extraction" : "Not started";
+-                                })()}</span>
++                                <span>
++                                  {(() => {
++                                    const docCells = cells.filter(
++                                      (cell) => cell.document?.id === doc.id
++                                    );
++                                    const completed = docCells.filter(
++                                      (cell) => cell.completed
++                                    ).length;
++                                    const failed = docCells.filter(
++                                      (cell) => cell.failed
++                                    ).length;
++                                    if (completed || failed)
++                                      return `${completed} of ${
++                                        columns.length
++                                      } fields extracted${
++                                        failed ? ` · ${failed} failed` : ""
++                                      }`;
++                                    return extract.started
++                                      ? "Awaiting extraction"
++                                      : "Not started";
++                                  })()}
++                                </span>
+                               </DocumentMeta>
+                             </DocumentInfo>
+-                            {doc.fileType === "application/pdf" && doc.pdfFile && getDocumentUrl(doc, extract.corpus) !== "#" ? (
+-                              <Button variant="secondary" size="sm" aria-label={`Open PDF: ${doc.title}`} onClick={() => navigate(getDocumentUrl(doc, extract.corpus))}>Open PDF</Button>
+-                            ) : <span role="status">Original PDF unavailable</span>}
++                            {doc.fileType === "application/pdf" &&
++                            doc.pdfFile &&
++                            getDocumentUrl(doc, extract.corpus) !== "#" ? (
++                              <Button
++                                variant="secondary"
++                                size="sm"
++                                aria-label={`Open PDF: ${doc.title}`}
++                                onClick={() =>
++                                  navigate(getDocumentUrl(doc, extract.corpus))
++                                }
++                              >
++                                Open PDF
++                              </Button>
++                            ) : (
++                              <span role="status">
++                                Original PDF unavailable
++                              </span>
++                            )}
+                           </DocumentItem>
+                         ))}
+                       </DocumentsList>
+--- a/frontend/src/views/LabelSets.tsx
++++ b/frontend/src/views/LabelSets.tsx
+@@ -499,11 +499,16 @@
+                 size="lg"
+                 action={
+                   labelset_search_term ? (
+-                    <Button variant="secondary" onClick={() => {
+-                      debouncedSearch.current.cancel();
+-                      setSearchCache("");
+-                      labelsetSearchTerm("");
+-                    }}>Clear search</Button>
++                    <Button
++                      variant="secondary"
++                      onClick={() => {
++                        debouncedSearch.current.cancel();
++                        setSearchCache("");
++                        labelsetSearchTerm("");
++                      }}
++                    >
++                      Clear search
++                    </Button>
+                   ) : activeFilter === "all" && isAuthenticated ? (
+                     <Button
+                       variant="primary"

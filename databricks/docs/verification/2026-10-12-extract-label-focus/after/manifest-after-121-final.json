@@ -1,0 +1,526 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-final-chromium-121-fspo-always-independent.png",
+      "caption": "AFTER #121: fspo always independent",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:47:56.718793+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 133,
+      "sha256": "d9859bf020ad3e3deb243dacd75e19c382c6e20c1bf186350724e2e7fc6a7cd1",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-chromium-121-fspo-mode-ALWAYS.png",
+      "caption": "AFTER #121: fspo mode ALWAYS",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:22:50.316765+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "1c982cafd81f05e660c784d7d77aa761cda431bc5fa8c79fdccea5e50536ce64",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-chromium-121-fspo-mode-HIDE.png",
+      "caption": "AFTER #121: fspo mode HIDE",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:23:16.824137+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 133,
+      "sha256": "491f1365b154e963676aaaf1871e27c1f01eb89f6b5ef06c71b1b3511a4819a0",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-chromium-121-fspo-mode-ON_HOVER.png",
+      "caption": "AFTER #121: fspo mode ON_HOVER",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:23:48.871039+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "a2873f1816a990bfd27535a219a2653e8d99544adcf389cb006dd7e7d068f60f",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-chromium-121-fspo-mode-default.png",
+      "caption": "AFTER #121: fspo mode default",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:22:09.855735+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "d066b1d60c8a5856c3b0c3b365ca3cd4fe32a0ceece98385d19417b8a34a4592",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-chromium-121-fspo-ordinary-entry.png",
+      "caption": "AFTER #121: fspo ordinary entry",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:46:11.706151+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 179,
+      "sha256": "bf8e757fd64261df8d6860388d461c71107289532cbed06db1183a4e81f305a4",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-chromium-121-owned-edit-label-cancel.png",
+      "caption": "AFTER #121: owned edit label cancel",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:46:18.070690+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "4306febd944ad9cc8d657738c44e033aa220465f0e40052b6b56ae834a50f5a8",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Control opened and cancelled; no saved annotation/label change"
+    },
+    {
+      "image": "after-final-chromium-121-owned-edit-label-open.png",
+      "caption": "AFTER #121: owned edit action immediate capture before modal paint; native dialog assertion passed, this image is not visual dialog-open proof",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:46:16.941498+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "0106bff225d7811997299d4e923bc499765903c2269567331619d54e025197ce",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Control opened and cancelled; no saved annotation/label change Capture preceded settled modal paint; corrected settled open/cancel screenshots are retained separately."
+    },
+    {
+      "image": "after-final-chromium-121-terms-mode-ALWAYS.png",
+      "caption": "AFTER #121: terms mode ALWAYS",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:39:12.296182+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "69a3b84633276976b699f4172611f8286a37be356b7e8300676cc8137bf80aa5",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-chromium-121-terms-mode-HIDE.png",
+      "caption": "AFTER #121: terms mode HIDE",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:40:57.034605+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "da795c902881c61e39218d27aff55cc27ac3b02e9eb18d1f366575768a907bf9",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-chromium-121-terms-mode-ON_HOVER.png",
+      "caption": "AFTER #121: terms mode ON_HOVER",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:42:25.353503+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "1461ad0e22acb8ef502c0315c63e8e14e82ffb216690cbe4f93f4b00c595cfad",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-chromium-121-terms-mode-default.png",
+      "caption": "AFTER #121: terms mode default",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:23.108537+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "be075ba2522c6d47dc66314d22f14a720c1343ad19ce39f052f2bf324a29b98e",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-chromium-121-terms-ordinary-entry.png",
+      "caption": "AFTER #121: terms ordinary entry",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:46:04.493446+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "4be30a9b0d6ef4c3a8114cccf2606046b67bb865ae6fe6bbef6e708241e12fe5",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-fspo-always-independent.png",
+      "caption": "AFTER #121: fspo always independent",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:44:14.350707+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "f328f5d4e7b4062bd0866ef9c1f748c34b626abdc8fe49a12d204ab5245596bd",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-fspo-mode-ALWAYS.png",
+      "caption": "AFTER #121: fspo mode ALWAYS",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:24:08.512980+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "75f645eee3b1f2ae25224705b68008d1aef75e85f9924d43b7f67a57771416df",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-fspo-mode-HIDE.png",
+      "caption": "AFTER #121: fspo mode HIDE",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:24:36.217302+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "082f309371a354aef1045c145cfd81924fbbd38337e313831e63e2679ee42adb",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-fspo-mode-ON_HOVER.png",
+      "caption": "AFTER #121: fspo mode ON_HOVER",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:25:19.138945+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "d04bce75c6c38d5408d6c7f02966df64c64680d6e6356a2c8836c085fd20bcaa",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-fspo-mode-default.png",
+      "caption": "AFTER #121: fspo mode default",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:23:26.840400+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "64f5f6897ff0b658c273a8f97bdd54aa81c82d70848b719929719aff2846cb7a",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-fspo-ordinary-entry.png",
+      "caption": "AFTER #121: fspo ordinary entry",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:42:36.939387+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "6f438338e0315d450572ca14af0074dd6da8746a3940d50f915118299ab6c150",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-owned-edit-label-cancel.png",
+      "caption": "AFTER #121: owned edit label cancel",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:42:45.330079+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "f2b70d787ac88963c3aa756cc7ddf94c5609ab0a09e6199d1fcade7bfff22e67",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Control opened and cancelled; no saved annotation/label change"
+    },
+    {
+      "image": "after-final-firefox-121-owned-edit-label-open.png",
+      "caption": "AFTER #121: owned edit action immediate capture before modal paint; native dialog assertion passed, this image is not visual dialog-open proof",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:42:43.852811+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "7cda5f990fded1972095cb700a6346519cd074e440f6d3fc7f75bfdd147acf28",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Control opened and cancelled; no saved annotation/label change Capture preceded settled modal paint; corrected settled open/cancel screenshots are retained separately."
+    },
+    {
+      "image": "after-final-firefox-121-terms-mode-ALWAYS.png",
+      "caption": "AFTER #121: terms mode ALWAYS",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:36:19.464030+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "3b8b1fce4a12a11f8df5a99cc96e7a437c6a43a7d3626a2f1c2950aa3d78c5fb",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-terms-mode-HIDE.png",
+      "caption": "AFTER #121: terms mode HIDE",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:37:56.627560+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "a53cb341b8af68beebced40302f5bbc2f8f25697b35c0e97dd1ea7e890f8eda1",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-terms-mode-ON_HOVER.png",
+      "caption": "AFTER #121: terms mode ON_HOVER",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:40:14.443380+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "87ee409baa484d906d2234ddfeb7025471d2451c4c18cde1e24fa4fa8c49179e",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-terms-mode-default.png",
+      "caption": "AFTER #121: terms mode default",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:39.700258+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "17f8f5c3d80241c5bf165355893c158e57a678539350f22a72f338b5976ca208",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    },
+    {
+      "image": "after-final-firefox-121-terms-ordinary-entry.png",
+      "caption": "AFTER #121: terms ordinary entry",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:42:29.125050+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "2332fd60246d8ea39b0e78a0868f6d9ab5d38a05f977a0f84b6a6ba1e9aed64b",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; read-only inspection"
+    }
+  ],
+  "acceptance": "all issue121 checks passed on reviewed deployed source"
+}

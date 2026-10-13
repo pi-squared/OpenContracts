@@ -1,0 +1,17 @@
+{
+  "captured_at": "2026-10-12T16:16:02.425710+00:00",
+  "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+  "browsers": [
+    "Chromium 151.0.7922.34",
+    "Firefox 153.0"
+  ],
+  "initial_selected_only": true,
+  "first_source_click_clears_focus_preserves_filter_and_A_membership": true,
+  "second_source_click_restores_focus_drops_filter_and_exposes_four_identities": true,
+  "native_default_false_query_parameter_is_omitted": true,
+  "initial_explicit_false_only_diagnostic_corrected_using_true_flag_and_rendered_geometry": true,
+  "browser_mutations": 0,
+  "model_invocations": 0,
+  "fixture": "Synthetic UI verification; not domain/model acceptance",
+  "manifest": "manifest-before-123-selected-source.json"
+}

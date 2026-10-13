@@ -1,0 +1,91 @@
+--- a/frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx
++++ b/frontend/src/components/knowledge_base/document/layouts/MobileDocumentLayout.tsx
+@@ -211,8 +211,10 @@
+     "new-chat" | "history" | null
+   >(null);
+ 
+-  const { selectedAnnotations, setSelectedAnnotations } =
+-    useAnnotationSelection();
++  const { selectedAnnotations, setSelectedAnnotations } = useAnnotationSelection();
++  const [annotationDetailsOpen, setAnnotationDetailsOpen] = useState(false);
++  const selectedAnnotationKey = selectedAnnotations.join(",");
++  useEffect(() => { setAnnotationDetailsOpen(false); }, [selectedAnnotationKey]);
+ 
+   // A chat source citation click sets a non-null `selectedSourceIndex` on the
+   // shared chat-source atom (see ChatTray's per-source `onClick`). When that
+@@ -282,6 +284,9 @@
+           )}
+           {!queryError && activeTab === "document" && (
+             <DocumentSurface data-testid="mobile-surface-document">
++              {selectedAnnotations.length > 0 && (
++                <button style={{ flexShrink: 0, padding: 8 }} onClick={() => setAnnotationDetailsOpen(true)}>Annotation details</button>
++              )}
+               <ViewerArea>
+                 {viewerContent}
+                 {/* Floating controls overlay the viewer so the page fills it. */}
+@@ -491,11 +496,11 @@
+         {/* Annotation detail sheet — single rendering site for both open paths:
+           tapping a feed row in the Annotations surface and tapping a highlight
+           in the Document-tab viewer. Both set the shared `selectedAnnotations`
+-          selection; closing the sheet clears it. */}
++          selection; details are optional and closing preserves the source selection. */}
+         <MobileSheet
+-          open={selectedAnnotations.length > 0}
++          open={annotationDetailsOpen && selectedAnnotations.length > 0}
+           title="Annotation"
+-          onClose={() => setSelectedAnnotations([])}
++          onClose={() => setAnnotationDetailsOpen(false)}
+         >
+           <MobileAnnotationDetail readOnly={readOnly} loading={loading} />
+         </MobileSheet>
+--- a/frontend/src/components/knowledge_base/document/layouts/mobile/MobileSheet.tsx
++++ b/frontend/src/components/knowledge_base/document/layouts/mobile/MobileSheet.tsx
+@@ -1,4 +1,5 @@
+-import React from "react";
++import React, { useId, useRef } from "react";
++import { useDialogFocus } from "../../../../../hooks/useDialogFocus";
+ import styled from "styled-components";
+ import { AnimatePresence, motion } from "framer-motion";
+ import { X } from "lucide-react";
+@@ -87,8 +88,11 @@
+   title,
+   onClose,
+   children,
+-}) => (
+-  <AnimatePresence>
++}) => {
++  const panelRef = useRef<HTMLDivElement>(null);
++  const titleId = useId();
++  useDialogFocus(open, panelRef, onClose);
++  return <AnimatePresence>
+     {open && (
+       <>
+         <Scrim
+@@ -98,13 +102,18 @@
+           onClick={onClose}
+         />
+         <Panel
++          ref={panelRef}
++          role="dialog"
++          aria-modal="true"
++          aria-labelledby={titleId}
++          tabIndex={-1}
+           initial={{ y: "100%" }}
+           animate={{ y: 0 }}
+           exit={{ y: "100%" }}
+           transition={{ type: "tween", duration: 0.22 }}
+         >
+           <Header>
+-            <Title>{title}</Title>
++            <Title id={titleId}>{title}</Title>
+             <CloseButton aria-label="Close" onClick={onClose}>
+               <X size={18} />
+             </CloseButton>
+@@ -113,5 +122,5 @@
+         </Panel>
+       </>
+     )}
+-  </AnimatePresence>
+-);
++  </AnimatePresence>;
++};

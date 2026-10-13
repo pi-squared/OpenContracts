@@ -1,0 +1,11 @@
+--- a/frontend/src/graphql/queries.ts
++++ b/frontend/src/graphql/queries.ts
+@@ -3291,6 +3291,8 @@
+       id
+       corpus {
+         id
++        slug
++        creator { id slug }
+         title
+       }
+       name

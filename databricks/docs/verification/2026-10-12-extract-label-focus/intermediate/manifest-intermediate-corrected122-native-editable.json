@@ -1,0 +1,87 @@
+{
+  "phase": "intermediate",
+  "artifacts": [
+    {
+      "image": "intermediate-corrected122-native-bounds-chromium-owned-selection-menu-before-save.png",
+      "caption": "INTERMEDIATE #122: Native public text drag opens the action menu with the owned existing label; source evidence remains focused.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:35:30.119728+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d0a36668cea9df77ef90b93b81b872f57e4e24f13af1f60b1c4ffe4955d31745",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic native-editable UI fixture using unchanged public SME PDF",
+      "limitations": "Partial red release; native ordinary proof on Chromium only; URL dialog cannot be clicked and Firefox ordinary request is incomplete. No domain/model assessment.",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-native-bounds-chromium-ordinary-annotation-saved.png",
+      "caption": "INTERMEDIATE #122: One genuine owned native ordinary annotation save succeeded; server readback proves exact token text and padded native geometry, no provider work; focused evidence retained.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:36:13.504215+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2abe3af49c220da6a38f49e3d66cafd9fc91512b5fded58539d54a9b2c42c484",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic native-editable UI fixture using unchanged public SME PDF",
+      "limitations": "Partial red release; native ordinary proof on Chromium only; URL dialog cannot be clicked and Firefox ordinary request is incomplete. No domain/model assessment.",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-native-bounds-chromium-url-modal-create-button-intercepted.png",
+      "caption": "INTERMEDIATE #122: Native Add link dialog exists behind the fullscreen viewer and is absent from this rendered screenshot; its Create link center hits the underlying source card, so no URL save was transmitted.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:37:48.724409+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "5ae9466cf5ea64719e1e5d5dc1ebda6a3978f5e16e3216003a8b18f7e97682ea",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic native-editable UI fixture using unchanged public SME PDF",
+      "limitations": "Partial red release; native ordinary proof on Chromium only; URL dialog cannot be clicked and Firefox ordinary request is incomplete. No domain/model assessment.",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "intermediate-corrected122-native-bounds-firefox-ordinary-click-no-request.png",
+      "caption": "INTERMEDIATE #122: Firefox ordinary-button activation closes the native action menu but produces no save request; server readback remains one total annotation. This attempt is incomplete and is not acceptance.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T19:39:55.245065+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ea19b65071abfe7fc74a8af13a904e811a063b9cebba1d639c28d803d3b91d03",
+      "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+      "fixture": "Owned synthetic native-editable UI fixture using unchanged public SME PDF",
+      "limitations": "Partial red release; native ordinary proof on Chromium only; URL dialog cannot be clicked and Firefox ordinary request is incomplete. No domain/model assessment.",
+      "pdf_zoom": 110
+    }
+  ],
+  "acceptance": "Partial owned native-creation proof and concrete URL-dialog reachability failure; full122 remains FAILED.",
+  "hosted_acceptance": false
+}

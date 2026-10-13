@@ -1,0 +1,39 @@
+--- a/frontend/src/components/corpuses/CorpusModal.tsx
++++ b/frontend/src/components/corpuses/CorpusModal.tsx
+@@ -733,6 +733,7 @@
+     title,
+     slug,
+     description,
++    articleLayout,
+     icon,
+     labelSetId,
+     preferredEmbedder,
+--- a/frontend/src/components/extracts/ExtractDetailContent.tsx
++++ b/frontend/src/components/extracts/ExtractDetailContent.tsx
+@@ -325,6 +325,7 @@
+ // Handle type for imperative methods
+ export interface ExtractDetailContentHandle {
+   exportToCsv: () => void;
++  exportToExcel: () => void;
+   refetch: () => void;
+   startExtract: () => void;
+ }
+@@ -492,6 +493,7 @@
+   // Expose imperative methods
+   useImperativeHandle(ref, () => ({
+     exportToCsv: () => dataGridRef.current?.exportToCsv(),
++    exportToExcel: () => dataGridRef.current?.exportToExcel(),
+     refetch: () => refetch(),
+     startExtract: () => {
+       if (extract && !Boolean(extract.sourceReadinessError)) {
+--- a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
++++ b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+@@ -459,7 +459,7 @@
+       <Modal open={failureOpen} onClose={() => setFailureOpen(false)}>
+         <ModalHeader>Extraction failed: {column.name}</ModalHeader>
+         <ModalBody>
+-          <p>No finding was produced for this field in {extract.name}.</p>
++          <p>No finding was produced for this field in {extract?.name || "this extract"}.</p>
+           {cell?.failed && <p>Failed at {new Date(cell.failed).toLocaleString()}.</p>}
+           <p>Successful fields remain available for review. Check the extraction configuration, then use Iterations to create a new run. Opening this notice does not rerun extraction.</p>
+         </ModalBody>

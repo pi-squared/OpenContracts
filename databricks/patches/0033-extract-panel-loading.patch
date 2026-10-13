@@ -1,0 +1,107 @@
+--- a/frontend/src/components/annotator/hooks/AnalysisHooks.tsx
++++ b/frontend/src/components/annotator/hooks/AnalysisHooks.tsx
+@@ -530,6 +530,8 @@
+     analyses,
+     extracts,
+     fetchDocumentAnalysesAndExtracts,
++    extractsLoading: !selectedDocument?.id || analysesLoading || (!analysesData && !analysesError),
++    extractsError: analysesError,
+     resetStates,
+     onSelectAnalysis,
+     onSelectExtract,
+--- a/frontend/src/components/knowledge_base/document/DocumentKnowledgeBase.tsx
++++ b/frontend/src/components/knowledge_base/document/DocumentKnowledgeBase.tsx
+@@ -415,6 +415,9 @@
+     columns,
+     analyses,
+     extracts,
++    extractsLoading,
++    extractsError,
++    fetchDocumentAnalysesAndExtracts,
+     onSelectAnalysis,
+     onSelectExtract,
+   } = useAnalysisManager();
+@@ -834,6 +837,9 @@
+     pdfAnnotations,
+     analyses,
+     extracts,
++    extractsLoading,
++    extractsError: extractsError || queryError,
++    retryExtracts: () => { void fetchDocumentAnalysesAndExtracts().catch(() => {}); },
+     selectedAnalysis,
+     selectedExtract,
+     threadCount,
+--- a/frontend/src/components/knowledge_base/document/FloatingExtractsPanel.tsx
++++ b/frontend/src/components/knowledge_base/document/FloatingExtractsPanel.tsx
+@@ -18,6 +18,9 @@
+ interface FloatingExtractsPanelProps {
+   visible: boolean;
+   extracts: ExtractType[];
++  loading?: boolean;
++  error?: Error;
++  onRetry?: () => void;
+   onClose: () => void;
+   panelOffset?: number;
+   initiallyExpanded?: boolean;
+@@ -245,6 +248,9 @@
+ export const FloatingExtractsPanel: React.FC<FloatingExtractsPanelProps> = ({
+   visible,
+   extracts,
++  loading = false,
++  error,
++  onRetry,
+   onClose,
+   panelOffset = 0,
+   initiallyExpanded = false,
+@@ -326,7 +332,16 @@
+               </Actions>
+             </Header>
+             <Content>
+-              {selectedExtract ? (
++              {error ? (
++                <div role="alert" style={{ padding: 24 }}>
++                  <p>Could not load extracts. Check document access and try again.</p>
++                  <button onClick={onRetry}>Retry extracts</button>
++                </div>
++              ) : loading ? (
++                <div role="status" aria-live="polite" style={{ padding: 24 }}>
++                  <span aria-hidden="true">⏳ </span>Loading extracts…
++                </div>
++              ) : selectedExtract ? (
+                 <>
+                   <BackBar>
+                     <BackButton
+--- a/frontend/src/components/knowledge_base/document/layouts/DesktopDocumentLayout.tsx
++++ b/frontend/src/components/knowledge_base/document/layouts/DesktopDocumentLayout.tsx
+@@ -109,6 +109,9 @@
+     pdfAnnotations,
+     analyses,
+     extracts,
++    extractsLoading,
++    extractsError,
++    retryExtracts,
+     selectedAnalysis,
+     selectedExtract,
+     threadCount,
+@@ -338,6 +341,9 @@
+                     !selectedExtract
+                   }
+                   extracts={extracts}
++                  loading={extractsLoading}
++                  error={extractsError}
++                  onRetry={retryExtracts}
+                   onClose={() => setShowExtractsPanel(false)}
+                   panelOffset={floatingControlsState.offset}
+                   readOnly={readOnly}
+--- a/frontend/src/components/knowledge_base/document/layouts/types.ts
++++ b/frontend/src/components/knowledge_base/document/layouts/types.ts
+@@ -108,6 +108,9 @@
+   pdfAnnotations: PdfAnnotations;
+   analyses: AnalysisType[];
+   extracts: ExtractType[];
++  extractsLoading: boolean;
++  extractsError?: Error;
++  retryExtracts: () => void;
+   selectedAnalysis: AnalysisType | null;
+   selectedExtract: ExtractType | null;
+   threadCount: number;

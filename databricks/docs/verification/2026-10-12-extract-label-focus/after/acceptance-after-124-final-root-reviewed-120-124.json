@@ -1,0 +1,300 @@
+{
+  "verified_at_utc": "2026-10-13T01:27:35.631459+00:00",
+  "issues": [
+    120,
+    124
+  ],
+  "verification_result": "Root accepted fresh integrated hosted named-state verification; final whole-branch review and tracker closure pending.",
+  "hosted_acceptance": true,
+  "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+  "recipe_sha256": "61e9842ca8b30266876a4ee91c4d08013b3b4bb2e03dc6219a2abb33db5c1b5d",
+  "archive_sha256": "6426746f23243e30abeb7b7fa320ec5a5a63b176d18d9efaa23955232fbce980",
+  "release_sha256": "4dcbec417dc3c3ed5fbfb95922cce7f745aea0be3fa0bbfed9b5aa0ab294a69e",
+  "native_frontend_bundle_sha256": "53dfbfed7c363e6b96f4524678f4525a1e108587b4a99dc2a9754bc9bc39518d",
+  "assembly": {
+    "native_files": 127,
+    "patches": 52,
+    "overlays": 43,
+    "required_local_gates_actual_exit_zero": 12,
+    "frontend_tests_passed": 96,
+    "frontend_tests_skipped": 0,
+    "typecheck_passed": true,
+    "production_build_passed": true,
+    "runtime_executed": 1,
+    "runtime_skipped": 0,
+    "runtime_passed": true
+  },
+  "deployment": {
+    "exact_release_app_py_app_yaml_bytes": true,
+    "resources_preserved": 8,
+    "end_source_resources_unchanged": true,
+    "config_preserved": true
+  },
+  "verification": {
+    "desktop_browsers": [
+      "Chromium151",
+      "Firefox153"
+    ],
+    "native_held_copy_browser": "Firefox157 softwareWebDriver",
+    "desktop_viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "dense_pdf_zoom": [
+      127,
+      167
+    ],
+    "dense_complete_images": 60,
+    "dense_selected_images": 44,
+    "manual_116_display_states": 4,
+    "owned_native_quote_states": 5,
+    "selected_original_images": 176,
+    "images_unchanged": true,
+    "genuine_final_native_owned_saves": 4,
+    "owned_total_saved_annotations": 9,
+    "native_save_budget_consumed": true,
+    "read_only_final_go": true,
+    "all_contexts_closed": true,
+    "outer_closure_exit_codes": 0,
+    "all_query_guards_violations": 0,
+    "source_text_labels_geometry_quotes_findings_reviews_original49_unchanged": true,
+    "protected_prior5_uri_main_version_E_unchanged": true,
+    "final_original_comparison_actual_exit_code": 0,
+    "final_protected_comparison_actual_exit_code": 0,
+    "provider_operations_reservations_events_embeddings": 0,
+    "model_invocations": 0,
+    "operator_database_writes": 0
+  },
+  "fixture_distinctions": [
+    "Actual retained public Terms andFSPO extract-source evidence, native workflowlabels and evidence-quote markers.",
+    "Original public SME #116 manual-display continuity:fourstates at127/167 bothbrowsers,not an extractevidence focusfixture.",
+    "Owned publicSMEPDF nativeevidence projection:five focus/mode states,full/partial/strict overlap,reusedidentities/distinctlabels.",
+    "Owned synthetic multipage/original-corrected/nativeversionlineage and separate editablecopy; no domain/modelacceptance claim.",
+    "Separate owned transparent nativeembeddedURI derivative,original publicPDF text/pixels/PAWLS preserved; derivativePDF remainsprivate."
+  ],
+  "criteria": [
+    {
+      "id": "120-H01",
+      "criterion": "Exact reviewed deployment, tested pinned assembly and before-state capture",
+      "result": "PASS; root accepted API3/archive/runtime1 skip0/config8. Before124 captured accepted442a, original baseline before replacement remains linked."
+    },
+    {
+      "id": "120-H02",
+      "criterion": "Ordinary/source/grid/link entry, actual Terms/FSPO and original/corrected source navigation",
+      "result": "PASS. Actual retained native workflow labels/evidence-quote sources; corrected findings use an identified owned synthetic fixture because retained samples have none."
+    },
+    {
+      "id": "120-H03",
+      "criterion": "#116 page1 at1440x1000,127/167, both browsers, all applicable states",
+      "result": "PASS. Original manual-display continuity is16 images/four states. Singular-focus behavior is20 images/five states on the owned native evidence-quote projection of the same public SME PDF."
+    },
+    {
+      "id": "120-H04",
+      "criterion": "Dense/full/partial overlaps, identity dedup, distinct labels, eligible-point cycles",
+      "result": "PASS. Actual shared fullABD3, partialABCD4, strictCE2/nontransitive exclusions; reusedA identity dedup and distinct labels. Meaningful keyboard centerC is singleton, not the shared4 point."
+    },
+    {
+      "id": "120-H05",
+      "criterion": "Pane/source clearing, document exit, filters, selected-only, mode navigation/reload",
+      "result": "PASS. Real source-card toggle and restored membership; no PDF singleton deselect step. Native exact reading/pane geometry retained."
+    },
+    {
+      "id": "120-H06",
+      "criterion": "Multipage labels and repeated scroll/zoom, no accidental viewport navigation",
+      "result": "PASS. Physical PDFpage2 laterA occurrence, explicitsourcepage1; two equal native frames include actual #pdf-container scroll, all canvases/highlights and complete query multiset."
+    },
+    {
+      "id": "120-H07",
+      "criterion": "Keyboard/touch, controls, copying, creation and PDF links",
+      "result": "PASS with declared protocol limits. Real Tab/Enter/Space/Escape/touch; four genuine final nativeUI saves, native stock signal/provider0; custom OC_URL and embeddedPDFURI proved separately."
+    },
+    {
+      "id": "120-H08",
+      "criterion": "Original source/findings/quotes/geometry/labels/reviews preserved; owned editable copies",
+      "result": "PASS. Post-last-touch original49 unchanged; protected prior5+URI/main/version/E and TOTAL9 remain exact; no provider work. Only the four declared owned native annotation saves changed new rows."
+    },
+    {
+      "id": "120-H09",
+      "criterion": "Dated before/after evidence and identity, privacy and fixture distinctions",
+      "result": "PASS. Selected176 unchanged original PNGs plus dated safe receipt. Auth, rawrows, logs, connection details and derivativeURI PDF remain private."
+    },
+    {
+      "id": "120-H10",
+      "criterion": "Verification receipt, scoped review, local green, fresh hosted completion",
+      "result": "Operator hosted verification COMPLETE. Final whole-branch two-axis review, issue publication and closure are root-owned and still pending this handoff."
+    },
+    {
+      "id": "124-A01",
+      "criterion": "Reachable temporary keyboard labels obey modes/exclusions without singular selection",
+      "result": "PASS. Genuine ordinary public forward traversal and source-control reverse traversal; native temporary editor and protectedNo return, Tabdeparture hidden and positive source-card nofocus."
+    },
+    {
+      "id": "124-A02",
+      "criterion": "Enter/Space visible-set/dedup/order/no-empty cycle, full/partial/out-of-set",
+      "result": "PASS. Local and hosted keyboard cases use full A/B/D center candidates, C and E exclusive centers, and selected A/B. The shared A/B/C/D four-candidate point and strict C/E two-candidate point are verified with pointer/touch. Neither local nor hosted keyboard evidence is claimed for a four-candidate center."
+    },
+    {
+      "id": "124-A03",
+      "criterion": "Stationary taps/cycles/closed blank; movement/longpress do not inspect",
+      "result": "PASS. Real151/153 full3 andpartial4; actualTerms/FSPO clear->singletonfocus/repeat->same/blank->clear. Chromium trustedcancel/nativepanning335; native157 savedshared3hold withCinitialoutsidepool/copy retainsC, >10px movement/two-contact/pendingEscape guards."
+    },
+    {
+      "id": "124-A04",
+      "criterion": "First topmost dialog/filter/text-selection Escape then eligible PDF clear",
+      "result": "PASS. Actual Settings firstEscape retainsB, subsequentPDFEscape clears; native editor/protectedNo ownership; selectionmenu/versionpicker firstEscape retained. No saved review change."
+    },
+    {
+      "id": "124-A05",
+      "criterion": "Label/control pointer+keyboard transfer; native copy/create/link compatibility",
+      "result": "PASS. All5 real controls at127/167 both engines, exact foregroundbuttons/allancestoropacity/hits/twoequal. Four native final creates, native mouse+held copy and distinct custom/embeddedURI paths."
+    },
+    {
+      "id": "124-A06",
+      "criterion": "Exclusion/selected/multipage/pane/source-version remembered focus and current finding",
+      "result": "PASS through integrated public lifecycle plus actual input selected-only modes and effectiveclosed-pane blank/cycle; complete native reading state retained. Explicitmode restoration applies."
+    },
+    {
+      "id": "124-A07",
+      "criterion": "Composed/public screen/events/native evidence-quote fixtures and retained regressions",
+      "result": "PASS. Pinned native composition and local full retained groups plus fresh unmocked hosted GraphQL/PDF/route events. No forced focus/internal handlers; technical fixtures explicitly synthetic."
+    },
+    {
+      "id": "124-A08",
+      "criterion": "Maintained pinned delivery, isolated scoped review and required local checks",
+      "result": "PASS. d9ace/61e;127nativefiles,52patches43overlays; all12localgates actual0,96tests/0skip/type/Vitegreen. Stage runtime1executed/0skips."
+    },
+    {
+      "id": "124-A09",
+      "criterion": "Before capture/deploy/source identity; real both-browser input actual samples and fixtures",
+      "result": "PASS. Held source/resources/API3/bundle exact;151/153 desktop1440x1000 plus157 software touch/copy. Actual samples supplement complete after source-bound prior Terms stages."
+    },
+    {
+      "id": "124-A10",
+      "criterion": "Fresh every120 acceptance, dense127167, transitions/copy/create/links and gap reporting",
+      "result": "Operator replay COMPLETE with explicit named-scope/protocol limits; unknown initial commands remain unknown, no retroactive whole-command green claim."
+    },
+    {
+      "id": "124-A11",
+      "criterion": "Dated child receipt/source/fixtures/screenshots/data preservation and completion gates",
+      "result": "Operator evidence COMPLETE. Final branchreview/publication/trackerclosure are root-owned. The receipt exposes safe results and exact source/hash identity, not operational/private records."
+    }
+  ],
+  "verification_limits": [
+    "Original #116 manual-display annotations are not extract evidence quotes. Their four-state continuity matrix is separate from the owned five-state evidence-quote focus matrix on the same public PDF.",
+    "Local and hosted keyboard cases use full A/B/D center candidates, C and E exclusive centers, and selected A/B. The shared A/B/C/D four-candidate point and strict C/E two-candidate point are verified with pointer/touch. Neither local nor hosted keyboard evidence is claimed for a four-candidate center.",
+    "Some Firefox bounded forward/reverse traversals at document ends stopped with UNKNOWN cause. Genuine ordinary public forward entry, source-control reverse traversal and forward-within-PDF reach evidence targets without forced DOM focus.",
+    "Native Firefox157 uses trusted software WebDriver touch, not hardware. Movement canceled inspection with measuredpanning0; no actual157touchcancel event is claimed. Chromium trustedtouchcancel and observed nativepanning335 provide separate cancellation/scroll coverage.",
+    "Actual FSPO offers one raw Quotation label; generic labelallowlist coverage uses actual distinct Terms labels and identified owned labels. Retained actual Terms/FSPO PDFs contain0 embeddedURI; a separately owned transparent-URI technical PDF proves the actual NativeLinkLayer path.",
+    "Saved customOC_URL renderer is separate from embeddedPDFURI/HTMLanchor. Same-document customnavigation retains singular focus and removesann/extract targets; native text selection intentionally clears pluralann while preserving singular focus.",
+    "ChromiumURL native save lost its temporary event observer on fresh route; real gesture/menu/foreground/exactnativeHTTPresponse are preserved, but no surviving ChromiumURLdrag event log is claimed.",
+    "Original dense source_build envelopes retain stale pre-GO/pending/absent fields. Actual current read-onlyGO, immutable baseline pin, root deployment review and exact end identity supersede these historical template fields without rewriting them.",
+    "Snapshot extracts_open is extracts toolbar/menu aria, not pane effective visibility. Closed-pane proof uses actual native pane bounds/allancestoropacity and two equal frames. PDFzoom null means the grid/modal view did not paint a zoom control."
+  ],
+  "retained_failed_attempts": [
+    {
+      "attempt": "Initial stage/deployment health/auth wrappers",
+      "classification": "Driver/environment assumption",
+      "resolution": "Same deployed identity authenticated health reconciliation passed; no redeploy. Root archive validator source-vs-dist assumptions retained separately."
+    },
+    {
+      "attempt": "Two initial mouse-core commands after16passingimages each",
+      "classification": "UNKNOWN original assertion/cause",
+      "resolution": "Preserved partial receipts; separate effectiveclosed native activation/fullreading/scroll supplements pass. Do not retroactively label original commands green."
+    },
+    {
+      "attempt": "Firefox native paneclose DOMis_visible assertion",
+      "classification": "Effectivevisibility oracle error",
+      "resolution": "Actualx1442.8/opacity0/offviewport samples retained; later twoequal effectiveclosed proof and native activation passed."
+    },
+    {
+      "attempt": "Initial closed-scroll fixturefilename",
+      "classification": "Private caller setup error before activation",
+      "resolution": "Unique corrected caller proved exact native reading and actualscroll; original failure retained."
+    },
+    {
+      "attempt": "Extract-projection temporary edit/delete premise",
+      "classification": "Native permissions/projection scope mismatch",
+      "resolution": "Ordinary owned route offers genuine native permissions; no API/mock change. Real publiccontrols/No+Enter/focusreturn pass."
+    },
+    {
+      "attempt": "Firefox bounded Tab traversal ends",
+      "classification": "UNKNOWN observed document-end cause",
+      "resolution": "Independent actual ordinaryforward/sourcecontrolreverse/withinPDFforward reachability passes; no forcedfocus workaround."
+    },
+    {
+      "attempt": "Two-frame source readiness during nativeSmoothScroll",
+      "classification": "Settlement precondition stop",
+      "resolution": "Bounded actual public reading settlement preserves completequery/canvas/scroll; original stops retained."
+    },
+    {
+      "attempt": "Ccenter expected shared4 keyboard set",
+      "classification": "Wrong fixed-point candidate premise",
+      "resolution": "Measured meaningfulCcenter singleton; fullABD3 keyboard and actualpointABCD4 mouse/touch retained explicitly."
+    },
+    {
+      "attempt": "Later Settings/disclosure/legacyfilter locator",
+      "classification": "Native owner/setup premises; named groups only",
+      "resolution": "FloatingSettings actualAnnotationfilters owner and later native selection/version firstowner proofs pass. Stopped whole commands remain failed/partial."
+    },
+    {
+      "attempt": "Original FSPOEscape zerovisiblesourcecards",
+      "classification": "Insufficient positive focus-clear oracle",
+      "resolution": "Native positiveprioraria-current plus Tabdeparture and sameeligiblevisiblehighlight/labelabsence provesclear; original weakassertion notused."
+    },
+    {
+      "attempt": "Original FirefoxOriginalValue translucent PNG",
+      "classification": "Capture before effectiveforeground settlement",
+      "resolution": "New uniquely named exactClose/allancestoropacity/hits/twoequal proof passes both; originalimage retained as transition."
+    },
+    {
+      "attempt": "Native157 savedsource projection/copyshortcut/coordinate/layout",
+      "classification": "Driver premise/precondition stops",
+      "resolution": "Native ordinary savedannotations and actualCopyTextshortcut/nativevisiblepoint/twoequalcanvas settle; trustedhold/copy/movement proofs pass."
+    },
+    {
+      "attempt": "Native157 outofviewport tapHTTP500",
+      "classification": "Actual geometry premise; cause beyond observation UNKNOWN",
+      "resolution": "x-550/scrollLeft566/noactualevents retained; corrected in-viewnativewheel/zoom setup passes without productcause inference."
+    },
+    {
+      "attempt": "First save prearm missingintegrity receipt",
+      "classification": "Automaticreview stopped; noarm/noattempt/noresponse",
+      "resolution": "Fresh independentcount5/protected/provider0 rootreconciliation then normal renewedreview. Missingfile wasintegrity, not mutationresponse."
+    },
+    {
+      "attempt": "Wrong callerfield ordinary beforeguard assignment",
+      "classification": "Prearm caller error; noarm/noattempt",
+      "resolution": "Fresh independentcount5/rootreconciliation and normal renewedreview. Exact nativeaddAnnotation/addUrlAnnotation then4onceonlysavespass."
+    },
+    {
+      "attempt": "FirefoxURL foregroundhelper import",
+      "classification": "Private caller NameError beforearm",
+      "resolution": "Separate import/prearmforegroundproof completed before genuine once-only save."
+    },
+    {
+      "attempt": "Actualsample touch2 assumed PDFsingleton deselect",
+      "classification": "Wrong source-card-toggle versus PDFcycle contract premise",
+      "resolution": "ActualnativeSPANownership/no control interception; correctednoempty singletonrepeat retainsfocus. Positiveclear->focus andblank->clear pass bothactualsamples."
+    },
+    {
+      "attempt": "First corrected touch blank point NULL",
+      "classification": "Firstpartlyvisiblecanvas footer setup error before blankactivation",
+      "resolution": "New unique largestvisiblecanvas/actualpublichit candidate0 setup; reuseTermspositive stages, freshFSPOandblankproofs pass."
+    },
+    {
+      "attempt": "First offline imagebuilder len(integer)",
+      "classification": "Offline metadata schema assumption, no app/data call",
+      "resolution": "Originalpartialcopies stayseparate/unpublished. UniqueV2selectedbuilder completedactual0/hashmatches176images."
+    }
+  ],
+  "image_manifests": [
+    "manifest-after-124-final-root-reviewed-dense.json",
+    "manifest-after-124-final-root-reviewed-retained.json",
+    "manifest-after-124-final-root-reviewed-input.json",
+    "manifest-after-124-final-root-reviewed-native.json"
+  ],
+  "publication_note": "Public sample screenshots are authorised for publication to this repository. Credentials, connection details, raw database/model records, operational logs and native payloads remain private.",
+  "root_reviewed_at_utc": "2026-10-13T01:36:01.621826+00:00",
+  "whole_branch_review_pending": true,
+  "tracker_completion_ready": false
+}

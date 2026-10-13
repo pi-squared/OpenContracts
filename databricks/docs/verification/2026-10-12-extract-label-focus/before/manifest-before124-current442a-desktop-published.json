@@ -1,0 +1,174 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before124-current442a-chromium-110-before-tab.png",
+      "caption": "BEFORE #124 on reviewed source 442a: ordinary native extract entry at 110%, five page-1 quote identities and six mounted viewer targets, no transient evidence label; source rows were opened through native disclosure buttons.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T21:08:41.698339+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "1902f3dad824764b70662489d6c88971cb8221d381c029d90b58546f8f407e1e",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic quote fixture using the public SME PDF",
+      "limitations": "Current-source before observations only; bounded 70-Tab desktop sample, no touch run, no #124 implementation/readiness/acceptance claim. Original protocol completed but driver and wrapper exited 1 on private cleanup name collision.",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "before124-current442a-chromium-110-after-tab.png",
+      "caption": "BEFORE #124 on reviewed source 442a: 70 real Tab presses reach no evidence target and reveal no temporary label. The PDF reading state is unchanged; Tab may scroll the source pane to an ordinary focused control.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T21:08:48.314915+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "003c5977442c8abacde2c66c225113f6195e91c1bbd888506982414ba38b2678",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic quote fixture using the public SME PDF",
+      "limitations": "Current-source before observations only; bounded 70-Tab desktop sample, no touch run, no #124 implementation/readiness/acceptance claim. Original protocol completed but driver and wrapper exited 1 on private cleanup name collision.",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "before124-current442a-chromium-110-before-pdf-escape.png",
+      "caption": "BEFORE #124 on reviewed source 442a: native source-card entry followed by a genuine PDF highlight click establishes BODY/PDF ownership with a singular focused label and both reused matching source cards emphasized; no child dialog, filter, menu or text selection owns Escape.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T21:08:51.678547+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "2ed468ab358d8abbd9932ae18c687844625713ef63e7cb720629f4c09b787b9d",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic quote fixture using the public SME PDF",
+      "limitations": "Current-source before observations only; bounded 70-Tab desktop sample, no touch run, no #124 implementation/readiness/acceptance claim. Original protocol completed but driver and wrapper exited 1 on private cleanup name collision.",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "before124-current442a-chromium-110-after-pdf-escape.png",
+      "caption": "BEFORE #124 on reviewed source 442a: real Escape leaves the singular PDF label and matching source emphasis visible. Native route targets, selection parameters, canvas, PDF scroll and 110% zoom remain unchanged.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T21:08:53.288394+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "ac4fe1e3fb0e264b050023fcd8e0b4d0d095473b0ac16aa52dc624daac1da1b5",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic quote fixture using the public SME PDF",
+      "limitations": "Current-source before observations only; bounded 70-Tab desktop sample, no touch run, no #124 implementation/readiness/acceptance claim. Original protocol completed but driver and wrapper exited 1 on private cleanup name collision.",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "before124-current442a-firefox-110-before-tab.png",
+      "caption": "BEFORE #124 on reviewed source 442a: ordinary native extract entry at 110%, five page-1 quote identities and six mounted viewer targets, no transient evidence label; source rows were opened through native disclosure buttons.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T21:08:42.843690+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "55b03f047f116be56091a2b7dab3eb9ec90ee1d24f53eba774d98779b88530d2",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic quote fixture using the public SME PDF",
+      "limitations": "Current-source before observations only; bounded 70-Tab desktop sample, no touch run, no #124 implementation/readiness/acceptance claim. Original protocol completed but driver and wrapper exited 1 on private cleanup name collision.",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "before124-current442a-firefox-110-after-tab.png",
+      "caption": "BEFORE #124 on reviewed source 442a: 70 real Tab presses reach no evidence target and reveal no temporary label. The PDF reading state is unchanged; Tab may scroll the source pane to an ordinary focused control.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T21:08:50.417220+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "c56275412cab259b0069b7af604870a2b81a2d5d287edaeb328a176800fc348d",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic quote fixture using the public SME PDF",
+      "limitations": "Current-source before observations only; bounded 70-Tab desktop sample, no touch run, no #124 implementation/readiness/acceptance claim. Original protocol completed but driver and wrapper exited 1 on private cleanup name collision.",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "before124-current442a-firefox-110-before-pdf-escape.png",
+      "caption": "BEFORE #124 on reviewed source 442a: native source-card entry followed by a genuine PDF highlight click establishes BODY/PDF ownership with a singular focused label and both reused matching source cards emphasized; no child dialog, filter, menu or text selection owns Escape.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T21:08:54.401257+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "54e9947cd11107541ff0223fdb37fe00e08fbffd40c5072333f9a28c5fe21350",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic quote fixture using the public SME PDF",
+      "limitations": "Current-source before observations only; bounded 70-Tab desktop sample, no touch run, no #124 implementation/readiness/acceptance claim. Original protocol completed but driver and wrapper exited 1 on private cleanup name collision.",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "before124-current442a-firefox-110-after-pdf-escape.png",
+      "caption": "BEFORE #124 on reviewed source 442a: real Escape leaves the singular PDF label and matching source emphasis visible. Native route targets, selection parameters, canvas, PDF scroll and 110% zoom remain unchanged.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T21:08:56.128711+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "085375e2b4d10defacc719646b7a050bd528f439b8e6c88ea9069ba384c17efb",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic quote fixture using the public SME PDF",
+      "limitations": "Current-source before observations only; bounded 70-Tab desktop sample, no touch run, no #124 implementation/readiness/acceptance claim. Original protocol completed but driver and wrapper exited 1 on private cleanup name collision.",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    }
+  ],
+  "acceptance": "Before-state observations complete on held442a:70 real Tabs reach zero evidence targets; eligible PDF Escape retains focus. Original drivers/wrappers exited1 after observations on private teardown error; scoped scan found no remaining owned processes. No #124 acceptance claim."
+}

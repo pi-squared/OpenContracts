@@ -1,0 +1,197 @@
+{
+  "issue": 121,
+  "spec_issue": 120,
+  "date": "2026-10-12T15:49:38.543169+00:00",
+  "completion": "passed scoped review, required local checks and fresh deployed acceptance",
+  "deployment": {
+    "app": "oc-qa-261008",
+    "maintained_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+    "upstream_commit": "1e859dcea0f083f374c160a04244f93bca5b989c",
+    "lock_sha256": "e2b2ae092c76af9b62d3b21b2724aa3add1843f7d4ab949768574f800c5611ed",
+    "archive_sha256": "2272ccbdfb7fc1828f8974b6f533ef8cf390c111ef374e8530c973a5fff78c02",
+    "release_identity": "112eab68e9b51abf2faa8d5f8371ee0a7c3cfcac4f35d3f1b62a630c6be820a4",
+    "source_build_bytes_match": {
+      "release.json": true,
+      "app.py": true,
+      "app.yaml": true
+    },
+    "runtime_gate_zero_skips": true,
+    "patches": 49,
+    "overlays": 42,
+    "app_identity_preserved": true,
+    "configuration_preserved": true,
+    "resource_bindings_preserved": true
+  },
+  "local_checks": {
+    "tests": {
+      "files": 13,
+      "executed": 93,
+      "passed": 93,
+      "failed": 0,
+      "required_skips": 0,
+      "optional_skips": []
+    },
+    "typecheck": "passed",
+    "production_build": "passed",
+    "chromium": "151.0.7922.34",
+    "firefox": "153.0",
+    "composed_browser_campaign_groups": 9,
+    "browser_viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "browser_pdf_zoom": "fitted technical fixture approximately 158.72%; separate from hosted 127%/167% replay"
+  },
+  "red_regressions": [
+    {
+      "case": "ordinary default labels",
+      "passed": 6,
+      "failed": 1
+    },
+    {
+      "case": "source-driven focus",
+      "passed": 6,
+      "failed": 2
+    },
+    {
+      "case": "entry and explicit label modes",
+      "passed": 9,
+      "failed": 2
+    },
+    {
+      "case": "repeat-source explicit navigation",
+      "passed": 12,
+      "failed": 1
+    },
+    {
+      "case": "warm SPA same-document ordinary return",
+      "passed": 14,
+      "failed": 1
+    }
+  ],
+  "scoped_review": {
+    "standards_findings": 0,
+    "spec_findings": 0,
+    "reviewed_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed"
+  },
+  "hosted_acceptance": {
+    "pass": true,
+    "browsers": [
+      "Chromium 151.0.7922.34",
+      "Firefox 153.0"
+    ],
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "native_hosted_assets_graphql_pdf": true,
+    "mocks": false,
+    "terms_and_fspo_original_sources": true,
+    "corrected_sources": "owned synthetic corrected finding only; retained real extracts have zero corrected/reviewed cells",
+    "checks": {
+      "ordinary_entries_no_focus_highlights_retained": true,
+      "hover_reveals_and_leaving_hides_unfocused_label": true,
+      "pointer_transfer_to_label_and_owned_edit_controls": true,
+      "individual_multi_quotation_source_navigation": true,
+      "first_source_grid_view_sources_and_explicit_evidence_link": true,
+      "focus_replacement": true,
+      "repeat_source_clears_focus_preserves_viewer_selection": true,
+      "pane_close_reopen_retains_focus_and_source_page": true,
+      "document_changes_clear_focus": true,
+      "warm_spa_exit_and_same_document_ordinary_return_clears_focus": true,
+      "default_always_hide_and_explicit_on_hover_source_navigation_url_reload": true,
+      "target_highlight_and_effective_label_in_viewport": true,
+      "always_independent_source_projection_and_rendered_geometry_oracle": true,
+      "owned_edit_label_open_and_cancel_without_saving": true
+    },
+    "always_oracle": {
+      "terms": {
+        "retained_source_identities": 22,
+        "mounted_eligible_sources": 20,
+        "visible_labels": 20
+      },
+      "fspo": {
+        "retained_source_identities": 20,
+        "mounted_eligible_sources": 8,
+        "visible_labels": 8
+      },
+      "browsers": "both",
+      "missing_or_extra_labels": 0
+    },
+    "dense_116_region": {
+      "pass": true,
+      "pdf_zooms": [
+        127,
+        167
+      ],
+      "manual_continuity_images": 16,
+      "native_quote_images": 20,
+      "native_quote_markers_verified": true,
+      "frontend_asset_matches_stage": true,
+      "original_public_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+      "queried_projection_fingerprints_unchanged": true
+    },
+    "owned_controls": {
+      "opened_and_cancelled": true,
+      "saved_annotation_creation": false,
+      "saved_label_changes": false,
+      "settled_visible_dialog_and_cancel_hit_test": true
+    }
+  },
+  "limitations": [
+    "External GraphQL delivery and PDF decoding/canvas are mocked only in local composed regressions. Hosted checks use the native deployed app.",
+    "Retained Terms and FSPO extracts have no corrected/reviewed cells. Corrected-source navigation is verified with an owned hand-authored UI fixture.",
+    "Owned overlap/multipage geometry is technical interaction data, without models or domain-quality claims.",
+    "The earlier d0179 deployment passed core cases but failed warm re-entry in both browsers; intermediate screenshots retain that failure.",
+    "Pane acceptance in #121 covers source-navigation target pages (Terms page 4 and owned B page 1), plus focus preservation. The accepted #121 baseline resets a manually scrolled later multipage A reading position to page 1 when closing the pane with Auto-Zoom Sidebar enabled. This broader multipage reading-position defect is tracked by #123, with retained before evidence, and must pass final #120 acceptance."
+  ],
+  "integrity": {
+    "verified_at": "2026-10-12T15:45:58.293168+00:00",
+    "retained_extracts": 2,
+    "retained_findings": 49,
+    "source_text_labels_geometry_quotations_source_links_original_corrected_findings_reviews_unchanged": true,
+    "model_invocations": 0,
+    "inspection_browser_or_operator_mutations": 0,
+    "app_configuration_and_eight_resource_bindings_preserved": true
+  },
+  "observation_failures_and_retries": [
+    {
+      "type": "initial staging interpreter",
+      "observation": "Browser automation interpreter lacked PyYAML before any staging action",
+      "resolution": "Used the declared runtime interpreter; exact matching staged gate passed"
+    },
+    {
+      "type": "readiness",
+      "observation": "Boundary-visible or table-source waits at20/60 seconds preceded native Terms/FSPO hydration",
+      "resolution": "Retained failed attempts; final checks await actual hydrated highlight and nonzero target geometry in viewport"
+    },
+    {
+      "type": "transport",
+      "observation": "Read-only proxy route.fetch60-second ceiling aborted one Chromium GraphQL load",
+      "resolution": "Retained private transport event; fresh context and180-second read-only transport ceiling returned unchanged native responses"
+    },
+    {
+      "type": "oracle",
+      "observation": "Initial Always count captured13 mounted sources then compared against20 after page virtualization",
+      "resolution": "Independent retained source identities intersect mounted highlight/page geometry now verifies exact eligible identity set in both browsers"
+    },
+    {
+      "type": "layout readiness",
+      "observation": "One Chromium600ms pane-reopen assertion preceded native fit/scroll settlement",
+      "resolution": "After native layout settled, source highlight stayed visible on the same page; native pane lifecycle passes"
+    },
+    {
+      "type": "dialog capture timing",
+      "observation": "Immediate edit-open PNGs show the label bar before dialog paint, while private ARIA contains the Edit Label dialog/Cancel/Save Change",
+      "resolution": "Fresh both-browser settled visible dialog geometry and native Cancel hit tests pass; four immutable settled open/cancel captures provide visual proof"
+    }
+  ],
+  "evidence": {
+    "core_manifest": "manifest-after-121-core.json",
+    "remaining_manifest": "manifest-after-121-final.json",
+    "dense_manifest": "manifest-after-121-dense.json",
+    "intermediate_manifest": "manifest-intermediate-121.json",
+    "current_source_after_images": 88,
+    "settled_controls_manifest": "manifest-after-121-controls-settled.json"
+  }
+}

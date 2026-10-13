@@ -1,0 +1,111 @@
+{
+  "issues": [
+    120,
+    124
+  ],
+  "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+  "recipe_sha256": "61e9842ca8b30266876a4ee91c4d08013b3b4bb2e03dc6219a2abb33db5c1b5d",
+  "upstream_pin": "1e859dcea0f083f374c160a04244f93bca5b989c",
+  "patches": 52,
+  "overlays": 43,
+  "native_declared_hashes_exact": 127,
+  "local_acceptance": true,
+  "hosted_acceptance": false,
+  "tracker_acceptance": false,
+  "required_final_processes": {
+    "count": 12,
+    "actual_exit": 0
+  },
+  "browser_campaigns": {
+    "input": [
+      {
+        "browser": "chromium",
+        "version": "151.0.7922.34",
+        "groups": 22,
+        "ok": true
+      },
+      {
+        "browser": "firefox",
+        "version": "153.0",
+        "groups": 16,
+        "ok": true
+      }
+    ],
+    "focus": [
+      {
+        "browser": "chromium",
+        "version": "151.0.7922.34",
+        "groups": 9,
+        "ok": true
+      },
+      {
+        "browser": "firefox",
+        "version": "153.0",
+        "groups": 9,
+        "ok": true
+      }
+    ],
+    "mouse": [
+      {
+        "browser": "chromium",
+        "version": "151.0.7922.34",
+        "groups": 16,
+        "ok": true
+      },
+      {
+        "browser": "firefox",
+        "version": "153.0",
+        "groups": 16,
+        "ok": true
+      }
+    ],
+    "lifecycle": [
+      {
+        "browser": "chromium",
+        "version": "151.0.7922.34",
+        "groups": 8,
+        "ok": true
+      },
+      {
+        "browser": "firefox",
+        "version": "153.0",
+        "groups": 8,
+        "ok": true
+      }
+    ]
+  },
+  "frontend": {
+    "upstream_commit": "1e859dcea0f083f374c160a04244f93bca5b989c",
+    "node": "v22.16.0",
+    "tests": {
+      "files": 13,
+      "executed": 96,
+      "passed": 96,
+      "failed": 0,
+      "required_skips": 0,
+      "optional_skips": []
+    },
+    "build": "passed"
+  },
+  "type_check": "passed",
+  "production_build": "passed",
+  "images": 23,
+  "retained_prior_processes": {
+    "count": 84,
+    "actual_exit_counts": {
+      "0": 42,
+      "1": 37,
+      "2": 5
+    },
+    "note": "Meaningful reds, setup/precondition/driver stops and type failure remain retained privately; these are not final acceptance passes."
+  },
+  "qualifications": [
+    "External GraphQL and PDF decoding/canvas mocks; native composed screen and trusted public input.",
+    "Original v3 Firefox editor capture lacked foreground paint and is excluded; final v4 captures show painted native dialogs.",
+    "Hidden-width Escape red covers the native component interface; the actual hosted layout may unmount the component on pane changes.",
+    "Earlier transient sourceC reseeding and Firefox document-end forward traversal remain unclassified; no speculative production fix or driver-free claim.",
+    "Final local Firefox153 checks cover stationary touch; fresh native Firefox157 and hosted gesture verification remain pending."
+  ],
+  "manifest": "manifest-after-124-local.json",
+  "dated_utc": "2026-10-12T23:10:24.757583+00:00"
+}

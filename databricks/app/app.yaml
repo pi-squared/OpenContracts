@@ -1,0 +1,36 @@
+command:
+- python
+- app.py
+env:
+- name: LAKEBASE_ENDPOINT
+  valueFrom: postgres
+- name: EXTRACTION_MODEL_ENDPOINT
+  valueFrom: extraction-model
+- name: EMBEDDING_MODEL_ENDPOINT
+  valueFrom: embedding-model
+- name: EMBEDDING_DIMENSIONS
+  value: '1024'
+- name: TELEMETRY_ENABLED
+  value: 'false'
+- name: CORPUS_AUTO_BRANDING_ENABLED
+  value: 'false'
+- name: CORPUS_LOGO_GENERATION_ENABLED
+  value: 'false'
+- name: GROUNDING_MODEL_ENDPOINT
+  valueFrom: grounding-model
+- name: GROUNDING_ENABLED
+  value: 'true'
+- name: GROUNDING_REASONING_EFFORT
+  value: low
+- name: GROUNDING_TEMPERATURE
+  value: '0'
+- name: GROUNDING_MAX_TOKENS
+  value: '4096'
+- name: DOCLING_JOB_ID
+  valueFrom: docling-job
+- name: DOCLING_ARTIFACT_ROOT
+  valueFrom: docling-artifacts
+- name: OPENCONTRACTS_WORKER_CONCURRENCY
+  value: '4'
+- name: INSTALLATION_CONFIG_JSON
+  valueFrom: installation-config

@@ -11,8 +11,10 @@ from pathlib import Path
 import yaml
 
 if __package__:
+    from .installation_configuration import CONFIGURATION_NAMES
     from .prepared_source import digest, verify_prepared
 else:
+    from installation_configuration import CONFIGURATION_NAMES
     from prepared_source import digest, verify_prepared
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,6 +35,7 @@ def stage(
     warp_nltk_data=None,
     rapidocr_wheel=None,
     docling_jobs=False,
+    configuration_resource=None,
 ):
     if destination.exists():
         raise ValueError("Choose a fresh staging directory")
@@ -104,7 +107,9 @@ def stage(
             shutil.copyfile(
                 warp_bundle / "warp-runtime.json", assets / "warp-runtime.json"
             )
-            vendor = destination / "vendor"
+            # Dependency wheels use the same verified 8 MiB archive transport.
+            # The launcher installs them offline after base requirements.
+            vendor = payload / "vendor"
             vendor.mkdir()
             shutil.copyfile(
                 warp_bundle / warp_runtime["wheel_filename"],
@@ -152,8 +157,27 @@ def stage(
             "source_files": sum(path.is_file() for path in payload.rglob("*")),
             "contains_domain_inputs": False,
         }
+        shutil.copyfile(
+            ROOT / "port/runtime/staged_dependencies.py",
+            destination / "staged_dependencies.py",
+        )
+        manifest["dependency_installer_sha256"] = digest(
+            destination / "staged_dependencies.py"
+        )
         if warp_runtime:
             manifest["warp_runtime"] = warp_runtime
+        if configuration_resource:
+            if configuration_resource != "installation-config":
+                raise ValueError(
+                    "Git configuration must use the installation-config resource"
+                )
+            shutil.copyfile(
+                ROOT / "tools/installation_configuration.py",
+                destination / "installation_configuration.py",
+            )
+            manifest["installation_configuration_sha256"] = digest(
+                destination / "installation_configuration.py"
+            )
         (destination / "release.json").write_text(json.dumps(manifest, indent=2) + "\n")
     shutil.copyfile(ROOT / "port/runtime/launch.py", destination / "app.py")
     shutil.copyfile(
@@ -174,6 +198,13 @@ def stage(
                 {"name": "OPENCONTRACTS_WORKER_CONCURRENCY", "value": "4"},
             ]
         )
+    if configuration_resource:
+        config["env"] = [
+            entry for entry in config["env"] if entry["name"] not in CONFIGURATION_NAMES
+        ]
+        config["env"].append(
+            {"name": "INSTALLATION_CONFIG_JSON", "valueFrom": configuration_resource}
+        )
     (destination / "app.yaml").write_text(yaml.safe_dump(config, sort_keys=False))
     print(json.dumps(manifest))
 
@@ -188,6 +219,7 @@ if __name__ == "__main__":
     parser.add_argument("--warp-nltk-data", type=Path)
     parser.add_argument("--rapidocr-wheel", type=Path)
     parser.add_argument("--docling-jobs", action="store_true")
+    parser.add_argument("--configuration-resource", choices=("installation-config",))
     parser.add_argument(
         "--tool-strict-mode", choices=("preserve", "omit"), default="preserve"
     )
@@ -202,4 +234,5 @@ if __name__ == "__main__":
         args.warp_nltk_data,
         args.rapidocr_wheel,
         args.docling_jobs,
+        args.configuration_resource,
     )

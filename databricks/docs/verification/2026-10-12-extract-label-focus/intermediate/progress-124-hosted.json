@@ -1,0 +1,34 @@
+{
+  "captured_at_utc": "2026-10-12T23:52:21.905823+00:00",
+  "issue": 124,
+  "parent": 120,
+  "app": "oc-qa-261008",
+  "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+  "recipe_sha256": "61e9842ca8b30266876a4ee91c4d08013b3b4bb2e03dc6219a2abb33db5c1b5d",
+  "upstream_commit": "1e859dcea0f083f374c160a04244f93bca5b989c",
+  "archive_sha256": "6426746f23243e30abeb7b7fa320ec5a5a63b176d18d9efaa23955232fbce980",
+  "reviewed_deployment_bytes_configuration_and_eight_bindings_match": true,
+  "runtime_executed": 1,
+  "runtime_skipped": 0,
+  "required_local_frontend_tests_passed": 96,
+  "images": 8,
+  "native_creation_at_progress_checkpoint": {
+    "prior_saved_count": 5,
+    "new_saved_count": 0,
+    "provider_operations": 0
+  },
+  "both_desktop_mouse_overlap_cycles_shared_hover_and_closed_blank_pass": true,
+  "both_actual_Terms_multi_source_selected_only_pass": true,
+  "both_dense127_five_native_editors_opened_and_cancelled": true,
+  "retained_failures": [
+    "Two initial mouse-core commands stopped with untraced AssertionError; original exact clauses remain unknown.",
+    "A separate Firefox1000ms pane-close reproduction used DOM is_visible while the pane was opacity0 and beyond viewport; effective-visibility proof and late detached frames passed.",
+    "Initial deployment outer driver failed at unretained health response after controller success; separate same-deployment authenticated HTTP200 reconciliation passed."
+  ],
+  "full_hosted_acceptance": false,
+  "dense167_keyboard_touch_lifecycle_creation_end_integrity_pending": true,
+  "whole_branch_review_pending": true,
+  "tracker_completion": false,
+  "images_unchanged_and_visually_reviewed": true,
+  "public_metadata_excludes_native_ids_raw_requests_and_private_operational_records": true
+}

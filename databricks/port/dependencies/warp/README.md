@@ -32,11 +32,20 @@ python tools/build_warp_runtime.py \
 ```
 
 Staging takes the same three verified inputs through `--warp-wheel`,
-`--rapidocr-wheel` and `--warp-nltk-data`. It packages both local wheels under `vendor/`, includes the
-six resources and runtime receipt in the source archive, and records the
-dependency receipt in `release.json`. The runtime lock installs the local
-wheels and explicitly pinned core/OCR dependencies. Model calls and domain
-inputs are absent from assembly.
+`--rapidocr-wheel` and `--warp-nltk-data`. Both exact local wheels travel under
+`vendor/` inside the source archive, together with the six resources and runtime
+receipt. The archive's verified 8 MiB parts keep every deployed file below the
+unchanged Databricks file limit, including the wheel and large ONNX weights.
+`release.json` retains the full wheel hashes and the shared installer hash.
+
+Base requirements install pinned core/OCR dependencies and `pip==24.0` before
+the app command. The launcher verifies both wheels and installs them offline
+with no index, dependency resolution or cache into its new ephemeral source
+directory. The same staged installer runs before gate imports and the required
+launcher control. Neither step modifies the base interpreter's packages.
+The source directory is also the parser worker's import path after its second
+directory change. Model bytes remain unchanged; assembly and installation
+invoke no models and require no credentials or private volume paths.
 
 The native parser path is
 `opencontractserver.pipeline.parsers.warp_local_parser.WarpLocalParser`.

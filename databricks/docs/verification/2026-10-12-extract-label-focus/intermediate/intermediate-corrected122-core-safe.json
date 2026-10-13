@@ -1,0 +1,21 @@
+{
+  "verified_at_utc": "2026-10-12T19:50:13.537462+00:00",
+  "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+  "hosted_acceptance": false,
+  "observations": {
+    "full_identical_three_cycle_and_wrap": true,
+    "actual_shared_four_cycle_and_wrap": true,
+    "strict_C_E_two_no_transitive_A_B_D": true,
+    "shared_identity_one_stop": true,
+    "different_labels_separate_stops": true,
+    "shared_hover_four_readable_distinct_bars": true,
+    "pane_finding_and_plural_membership_preserved": true,
+    "stationary_blank_clear_open_and_closed": true,
+    "native_click_viewport_zoom_unchanged": true,
+    "closed_pane_stays_closed": true,
+    "both_native_main_js_byte_hashes_match_reviewed_build": true,
+    "saved_writes_in_core": 0,
+    "models": 0
+  },
+  "limitations": "Core geometry and pane groups passed in both desktop browsers; full #122 acceptance remains incomplete because dense label controls and the native URL dialog need corrections. Zero native saves or model work in this core campaign. No domain assessment."
+}

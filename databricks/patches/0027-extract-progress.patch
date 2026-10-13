@@ -1,0 +1,52 @@
+--- a/frontend/src/views/ExtractDetail.tsx
++++ b/frontend/src/views/ExtractDetail.tsx
+@@ -700,9 +700,14 @@
+       totalCells > 0 ? Math.round((completedCells / totalCells) * 100) : 0;
+ 
+     return {
+-      documents: rows.length,
++      documents: rows.filter((doc) => {
++        const docCells = cells.filter((cell) => cell.document?.id === doc.id);
++        return columns.length > 0 && columns.every((column) =>
++          docCells.some((cell) => cell.column?.id === column.id && (cell.completed || cell.failed))
++        );
++      }).length,
+       columns: columns.length,
+-      rows: rows.length,
++      rows: rows.filter((doc) => cells.some((cell) => cell.document?.id === doc.id && cell.completed)).length,
+       successRate: isComplete ? `${successRate}%` : "—",
+     };
+   }, [rows, columns, cells, isComplete]);
+@@ -806,7 +811,7 @@
+             <StatBlock
+               value={String(stats.documents)}
+               label="Documents"
+-              sublabel="processed"
++              sublabel={`processed of ${rows.length} selected`}
+               icon={<DocumentSvgIcon />}
+             />
+             <StatBlock
+@@ -891,7 +896,7 @@
+                   <div style={{ marginTop: 24 }}>
+                     <DataHeader>
+                       <DataTitle>Extracted Data</DataTitle>
+-                      <DataCount>{rows.length} rows</DataCount>
++                      <DataCount>{rows.length} selected document rows</DataCount>
+                     </DataHeader>
+                     <GridContainer>
+                       <ExtractDataGrid
+@@ -930,7 +935,13 @@
+                               <DocumentMeta>
+                                 <span>PDF</span>
+                                 <span>-</span>
+-                                <span>1 row extracted</span>
++                                <span>{(() => {
++                                  const docCells = cells.filter((cell) => cell.document?.id === doc.id);
++                                  const completed = docCells.filter((cell) => cell.completed).length;
++                                  const failed = docCells.filter((cell) => cell.failed).length;
++                                  if (completed || failed) return `${completed} of ${columns.length} fields extracted${failed ? ` · ${failed} failed` : ""}`;
++                                  return extract.started ? "Awaiting extraction" : "Not started";
++                                })()}</span>
+                               </DocumentMeta>
+                             </DocumentInfo>
+                           </DocumentItem>

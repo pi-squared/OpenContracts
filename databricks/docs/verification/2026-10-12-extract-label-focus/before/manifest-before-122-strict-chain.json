@@ -1,0 +1,205 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before-accepted121-chromium-122-strict-chain-settled-full_a_b_d_only.png",
+      "caption": "BEFORE #122 on accepted #121: full A B D only exact hit region; two trusted clicks retain source A focus (PDF 90%)",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T16:55:50.972793+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3bd0ce5d616640fcd5c8ee41e31e49c0dc26a6fe3a3e53bb932fb18b67539b06",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "pdf_zoom": 90,
+      "fixture": "Owned synthetic interaction fixture; deliberate full/partial/strict transitive geometry on unchanged public SME PDF",
+      "limitations": "Synthetic UI interaction geometry; no domain/source-location/model acceptance claim"
+    },
+    {
+      "image": "before-accepted121-chromium-122-strict-chain-settled-partial_a_b_c_d_shared.png",
+      "caption": "BEFORE #122 on accepted #121: partial A B C D shared exact hit region; two trusted clicks retain source A focus (PDF 90%)",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T16:55:51.886613+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "fb08626eeb5bdaa40c290a0c6d4b8bda5e783c06014707d6d5b54852257afa5f",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "pdf_zoom": 90,
+      "fixture": "Owned synthetic interaction fixture; deliberate full/partial/strict transitive geometry on unchanged public SME PDF",
+      "limitations": "Synthetic UI interaction geometry; no domain/source-location/model acceptance claim"
+    },
+    {
+      "image": "before-accepted121-chromium-122-strict-chain-settled-c_only.png",
+      "caption": "BEFORE #122 on accepted #121: C only exact hit region; two trusted clicks retain source A focus (PDF 90%)",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T16:55:52.948037+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f0a8615b3c223e827d4ea4d83407e10d9a51c451b2705a3e4e7a235046e22238",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "pdf_zoom": 90,
+      "fixture": "Owned synthetic interaction fixture; deliberate full/partial/strict transitive geometry on unchanged public SME PDF",
+      "limitations": "Synthetic UI interaction geometry; no domain/source-location/model acceptance claim"
+    },
+    {
+      "image": "before-accepted121-chromium-122-strict-chain-settled-c_e_shared.png",
+      "caption": "BEFORE #122 on accepted #121: C E shared exact hit region; two trusted clicks retain source A focus (PDF 90%)",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T16:55:54.242697+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7738e3dff66803b101fbf539cce96ef8fab53c28265068e33ef3cc0a80a847ba",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "pdf_zoom": 90,
+      "fixture": "Owned synthetic interaction fixture; deliberate full/partial/strict transitive geometry on unchanged public SME PDF",
+      "limitations": "Synthetic UI interaction geometry; no domain/source-location/model acceptance claim"
+    },
+    {
+      "image": "before-accepted121-chromium-122-strict-chain-settled-e_only.png",
+      "caption": "BEFORE #122 on accepted #121: E only exact hit region; two trusted clicks retain source A focus (PDF 90%)",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T16:55:55.309255+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "71df0d268a14a6ea22c4e454c5efb4fd2d4451a7be03fec29a702cde382c4e2d",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "pdf_zoom": 90,
+      "fixture": "Owned synthetic interaction fixture; deliberate full/partial/strict transitive geometry on unchanged public SME PDF",
+      "limitations": "Synthetic UI interaction geometry; no domain/source-location/model acceptance claim"
+    },
+    {
+      "image": "before-accepted121-firefox-122-strict-chain-full_a_b_d_only.png",
+      "caption": "BEFORE #122 on accepted #121: full A B D only exact hit region; two trusted clicks retain source A focus (PDF 110%)",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T16:54:55.002127+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "111e567ab7809581f10b63688d4dc3ded55b0316883a262f7b9fa8627f82cb41",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "pdf_zoom": 110,
+      "fixture": "Owned synthetic interaction fixture; deliberate full/partial/strict transitive geometry on unchanged public SME PDF",
+      "limitations": "Synthetic UI interaction geometry; no domain/source-location/model acceptance claim"
+    },
+    {
+      "image": "before-accepted121-firefox-122-strict-chain-partial_a_b_c_d_shared.png",
+      "caption": "BEFORE #122 on accepted #121: partial A B C D shared exact hit region; two trusted clicks retain source A focus (PDF 110%)",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T16:54:56.269216+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "512d2ddcab3142ba011370cf6753ece1483c4e71e341c0b5eb454acc93d1c90f",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "pdf_zoom": 110,
+      "fixture": "Owned synthetic interaction fixture; deliberate full/partial/strict transitive geometry on unchanged public SME PDF",
+      "limitations": "Synthetic UI interaction geometry; no domain/source-location/model acceptance claim"
+    },
+    {
+      "image": "before-accepted121-firefox-122-strict-chain-c_only.png",
+      "caption": "BEFORE #122 on accepted #121: C only exact hit region; two trusted clicks retain source A focus (PDF 110%)",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T16:54:57.599939+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "173ae134ea5b693c58eced146ececca17a1691bb3e8095546bf34f38d945bf79",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "pdf_zoom": 110,
+      "fixture": "Owned synthetic interaction fixture; deliberate full/partial/strict transitive geometry on unchanged public SME PDF",
+      "limitations": "Synthetic UI interaction geometry; no domain/source-location/model acceptance claim"
+    },
+    {
+      "image": "before-accepted121-firefox-122-strict-chain-c_e_shared.png",
+      "caption": "BEFORE #122 on accepted #121: C E shared exact hit region; two trusted clicks retain source A focus (PDF 110%)",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T16:54:58.826115+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f7639beee378285c194ec2d4a08cf9a326537cb1f6559dc5c0b814d8e0be7984",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "pdf_zoom": 110,
+      "fixture": "Owned synthetic interaction fixture; deliberate full/partial/strict transitive geometry on unchanged public SME PDF",
+      "limitations": "Synthetic UI interaction geometry; no domain/source-location/model acceptance claim"
+    },
+    {
+      "image": "before-accepted121-firefox-122-strict-chain-e_only.png",
+      "caption": "BEFORE #122 on accepted #121: E only exact hit region; two trusted clicks retain source A focus (PDF 110%)",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T16:55:00.107266+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b72311c09a5671608675711aac28fe7ca969d742e8db2d58111a20e414a55a55",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "pdf_zoom": 110,
+      "fixture": "Owned synthetic interaction fixture; deliberate full/partial/strict transitive geometry on unchanged public SME PDF",
+      "limitations": "Synthetic UI interaction geometry; no domain/source-location/model acceptance claim"
+    }
+  ]
+}

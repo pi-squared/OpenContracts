@@ -3,29 +3,9 @@
 import os
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "databricks_port.settings"
-from databricks_port.lakebase import bootstrap  # noqa: E402
+from databricks_port.startup import initialize  # noqa: E402
 
-bootstrap()
-
-import django  # noqa: E402
-
-django.setup()
-from django.conf import settings  # noqa: E402
-from django.contrib.auth import get_user_model  # noqa: E402
-from django.core.management import call_command  # noqa: E402
-
-call_command("migrate", interactive=False, verbosity=1)
-user, created = get_user_model().objects.get_or_create(username=settings.PILOT_USERNAME)
-if created:
-    user.is_staff = True
-    user.is_superuser = True
-    user.is_usage_capped = False
-    user.set_unusable_password()
-    user.save()
-
-from databricks_port.definitions import install_configured  # noqa: E402
-
-install_configured()
+initialize()
 
 from databricks_port.transport import start  # noqa: E402
 

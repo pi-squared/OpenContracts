@@ -1,0 +1,25 @@
+--- a/config/graphql/filters.py
++++ b/config/graphql/filters.py
+@@ -693,7 +693,9 @@
+         return queryset
+ 
+     def naive_text_search(self, queryset: QuerySet, name: str, value: Any) -> QuerySet:
+-        return queryset.filter(Q(description__contains=value)).distinct()
++        return queryset.filter(
++            Q(title__icontains=value) | Q(description__icontains=value)
++        ).distinct()
+ 
+     def has_pdf_search(self, queryset: QuerySet, name: str, value: Any) -> QuerySet:
+         # Filter to analyzed docs only (has meta_data value)
+--- a/frontend/src/views/Documents.tsx
++++ b/frontend/src/views/Documents.tsx
+@@ -547,7 +547,8 @@
+ 
+           <SearchContainer>
+             <SearchBox
+-              placeholder="Search for documents..."
++              placeholder="Search titles and descriptions..."
++              aria-label="Search document titles and descriptions (case-insensitive substring)"
+               value={searchCache}
+               onChange={handleSearchChange}
+               onSubmit={() => documentSearchTerm(searchCache)}

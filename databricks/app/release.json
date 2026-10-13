@@ -1,0 +1,141 @@
+{
+  "upstream_commit": "1e859dcea0f083f374c160a04244f93bca5b989c",
+  "lock_sha256": "afff6722d46ac9f6ca482d2f70de34d1f3686925b182bc0a3af84848aa685fba",
+  "archive_sha256": "2f6a38c16d2ed25d89938bf2f335b672264d14b5c291bf7cf458b9bf96390152",
+  "parts": [
+    {
+      "name": "opencontracts.part000",
+      "bytes": 8388608,
+      "sha256": "de0506627f27fda0ec8d15ce68c08388645ee6afdca0b02b5e55fb294a1d454c"
+    },
+    {
+      "name": "opencontracts.part001",
+      "bytes": 8388608,
+      "sha256": "7b2db40aa227f601aa7580f2709f6d1921b9aae2b596aca82d7123616a920f9e"
+    },
+    {
+      "name": "opencontracts.part002",
+      "bytes": 8388608,
+      "sha256": "f50b0812448d119a0aa47a4c01c35f68b5cb930320a7c0b99eca9d0b712459a5"
+    },
+    {
+      "name": "opencontracts.part003",
+      "bytes": 8388608,
+      "sha256": "f9c7bf03c10c1049a33c555e0c6db8f684d146bbe9c340c913989a74c18dbdab"
+    },
+    {
+      "name": "opencontracts.part004",
+      "bytes": 4123328,
+      "sha256": "ba5900111f83dc442c8f54689c59351a825a2c3ea02e0bbc73c04c1a62a7ea67"
+    }
+  ],
+  "requirements_sha256": "24d67f63ef5d1218c1d04feec92613ce95029ede3a2fe9d0fcde59cadf78bef0",
+  "source_files": 1269,
+  "contains_domain_inputs": false,
+  "dependency_installer_sha256": "91b42fbd97b485515341d37873688f318986654e5089c16c91c7a595026d1386",
+  "warp_runtime": {
+    "distribution": "warp-ingest",
+    "version": "2.1.0+oc39.1",
+    "stock_wheel_sha256": "97c6d8ceefe78347ff9d9f28be784b3640d965dcd27ea1122fd9811cb213a4f1",
+    "lock_sha256": "043d181b5219edc4e8ef13634fe713ef4085b7679ac3d7407e28619ac31c80a1",
+    "patches": [
+      {
+        "path": "port/dependencies/warp/0001-separate-columns.patch",
+        "sha256": "b84a569983ca0449687d499c2ab85c76cd0517f63434bce1b28e3a29a599f27f"
+      },
+      {
+        "path": "port/dependencies/warp/0002-preserve-column-token-references.patch",
+        "sha256": "282a466450fabb5f76dd5fa154cfe58eec37b355e472bccb9355cd3de384a34f"
+      }
+    ],
+    "wheel_filename": "warp_ingest-2.1.0+oc39.1-py3-none-any.whl",
+    "wheel_sha256": "cfb14c721a060db5697fd10dc89aada21ee73c46a141ca2ef1b919fb14180723",
+    "source_files": {
+      "warp_ingest/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warp_ingest/file_parser/__init__.py": "ced837215e551418a8c279ad69275356774f69ee0a5940d84b947ca49038e713",
+      "warp_ingest/file_parser/fast_content_parser.py": "45aad7d564c5628109e2ea9f2811876082ac8f535210321e6329241849439012",
+      "warp_ingest/file_parser/file_parser.py": "01596ef0b5af3fe4e738aa4d25db6b64bf904d4c4ab84b7b65cd9275c6d42198",
+      "warp_ingest/file_parser/ocr_parser.py": "bb3fa52201d9c36f657248dd519cf8ee1fda2f5f85b74c33e57211b34ccf1057",
+      "warp_ingest/file_parser/parser_factory.py": "8cd712d1626f9c03037c06d6d52c281117dc21925cf7f63f748d86c85eef4320",
+      "warp_ingest/file_parser/pdf_plumber_parser.py": "6a16cd11fca316376a56520042456811051b44983e8431304f930f42a5d0e0a0",
+      "warp_ingest/ingestion_daemon/__init__.py": "c91f2786ed65152387a7282a449a8567329d57de61e4ae416a8e7fd5bbbff070",
+      "warp_ingest/ingestion_daemon/__main__.py": "a400c79448715119c4edbfb717aed292ea32df528fe3009e184d76305fe243f8",
+      "warp_ingest/ingestion_daemon/app.py": "fa996f02c51df0ae71aa388b6e461cb788fa7d9a45363f2fdbf564dac756a6bb",
+      "warp_ingest/ingestion_daemon/auth.py": "739de29d4d16b5089e320fc7645df5d4857e67eb545eefba32b9cacdae62d1a4",
+      "warp_ingest/ingestion_daemon/autotune.py": "103c9c41c830b3ca6e4c2a145c05be58268346c0a55dc18d4969f8ab9ca12d82",
+      "warp_ingest/ingestion_daemon/config.py": "9d192575c6007845670f8bd7c7a077fa63cfd5ad90ee15b4034da83442e9509a",
+      "warp_ingest/ingestion_daemon/service_dependencies.py": "f0ef2a5d24f6970ee58f83e3e600bce2530ea32b272a3e7e7d00a3c7c7210f7a",
+      "warp_ingest/ingestor/__init__.py": "4a13e988849d41c34a1a6b623257de13cfc348dc8cf7a5a859693abdd37b8233",
+      "warp_ingest/ingestor/formatter.py": "5015eeb856fa29eefe6a1d30bf3e365ab1008065476733f2d25782f2768d64f8",
+      "warp_ingest/ingestor/image_tokens.py": "be17181058366aced3bdf033785b38e0f0db24df133be90977b01a5d751ebfd4",
+      "warp_ingest/ingestor/ingestor_api.py": "0537594ba7a8848a5e6f99fb0c0c6a88812de6dd7114aa6f8cf34ae71e5c4775",
+      "warp_ingest/ingestor/line_parser.py": "beb14aad116fab3319c47cbb33fa9e4d83026310b45cdbd06d17fe4f6c03424a",
+      "warp_ingest/ingestor/markdown_exporter.py": "36d11579142555e24a25ee556e9b9be6d4cfd3e24c689461cb498396d8f2d41d",
+      "warp_ingest/ingestor/oc_visualize.py": "9af249432ca40dde124fe0d2c4fc1689495e7a19c0e5dc96835283b0f161a601",
+      "warp_ingest/ingestor/opencontracts_exporter.py": "8da70b4110596ec37e4953f80a48412681d46485242d0de16dffad7df7f6b729",
+      "warp_ingest/ingestor/patterns.py": "d4a1e411cab36453c9a69011f18b2531f468b2dffba2d30eeb8ac77f88b55dcf",
+      "warp_ingest/ingestor/pdf_ingestor.py": "2f2a175ca8e82d2bb7df28225ac39b828cce0407752eff57a7a66f3fbb98794f",
+      "warp_ingest/ingestor/segmentation_metrics.py": "61cb04ffb7044c78fc9a306fc4e1b28cb0f0d064d2b2a6d1b626684b23721272",
+      "warp_ingest/ingestor/semantic_units.py": "b785137c8fc29b2edcc707dc542a941cbc06513a628aa4b214ebc507e83203de",
+      "warp_ingest/ingestor/styling_utils.py": "3cb931e7f571b6947b157cdb3c21d3d60befa92a084eb01c5fa92d130b49c113",
+      "warp_ingest/ingestor/table_engine.py": "9008ab29c5ce31be5b3c28407a93a2bfd1bebe8693dd605db40214f1e8e26448",
+      "warp_ingest/ingestor/visual_ingestor/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warp_ingest/ingestor/visual_ingestor/block_renderer.py": "7a1444786340a65cc232f1bd479f3d12901f70cce92ccef914cd9de3c98d2e92",
+      "warp_ingest/ingestor/visual_ingestor/indent_parser.py": "cead027ad82d17cfc91f993b476d8be16ff8cb74e4555befbca5821304671481",
+      "warp_ingest/ingestor/visual_ingestor/order_fixer.py": "9214d81fa04962b0e1d688050078ea1ff7d0c19b693fd52488494eb8fb45ebfe",
+      "warp_ingest/ingestor/visual_ingestor/style_utils.py": "9599cae685030d757fa0021d43a0a9ff7b9294519fcd2c5585e951886fd963d7",
+      "warp_ingest/ingestor/visual_ingestor/table_parser.py": "db7f59c4e2139159995d0096a85d9bd1239acda2cf8554de39a74513d736d6bf",
+      "warp_ingest/ingestor/visual_ingestor/vi_helper_utils.py": "6d2e03defe93e0c08516f8f67f79b6bae2a4c48e3680306686234e7ef8a75817",
+      "warp_ingest/ingestor/visual_ingestor/visual_ingestor.py": "c190ac424cd51e26bf8f9e4946b7f3cb09df9759e4fc517ba834887959ae6c51",
+      "warp_ingest/ingestor_utils/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warp_ingest/ingestor_utils/compat.py": "1c34f14e1f65de7d2a195dfc2b3b65b9992e1f0cc0b259f71b1e05637d7b603e",
+      "warp_ingest/ingestor_utils/gc_guard.py": "3b5d75ed8534e3d18047686d6723d1a11e31d0c59009d036905a644a29158950",
+      "warp_ingest/ingestor_utils/ing_named_tuples.py": "80a6e4fa71525bd6c091a9d5bc9c65140e6b17ff59df2bdd95111d3410bbe8f6",
+      "warp_ingest/ingestor_utils/parsing_utils.py": "31c1b0540e26eff2348301542b68a19eca462e64f3946b75895ee0c3067570c9",
+      "warp_ingest/ingestor_utils/utils.py": "e9e0ff4316751c076cb11618f740c06b0365e828c42756b8ac74cde3d0324f11",
+      "warp_ingest/ingestor_utils/word_splitter.py": "99fd686d42f06e85f6a745622fb460772048b76e533ffa2108af6cab949a17f8"
+    },
+    "nltk_assets": {
+      "tokenizers/punkt/english.pickle": "dda37972ae88998a6fd3e3ec002697a6bd362b32d050fda7d7ca5276873092aa",
+      "tokenizers/punkt_tab/english/abbrev_types.txt": "92a3e070f43d9b4c5534758ca40ad7343b04e7e29bfe0c2eb658a39445a4f779",
+      "tokenizers/punkt_tab/english/collocations.tab": "8e2da1225e4dd2cc9dba261ee231ccb134859e21b46006e7f472c5ee269af0cf",
+      "tokenizers/punkt_tab/english/ortho_context.tab": "4bbcca25ed3d3f06c02402abf8419b9f033b8adc06e7b482eca4e45f81a5dc4c",
+      "tokenizers/punkt_tab/english/sent_starters.txt": "f3f8535483e1dba487241b764945168123bca3209a9645e59acd1225dc76edac",
+      "corpora/stopwords/english": "f6d005956f407dbc6ea32e5ff0c7e8e6f71488d3239b9023efdc7fc139d6375b"
+    },
+    "rapidocr": {
+      "version": "1.4.4+oc39.1",
+      "stock_wheel_sha256": "971d7d5f223a7a808662229df1ef69893809d8457d834e6373d3854bc1782cbf",
+      "wheel_filename": "rapidocr_onnxruntime-1.4.4+oc39.1-py3-none-any.whl",
+      "wheel_sha256": "9804bac1d0a8b59edca8028d84adae5cfaa5be3a7a9dba7bc7a1dbeba308680d",
+      "headless_requirement": "Requires-Dist: opencv-python-headless==5.0.0.93\n",
+      "package_files": {
+        "rapidocr_onnxruntime/__init__.py": "25e7859135d306af5eb626086e2211a9b4da01cff1327beb0fb2298dcba33a51",
+        "rapidocr_onnxruntime/cal_rec_boxes/__init__.py": "485d5bca0cd84c80ea4576ff4ed5e906828851b287c581c746a9a272a7ce945c",
+        "rapidocr_onnxruntime/cal_rec_boxes/main.py": "d7cf9cb01f189a873cef9897150e379085608f9908a7288857ea2599ff7eee76",
+        "rapidocr_onnxruntime/ch_ppocr_cls/__init__.py": "aeaf19b49fb6b5a361547544e7cb98972dd0b6756e9ad320d9fe7008891ae9b2",
+        "rapidocr_onnxruntime/ch_ppocr_cls/text_cls.py": "ead555ddeb7a8a0da067f4d2f9e2760e93db9e46d906888e0522277dda6620c8",
+        "rapidocr_onnxruntime/ch_ppocr_cls/utils.py": "a6d3debaaf21b092731b20a249b816512070b8e932db7b0f15d5536dcda2328a",
+        "rapidocr_onnxruntime/ch_ppocr_det/__init__.py": "8f33f181e76809c609ead8f5d44afed1e83f74e752239c0f30ca961fdf152e63",
+        "rapidocr_onnxruntime/ch_ppocr_det/text_detect.py": "fc9d63ba47940d3e5bfefe6738f310b583cd4de4708fefe114fce11236f2c199",
+        "rapidocr_onnxruntime/ch_ppocr_det/utils.py": "0b3405390c37c7d6f0c9c7099eeec36b050b8e0dee7659fbd82a73bcbd265cd0",
+        "rapidocr_onnxruntime/ch_ppocr_rec/__init__.py": "989f6e9e87508f91cdfc496c7c4ef7580bbb6cc1a0f87a90e139029d10970de0",
+        "rapidocr_onnxruntime/ch_ppocr_rec/text_recognize.py": "48d8656d11403d09b2ed32b65a686906b9502ca1a4e16a3934d91b35129d032a",
+        "rapidocr_onnxruntime/ch_ppocr_rec/utils.py": "4a1dc2e8602d12374b12124bbe99a1b42080d72a337799760beaf0d51a32ca90",
+        "rapidocr_onnxruntime/config.yaml": "bf94a1da4cba828e67b1d61e27cee14d9e7da27c9f272e04048a17e41ae97332",
+        "rapidocr_onnxruntime/main.py": "156c49e683fddd26f04280f391f882b857a74d2f020497870f7dd8d850ed5a2c",
+        "rapidocr_onnxruntime/models/ch_PP-OCRv4_det_infer.onnx": "d2a7720d45a54257208b1e13e36a8479894cb74155a5efe29462512d42f49da9",
+        "rapidocr_onnxruntime/models/ch_PP-OCRv4_rec_infer.onnx": "48fc40f24f6d2a207a2b1091d3437eb3cc3eb6b676dc3ef9c37384005483683b",
+        "rapidocr_onnxruntime/models/ch_ppocr_mobile_v2.0_cls_infer.onnx": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c",
+        "rapidocr_onnxruntime/utils/__init__.py": "2623808f8f540452cc02951858cb65ef5dacd615b5409ec6c970bc375b1f946d",
+        "rapidocr_onnxruntime/utils/infer_engine.py": "3e402c95026ab793533b0de296b0b7e897ad50618d089b2b2214bd90833c3f29",
+        "rapidocr_onnxruntime/utils/load_image.py": "2335171bf0574b56fc4d6d7261bd9bf0dc955db6cec3b5aaf060d345256e65a4",
+        "rapidocr_onnxruntime/utils/logger.py": "2efcad9f0f7afb77c6734d9ec2fcce60f3045b3e6ce7e4752f69ed9e1e647f17",
+        "rapidocr_onnxruntime/utils/parse_parameters.py": "a59078f844649e9b08638345a32cd3981a27fd731f4f844a1155f850cb7a6c9e",
+        "rapidocr_onnxruntime/utils/process_img.py": "c54bfd7cb592e40c7be9042fce4a40e5fa5359e8c11a26c3492534065f42f236",
+        "rapidocr_onnxruntime/utils/vis_res.py": "5225cfd945fd99968cfe2883960949e043d760a8d0dab92ec912e98b01e42205"
+      }
+    }
+  },
+  "installation_configuration_sha256": "792bd0a5c74e204d95fc747e5f43679d16c5c77e47583f5e09aea389356ce854"
+}

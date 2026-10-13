@@ -1,0 +1,170 @@
+{
+  "phase": "intermediate",
+  "evidence_phase": "#122 dense acceptance",
+  "verified_at_utc": "2026-10-12T18:26:02.542378+00:00",
+  "acceptance": "FAIL",
+  "source_commit": "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+  "recipe_sha256": "e4fa3979fc5fcf948ee053f2a4fbca5531d464e5b38bc98821fb6e711f3098d3",
+  "verification": {
+    "manual": {
+      "acceptance": "PASS",
+      "images": 16,
+      "browsers": [
+        "Chromium 151.0.7922.34",
+        "Firefox 153.0"
+      ],
+      "measured_pdf_zoom_percent": [
+        127,
+        167
+      ],
+      "states": [
+        "default-unhovered",
+        "default-hovered",
+        "always-pointer-away",
+        "hide-pointer-away"
+      ],
+      "visible_bar_readability_and_separation": "PASS",
+      "settled_native_control_hit_geometry": "PASS"
+    },
+    "owned": {
+      "acceptance": "FAIL",
+      "images": 4,
+      "completed_states": [
+        "default-unhovered 127%",
+        "default-hovered 127%"
+      ],
+      "failures": [
+        {
+          "browser_engine": "chromium",
+          "browser_version": "151.0.7922.34",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "pdf_zoom": "127%",
+          "state": "default-hovered",
+          "expected_actual_point_candidate_count": 3,
+          "actual_visible_label_count": 1,
+          "retained_eligible_page_1_identities": 5,
+          "failure": "Shared-point hover did not reveal every eligible actual-point candidate",
+          "region_fully_visible": true,
+          "native_point_geometry_crosscheck_passed": true,
+          "wrapper_exit_code": 1,
+          "driver_exit_code": 0,
+          "protocol_complete": false
+        },
+        {
+          "browser_engine": "firefox",
+          "browser_version": "153.0",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "pdf_zoom": "127%",
+          "state": "default-hovered",
+          "expected_actual_point_candidate_count": 3,
+          "actual_visible_label_count": 1,
+          "retained_eligible_page_1_identities": 5,
+          "failure": "Shared-point hover did not reveal every eligible actual-point candidate",
+          "region_fully_visible": true,
+          "native_point_geometry_crosscheck_passed": true,
+          "wrapper_exit_code": 1,
+          "driver_exit_code": 0,
+          "protocol_complete": false
+        }
+      ],
+      "uncompleted_states": [
+        "focused-pointer-away 127%",
+        "Always 127%",
+        "Hide 127%",
+        "all owned states at 167%"
+      ]
+    },
+    "source_and_frontend_bytes_match_declared_deployment": true,
+    "public_pdf_bytes_unchanged": true,
+    "saved_data_projection_comparison": [
+      {
+        "fixture": "manual",
+        "browser_engine": "chromium",
+        "matched_prior_query_projection_fingerprints": 4,
+        "changed_prior_query_projection_fingerprints": 0,
+        "all_native_markers_match_fixture_kind": true
+      },
+      {
+        "fixture": "manual",
+        "browser_engine": "firefox",
+        "matched_prior_query_projection_fingerprints": 4,
+        "changed_prior_query_projection_fingerprints": 0,
+        "all_native_markers_match_fixture_kind": true
+      },
+      {
+        "fixture": "owned",
+        "browser_engine": "chromium",
+        "matched_prior_query_projection_fingerprints": 8,
+        "changed_prior_query_projection_fingerprints": 0,
+        "previously_added_source_E_native_marker_geometry_matches_reviewed_creation": true,
+        "all_native_markers_match_fixture_kind": true
+      },
+      {
+        "fixture": "owned",
+        "browser_engine": "firefox",
+        "matched_prior_query_projection_fingerprints": 8,
+        "changed_prior_query_projection_fingerprints": 0,
+        "previously_added_source_E_native_marker_geometry_matches_reviewed_creation": true,
+        "all_native_markers_match_fixture_kind": true
+      }
+    ],
+    "native_region_precondition": "Bounded trusted native wheel established page-1 origin and source geometry inside the actual PDF viewport, independently of label visibility; viewport and PDF zoom were unchanged.",
+    "readonly_guard": "Same-origin native traffic with selected GraphQL AST operation limited to query; no model, editable-save or record mutation requests."
+  },
+  "processes": [
+    {
+      "captured_at_utc": "2026-10-12T18:16:09.135275+00:00",
+      "evidence_phase": "122 dense acceptance",
+      "engine": "chromium",
+      "fixture": "manual",
+      "driver_exit_code": 0,
+      "protocol_complete": true,
+      "passed": true,
+      "wrapper_exit_code": 0
+    },
+    {
+      "captured_at_utc": "2026-10-12T18:16:19.786879+00:00",
+      "evidence_phase": "122 dense acceptance",
+      "engine": "firefox",
+      "fixture": "manual",
+      "driver_exit_code": 0,
+      "protocol_complete": true,
+      "passed": true,
+      "wrapper_exit_code": 0
+    },
+    {
+      "captured_at_utc": "2026-10-12T18:17:05.285718+00:00",
+      "evidence_phase": "122 dense acceptance",
+      "engine": "chromium",
+      "fixture": "owned",
+      "driver_exit_code": 0,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1
+    },
+    {
+      "captured_at_utc": "2026-10-12T18:17:10.782293+00:00",
+      "evidence_phase": "122 dense acceptance",
+      "engine": "firefox",
+      "fixture": "owned",
+      "driver_exit_code": 0,
+      "protocol_complete": false,
+      "passed": false,
+      "wrapper_exit_code": 1
+    }
+  ],
+  "limitations": [
+    "The hosted #122 gate is red until shared-point hover is corrected and a reviewed fresh deployment is accepted.",
+    "Owned campaigns stop on the first assertion; later owned states remain incomplete.",
+    "The driver catches assertion errors and exits 0; wrapper exit 1 and protocol_complete=false identify both owned failures.",
+    "Settled control hit geometry was inspected without invoking edit/delete/save; QA owns action/gesture acceptance.",
+    "This is #122 dense acceptance and does not claim final #120/#124 integrated acceptance."
+  ],
+  "hosted_acceptance": false
+}

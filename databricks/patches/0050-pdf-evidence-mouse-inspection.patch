@@ -1,0 +1,513 @@
+diff --git a/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx b/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
+index 40eeef417..59742a226 100644
+--- a/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/PDFPage.tsx
+@@ -1,3 +1,4 @@
++import { usePdfEvidenceInteraction } from "../../../../hooks/usePdfEvidenceInteraction";
+ import { useAnnotationLabelLayout } from "../../../../hooks/useAnnotationLabelLayout";
+ import { useRef, useState, useEffect, useMemo, useLayoutEffect } from "react";
+ import styled from "styled-components";
+@@ -86,6 +87,7 @@ export const PDFPage = ({
+   onZoomRenderRequest,
+ }: PDFPageProps) => {
+   const canvasRef = useRef<HTMLCanvasElement>(null);
++  const canvasWrapperRef = useRef<HTMLDivElement>(null);
+   const rendererRef = useRef<PDFPageRenderer | null>(null);
+   const { pdfAnnotations } = usePdfAnnotations();
+ 
+@@ -382,40 +384,25 @@ export const PDFPage = ({
+     });
+   }, [visibleAnnotations, pageIndex]);
+ 
++  const renderedAnnotations = useMemo(() => annots_to_render.filter(annotation =>
++    !(selectedMessage || showSelectedOnly) || selectedAnnotations.includes(annotation.id)
++  ), [annots_to_render, selectedMessage, showSelectedOnly, selectedAnnotations]);
++  const { hoveredEvidenceIds, mouseHandlers } = usePdfEvidenceInteraction(
++    canvasRef, updatedPageInfo, renderedAnnotations
++  );
+   const pageAnnotationComponents = useMemo(() => {
+     if (!hasPdfPageRendered || !zoomLevel || !pageBounds) return [];
+-
+-    const isVisible = (annot: ServerTokenAnnotation): boolean => {
+-      // When chat sources are displayed, only show explicitly selected annotations
+-      if (selectedMessage) {
+-        return selectedAnnotations.includes(annot.id);
+-      }
+-      if (showSelectedOnly) {
+-        return selectedAnnotations.includes(annot.id);
+-      }
+-      return true; // existing checks (labels, structural, …) stay here
+-    };
+-
+-    return annots_to_render
+-      .filter(isVisible)
+-      .map((annotation) => (
+-        <Selection
+-          key={annotation.id}
+-          selected={selectedAnnotations.includes(annotation.id)}
+-          pageInfo={updatedPageInfo}
+-          annotation={annotation}
+-        />
+-      ));
+-  }, [
+-    annots_to_render,
+-    showSelectedOnly,
+-    selectedAnnotations,
+-    selectedMessage,
+-    hasPdfPageRendered,
+-    zoomLevel,
+-    pageBounds,
+-    updatedPageInfo,
+-  ]);
++    return renderedAnnotations.map((annotation) => (
++      <Selection
++        key={annotation.id}
++        selected={selectedAnnotations.includes(annotation.id)}
++        pageInfo={updatedPageInfo}
++        annotation={annotation}
++        evidenceHovered={hoveredEvidenceIds.includes(annotation.id)}
++      />
++    ));
++  }, [renderedAnnotations, selectedAnnotations, hasPdfPageRendered, zoomLevel,
++    pageBounds, updatedPageInfo, hoveredEvidenceIds]);
+ 
+   /**
+    * Once the PDF is rendered, scroll to the first chat source (if any)
+@@ -587,11 +574,13 @@ export const PDFPage = ({
+     <PageAnnotationsContainer
+       className="PageAnnotationsContainer"
+       ref={pageContainerRef}
++      {...mouseHandlers}
+       style={{ position: "relative" }}
+     >
+-      <CanvasWrapper>
++      <CanvasWrapper ref={canvasWrapperRef}>
+         <PageCanvas ref={canvasRef} />
+         <SelectionLayer
++          mouseEventContainerRef={canvasWrapperRef}
+           pageInfo={updatedPageInfo}
+           read_only={read_only}
+           activeSpanLabel={activeSpanLabel ?? null}
+diff --git a/frontend/src/components/annotator/display/components/Selection.tsx b/frontend/src/components/annotator/display/components/Selection.tsx
+index e32a71fa9..a9f2ef727 100644
+--- a/frontend/src/components/annotator/display/components/Selection.tsx
++++ b/frontend/src/components/annotator/display/components/Selection.tsx
+@@ -49,6 +49,7 @@ import {
+ 
+ interface SelectionProps {
+   selected: boolean;
++  evidenceHovered?: boolean;
+   pageInfo: PDFPageInfo;
+   annotation: ServerTokenAnnotation;
+   showInfo?: boolean;
+@@ -119,6 +120,7 @@ const RelationshipIndicator = styled.div<{ $type: string; $color: string }>`
+ 
+ export const Selection: React.FC<SelectionProps> = ({
+   selected,
++  evidenceHovered = false,
+   pageInfo,
+   annotation,
+   children,
+@@ -133,8 +135,8 @@ export const Selection: React.FC<SelectionProps> = ({
+   const { focusedEvidenceId } = useEvidenceFocus();
+   const focused =
+     annotation.isEvidenceQuote && focusedEvidenceId === annotation.id;
+-  const [hovered, setHovered] = useState(false);
+-  const labelRef = useRef<HTMLDivElement>(null);
++  const [locallyHovered, setHovered] = useState(false);
++  const hovered = locallyHovered || evidenceHovered;
+   const hoverExitTimer = useRef<ReturnType<typeof setTimeout>>();
+   const handleHover = useCallback((active: boolean) => {
+     clearTimeout(hoverExitTimer.current);
+@@ -142,18 +144,6 @@ export const Selection: React.FC<SelectionProps> = ({
+     else hoverExitTimer.current = setTimeout(() => setHovered(false), 160);
+   }, []);
+   useEffect(() => () => clearTimeout(hoverExitTimer.current), []);
+-  useEffect(() => {
+-    if (!hovered) return;
+-    // Native dialogs can consume mouseleave; the next real pointer movement
+-    // still ends temporary visibility when it leaves this highlight and label.
+-    const leave = (event: PointerEvent) => {
+-      const boundary = labelRef.current?.parentElement;
+-      if (event.target instanceof Node && !boundary?.contains(event.target))
+-        handleHover(false);
+-    };
+-    document.addEventListener("pointermove", leave);
+-    return () => document.removeEventListener("pointermove", leave);
+-  }, [hovered, annotation.id, handleHover]);
+   const [isEditLabelModalVisible, setIsEditLabelModalVisible] = useState(false);
+   const [isEditUrlModalVisible, setIsEditUrlModalVisible] = useState(false);
+   const [cloudVisible, setCloudVisible] = useState(false);
+@@ -164,7 +154,8 @@ export const Selection: React.FC<SelectionProps> = ({
+   const { showBoundingBoxes, showSelectedOnly, showLabels } =
+     useAnnotationDisplay();
+   const { hideLabels } = useAnnotationDisplay();
+-  const labelHidden = showLabels === LabelDisplayBehavior.HIDE ||
++  const labelHidden =
++    showLabels === LabelDisplayBehavior.HIDE ||
+     (showLabels === LabelDisplayBehavior.ON_HOVER && !hovered && !focused);
+   const { pdfAnnotations } = usePdfAnnotations();
+   const { selectedAnnotations, setSelectedAnnotations, selectedRelations } =
+@@ -331,18 +322,17 @@ export const Selection: React.FC<SelectionProps> = ({
+         color={color}
+         bounds={bounds}
+         onHover={handleHover}
+-        foreground={hovered}
++        foreground={locallyHovered}
+         onClick={onShiftClick}
+         clickThroughOnPlainClick={isLinkAnnotation}
+         approved={approved}
+         rejected={rejected}
+         selected={selected}
+         scrollIntoView={scrollIntoView}
+-      >
+-        {(showInfo || annotation.isEvidenceQuote) &&
++        label={
++          (showInfo || annotation.isEvidenceQuote) &&
+           (!hideLabels || annotation.isEvidenceQuote) && (
+             <SelectionInfo
+-              ref={labelRef}
+               id="SelectionInfo"
+               data-annotation-label={annotation.id}
+               role="group"
+@@ -472,7 +462,9 @@ export const Selection: React.FC<SelectionProps> = ({
+                 </VerticallyJustifiedEndDiv>
+               </SelectionInfoContainer>
+             </SelectionInfo>
+-          )}
++          )
++        }
++      >
+         <div
+           style={{
+             width: "100%",
+diff --git a/frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx b/frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx
+index 0fcdfca83..119ab69a7 100644
+--- a/frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx
+@@ -59,6 +59,7 @@ interface SelectionLayerProps {
+     url: string
+   ) => Promise<void>;
+   pageNumber: number;
++  mouseEventContainerRef?: React.RefObject<HTMLElement>;
+ }
+ 
+ const SelectionLayer = ({
+@@ -68,7 +69,9 @@ const SelectionLayer = ({
+   createAnnotation,
+   createUrlAnnotation,
+   pageNumber,
++  mouseEventContainerRef,
+ }: SelectionLayerProps) => {
++  const [pendingMouseStart, setPendingMouseStart] = useState<{ x: number; y: number } | null>(null);
+   const location = useLocation();
+   const containerRef = useRef<HTMLDivElement>(null);
+   const scrollContainerRef = useAtomValue(scrollContainerRefAtom);
+@@ -427,7 +430,7 @@ const SelectionLayer = ({
+    * Handles the mouse down event to start the selection.
+    */
+   const handleMouseDown = useCallback(
+-    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
++    (event: React.MouseEvent<HTMLDivElement, MouseEvent> | MouseEvent) => {
+       if (containerRef.current === null) {
+         throw new Error("No Container");
+       }
+@@ -445,6 +448,10 @@ const SelectionLayer = ({
+ 
+       // Allow selection for copying even in read-only mode
+       if (!localPageSelection && event.buttons === 1) {
++        if (!event.shiftKey) {
++          setPendingMouseStart({ x: event.clientX, y: event.clientY });
++          return;
++        }
+         setSelectedAnnotations([]); // Clear any selected annotations
+         // Only set creating annotation state if we can actually create annotations
+         if (!read_only && canUpdateCorpus) {
+@@ -482,6 +489,55 @@ const SelectionLayer = ({
+     ]
+   );
+ 
++  // A stationary click inspects evidence; source-text selection starts only
++  // after actual movement. The page container also observes drags beginning
++  // on a saved highlight, whose boundary sits above SelectionLayer.
++  useEffect(() => {
++    const wrapper = mouseEventContainerRef?.current;
++    if (!wrapper) return;
++    const down = (event: MouseEvent) => {
++      if (event.shiftKey || event.ctrlKey || event.metaKey || event.altKey) return;
++      if (event.target instanceof Element && event.target.closest(
++        "[data-annotation-label], a, button, [role=button], [role=dialog]:not(#knowledge-base-modal):not(#mobile-knowledge-base-modal), [data-testid=selection-action-menu]"
++      )) return;
++      handleMouseDown(event);
++    };
++    wrapper.addEventListener("mousedown", down, true);
++    return () => wrapper.removeEventListener("mousedown", down, true);
++  }, [mouseEventContainerRef, handleMouseDown]);
++
++  useEffect(() => {
++    if (!pendingMouseStart) return;
++    const move = (event: MouseEvent) => {
++      if (!(event.buttons & 1)) {
++        setPendingMouseStart(null);
++        return;
++      }
++      if (Math.hypot(event.clientX - pendingMouseStart.x,
++        event.clientY - pendingMouseStart.y) <= 3) return;
++      const canvas = containerRef.current?.previousSibling as HTMLCanvasElement | null;
++      if (!canvas) return;
++      const bounds = canvas.getBoundingClientRect();
++      setSelectedAnnotations([]);
++      if (!read_only && canUpdateCorpus) setIsCreatingAnnotation(true);
++      setLocalPageSelection({ pageNumber, bounds: {
++        left: pendingMouseStart.x - bounds.left,
++        top: pendingMouseStart.y - bounds.top,
++        right: event.clientX - bounds.left,
++        bottom: event.clientY - bounds.top,
++      }});
++      setPendingMouseStart(null);
++    };
++    const up = () => setPendingMouseStart(null);
++    document.addEventListener("mousemove", move);
++    document.addEventListener("mouseup", up);
++    return () => {
++      document.removeEventListener("mousemove", move);
++      document.removeEventListener("mouseup", up);
++    };
++  }, [pendingMouseStart, pageNumber, read_only, canUpdateCorpus,
++    setIsCreatingAnnotation, setSelectedAnnotations]);
++
+   /**
+    * Handles touch start for mobile long press detection
+    */
+@@ -902,7 +958,10 @@ const SelectionLayer = ({
+     <div
+       id="selection-layer"
+       ref={containerRef}
+-      onMouseDown={handleMouseDown}
++      onMouseDown={(event) => {
++        if (!mouseEventContainerRef || event.shiftKey || event.ctrlKey ||
++            event.metaKey || event.altKey) handleMouseDown(event);
++      }}
+       onMouseMove={localPageSelection ? handleMouseMove : undefined}
+       onMouseUp={handleMouseUp}
+       onTouchStart={handleTouchStart}
+diff --git a/frontend/src/assets/configurations/constants.ts b/frontend/src/assets/configurations/constants.ts
+index 4b133a3ab..c35b286cf 100644
+--- a/frontend/src/assets/configurations/constants.ts
++++ b/frontend/src/assets/configurations/constants.ts
+@@ -311,8 +311,9 @@ export const Z_INDEX = {
+   PDF_SELECTION_LAYER: 1,
+   /** PDF page NativeLinkLayer — anchors hovering over PDF.js external link
+    *  annotations. Must sit above ``PDF_SELECTION_LAYER`` so its
+-   *  ``pointer-events: auto`` anchors receive clicks first. */
+-  PDF_NATIVE_LINK_LAYER: 2,
++   *  ``pointer-events: auto`` anchors receive clicks first, including above
++   *  saved highlights raised during label inspection. */
++  PDF_NATIVE_LINK_LAYER: 4,
+   /** Mobile floating document-controls pill — overlays the viewer's top-right
+    *  corner inside ViewerArea's local stacking context, above the rendered
+    *  page but below in-page loading overlays. */
+diff --git a/frontend/src/components/annotator/display/components/SelectionBoundary.tsx b/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
+index ef44c7c77..ef44c9f6b 100644
+--- a/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
++++ b/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
+@@ -24,6 +24,7 @@ interface SelectionBoundaryProps {
+   bounds: BoundingBox;
+   selected: boolean;
+   foreground?: boolean;
++  label?: React.ReactNode;
+   children?: React.ReactNode;
+   annotationId?: string;
+   onHover?: (hovered: boolean) => void;
+@@ -51,6 +52,7 @@ const BoundarySpan = styled.span.attrs<{
+   $color: string;
+   $hidden: boolean;
+   $foreground: boolean;
++  $labelAnchor: boolean;
+   $approved?: boolean;
+   $rejected?: boolean;
+ }>((props) => ({
+@@ -62,7 +64,13 @@ const BoundarySpan = styled.span.attrs<{
+     height: `${Math.abs(props.$height)}px`,
+     transform: `rotateY(${props.$rotateY}deg) rotateX(${props.$rotateX}deg)`,
+     backgroundColor: props.$backgroundColor,
+-    zIndex: props.$foreground ? 3 : 2,
++    zIndex: props.$labelAnchor
++      ? props.$foreground
++        ? 6
++        : 5
++      : props.$foreground
++      ? 3
++      : 2,
+     border: "none",
+     boxShadow: props.$boxShadow,
+     transformOrigin: "top left",
+@@ -101,6 +109,7 @@ export const SelectionBoundary: React.FC<SelectionBoundaryProps> = ({
+   color,
+   bounds,
+   children,
++  label,
+   onHover,
+   onClick,
+   clickThroughOnPlainClick = false,
+@@ -111,8 +120,24 @@ export const SelectionBoundary: React.FC<SelectionBoundaryProps> = ({
+ }) => {
+   const { registerRef, unregisterRef } = useAnnotationRefs();
+   const boundaryRef = useRef<HTMLSpanElement | null>(null);
++  const labelAnchorRef = useRef<HTMLSpanElement | null>(null);
+   const isCreatingAnnotation = useAtomValue(isCreatingAnnotationAtom);
+ 
++  useEffect(() => {
++    if (!foreground || !onHover) return;
++    // Label bars have a separate paint layer; pointer transfer owns both nodes.
++    const leave = (event: PointerEvent) => {
++      if (
++        event.target instanceof Node &&
++        !boundaryRef.current?.contains(event.target) &&
++        !labelAnchorRef.current?.contains(event.target)
++      )
++        onHover(false);
++    };
++    document.addEventListener("pointermove", leave);
++    return () => document.removeEventListener("pointermove", leave);
++  }, [foreground, onHover]);
++
+   useEffect(() => {
+     if (id) {
+       registerRef("annotation", boundaryRef, id);
+@@ -167,39 +192,63 @@ export const SelectionBoundary: React.FC<SelectionBoundaryProps> = ({
+   };
+ 
+   return (
+-    <BoundarySpan
+-      id={`SELECTION_${id}`}
+-      ref={boundaryRef}
+-      onClick={handleClick}
+-      onMouseDown={handleMouseDown}
+-      onMouseEnter={
+-        onHover && !hidden && !isCreatingAnnotation
+-          ? () => onHover(true)
+-          : undefined
+-      }
+-      onMouseLeave={
+-        onHover && !hidden && !isCreatingAnnotation
+-          ? () => onHover(false)
+-          : undefined
+-      }
+-      $width={width}
+-      $height={height}
+-      $rotateX={rotateX}
+-      $rotateY={rotateY}
+-      $hidden={hidden}
+-      $foreground={foreground}
+-      $boxShadow={boxShadow}
+-      $color={color}
+-      $backgroundColor={backgroundColor}
+-      $bounds={bounds}
+-      $approved={approved}
+-      $rejected={rejected}
+-      style={{
+-        pointerEvents: isCreatingAnnotation ? "none" : "auto",
+-        cursor: clickThroughOnPlainClick ? "pointer" : undefined,
+-      }}
+-    >
+-      {children || null}
+-    </BoundarySpan>
++    <>
++      <BoundarySpan
++        id={`SELECTION_${id}`}
++        ref={boundaryRef}
++        onClick={handleClick}
++        onMouseDown={handleMouseDown}
++        onMouseEnter={
++          onHover && !hidden && !isCreatingAnnotation
++            ? () => onHover(true)
++            : undefined
++        }
++        onMouseLeave={
++          onHover && !hidden && !isCreatingAnnotation
++            ? () => onHover(false)
++            : undefined
++        }
++        $width={width}
++        $height={height}
++        $rotateX={rotateX}
++        $rotateY={rotateY}
++        $hidden={hidden}
++        $foreground={foreground}
++        $labelAnchor={false}
++        $boxShadow={boxShadow}
++        $color={color}
++        $backgroundColor={backgroundColor}
++        $bounds={bounds}
++        $approved={approved}
++        $rejected={rejected}
++        style={{
++          pointerEvents: isCreatingAnnotation ? "none" : "auto",
++          cursor: clickThroughOnPlainClick ? "pointer" : undefined,
++        }}
++      >
++        {children || null}
++      </BoundarySpan>
++      {label && (
++        <BoundarySpan
++          ref={labelAnchorRef}
++          onClick={handleClick}
++          onMouseDown={handleMouseDown}
++          $width={width}
++          $height={height}
++          $rotateX={rotateX}
++          $rotateY={rotateY}
++          $hidden={hidden}
++          $foreground={foreground}
++          $labelAnchor={true}
++          $boxShadow="none"
++          $color={color}
++          $backgroundColor="transparent"
++          $bounds={bounds}
++          style={{ pointerEvents: "none" }}
++        >
++          {label}
++        </BoundarySpan>
++      )}
++    </>
+   );
+ };
+diff --git a/frontend/src/components/annotator/components/modals/CreateUrlAnnotationModal.tsx b/frontend/src/components/annotator/components/modals/CreateUrlAnnotationModal.tsx
+index f2188b5f6..299994d52 100644
+--- a/frontend/src/components/annotator/components/modals/CreateUrlAnnotationModal.tsx
++++ b/frontend/src/components/annotator/components/modals/CreateUrlAnnotationModal.tsx
+@@ -1,14 +1,9 @@
+ import { SyntheticEvent, useEffect, useState } from "react";
+ 
+-import {
+-  Modal,
+-  ModalHeader,
+-  ModalBody,
+-  ModalFooter,
+-  Button,
+-} from "@os-legal/ui";
++import { ModalHeader, ModalBody, ModalFooter, Button } from "@os-legal/ui";
+ 
+ import { isSafeUrl } from "../../utils/urlAnnotation";
++import { DocumentChildModal } from "../../../knowledge_base/document/LayoutComponents";
+ 
+ interface CreateUrlAnnotationModalProps {
+   visible: boolean;
+@@ -63,7 +58,7 @@ export const CreateUrlAnnotationModal = ({
+   };
+ 
+   return (
+-    <Modal open={visible} onClose={onCancel}>
++    <DocumentChildModal open={visible} onClose={onCancel}>
+       <ModalHeader>{initialUrl ? "Edit link target" : "Add link"}</ModalHeader>
+       <ModalBody>
+         <div
+@@ -138,6 +133,6 @@ export const CreateUrlAnnotationModal = ({
+           {initialUrl ? "Save link" : "Create link"}
+         </Button>
+       </ModalFooter>
+-    </Modal>
++    </DocumentChildModal>
+   );
+ };

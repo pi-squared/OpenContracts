@@ -1,0 +1,125 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before-accepted121-chromium-123-selected-source-initial.png",
+      "caption": "BEFORE #123 on accepted #121: selected-only admits A before source inspection",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:14:47.955629+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "05b798e660b02f93662b74ff27cdc5ed4f31561e42037d2fb5c51e59c5d707fe",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored technical interaction geometry/projections; no domain/model assessment"
+    },
+    {
+      "image": "before-accepted121-chromium-123-selected-source-focus-cleared.png",
+      "caption": "BEFORE #123 on accepted #121: first source click clears focus and keeps selected-only",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:14:49.512718+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "dbb3c96cd22cf084a719cb5a0bf0eaa97c7f7dfc2ee9bcae092b873a5d3d4d3d",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored technical interaction geometry/projections; no domain/model assessment"
+    },
+    {
+      "image": "before-accepted121-chromium-123-selected-source-focus-restored-filter-reset.png",
+      "caption": "BEFORE #123 on accepted #121: second source click restores focus but drops selected-only and exposes all four highlight identities",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:14:50.847146+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "90aa991604c147ce5914de3c8f854f592eefc122a8be9c2df8e903b646f66760",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored technical interaction geometry/projections; no domain/model assessment"
+    },
+    {
+      "image": "before-accepted121-firefox-123-selected-source-initial.png",
+      "caption": "BEFORE #123 on accepted #121: selected-only admits A before source inspection",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:14:52.099433+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "33b57234b6ce51a3b43ddbd0d5024f2dbe3708cfa01530d4301b052972616eda",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored technical interaction geometry/projections; no domain/model assessment"
+    },
+    {
+      "image": "before-accepted121-firefox-123-selected-source-focus-cleared.png",
+      "caption": "BEFORE #123 on accepted #121: first source click clears focus and keeps selected-only",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:14:53.150586+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "85e0e28f409703075ad87a5c94c98c9d1776ee2ef81bbe0ef8ba5d3630b7134a",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored technical interaction geometry/projections; no domain/model assessment"
+    },
+    {
+      "image": "before-accepted121-firefox-123-selected-source-focus-restored-filter-reset.png",
+      "caption": "BEFORE #123 on accepted #121: second source click restores focus but drops selected-only and exposes all four highlight identities",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:14:54.596530+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "3db48abc6557c8c83603cb48089494edf21d02bf7675abe34e41a7ec7612126e",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored technical interaction geometry/projections; no domain/model assessment"
+    }
+  ]
+}

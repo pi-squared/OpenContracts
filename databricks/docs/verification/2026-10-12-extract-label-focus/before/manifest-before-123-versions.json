@@ -1,0 +1,283 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before-accepted121-chromium-123-version-ambiguous-explicit-no-target.png",
+      "caption": "BEFORE #123 on accepted #121: native finding modal explicitly reports ambiguous location/no highlight and offers no quotation navigation (extract grid; PDF not shown)",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:46:13.062258+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "fab6ee930d77a5fce3efbef58613ccfceb043390dd49ee21bfe2c3b1ebd8332c",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim"
+    },
+    {
+      "image": "before-accepted121-chromium-123-version-historical-reload-focused.png",
+      "caption": "BEFORE #123 on accepted #121: explicit v1 source target survives historical reload",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:51.316717+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6b876d65e7ef1942db9eeca5a6b692aff11d02f1d30afd6616156bce370b0756",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before-accepted121-chromium-123-version-native-return-v1-unfocused.png",
+      "caption": "BEFORE #123 on accepted #121: native return to historical v1 without an ann target is unfocused",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:44.868229+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a175579ec95a361f93c71b7a79b9905f47adc0c64d5072a7fc74621e3e7c0527",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "before-accepted121-chromium-123-version-v1-focused.png",
+      "caption": "BEFORE #123 on accepted #121: historical v1 source focus",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:37.984114+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ca48fd4330ba6aa766cacaf39168e4eacbe83b0d54685065597ce7aedbb4c69e",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before-accepted121-chromium-123-version-v1-picker-focus-no-ann.png",
+      "caption": "BEFORE #123 on accepted #121: native two-version picker with v1 focus after plural selection is cleared",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:39.427668+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7690be50a64eaa22c7a27e4b01142b6b3d1e005ec196e2c217f9ad485e495917",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before-accepted121-chromium-123-version-v2-focus-cleared.png",
+      "caption": "BEFORE #123 on accepted #121: native switch to latest v2 clears prior-version focus; no inherited evidence geometry",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:41.346107+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "cdd936a56cc32a6b13d08d46de57bbaa35ee8604f6d04d0c885305ec8852e301",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "before-accepted121-chromium-123-version-v2-stale-target-no-highlight.png",
+      "caption": "BEFORE #123 on accepted #121: latest v2 retains stale v1 ann in URL but creates no highlight or visible label",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:53.576874+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0e75d50b0e5cb4e6ce76a99472f89ed198931cd791b442d8bf1bb499029e6545",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "before-accepted121-firefox-123-version-ambiguous-explicit-no-target.png",
+      "caption": "BEFORE #123 on accepted #121: native finding modal explicitly reports ambiguous location/no highlight and offers no quotation navigation (extract grid; PDF not shown)",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:46:10.804649+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4f4de484d7cc015668a693450d5c7cc75e50d4b84b76828f07bb4ab56a2675c1",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim"
+    },
+    {
+      "image": "before-accepted121-firefox-123-version-historical-reload-focused.png",
+      "caption": "BEFORE #123 on accepted #121: explicit v1 source target survives historical reload",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:49.851510+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e9d1f9d5518321bc83e0cbefcbb4b4f6f76c7cdbaab7514941438c88c772558f",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before-accepted121-firefox-123-version-native-return-v1-unfocused.png",
+      "caption": "BEFORE #123 on accepted #121: native return to historical v1 without an ann target is unfocused",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:42.904225+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a7ac3faf1dd44628734cfa6b2963bc6ecd2bc237c4c92bac351733745cae3b7c",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "before-accepted121-firefox-123-version-v1-focused.png",
+      "caption": "BEFORE #123 on accepted #121: historical v1 source focus",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:34.630187+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f6301f2305da0eb9ef59a498ec76f47729cfc721cf09930024374087aa9629c5",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before-accepted121-firefox-123-version-v1-picker-focus-no-ann.png",
+      "caption": "BEFORE #123 on accepted #121: native two-version picker with v1 focus after plural selection is cleared",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:36.113063+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7fa6dced17114dba84d6cce5e64f153a0cc2e83c42c014252fbca91ee6a872cb",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "before-accepted121-firefox-123-version-v2-focus-cleared.png",
+      "caption": "BEFORE #123 on accepted #121: native switch to latest v2 clears prior-version focus; no inherited evidence geometry",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:38.066894+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "42ee5bf0d8a9f1aade5c0fe69bace7d55894856bb5db95f02d7898a6d9ffdf63",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "before-accepted121-firefox-123-version-v2-stale-target-no-highlight.png",
+      "caption": "BEFORE #123 on accepted #121: latest v2 retains stale v1 ann in URL but creates no highlight or visible label",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T16:43:52.144194+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "bb21a85a49f883b6c3dc7239b941fd68781ca172571aaadcbfd49bfab7811a2a",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Separate owned two-version technical fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic version lineage and ambiguous locator cache are UI inputs; no model/domain/real-content-change claim",
+      "pdf_zoom": 115
+    }
+  ]
+}

@@ -1,0 +1,726 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-121-dense-chromium-public-sme-manual-display-127-default-unhovered.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; default unhovered; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:04.842683+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "00a7ba61101e015fa45fe6fdf11927757b01b7afc2fdd9890cd44e7f8c74ff5a",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-chromium-public-sme-manual-display-127-default-hovered.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; default hovered; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:05.611664+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "fda887babfedc79465f1e9f6989bf806d73b70e0ab3353cd2c7f2fce5e556882",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-chromium-public-sme-manual-display-127-always-pointer-away.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; always pointer away; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:17.790439+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "a6fe856d49592c8187f42e78dbcdea821298b27e700be653b82f81bcc22e0d70",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-chromium-public-sme-manual-display-127-hide-pointer-away.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; hide pointer away; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:29.610653+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "1fd7f2e5915255b290e9efb9eef9d04f70749624119b31a5c972d079354bb87a",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-chromium-public-sme-manual-display-167-default-unhovered.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; default unhovered; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:50.636282+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "ce4026e7ffed37d1ea939b7ab472f14b7129ebc493b1fa27315853c268c7efe3",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-chromium-public-sme-manual-display-167-default-hovered.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; default hovered; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:51.188003+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "b03a7bbf0343a5b9267a11fc7b1c894fd13ad9d3dd0e029c6a5613f896509673",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-chromium-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; always pointer away; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:08.468298+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "49342fab5bbd0f786885ced27528dff7f4dc7f0c263b9264fac71d1d86183df2",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-chromium-public-sme-manual-display-167-hide-pointer-away.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; hide pointer away; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:23.057857+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "c14dcab85b97f7aabeaa388a3be623b132d1e9908430c759199c0beb8caf6243",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-chromium-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; default unhovered; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:36.892762+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "ee5c85355ea75d28d5d4894978a5ce3d38646dee3d1e9a36d5bf11093c74401b",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-chromium-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; default hovered; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:38.004865+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "49be6ed59e2d4ad0a59c15cdd60c8c7476178a5f737fb8435eb4c1be2fe76e42",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-chromium-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; focused pointer away; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:51.973365+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "947097459f53b25339cf0d42939baa281a8ba767018e0edd3b32aabc0178b617",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-chromium-owned-sme-extract-evidence-127-always-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; always pointer away; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:05.708986+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "7a69b7b227d870637ec8cdd929e1acd5e8e058599a647652425338bf085e61bd",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-chromium-owned-sme-extract-evidence-127-hide-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; hide pointer away; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:18.757414+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "4966cc8e806ff42b9e635c4c1f6662b86e886a671948d7887530952f289965da",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-chromium-owned-sme-extract-evidence-167-default-unhovered.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; default unhovered; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:30.805198+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "50bff07c0c122cab600d6e284127f5c91a714546a24aede10442704e02bf6a85",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-chromium-owned-sme-extract-evidence-167-default-hovered.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; default hovered; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:31.424478+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "a87f638857c92299ed333bf5dffb15369c96478ee251619cc2d0a8d7b7f591fa",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-chromium-owned-sme-extract-evidence-167-focused-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; focused pointer away; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:42.492517+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "ad905dcd9eeebae3259840fa51a5645bc156c92a4c9a2a060a602d230ddfd297",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-chromium-owned-sme-extract-evidence-167-always-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; always pointer away; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:53.902762+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "799e04b1b46c88cc2d797a64e5a29c142589a43c2620f0fcc7983a9c32daa96e",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-chromium-owned-sme-extract-evidence-167-hide-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; hide pointer away; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:36:04.805459+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "d4ecc35391c3b897162e559ca595d6bbbb283e7856c6b267f6567ed053aa2c4e",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-firefox-public-sme-manual-display-127-default-unhovered.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; default unhovered; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:09.523921+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "ce69cf39980890de35965af5d7fe57b01762db4ac88a0ccdf6a75dffc948ec98",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-firefox-public-sme-manual-display-127-default-hovered.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; default hovered; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:10.153033+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "3f0835ed4b5cc9726179f011eafd810a50083a07c38cb5908fee6e86a63c8f0d",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-firefox-public-sme-manual-display-127-always-pointer-away.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; always pointer away; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:25.512770+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "899a021b54f6de676af9c2a63d32109ac8674502ece976c9c591956174f53192",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-firefox-public-sme-manual-display-127-hide-pointer-away.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; hide pointer away; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:33:41.810370+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "da580b03b4d67d7948b145bfb06865bb02eced473d28ee8423e9ba91da5c76f3",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-firefox-public-sme-manual-display-167-default-unhovered.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; default unhovered; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:03.902203+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "70e01ed8f6c7cec44eed1d58d44191dede9d9468f4edefec235c142f1e7bbb62",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-firefox-public-sme-manual-display-167-default-hovered.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; default hovered; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:04.503223+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "cd021cc6fdc9e4a2957445d3b916a3b705af564254e2899b432bff70bb4cc9af",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-firefox-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; always pointer away; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:23.962078+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "1e43da6925dcc20fd62f0fec27dfb88f12299e401a6190264984bdfbb46947ab",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-firefox-public-sme-manual-display-167-hide-pointer-away.png",
+      "caption": "AFTER #121: Original #116 generic manual display fixture on the public SME PDF; hide pointer away; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:37.012696+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "b4944fd47522bd95c2268f47699071d3447e1db4eb1648ab6d00d6b68f8d5a9b",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Generic manual labels establish #116 display continuity; they do not establish the evidence-quote focus contract"
+    },
+    {
+      "image": "after-121-dense-firefox-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; default unhovered; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:53.564576+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "4659751eefdd289d402c05e561f2b828bca9a2e0f873ceed293ad8f837057cfc",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-firefox-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; default hovered; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:34:54.349298+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "68f16b09e99858d736f1b6cb4f069cea234cdfc42958fe0207d73c911954dc5c",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-firefox-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; focused pointer away; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:12.048510+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "fc6df39a30af266657e607b037b72baa452deb5f3b4d1c1c49a7a029014b82d5",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-firefox-owned-sme-extract-evidence-127-always-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; always pointer away; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:27.477161+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "40dad4c9b970822bc2f4a75583d162abdc281b6b7581801989f0c6d620d49965",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-firefox-owned-sme-extract-evidence-127-hide-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; hide pointer away; 127% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:43.143035+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "16522ab2573b4ef7c701e7e3161e092cb27315e760841d94645e3eadabd8d28e",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-firefox-owned-sme-extract-evidence-167-default-unhovered.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; default unhovered; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:56.687329+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "0b75aa7be1aa4fcf3816254ee4f42982b89dc242953bdf4cfa8092279c7118c6",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-firefox-owned-sme-extract-evidence-167-default-hovered.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; default hovered; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:35:57.718977+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "6b5f3a77cdcf76170308f21288e0bd2c83293b5ffcf65894b8259f600716513b",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-firefox-owned-sme-extract-evidence-167-focused-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; focused pointer away; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:36:09.925712+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "72aebe05f5d9a2deddeb7b164e61ff27626ade7d3dd2a4f9b29fb5ea71fc054b",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-firefox-owned-sme-extract-evidence-167-always-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; always pointer away; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:36:22.120373+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "dbe728e47c1a804967c9e87d0012d5b6394af6dd1dbc62ffa5004fdf326eac85",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    },
+    {
+      "image": "after-121-dense-firefox-owned-sme-extract-evidence-167-hide-pointer-away.png",
+      "caption": "AFTER #121: Owned native evidence-quote extract fixture on the unchanged public SME PDF; hide pointer away; 167% PDF zoom",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:36:35.193032+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "65d2cbd33252bc398b350cc2bcd0b24fe2f9aa1755163779d9eef1cb62b6b207",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Owned native evidence-quote extract fixture on the unchanged public SME PDF",
+      "limitations": "Page 1 dense display and explicit evidence focus only; technical fixture does not establish extraction quality or later overlapping-target cycling"
+    }
+  ],
+  "acceptance": "PASS: #121 dense page-1 display continuity and evidence focus at measured 127% and 167% in Chromium and Firefox"
+}

@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-10-12T14:52:26.023604+00:00",
+  "original_version_retained": true,
+  "original_fixture_cells_and_links_unchanged": true,
+  "retained_real_extract_corrected_reviewed_cells": 0,
+  "original_research_records_unchanged": true,
+  "synthetic_ui_only": true,
+  "model_invocations": 0,
+  "fixture": "Issue 120 synthetic interaction fixture",
+  "native_current_corrected_source_navigation_verified": [
+    "chromium",
+    "firefox"
+  ],
+  "source_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+  "source_cards_after_extension": 6,
+  "existing_original_fixture_cards_preserved": 5,
+  "original_and_corrected_versions_retained_on_new_cell": true,
+  "navigation": "Original A source on original finding; corrected B source on separate synthetic corrected finding. Native latest corrected source projection is exercised; no historical source UI switch is claimed."
+}

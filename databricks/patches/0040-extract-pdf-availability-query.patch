@@ -1,0 +1,10 @@
+--- a/frontend/src/graphql/queries.ts
++++ b/frontend/src/graphql/queries.ts
+@@ -3346,6 +3346,7 @@
+         }
+       }
+       fullDocumentList {
++        pdfFile
+         slug
+         creator {
+           id

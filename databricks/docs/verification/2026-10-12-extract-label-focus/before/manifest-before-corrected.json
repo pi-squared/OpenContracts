@@ -1,0 +1,81 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before-chromium-121-synthetic-original-source.png",
+      "caption": "BEFORE: native synthetic original finding source navigation retains all labels, pointer away, 110%",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T14:53:37.007256+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ffeaa182e9f01425d44718b92f75aab135730754d09c746991c46ad19239a96b",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored original/corrected UI versions; no model or domain assessment"
+    },
+    {
+      "image": "before-chromium-121-synthetic-corrected-source.png",
+      "caption": "BEFORE: native synthetic corrected finding source navigation retains all labels, pointer away, 110%",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T14:53:38.625499+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "99ff293ee9df56531d71c36ef0994a6a613e74c435fb83031d0e82fc20881b77",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored original/corrected UI versions; no model or domain assessment"
+    },
+    {
+      "image": "before-firefox-121-synthetic-original-source.png",
+      "caption": "BEFORE: native synthetic original finding source navigation retains all labels, pointer away, 110%",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T14:53:34.712104+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "acac2a90501d9b33aa1fb791d6904f9a560eb661ec23c4c45fa6c463310e8e1d",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored original/corrected UI versions; no model or domain assessment"
+    },
+    {
+      "image": "before-firefox-121-synthetic-corrected-source.png",
+      "caption": "BEFORE: native synthetic corrected finding source navigation retains all labels, pointer away, 110%",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T14:53:36.366763+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9dacc2c571f539ade7872c5de971d8f06eb186a759afdfe225df64f114707915",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Hand-authored original/corrected UI versions; no model or domain assessment"
+    }
+  ]
+}

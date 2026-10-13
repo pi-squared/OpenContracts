@@ -1,0 +1,41 @@
+{
+  "reviewed_at_utc": "2026-10-12T20:11:16.202857+00:00",
+  "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+  "comparison_commit": "b54865fae5b137538915c2e72c02371b19da7b38",
+  "upstream_commit": "1e859dcea0f083f374c160a04244f93bca5b989c",
+  "lock_sha256": "a08536950d30a40ac26e48e5cfff3a5f3c97486030de85960175d252de779735",
+  "hosted_acceptance": false,
+  "frontend": {
+    "tests_passed": 96,
+    "files": 13,
+    "required_skips": 0,
+    "optional_skips": 0,
+    "type_check_passed": true,
+    "production_build_passed": true
+  },
+  "composed_browser_groups_per_engine": {
+    "focus": 9,
+    "mouse": 16,
+    "lifecycle": 8
+  },
+  "browsers": [
+    "Chromium 151.0.7922.34",
+    "Firefox 153.0"
+  ],
+  "final_actual_subprocess_and_wrapper_exits": 0,
+  "maintained_source_unchanged_during_checks": true,
+  "local_native_regressions": [
+    "Five overlapping label edit controls accept normal pointer transfer, open native editors and cancel without advancing focus",
+    "Native Add link dialog owns its input/Create/Cancel controls above the actual fullscreen viewer; empty/unsafe input validation remains intact"
+  ],
+  "boundaries": "Local composed native viewer; external GraphQL and PDF decoding/canvas are synthetic. This does not establish hosted acceptance or genuine server saves.",
+  "retained_failures": "Genuine covered-control and hidden-URL-dialog reds retained. Fixture query and missing-hook attempts are separate. The first final frontend attempt passed96 tests but its copied dependency launcher prevented TypeScript from starting; actual exit1. Restored owned launcher symlinks only; successful fresh required gate exited0.",
+  "independent_scoped_review": {
+    "standards_findings": 0,
+    "spec_findings": 0,
+    "verified_declared_source_paths": 125
+  },
+  "data_or_model_writes_by_implementer": 0,
+  "limitations": "Fresh deployed oc-qa acceptance remains required before closing #122. Keyboard and touch parity remains #124.",
+  "local_image_qualification": "Unpublished Firefox local green PNG shows label layout only; it is not an editor-open screenshot. Editor regression assertions pass; settled hosted editor screenshots remain required."
+}

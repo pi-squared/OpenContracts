@@ -1,0 +1,196 @@
+{
+  "issue": 122,
+  "parent_issue": 120,
+  "references_issue": 116,
+  "verified_at_utc": "2026-10-12T21:33:38.381132+00:00",
+  "acceptance": "PASS",
+  "hosted_acceptance": true,
+  "completion_scope": "Issue #122 native PDF mouse inspection and retained controls/gestures/links; #124 keyboard/touch evidence parity remains a separate slice.",
+  "deployed_source": {
+    "maintained_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+    "upstream_commit": "1e859dcea0f083f374c160a04244f93bca5b989c",
+    "recipe_sha256": "a08536950d30a40ac26e48e5cfff3a5f3c97486030de85960175d252de779735",
+    "patches": 51,
+    "overlays": 43,
+    "archive_sha256": "a13315200fc2e26e89969beb3002f913e0b2d9615c7c53e07528622b7f552b88",
+    "release_identity": "669d392775a0616182d1a3883ea1a04f7f15c6ef7c70d9370785bc716b0471bf",
+    "deployed_at_utc": "2026-10-12T20:15:02.149689+00:00",
+    "same_successful_deployment_at_end": true,
+    "exported_release_app_and_configuration_bytes_match_stage": {
+      "release.json": true,
+      "app.py": true,
+      "app.yaml": true
+    },
+    "configuration_and_eight_resource_bindings_preserved": true,
+    "workflow_parser_model_bindings_preserved": true
+  },
+  "required_local_verification": {
+    "frontend_test_files": 13,
+    "frontend_tests": 96,
+    "passed": 96,
+    "failed": 0,
+    "skipped": 0,
+    "typecheck": "PASS",
+    "production_build": "PASS",
+    "real_browser_groups_per_engine": {
+      "retained_focus": 9,
+      "native_fullscreen_mouse": 16,
+      "retained_lifecycle": 8
+    },
+    "actual_subprocess_and_wrapper_exits": "All final required checks 0",
+    "scoped_independent_review_findings": {
+      "Standards": 0,
+      "Spec": 0
+    },
+    "runtime_gate": {
+      "passed": true,
+      "executed": 1,
+      "skipped": 0
+    }
+  },
+  "hosted_verification": {
+    "app": "oc-qa",
+    "desktop_browsers": {
+      "chromium": "151.0.7922.34",
+      "firefox": "153.0"
+    },
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "dense_measured_pdf_zoom_percent": [
+      127,
+      167
+    ],
+    "each_other_artifact_records_actual_numeric_pdf_zoom": true,
+    "fully_identical_three_stop_cycle_and_wrap": true,
+    "actual_shared_four_stop_cycle_and_wrap": true,
+    "deterministic_actual_identity_order_and_out_of_set_first": true,
+    "strict_partial_C_E_hit_members_only_no_transitive_A_B_D": true,
+    "shared_identity_dedup_and_different_labels_separate": true,
+    "hover_reveals_all_actual_point_candidates_readably": true,
+    "focused_label_visible_pointer_away_without_duplication": true,
+    "all_five_real_native_editors_open_and_cancel_at_127_167_both_browsers": true,
+    "editor_open_screenshots_before_cancel": 20,
+    "native_On_Hover_probe_preserves_C_focus_after_every_cancel": true,
+    "stationary_blank_clears_with_pane_open_or_closed": true,
+    "cycles_preserve_plural_membership_highlights_filters_pane_finding_heading_and_reading_position": true,
+    "Default_Always_Hide_selected_only_eligible_AB_cycles": true,
+    "actual_Terms_FSPO_native_grid_multi_member_sources_and_PDF_activations": true,
+    "actual_Terms_FSPO_all_four_label_modes_and_reload_effective_target_in_view": true,
+    "actual_Terms_label_allowlist_and_both_samples_selected_only_exclusion_restore": true,
+    "owned_source_toggle_selected_only_membership_and_label_allowlist_restore": true,
+    "native_mouse_drag_Copy_Text_trusted_paste_both_desktop": true,
+    "copy_expected_public_text_sha256": "c282b550e3b2da888a673b9d12bbcee147cef38d74f40815a85a92c05d14baa3",
+    "copy_evidence_focus_pane_canvas_zoom_preserved": true,
+    "text_drag_retains_existing_plural_selection_clear_semantics": true,
+    "genuine_ordinary_and_URL_annotation_save_per_desktop_engine": true,
+    "custom_OC_URL_native_same_tab_same_document_activation_no_cycle": true,
+    "custom_OC_URL_same_document_focus_retained": true,
+    "real_embedded_PDF_URI_native_anchor_popup_and_rendered_target_both_desktop": true,
+    "embedded_URI_origin_focus_plural_pane_canvas_zoom_preserved": true,
+    "trusted_held_moved_touch": {
+      "browser": "Firefox 157.0.1",
+      "protocol": "GeckoDriver 0.37.1 W3C pointerType touch",
+      "native_hold_move_selection_menu": true,
+      "native_Copy_Text_trusted_Control_V_expected_hash_match": true,
+      "movement_before_hold_cancels_menu": true,
+      "blank_short_tap_zero_evidence_candidates_clears_focus_without_menu": true,
+      "DOM_dispatched_input": false,
+      "privileged_system_access_flag": false,
+      "evidence_touch_cycle_parity_not_claimed_until_124": true
+    }
+  },
+  "protected_data_and_intentional_writes": {
+    "original_Terms_FSPO_findings_compared": 49,
+    "original_extracts_compared": 2,
+    "source_text_domain_labels_geometry_quotations_original_corrected_findings_and_reviews_unchanged": true,
+    "original_shared_overlap_version_E_fixtures_rows_sources_columns_permissions_unchanged": true,
+    "inspection_browser_and_operator_writes": 0,
+    "intentional_native_annotation_saves_on_final_source": 4,
+    "earlier_owned_native_saved_row_preserved": 1,
+    "stable_native_saved_total": 5,
+    "reviewed_native_save_cap": 5,
+    "separate_new_only_URI_fixture_atomic_transaction": true,
+    "URI_fixture_native_UI_saves": 0,
+    "embedded_URI_count": 1,
+    "public_PDF_content_text_page_boxes_rotation_pixels_and_PAWLS_preserved": true,
+    "synthetic_source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+    "technical_URI_derivative_sha256": "ba5034913eb956aa515d69407bb4c842841d83b34caa7750d6758ce2c51372c9",
+    "all_owned_prepared_bindings_exact_unique_and_unchanged": true,
+    "provider_operations": 0,
+    "provider_reservations": 0,
+    "provider_run_events": 0,
+    "embedding_records": 0,
+    "model_invocations": 0,
+    "stock_native_signal_dispatch_preserved_not_claimed_zero": true
+  },
+  "actual_end_check_exits": {
+    "source_build_identity": 0,
+    "original_49": 0,
+    "editable_total5": 0,
+    "URI_fixture_integrity": 0
+  },
+  "closed_contexts": {
+    "readonly_desktop_wrapper_exits": {
+      "chromium": 0,
+      "firefox": 0
+    },
+    "editable_desktop_wrapper_exits": {
+      "chromium": 0,
+      "firefox": 0
+    },
+    "native_Firefox157_wrapper_and_BiDi_bridge_exits": [
+      0,
+      0
+    ],
+    "native_app_quiesced_before_guard_removal": true,
+    "query_only_native_guard": {
+      "allowed": 28,
+      "blocked": 0,
+      "errors": 0
+    },
+    "current_forced_cleanup": false,
+    "dense_helper_all_contexts_closed": true
+  },
+  "evidence": {
+    "final_source_images": 210,
+    "all_png_bytes_unchanged_hash_verified": true,
+    "completed_readonly_images": 112,
+    "dense_matrix_editor_cancel_images": 60,
+    "final_native_supplement_images": 38,
+    "four_earlier_omitted_grid_images_included_in_native_supplement": true,
+    "manifests": [
+      "../intermediate/manifest-after-reviewed122-final-readonly-published.json",
+      "../intermediate/manifest-after-reviewed122-final-dense-published.json",
+      "manifest-after-reviewed122-final-native-published.json"
+    ],
+    "before_sources": [
+      "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "aa383ca4c13eac3e11facf73e7f373e8167190ed"
+    ],
+    "intermediate_held_failures_published_separately": [
+      "2abdfabcf7999452a3e21c99afbc07d0d6ab2d13",
+      "24c6d01dbcd15f8e040c830c960ee7043b97d01e"
+    ]
+  },
+  "retained_failures_and_driver_corrections": [
+    "Earlier hosted fullscreen ownership and dense control/Add link stacking defects remained failed evidence until reviewed native-shell corrections were delivered; no old-source success was substituted.",
+    "Initial final-source closed-pane reading preconditions and private helper setup errors stopped before accepted activation and remain retained; native reading-region setup precedes the successful stationary clicks.",
+    "Dense helper retained an initial selectedOnly=false canonical-omission strict comparison stop and an unsettled Firefox167 modal comparison stop. Only the proven default query omission was normalized; a narrow final Firefox167 native-control segment and diagnostic completed with actual exits0. Original failed wrapper1 and setup143 remain failed.",
+    "An initial second Chromium drag showed trusted DOM-selection dragstart/pointercancel, with unknown pre-first-save selection provenance. A controlled fresh firstdrag \u2192 Cancel \u2192 second-drag succeeded without a reset, so no app change was inferred. Subsequent bounded genuine saves reconciled to stable5.",
+    "Firefox ordinary-save response verification stopped before asynchronous receipt settlement; independent reconciliation found exactly one successful save. No retry was issued.",
+    "The first URI creator failed before transaction with missing Path import; independent absence and stable5 checks passed, root approved the exact import-only correction, and the atomic apply plus independent checker passed.",
+    "Both desktop Copy Text strict query-equality checks stopped because the retained native text-drag path clears plural selection. Baseline source confirms this behavior; focus/pane/canvas/zoom/paste hash passed and existing postcopy observations were completed without replay.",
+    "A short blank-text touch check wrongly expected focus retention; the actual point has zero evidence candidates and normal blank tap clears focus. A classification check also initially mistook all mounted bounds for hit members. Both stopped assertions are retained; no repeat gesture or touch cycle parity claim was made.",
+    "Native GeckoDriver initial sandbox status probe and an unnecessary address-in-use start attempt stopped before app interaction; the existing explicit server then supplied the genuine held/moved session."
+  ],
+  "limitations": [
+    "Actual FSPO exposes one raw Quotation evidence annotation label. Native selected-only/Shift exclusions on FSPO, distinct raw-label exclusions on Terms, and owned multi-label evidence prove the generic filtering contract without invented workflow filter options.",
+    "Full/partial/transitive/shared-identity geometry, corrected/version lineage, editable-save and embedded-URI cases are explicitly synthetic UI verification, not domain/model acceptance.",
+    "Retained Terms and FSPO have zero embedded URI links; the separate technical derivative exercises genuine PDF.js NativeLinkLayer handling. The derivative PDF, destination, private native IDs and payloads remain private.",
+    "The custom OC_URL target is this same owned document. Native SPA route navigation removes extract/selection query context and retains document-scoped focus; a document exit is not inferred.",
+    "Trusted held/moved/copy cancellation uses Firefox157 separately from desktop Firefox153. Issue #124 owns keyboard/touch evidence focus parity and priority Escape handling.",
+    "Passing effective labels, public controls, routes, viewport and protected-state assertions establish acceptance; no internal atom/handler manipulation or broad mutation admission was used."
+  ]
+}

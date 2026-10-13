@@ -1,0 +1,16 @@
+--- a/config/graphql/filters.py
++++ b/config/graphql/filters.py
+@@ -360,7 +360,13 @@
+     )
+ 
+     def filter_queryset(self, queryset: QuerySet) -> QuerySet:
++        # The library is a flat list. TreeCompiler imposes depth-first order
++        # even after order_by(), so explicit library sorts must omit tree fields.
++        if self.data.get("order_by"):
++            queryset = queryset.without_tree_fields()
+         qs = super().filter_queryset(queryset)
++        if self.data.get("order_by"):
++            qs = qs.order_by(*qs.query.order_by, "pk")
+         # Personal corpuses are private singletons — they should not
+         # surface when the user is browsing shared/public content via a
+         # Top sort (ranking a single-user "My Documents" corpus against

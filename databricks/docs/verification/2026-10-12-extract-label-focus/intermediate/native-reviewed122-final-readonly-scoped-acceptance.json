@@ -1,0 +1,39 @@
+{
+  "verified_at_utc": "2026-10-12T20:56:38.016264+00:00",
+  "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+  "recipe_sha256": "a08536950d30a40ac26e48e5cfff3a5f3c97486030de85960175d252de779735",
+  "acceptance": "PASS completed native read-only groups in both browsers; full #122 acceptance pending remaining native creation/link/touch and end-integrity proof",
+  "complete122_hosted_acceptance": false,
+  "read_only_scope_pass": true,
+  "observations": {
+    "both_browsers": true,
+    "full_identical_three_cycle_and_wrap": true,
+    "actual_shared_four_cycle_and_wrap": true,
+    "strict_C_E_two_no_transitive_A_B_D": true,
+    "shared_identity_dedup_different_labels_separate": true,
+    "shared_hover_four_readable_distinct_bars": true,
+    "pane_plural_membership_canvas_zoom_preserved": true,
+    "stationary_blank_clears_open_and_closed": true,
+    "actual_Terms_FSPO_native_multi_member_sources": true,
+    "actual_Terms_FSPO_all_four_modes_and_reload": true,
+    "Terms_raw_label_exclusion_restoration_all_three_modes": true,
+    "FSPO_native_single_raw_label_limitation_retained": true,
+    "actual_sample_selected_only_exclusion_restoration": true,
+    "owned_selected_source_clear_restore_filter_preserved": true,
+    "owned_label_allowlist_exclusion_restore": true,
+    "eligible_selected_only_AB_cycles_Default_Always_Hide": true,
+    "saved_writes_in_readonly_scope": 0,
+    "models_in_readonly_scope": 0
+  },
+  "retained_attempts": [
+    "Initial closed-pane protocol stopped before settled Auto-Zoom; native settled zoom and trusted source-region wheel preconditions established before accepted activation, and failed/stopped images retained separately.",
+    "Private verification helpers had None bounding box, string slicing, indentation, and snapshot-wrapper setup errors; each retained and corrected without source/data changes."
+  ],
+  "limitations": [
+    "Actual FSPO has a single raw annotation label; workflow-column names are not invented raw-label filter options.",
+    "Owned geometry/shared identities are deliberate synthetic UI verification, not domain/model acceptance.",
+    "Dense 127/167 and real editor-open/Cancel proof are separate accepted 60-image packet.",
+    "Original49 end fingerprints and final native saves/links/touch remain pending."
+  ],
+  "phase": "intermediate"
+}

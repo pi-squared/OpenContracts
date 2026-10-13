@@ -1,0 +1,1464 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-reviewed124-final-chromium-122-fspo-actual-PDF-activation-focus-and-context.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. chromium 122 fspo actual PDF activation focus and context.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:16:41.398137+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 150,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "5e9461546be70b39801a9c607d2cd4a6fe28595f407a152f4744174ad6855f1d",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-fspo-annotation-filter-HIDE-excluded-focus-remembered.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. chromium 122 fspo annotation filter HIDE excluded focus remembered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:58:15.319870+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 197,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "16e3978b916a8444881a6a8d3ef72f65eccdb26d54f73a36ee4976620ca357b3",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-fspo-annotation-filter-HIDE-restored-in-view.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. chromium 122 fspo annotation filter HIDE restored in view.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:58:21.477533+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 393,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "585b2fc0501021e4245761fb7f8e0086a92dfeeabbb622e2dbd29805522b06e3",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-fspo-native-grid-view-sources-two-members.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. chromium 122 fspo native grid view sources two members.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:54:15.875884+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 234,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "0ff603860e21e066a7dc812985ea07e01612589793d1162adcdb64d9e3e51dcc",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-full-identical-cycle-stop-1.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 full identical cycle stop 1.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:13.653074+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "6af635fc264f7b3e680c53e2fd44a47c9b069fc396b2bb40ccba7ad191689a88",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-full-identical-cycle-stop-2.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 full identical cycle stop 2.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:14.877869+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "e40de6d3e7911f7f0f74ef7713abacc2f6460e0a7699624e6d77934adb379eb0",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-full-identical-cycle-stop-3.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 full identical cycle stop 3.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:15.851930+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "b9371bf76325b069d5359a10f2cb2a268b317fec6f7b32edce217e00161ee3c6",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-full-identical-cycle-stop-4.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 full identical cycle stop 4.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:16.868406+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "2da9510b1c06510b1037d52e4cc090253e4c4643471c9c93f08fb051b041b310",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-native-mouse-copy-public-text-focus-preserved.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. chromium 122 native mouse copy public text focus preserved.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:19:47.469861+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "833814384eb0a8e70d4a1a9ca77996abcd151c5ba2d56d9f730ccc3da8a0d068",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-partial-C-only-no-transitive-E.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 partial C only no transitive E.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:24.248272+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "b49bfef6b69ad04b3411ad99f829e246b1bd211b58dea5db5e7fc2c7392c72f0",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-partial-shared-cycle-stop-1.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 partial shared cycle stop 1.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:18.221005+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "c4d1bfa12b308f6cbdf83364ef6e44b0bb9fb9382d30d643304826d54b680ff7",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-partial-shared-cycle-stop-4.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 partial shared cycle stop 4.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:21.895902+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "36cf15237562a52dd1231aab61b851183a232226d740ddf837272102ade4e5a6",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-partial-shared-cycle-stop-5.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 partial shared cycle stop 5.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:23.188017+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "159f910f6b1375c533fbb5e0124b396c90d886453cdd492062a5f9dda3a8d4f5",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-real-embedded-URI-native-anchor-hover.png",
+      "caption": "Owned synthetic public-PDF derivative with sole transparent native embedded URI. chromium 122 real embedded URI native anchor hover.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:36:26.437169+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "b2f45a5f938efa031b7fbbc1e413fadeda356b416f696aae20f15b69ecbbc75b",
+      "fixture": "Owned synthetic public-PDF derivative with sole transparent native embedded URI",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-real-embedded-URI-native-popup-rendered-owned-PDF.png",
+      "caption": "Owned synthetic public-PDF derivative with sole transparent native embedded URI. chromium 122 real embedded URI native popup rendered owned PDF.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:36:32.976507+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7ad4d5a9ab798080c405f0b12953e856ca46794896c7dcdc4a377123a9c33402",
+      "fixture": "Owned synthetic public-PDF derivative with sole transparent native embedded URI",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-retained121-fspo-mode-HIDE.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. chromium 122 retained121 fspo mode HIDE.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:56:31.156326+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "521a15afb0c862fe669d49e8bdcf251a1c2413461a8dd3c52c73eb4440a8c903",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-retained121-terms-mode-ALWAYS.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. chromium 122 retained121 terms mode ALWAYS.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:48:07.964924+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "e290db83794e11602ed5130682a794246706a0bf7d367bb4d0f9d7382f193244",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-selected-source-focus-cleared.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 selected source focus cleared.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:58:31.548669+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "86324b89a9d4d8f3853c583740e0465c0bba01d114290d26cf6c1db10ce3f205",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-selected-source-focus-restored-filter-preserved.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 selected source focus restored filter preserved.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:58:33.705919+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "243f7a2642e72a24a2fc615c3be70c6f1d4035011a089e7ac872a499f4c14ba2",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-shared-hover-four-readable-labels.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 shared hover four readable labels.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:29.765631+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "17f9c2d03741db6857658b11c787d2e1253ca79110788b3a78b4a8954105ac9c",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-strict-chain-C-E-stop-2.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 122 strict chain C E stop 2.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:26.143495+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "6a9f0c597e12d4de124a0e5ddd5dcb188f00c785129dbd25a3c0ce1314dc9075",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-terms-actual-PDF-activation-focus-and-context.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. chromium 122 terms actual PDF activation focus and context.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:16:26.361916+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "5edd6e88d895fe733e4f3cc42873de0285e5de91128fd08d6827e73350f2933e",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-terms-label-filter-default-excluded.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. chromium 122 terms label filter default excluded.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:53:48.306979+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "8829e20208033ae918191f3a090c4c980536baa48d8780d10be393b9bb8a384a",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-terms-label-filter-default-restored-in-view.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. chromium 122 terms label filter default restored in view.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:53:50.030506+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "368613bd74c94f7739010daedcac13e6fc8e2ad479b71ad4bc6c13ad8b895f1b",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-122-terms-native-grid-view-sources-two-members.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. chromium 122 terms native grid view sources two members.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:42:37.853787+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "90c9a21676272bad0030c01407277d966103dcdf34f771e2e3782d85c2dd9269",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-123-explicit-source-return-physical-page1.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 123 explicit source return physical page1.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:10:44.392129+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 120,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "de32534407e84c1103b9bdf613c9d1d0033b7135fadced072acc373a8f97fb52",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-123-manual-page2-repeated-zoom-retained.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 123 manual page2 repeated zoom retained. Physical PDF page 2; the source prints Page 3 of 9. The occurrence ordinal is separate.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:10:33.275773+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 240,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "9e2e54085775aa692f3d9223bc32e8436e67e97d1cee839d90571af5d319df63",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-123-manual-physical-page2-pane-close-retained.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 123 manual physical page2 pane close retained. Physical PDF page 2; the source prints Page 3 of 9. The occurrence ordinal is separate.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:10:30.904970+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "529a32303a7bee396f489a686fc2d24604d9268ba5a7e12dc9b04795b4b692c2",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-123-synthetic-corrected-native-view-sources-B.png",
+      "caption": "Owned synthetic original/corrected finding and native source projection. chromium 123 synthetic corrected native view sources B.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:11:05.339508+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7b7c737dd53f07d54b77fd6b85d230d6a3e8889efc6557c6e591a17072344730",
+      "fixture": "Owned synthetic original/corrected finding and native source projection",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-123-version-v1-focused.png",
+      "caption": "Owned synthetic native source-version lineage using unchanged public PDF bytes. chromium 123 version v1 focused.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:11:20.037472+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "83a2e057ff5e2954d1e6e4cfb83bafcb185f4c8d536111a13aea566e920ab081",
+      "fixture": "Owned synthetic native source-version lineage using unchanged public PDF bytes",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-123-version-v2-stale-target-no-highlight.png",
+      "caption": "Owned synthetic native source-version lineage using unchanged public PDF bytes. chromium 123 version v2 stale target no highlight. Settled nonzero rendered PDF with no loading indicator; stale evidence acquires no invented highlight.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:11:41.264787+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 115,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "a73928ee68a24110530ad219ca89c04d8db215e697b27b8543cb5758f12f3a9f",
+      "fixture": "Owned synthetic native source-version lineage using unchanged public PDF bytes",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-123-warm-native-same-document-return-unfocused.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. chromium 123 warm native same document return unfocused.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:10:56.732708+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "0f933c52525603cf456802967fe4e7151a9a7d06bd879e516276a726fb12567c",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-fspo-actual-PDF-activation-focus-and-context.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. firefox 122 fspo actual PDF activation focus and context.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:16:47.451056+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 233,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "f1beff8379e26859cd1f0b279d73a98e55b9c40db357f92858fc87f0bd32564d",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-fspo-annotation-filter-HIDE-excluded-focus-remembered.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. firefox 122 fspo annotation filter HIDE excluded focus remembered.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:58:58.561613+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "d63a9db1fd492b2c437b8ae19787d70f1d51e79fd46d747c61fae86fb9b45522",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-fspo-annotation-filter-HIDE-restored-in-view.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. firefox 122 fspo annotation filter HIDE restored in view.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:59:05.049044+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 226,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "c438886f4c0470471e3c9bd70a65890300512a732e595e313c05f1e0c82618d7",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-fspo-native-grid-view-sources-two-members.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. firefox 122 fspo native grid view sources two members.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:54:25.440606+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 234,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "76706f6a335b64a9fa11072214787a3853dd9c086ab30d37d3cd8922f296023b",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-full-identical-cycle-stop-1.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 full identical cycle stop 1.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:13.822693+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "50a78e0b16ec25bf5eb94b41b0039647aaf43574b0bcc25187bafd8a00a8badf",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-full-identical-cycle-stop-2.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 full identical cycle stop 2.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:14.980948+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "538e75639fee0d7d5a3bc73e3a79b2c13f6a5699c073986194e243f33d20c6c0",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-full-identical-cycle-stop-3.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 full identical cycle stop 3.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:16.274557+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "da3798b42e567c683a182cbaf9815ddb892eebc2a1e5b04b1c0ba7b06dab9693",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-full-identical-cycle-stop-4.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 full identical cycle stop 4.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:17.602749+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "e59569d0f7d410e89ab5a229f07c07297eb07c2ce8b707a5a0b6e20d1cbf5f9f",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-native-mouse-copy-public-text-focus-preserved.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox 122 native mouse copy public text focus preserved.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:19:51.796258+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "712a024e0ebac205cfc1704b68629a35f3db9c6691bc4732f92df950652d60f7",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-partial-C-only-no-transitive-E.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 partial C only no transitive E.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:25.023686+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "abe5efec731ce2316ed0edd5edb6c385c9ca73e5c010953b087f808b6a740121",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-partial-shared-cycle-stop-1.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 partial shared cycle stop 1.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:19.253266+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "a789d4fadb3a09c9ad70e97aec05a4f192c4a164964792feacd7d9c8853add48",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-partial-shared-cycle-stop-4.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 partial shared cycle stop 4.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:23.364896+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "d7a1991179e770fab2b2b9de5e82b0b19575fe686de0290c11d2afc3dba43b98",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-partial-shared-cycle-stop-5.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 partial shared cycle stop 5.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:24.178788+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "55824ca3aa787c1561a35275e30e08f425ca42519a6737925d6542c4696716e4",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-real-embedded-URI-native-anchor-hover.png",
+      "caption": "Owned synthetic public-PDF derivative with sole transparent native embedded URI. firefox 122 real embedded URI native anchor hover.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:36:29.983330+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "dfc881702bfc7f1695cd04d0040da13f97602e3f6007cee2fc0d92bed774732f",
+      "fixture": "Owned synthetic public-PDF derivative with sole transparent native embedded URI",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-real-embedded-URI-native-popup-rendered-owned-PDF.png",
+      "caption": "Owned synthetic public-PDF derivative with sole transparent native embedded URI. firefox 122 real embedded URI native popup rendered owned PDF.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:36:37.184977+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "bb7bf14dfda05359c631eb00b8ea7819fdb379c1171569437f73f89def70c912",
+      "fixture": "Owned synthetic public-PDF derivative with sole transparent native embedded URI",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-retained121-fspo-mode-HIDE.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. firefox 122 retained121 fspo mode HIDE.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:57:13.952644+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "86488bbd9c0ddfb387b6c8136a4e0a8c1387c7fce5f50f64feccd29eeaf1ed99",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-retained121-terms-mode-ALWAYS.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. firefox 122 retained121 terms mode ALWAYS.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:48:08.944506+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "a5c3027d7b057b0de2cb46712339192eddefa2b73be14c0d87700a348b662a99",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-selected-source-focus-cleared.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 selected source focus cleared.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:59:15.153406+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "113307b97f86f8ecf1e11b2546eaeda58410f93240f3ef0c1ebe225e3d036eb7",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-selected-source-focus-restored-filter-preserved.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 selected source focus restored filter preserved.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:59:16.827425+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "11a6833a927177c8fd2ebca5e1776ac1a69c8bfc892bb24769b4dc07cd4bd952",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-shared-hover-four-readable-labels.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 shared hover four readable labels.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:31.371678+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "ba77d6cec6c2b6976af69bc69655398550b61cda948834e6b0140c1d046f37fa",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-strict-chain-C-E-stop-2.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 122 strict chain C E stop 2.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:27.592421+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "ef6ef085573709c85a17ce5d871630afdcb3092a8a1c6b77b0e00ac999d4c866",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-terms-actual-PDF-activation-focus-and-context.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. firefox 122 terms actual PDF activation focus and context.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:16:29.537583+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "003b0befb682c291c792737839fb57bdc95f6fe121844b5ef51ca4210d837e40",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-terms-label-filter-default-excluded.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. firefox 122 terms label filter default excluded.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:53:50.892433+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "8c917c435a45e574a88ec26386227a9166ffec6956e5590ac99c2164204e5a62",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-terms-label-filter-default-restored-in-view.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. firefox 122 terms label filter default restored in view.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:53:52.619649+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "3a774fb14a98033107f039d3fc72a0f2a7b4362be66250e20b434c98dc67a6c6",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-122-terms-native-grid-view-sources-two-members.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. firefox 122 terms native grid view sources two members.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:42:39.417658+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "12be3676824ff67040cc49a901df6892cd691c4c9ec6bff19c45761beae3901c",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-123-explicit-source-return-physical-page1.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 123 explicit source return physical page1.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:10:48.093564+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 120,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "0f50f7b20c456b87b76235368eb7f2babb7c22edc951862f3897d48452a6ef65",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-123-manual-page2-repeated-zoom-retained.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 123 manual page2 repeated zoom retained. Physical PDF page 2; the source prints Page 3 of 9. The occurrence ordinal is separate.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:10:36.100356+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 240,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "8f6cf16ca1b2af70acc23a70bd072a5890abec23736045cd1b3418b91dc0996d",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-123-manual-physical-page2-pane-close-retained.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 123 manual physical page2 pane close retained. Physical PDF page 2; the source prints Page 3 of 9. The occurrence ordinal is separate.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:10:33.141240+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "35a40735f76a293025dd455e95de256af2eb4752163df922aead2ef6318d7fb5",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-123-synthetic-corrected-native-view-sources-B.png",
+      "caption": "Owned synthetic original/corrected finding and native source projection. firefox 123 synthetic corrected native view sources B.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:11:11.310316+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "95599777859ef987a7905892293726b4c3c166f8995b3005b46b8a9c184a5895",
+      "fixture": "Owned synthetic original/corrected finding and native source projection",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-123-version-v1-focused.png",
+      "caption": "Owned synthetic native source-version lineage using unchanged public PDF bytes. firefox 123 version v1 focused.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:11:28.641143+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7bb29e4bc84e4e3f6bc2957ad2be1f05e38073cae14d4c932df7d1a86c26f7d7",
+      "fixture": "Owned synthetic native source-version lineage using unchanged public PDF bytes",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-123-version-v2-stale-target-no-highlight.png",
+      "caption": "Owned synthetic native source-version lineage using unchanged public PDF bytes. firefox 123 version v2 stale target no highlight. Settled nonzero rendered PDF with no loading indicator; stale evidence acquires no invented highlight.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:11:53.688073+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 115,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "12bf3f30a96114cb59a9b9aa13ef781f48ffc5e4c69fca3a045d17bf68f6b645",
+      "fixture": "Owned synthetic native source-version lineage using unchanged public PDF bytes",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-123-warm-native-same-document-return-unfocused.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox 123 warm native same document return unfocused.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:11:01.721071+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "e761b3f2af4704a7972ab4b9fdbd1121da0c0e31d9ad5e0b2296fc2d5e778722",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    }
+  ],
+  "acceptance": "Root accepted the named deployed states on d9ace483 / recipe 61e9842c. Full branch review and tracker closure are recorded separately."
+}

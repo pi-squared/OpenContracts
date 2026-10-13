@@ -1,0 +1,1449 @@
+{
+  "phase": "intermediate",
+  "artifacts": [
+    {
+      "image": "after-reviewed122-final-dense-chromium-public-sme-manual-display-127-default-unhovered.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. default-unhovered at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:24.487144+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "feb404966496fe90e5cb6d8cdf0c795f946e53050ea3a5681cd17ac5171c849b",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-chromium-public-sme-manual-display-127-default-hovered.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. default-hovered at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:25.477698+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "ad665621c2050cd303514c3230d4e186a05278e4675a82b8bba29a17230a84b6",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-chromium-public-sme-manual-display-127-always-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. always-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:43.296880+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "bf9aaed65c2efc4ff83a34f3714dff6a9ab11bd8235bf7807291b6d2757ced15",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-chromium-public-sme-manual-display-127-hide-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. hide-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:19:01.004908+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "8b7dd52c98978725e6d95fbb3c774a7a93ae969912eaf2633c66dbab9bab4ae4",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-chromium-public-sme-manual-display-167-default-unhovered.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. default-unhovered at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:19:15.092435+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "4fe738a5bec22d80a320fbe70bc29772150faa211e27c84cc8804b6bfd6e4f1f",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-chromium-public-sme-manual-display-167-default-hovered.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. default-hovered at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:19:16.312862+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "f4d661f91c06d3c6498b1dff43c82dbb672cce44dbcdcf10ecf54a6733455560",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-chromium-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. always-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:19:32.173610+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "f0a0c6130c6bbd246b4ac076b7a198c4d0712f50d57504a1bf837ee79137e360",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-chromium-public-sme-manual-display-167-hide-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. hide-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:19:44.583030+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "c6ec3a6279bdfc3e784e9d6ef2672ccd8d022d7110654166e4eeef930facb5cf",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. default-unhovered at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:04.770272+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "af131d3932b927c544161fa999b97ecce8eafaadb020f03714bbe8e414f9f32c",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. default-hovered at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:05.705375+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "5293717c08bad2d0b21969c96876c025fa176b3ee5b810c80dc13345219f0500",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. focused-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:22.512910+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "2bdbf590a5138eb933342d3e6f9f9d01e3ee33eab8377fd0edb8b0a7b2a6e86e",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-always-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. always-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:37.086598+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "61b28abbba0e253cc57efc59e0310a419be28f5664a2d2cf4c6bbdbc6fa4a125",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-editor-open-c.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-c at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:58.029365+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "f258958b13e2e7da763522cc43890a9507649e79f6452a6965fa468a4f67f0b3",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-editor-open-a.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-a at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:25:05.641984+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "276424fb7ccdf8d2f18590275e52d3d200964841e00a16a989dc806c7052e1f3",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-editor-open-b.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-b at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:25:12.720132+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "971fb75f89082febebc508e3b406ea2ff2c70793104c451f2a770a82901db05b",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-editor-open-d.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-d at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:25:19.556971+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "3bfb7f982e1c5ee75c5c9882d3d613f41b6ebe97b0b5714b13a6f532e51c4a69",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-editor-open-e.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-e at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:25:26.303155+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "85b0bd01e572b249d242bff25b7803948db9f21c1c0dfa66ccd0165420196138",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-focus-c-retained-after-all-cancels.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. focus-c-retained-after-all-cancels at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:25:32.731250+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "871dd07e462a3b6c10ca556f1a4bed9a6db60042aeb01bf4aae167fbcbbd840d",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-127-hide-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. hide-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:25:49.378564+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "412cbf51208986b91e1dd309a73384a599e193a4d4619765cf8038084d852f6e",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-default-unhovered.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. default-unhovered at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:26:09.606014+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "cb418270c622faae2b274ead4a4719e95778e7899d96c21622660ae42368ae7e",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-default-hovered.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. default-hovered at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:26:10.771819+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "7135fbe91093ca39eb74389ddd163eba1213ebcf6fead2b77d15f18491a11c1b",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-focused-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. focused-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:26:31.808465+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "d8e4bc7fbcc51378fccb49547d0d1bbe12759cbc9ea29d3a36f9182d0887ae9e",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-always-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. always-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:26:55.941542+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "303ae653ff22632fd9a5680c754717f649f25eb0bc94fc014c5c78ed54c2a005",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-editor-open-c.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-c at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:16.618089+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "cdbb53ae68bfac0f2dc2bfaf8c2d6de21d54c4cff53c659f82f01d241694ceb0",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-editor-open-a.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-a at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:24.496914+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "66ac99a6528668361636ecd17449a9d2ca5b7e8f3dff2debffc65379d8786103",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-editor-open-b.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-b at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:31.956038+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "dfb18dc3d9edbf3f1066a8a608f8ece39da8e52848a67f53a9e8e5b32cc3b9cb",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-editor-open-d.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-d at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:39.678690+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "3469397835654f5541379c16e630688a90dd9a7ba5a0765d80ef84ff2b925234",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-editor-open-e.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-e at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:47.188726+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "8e7ffe8bd926e564a0bb1de7d6d1abe6b38ec9d4dab773da938adffbb529105e",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-focus-c-retained-after-all-cancels.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. focus-c-retained-after-all-cancels at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:55.027117+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "9a7d0bd838546ea7677e914121491de3f68e004e85f55b3a88a5e4788c0b83b5",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-chromium-owned-sme-extract-evidence-167-hide-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. hide-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:28:09.805177+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "79b7b60f8482dc75ad8834916c55c9cdd75480037a542efbee903aee670894f8",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-firefox-public-sme-manual-display-127-default-unhovered.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. default-unhovered at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:32.668956+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "8c7a3be9428585fd3c048f5e9af5badff5f3ebbeddad25b4cab9bac2ad7be841",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-firefox-public-sme-manual-display-127-default-hovered.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. default-hovered at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:33.989701+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "aa08f0fa5cabfa010bed32494a3999f54650188bed77eed497226fdf7f008d7c",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-firefox-public-sme-manual-display-127-always-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. always-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:53.981012+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "58e5fb9cc4d9f13e09a5bc9c3c21bac0a1c6071ca588df1594e6442ab38b3bf5",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-firefox-public-sme-manual-display-127-hide-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. hide-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:19:12.776830+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "8c7a3be9428585fd3c048f5e9af5badff5f3ebbeddad25b4cab9bac2ad7be841",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-firefox-public-sme-manual-display-167-default-unhovered.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. default-unhovered at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:19:29.182824+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "1867dfe8ffe5d664be5ce6f63f310b087efb6296fabc45ac2057e27db9b2b1d7",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-firefox-public-sme-manual-display-167-default-hovered.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. default-hovered at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:19:30.295086+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "6f67443fab0ee9870f26c26ee20112cae726e22212b5063938c22656b495525d",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-firefox-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. always-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:19:44.654549+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "2e136e3ec2d023590ad7e5def16dc976f0029bc8a5ffd41bdefe13a72337a21f",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-dense-firefox-public-sme-manual-display-167-hide-pointer-away.png",
+      "caption": "Original public #116 generic manual display fixture; these labels are not evidence quotes. hide-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:19:55.911257+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "a7b71a85ebcc4a2ebb38a0ceba025691e645e79bb3eb9976dade8bebf1d31d83",
+      "fixture": "public-sme-manual-display",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. default-unhovered at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:13.433732+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "36207bc0fc01b3a266f1760aff0231a2ced569542913d2a17373d84abc468c31",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. default-hovered at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:14.547877+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "274a51b38958cf7ea8b702845109f773d1be43a4ef08e4ebefc314faf274f3df",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. focused-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:34.994108+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "9b327f5aecb27bea583b50f551d826dceba9a4a8f832a2c5fac552e0cc1e0913",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-always-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. always-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:51.227576+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "bfa32ad8f4ab2be4b6ba0d30f337a683413440fe74a89c0797781d8dcb25d26e",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-editor-open-c.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-c at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:25:25.250639+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "ab7fa8a0eac82035050ed37ba229935c556a014f80b2c4b170cfcd8a08735a4a",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-editor-open-a.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-a at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:25:35.704158+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "28759e9258870dab99edf6a959bc874641ac951e8f593b3456bd83164bc98570",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-editor-open-b.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-b at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:25:46.873169+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "399821cc56b4640ce177f99b3f936f81760718d2f61e5764cd62986d7937a0be",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-editor-open-d.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-d at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:25:58.277218+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "47165f2a79703a736f946c4f148af6423c4cf933583bfe8d9ae9c8da91892c80",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-editor-open-e.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-e at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:26:09.837601+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "6dd442a24314ca0c96279f4c949b65b74e98401f3eeb7707f8c07d391f79f634",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-focus-c-retained-after-all-cancels.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. focus-c-retained-after-all-cancels at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:26:19.841277+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "baf46285ba74fa32aa1f122c943498b6315bee10ba016dd2e284e000978f6b56",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "The two Firefox C-retained-focus PNGs show a faint closing Settings drawer at the far right. The native C singleton, strict reading-state equality and label control oracles passed; these screenshots are retained unchanged and are not described as a fully settled Settings drawer."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-127-hide-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. hide-pointer-away at measured 127%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:26:50.943908+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "127%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "b5146970b7cdaa0f3b42b9def3ec638ac151bd3f004b2f5ed3e247728cd7b845",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-167-default-unhovered.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. default-unhovered at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:06.247652+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "fc08c3ef5646a663508d3b540026c159dde4e8b7bf1ce1d4fa25ed16b6fc64e9",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-167-default-hovered.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. default-hovered at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:07.197345+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "588ed6359067bb1b3cf6ba219907e83467be73c47ffdaa4a1ef60e6c63f3e28c",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-167-focused-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. focused-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:23.206618+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "278dbe3ffaee20c06682598f940c91317af3c5e34ffc51f5dcffbef20d28f934",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-owned-replay1-firefox-owned-sme-extract-evidence-167-always-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. always-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:44.503917+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "d0ada075559d8c4020d151f761daacf540bf654b1ee767835c7f19de8363ec3e",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-firefox167-completion1-firefox-owned-sme-extract-evidence-167-editor-open-c.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-c at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:37:34.020778+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "60e2fbf14d1df07f54df3903131f87394c92009b03aabbafeb260f77e60770d5",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-firefox167-completion1-firefox-owned-sme-extract-evidence-167-editor-open-a.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-a at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:37:43.601064+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "5e579e23d817a67724d2bb9ee7f8d56f411cabc44d39c120ad5ef542bbe38a1a",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-firefox167-completion1-firefox-owned-sme-extract-evidence-167-editor-open-b.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-b at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:37:54.150067+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "318c50b378d292ce4ca0540781c62a08c821f455892265c97d86b2ac45e82445",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-firefox167-completion1-firefox-owned-sme-extract-evidence-167-editor-open-d.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-d at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:38:06.309121+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "c887d4881fc1363b0dbeff4a483b0c776ef293c87f21128a1ee2e8afaf72c1d9",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-firefox167-completion1-firefox-owned-sme-extract-evidence-167-editor-open-e.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. editor-open-e at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:38:17.628534+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "70c16c25073e599bfbda1545e28ad458db0a94d81901a3cd9a1351ec792e4979",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-firefox167-completion1-firefox-owned-sme-extract-evidence-167-focus-c-retained-after-all-cancels.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. focus-c-retained-after-all-cancels at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:38:28.991235+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "853066c60f378d39da37b7180e2ad08a4ef4d418c7bf67d2310aad180575d9b5",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance.",
+        "The two Firefox C-retained-focus PNGs show a faint closing Settings drawer at the far right. The native C singleton, strict reading-state equality and label control oracles passed; these screenshots are retained unchanged and are not described as a fully settled Settings drawer."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed122-final-firefox167-completion1-firefox-owned-sme-extract-evidence-167-hide-pointer-away.png",
+      "caption": "Owned native quote fixture on the public SME PDF; geometry is deliberately synthetic for interaction testing, not domain attribution. hide-pointer-away at measured 167%.",
+      "issues": [
+        120,
+        121,
+        122
+      ],
+      "captured_at": "2026-10-12T20:38:55.652267+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": "167%",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "sha256": "c9539ec2d8ca915d5239b5f8fa2d728eebcd04f5ffee52f89f0413ed39171f15",
+      "fixture": "owned-sme-extract-evidence",
+      "limitations": [
+        "Final #122 retained #121 dense acceptance only; not final #120/#124 integrated acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    }
+  ],
+  "acceptance": "Dense desktop scope passes on reviewed 442a source. Sixty unchanged screenshots include twenty genuine editor-open states at 127% and 167% in both browsers. Full #122 and integrated #120/#124 acceptance remain pending.",
+  "hosted_acceptance": "PASS for #122 dense desktop checks retaining #121; full #122 hosted acceptance pending"
+}

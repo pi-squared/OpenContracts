@@ -1,0 +1,2247 @@
+{
+  "phase": "intermediate",
+  "artifacts": [
+    {
+      "image": "after-reviewed122-final-chromium-122-blank-background-focus-cleared-pane-open.png",
+      "caption": "PASS scoped #122 read-only verification: blank background focus cleared pane open.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:06.737391+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "dc3f1418fce311b2664b0583069b9832f8fdac5e1cadc2ff74d864089dbea032",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-closed-pane-blank-focus-cleared.png",
+      "caption": "PASS scoped #122 read-only verification: closed pane blank focus cleared.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:22:26.463440+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "098c83ad58a027ced249a45bf2d25bef64bb419bbe3acc4456c2a03811dfab29",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-closed-pane-cycle-focus-retained.png",
+      "caption": "PASS scoped #122 read-only verification: closed pane cycle focus retained.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:22:25.784868+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "5540a6895bddd5a5efa927cf550e80370e5e3d4e648e930e6d5d54c6fd9df1d6",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-fspo-annotation-filter-ALWAYS-excluded-focus-remembered.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter ALWAYS excluded focus remembered.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:18.300975+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 162,
+      "sha256": "212b29b8d90905d1c6b8fd7a55d0bf92c19cc2efc2350d7629d5583999d360ef",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-fspo-annotation-filter-ALWAYS-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter ALWAYS restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:22.207860+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 325,
+      "sha256": "8199799bad8a4c35839f13f81f7a239e136409b4b1919bca7af28e66bed71ac5",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-fspo-annotation-filter-HIDE-excluded-focus-remembered.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter HIDE excluded focus remembered.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:26.776958+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 162,
+      "sha256": "4ebf4d07cc9d67a0adeabe7ffeb861d4c6b70348eb84bf4ce116022c3d4eb2ea",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-fspo-annotation-filter-HIDE-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter HIDE restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:30.771195+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 325,
+      "sha256": "d76c5a0ebfd7ddbee9361bfd52d87710abb8d7566ac35daec9f129d1cabdcfbf",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-fspo-annotation-filter-default-excluded-focus-remembered.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter default excluded focus remembered.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:09.307658+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 162,
+      "sha256": "0fbcfd648babf1e75f869440e47e5d95fd31ea8957f33811faf2a015df2a0cc4",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-fspo-annotation-filter-default-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter default restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:13.161650+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 325,
+      "sha256": "f53d90ba91dafaf14f25bacee54abcb7a389dcd812deae0b7e83df8a9e0207fa",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-fspo-two-members-A-focus-cleared.png",
+      "caption": "PASS scoped #122 read-only verification: fspo two members A focus cleared.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:40.430994+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 117,
+      "sha256": "127c75aa870e172ae001a40089b7ed4c875fac9d482db66611215f3c88dbfd8a",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-fspo-two-members-B-focused-membership-retained.png",
+      "caption": "PASS scoped #122 read-only verification: fspo two members B focused membership retained.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:42.750360+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 117,
+      "sha256": "45cfe7e42703ba38cadd66cd39d474530b3112af7f111094a8a4249f8deb229c",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-full-identical-cycle-stop-1.png",
+      "caption": "PASS scoped #122 read-only verification: full identical cycle stop 1.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:52.263949+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "d6bd3c6ab3dbf2214a177029d6658e99161e413e66b6f22765ffbae12ca33ec6",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-full-identical-cycle-stop-2.png",
+      "caption": "PASS scoped #122 read-only verification: full identical cycle stop 2.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:53.244169+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "60d997c945b6bd54f14ee9ac8898c8cafe3d9be25b8f92a1e7f757a12582d679",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-full-identical-cycle-stop-3.png",
+      "caption": "PASS scoped #122 read-only verification: full identical cycle stop 3.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:54.190762+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "35c4d66ca09fed1f4dd751c088c814efb33bdde97cd11754459ba2f0635e9e75",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-full-identical-cycle-stop-4.png",
+      "caption": "PASS scoped #122 read-only verification: full identical cycle stop 4.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:54.957418+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "0ffc17e98daa3cd930b508827b0842935df6910cbd32eb71374af7505d4082bd",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-partial-C-only-no-transitive-E.png",
+      "caption": "PASS scoped #122 read-only verification: partial C only no transitive E.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:00.544270+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "0d7d7549e925efb7837554622e222e9201293906bcdd8e33cad3a7a1ba5128a9",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-partial-E-only.png",
+      "caption": "PASS scoped #122 read-only verification: partial E only.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:05.073388+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "600a4aa291cb75b2e4fbdf25dd15fd83a7e5fee23848fdaad317817b61f5ab3c",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-partial-shared-cycle-stop-1.png",
+      "caption": "PASS scoped #122 read-only verification: partial shared cycle stop 1.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:56.492816+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "325938bf5af1bb03cd6a920839468933a9e80043bf7983427fa32f2145826bba",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-partial-shared-cycle-stop-2.png",
+      "caption": "PASS scoped #122 read-only verification: partial shared cycle stop 2.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:57.210390+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "5308912f9b2bbdef6d695f7c620a17b5130dd2f1529f67c99079c3a690144d9d",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-partial-shared-cycle-stop-3.png",
+      "caption": "PASS scoped #122 read-only verification: partial shared cycle stop 3.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:58.065492+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "46aa7b0a5c52d1d9a8881f44626585db2aae968ae488ae5e58579fa22579c426",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-partial-shared-cycle-stop-4.png",
+      "caption": "PASS scoped #122 read-only verification: partial shared cycle stop 4.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:58.812923+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "e3d9bdd3ed7893e77c351a86c56a840d3a9eccb03bff2d4ff5cf5020589772ca",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-partial-shared-cycle-stop-5.png",
+      "caption": "PASS scoped #122 read-only verification: partial shared cycle stop 5.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:59.678937+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "807c192ec70cb37a0b6c429480fd0f6b34d386209d795473643b24cfeabde4b2",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-retained121-fspo-mode-ALWAYS.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 fspo mode ALWAYS.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:37:03.600000+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "00a717934df653a4970f865f33a4ad0d9f4f03d568373f7faef3fcf71c8f058b",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-retained121-fspo-mode-HIDE.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 fspo mode HIDE.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:37:54.013345+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "f8aad3930ac19ea4ee7262643d017651172a69cf3e032e578cdc261fe9e61662",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-retained121-fspo-mode-ON_HOVER.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 fspo mode ON_HOVER.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:38:42.709180+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "e7c31cc1e0b16c9ef4027a42d1c8421db88a7eef6f92cfa7d371bad18c87a4ec",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-retained121-fspo-mode-default.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 fspo mode default.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:36:13.863046+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "1d88426d2329adb098555fdd4664f59cb38eb7558adca3c4cce6adb2211484b8",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-retained121-terms-mode-ALWAYS.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 terms mode ALWAYS.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:29:30.180339+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "54f5dba2aa6d9278a3fa1cae77f6a9fdfb80166a0abb0d3e77ad2f6e3bfb9f1e",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-retained121-terms-mode-HIDE.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 terms mode HIDE.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:31:49.051699+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "3a668c356d4cac1af26e4dc9ebfd04daf187af94f07f36f3c88900958fa3732b",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-retained121-terms-mode-ON_HOVER.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 terms mode ON_HOVER.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:34:06.673426+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "52b2c2c6d124850ec4bc7d4e124db8a962ceed8a8f52e4cdbb68817811e1ef7b",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-retained121-terms-mode-default.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 terms mode default.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:08.685041+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "e598d0919ab63e8b22e2f7282e177186a51bad7b052c63cd13d3e64780062fa3",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-selected-only-AB-cycle-ALWAYS.png",
+      "caption": "PASS scoped #122 read-only verification: selected only AB cycle ALWAYS.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:51:08.212304+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "a0e887810ebd2f49ecb420fa25f30ad3549bc8fed30eddb2004369ba3c0a39b0",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-selected-only-AB-cycle-HIDE.png",
+      "caption": "PASS scoped #122 read-only verification: selected only AB cycle HIDE.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:51:16.439384+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "d64702f50f67a2307e2f0ac621569a5f0c83f0df0c4c2abb0b1909007d73278f",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-selected-only-AB-cycle-default.png",
+      "caption": "PASS scoped #122 read-only verification: selected only AB cycle default.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:50:57.231710+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "f9ddfa4df2446cb835e6fd10c42fcc89dc68d242ed418e8955faeece7d3b35bc",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-selected-source-focus-cleared.png",
+      "caption": "PASS scoped #122 read-only verification: selected source focus cleared.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:38.341822+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 123,
+      "sha256": "fa8692c687856b848827b7e66d69ee46b652aae814b083952b718c7c148e45ff",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-selected-source-focus-restored-filter-preserved.png",
+      "caption": "PASS scoped #122 read-only verification: selected source focus restored filter preserved.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:39.627845+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 123,
+      "sha256": "55f4516a5e82e68a2cde131f1cd077a9fe9e940cbd6bc780ae89c1b5bb0d90f7",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-selected-source-initial.png",
+      "caption": "PASS scoped #122 read-only verification: selected source initial.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:37.150580+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 123,
+      "sha256": "063de3fed64ce10aa8b3dc79ab6cbf29cbabfc7036390c530a02ebf8ab7a9943",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-shared-hover-four-readable-labels.png",
+      "caption": "PASS scoped #122 read-only verification: shared hover four readable labels.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:08.151874+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "f9a5409e351dd4efb347fdf436610cf1d01fa55de35aad9560bdc4a98ac7522d",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-strict-chain-C-E-stop-1.png",
+      "caption": "PASS scoped #122 read-only verification: strict chain C E stop 1.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:01.821585+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "0f4fde17583be64df7b2b0d735376739e1e70bee79c086f3b1a47bbc4824afd1",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-strict-chain-C-E-stop-2.png",
+      "caption": "PASS scoped #122 read-only verification: strict chain C E stop 2.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:02.814512+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "d6c1cd5d56e471cac8563a3d309fd87aab96add130ec1c8907f8441301d1c8a5",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-strict-chain-C-E-stop-3.png",
+      "caption": "PASS scoped #122 read-only verification: strict chain C E stop 3.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:03.631234+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "1ab0c8989e93df11cf9923ec1efd7d24acf2bd7c1492c5af755bed4a4b21ebbe",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-label-filter-ALWAYS-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter ALWAYS excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:10.583205+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "8aa79a38f58203ae76b1cc0ebbaca5b6cc3e9c34b54fee60c4b45c19ce8f05ec",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-label-filter-ALWAYS-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter ALWAYS restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:12.125891+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "5ad2201439d6be2883d74b04cf8c6ec104ca66149bae216efa2492c46db578ee",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-label-filter-HIDE-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter HIDE excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:13.970105+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "98ad58f79a1e2a5ed118d9ad80ca3e3dbdb6730ab0d39ef6222c2922dd808239",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-label-filter-HIDE-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter HIDE restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:15.478552+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "cf6049491b7db1e56154601c96a9f9e96e587320d8acf5a35338c19b534f4db2",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-label-filter-default-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter default excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:07.136912+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "379bd9c33afae93d5ebf19eb24e34b55a0cb9e6eafe4e7d89c8b8b5d0e9c05b2",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-label-filter-default-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter default restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:08.659644+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "c37440120b05684f5a79049591992576c6daa7599705c4d32495cbce08584161",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-selected-only-excluded-focus-remembered.png",
+      "caption": "PASS scoped #122 read-only verification: terms selected only excluded focus remembered.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:20.733858+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "36b994ae00848bee7c4893ba4124f92d48ec9a7327b2d06b854dd6050a711925",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-selected-only-restores-focus-no-selection.png",
+      "caption": "PASS scoped #122 read-only verification: terms selected only restores focus no selection.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:25.322943+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "89ab5da8574da04b4e913badd1592c6c97d69f0a026e68205a00c3d133b83bb7",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-two-members-A-focus-cleared.png",
+      "caption": "PASS scoped #122 read-only verification: terms two members A focus cleared.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:43.077897+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 114,
+      "sha256": "8573a2acdfc3c64091e96ea4bb8caef33429d485444b052eab6457f64169ba86",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-two-members-B-focused-membership-retained.png",
+      "caption": "PASS scoped #122 read-only verification: terms two members B focused membership retained.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:45.487544+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 114,
+      "sha256": "5c1673453985f7406ed2d77363793c99e447e549a0a775804a59ba62d706b9b5",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-blank-background-focus-cleared-pane-open.png",
+      "caption": "PASS scoped #122 read-only verification: blank background focus cleared pane open.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:13.824436+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "438e54eec6bbe2bd394640a9238b39fac1d6af0f1efadb658fb0aad1dc15b3ea",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-closed-pane-blank-focus-cleared.png",
+      "caption": "PASS scoped #122 read-only verification: closed pane blank focus cleared.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:22:27.961391+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "290b94fc39d700ec46c049ac67cba222f5236797a6cd0f8914a5460f40bb86b1",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-closed-pane-cycle-focus-retained.png",
+      "caption": "PASS scoped #122 read-only verification: closed pane cycle focus retained.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:22:27.267514+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "b972a75e8ea23814a4e03ad4340c3438ff32ac8aab368b3490b74abd550c7d62",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-fspo-annotation-filter-ALWAYS-excluded-focus-remembered.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter ALWAYS excluded focus remembered.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:49.354575+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "e4418d938edcb78312751b21634af9830252bed8573a76fc956ad692b3da2b05",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-fspo-annotation-filter-ALWAYS-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter ALWAYS restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:55.397766+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 226,
+      "sha256": "76496087fc4809d6c30a072c9af4696ec69e34ab6f513b43eca9688d64a4c6ca",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-fspo-annotation-filter-HIDE-excluded-focus-remembered.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter HIDE excluded focus remembered.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:02.632379+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "028c48c611a6be4031650968a72077609988c68043b8fccc76e1ac75790c7bc8",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-fspo-annotation-filter-HIDE-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter HIDE restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:08.506049+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 226,
+      "sha256": "ca31e81fd7052294b190fea700c8838082a8e5ae03e43352dfb38900392aaa00",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-fspo-annotation-filter-default-excluded-focus-remembered.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter default excluded focus remembered.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:38.772789+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "453dcf8bd2618fbac0bf3aae966fd08356e8a8cf5c2b2d44222ccae7e81a5811",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-fspo-annotation-filter-default-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: fspo annotation filter default restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:43.417899+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 226,
+      "sha256": "373e080470fed165bb69128242805fda6ba51d43ddc15d6b64a321c082a67a70",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-fspo-two-members-A-focus-cleared.png",
+      "caption": "PASS scoped #122 read-only verification: fspo two members A focus cleared.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:56.968753+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 117,
+      "sha256": "a1b5cbb1a66c42cb0bbd48457ccefe2920b02600fe6f1bc5286a9abca9a43f31",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-fspo-two-members-B-focused-membership-retained.png",
+      "caption": "PASS scoped #122 read-only verification: fspo two members B focused membership retained.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:36:00.005486+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 117,
+      "sha256": "6b30a963e471cafb10c150a5f9d41db021c570769761fdf4d5ee095ca0edd42f",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-full-identical-cycle-stop-1.png",
+      "caption": "PASS scoped #122 read-only verification: full identical cycle stop 1.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:51.952080+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "8079e0d21be9275b887a2034108489cc283bd7b76c602ddf74b70e48d69efecc",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-full-identical-cycle-stop-2.png",
+      "caption": "PASS scoped #122 read-only verification: full identical cycle stop 2.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:53.402305+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "99a55e0d0ce01276acc4256cfd491db87c1fc7267f540693f86ed67f762a39b3",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-full-identical-cycle-stop-3.png",
+      "caption": "PASS scoped #122 read-only verification: full identical cycle stop 3.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:54.636261+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "6f17cc50f0406e466ee31e5fe8cb03e3ab445736c836c19005ecebd8e965706f",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-full-identical-cycle-stop-4.png",
+      "caption": "PASS scoped #122 read-only verification: full identical cycle stop 4.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:55.824102+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "32587bc662f0b371094d1fe5a87b00d68e6382c6882c818bbfbccf5b6351ab62",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-partial-C-only-no-transitive-E.png",
+      "caption": "PASS scoped #122 read-only verification: partial C only no transitive E.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:03.535055+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "d6b3cfd0b2c8a3b1a64a6037abacaaa4dce190dc304114b170baa002d5b806ef",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-partial-E-only.png",
+      "caption": "PASS scoped #122 read-only verification: partial E only.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:11.171380+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "b288166888d745374bba19920e456606fe394249da39c323977331216228907b",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-partial-shared-cycle-stop-1.png",
+      "caption": "PASS scoped #122 read-only verification: partial shared cycle stop 1.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:58.018487+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "d36fb31157e9432f868b1ad3d4367dd581818589e37c58dd698d43c364a6924a",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-partial-shared-cycle-stop-2.png",
+      "caption": "PASS scoped #122 read-only verification: partial shared cycle stop 2.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:17:59.140836+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "3430e9eb6f573722c00a91b6558ce86912c81737dcf656cc2cb168517f094060",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-partial-shared-cycle-stop-3.png",
+      "caption": "PASS scoped #122 read-only verification: partial shared cycle stop 3.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:00.133110+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "76927c90c68696cb11f91ec56255f61075a5dc930391aac9f611d745f0be4bf9",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-partial-shared-cycle-stop-4.png",
+      "caption": "PASS scoped #122 read-only verification: partial shared cycle stop 4.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:01.208111+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "a138a6c4bb2167b4040ce3d2cad45ea44e813e01ceb4f50a6414bf32e50e4e6f",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-partial-shared-cycle-stop-5.png",
+      "caption": "PASS scoped #122 read-only verification: partial shared cycle stop 5.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:02.296913+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "8e85237d12d8b575df311582c7fbee50294a955a8b6c9f213a05b885e8041ed1",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-retained121-fspo-mode-ALWAYS.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 fspo mode ALWAYS.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:37:38.234227+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "241390f64615ca6ccaf368b11b3840da1bde3c9dc477c6eb341c61f48a145fb8",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-retained121-fspo-mode-HIDE.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 fspo mode HIDE.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:38:30.931361+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "58149e5d967737abe5f603276c26bcc36ed1290e7637a5a645ecea4b92f975e6",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-retained121-fspo-mode-ON_HOVER.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 fspo mode ON_HOVER.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:17.009056+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 123,
+      "sha256": "b399dcaaf2849480cf65bf21b2e36a137dafe526389747f4a5b98e32709a77a5",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-retained121-fspo-mode-default.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 fspo mode default.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:36:44.939081+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 179,
+      "sha256": "708efe1331016f1abf383dabfaa9d9a33d006847ee5f12664939cdbaf83e0eb6",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-retained121-terms-mode-ALWAYS.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 terms mode ALWAYS.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:29:30.649169+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "b87f83ee1552e532b2d7b27b4e29e4fdea3d8a998734f3167655b173f4d8d8d5",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-retained121-terms-mode-HIDE.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 terms mode HIDE.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:31:49.618030+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "938ca829a9e42b0eb142ea5e92c68a85dcf91a62b2e1cc004ad85404182959a5",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-retained121-terms-mode-ON_HOVER.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 terms mode ON_HOVER.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:34:06.951621+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "88d8e8481793af351793f638123b1bc07eba0dd4a2c7bcca3f15ae20110e661a",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-retained121-terms-mode-default.png",
+      "caption": "PASS scoped #122 read-only verification: retained121 terms mode default.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:27:10.145585+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "07cec6acb0ea3d534799f99e54e6babce2c8f7af3a775bfb578a38281e887982",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-selected-only-AB-cycle-ALWAYS.png",
+      "caption": "PASS scoped #122 read-only verification: selected only AB cycle ALWAYS.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:51:12.121211+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "27e3360775a02a227fc57df8aa9a8e9162e4a5f7f80c661089ce585a09aa2b96",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-selected-only-AB-cycle-HIDE.png",
+      "caption": "PASS scoped #122 read-only verification: selected only AB cycle HIDE.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:51:22.893760+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "b46bd5e3ce031fb1acf33ec3c3e749bfb8eac5008fe8df67457e212b7c7fa03e",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-selected-only-AB-cycle-default.png",
+      "caption": "PASS scoped #122 read-only verification: selected only AB cycle default.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:51:01.556188+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "eff7fdefa89a1fbd13f433f03507df61e2a83f33a532dbffd3b1b96a2a9620fc",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-selected-source-focus-cleared.png",
+      "caption": "PASS scoped #122 read-only verification: selected source focus cleared.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:17.356245+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "852cd4e1e5f522ff88edbde04cda873b1360947d1656eec06f65f8ae628e90bf",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-selected-source-focus-restored-filter-preserved.png",
+      "caption": "PASS scoped #122 read-only verification: selected source focus restored filter preserved.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:18.952571+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "22ae40a7d499ecc4ae387e08c2d8951491582a08bf4ffaac171c8e06b36df638",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-selected-source-initial.png",
+      "caption": "PASS scoped #122 read-only verification: selected source initial.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:15.989280+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "b76b5b19a5edd1c40d9b869d52d53516a9c94abcab49afff74cd676a29f688ca",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-shared-hover-four-readable-labels.png",
+      "caption": "PASS scoped #122 read-only verification: shared hover four readable labels.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:15.021975+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "09f09876462585588e2e2f5125b3d2f1915d6feae6a751bc6337e0ae224032c4",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-strict-chain-C-E-stop-1.png",
+      "caption": "PASS scoped #122 read-only verification: strict chain C E stop 1.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:06.060562+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "3b9d854a1fddc613508523c44aec9e1fb39127c7ca9d1a4abf4f2bb12129a2a5",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-strict-chain-C-E-stop-2.png",
+      "caption": "PASS scoped #122 read-only verification: strict chain C E stop 2.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:07.803400+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "c2364e384d2df2577f9cf7c35676ebc212661bc32d01b4306d8bbf744ac6fefa",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-strict-chain-C-E-stop-3.png",
+      "caption": "PASS scoped #122 read-only verification: strict chain C E stop 3.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:18:09.066856+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "4c0fb63cef0fa6870c3adf928866a57bcc3c0f605db68faa2e39be4a06b2f4bb",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-label-filter-ALWAYS-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter ALWAYS excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:13.920678+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "ab4d9f9037b50ea2deeb86a365edfd95652931ed9592c8f5ed6880bc9900a697",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-label-filter-ALWAYS-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter ALWAYS restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:16.453388+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "6dbcb1ffc7237e71b0c5032ae619193b1cefd2c4f4f54c145bb33dccc8d81a0d",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-label-filter-HIDE-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter HIDE excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:20.100617+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "ab9eba0a3c8b1f3ebdd5790d62e1ea34f2d0ff8ec39c1e93fbb6f18868be7078",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-label-filter-HIDE-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter HIDE restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:22.700084+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "87ec5106add11894c6a444178c0ca54beae002f60b724128f6b6693a81aa3368",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-label-filter-default-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter default excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:08.863423+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "106846ad1241d7375df6b914a661b6a518cfa7ff71a900c447afd571ae2fb654",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-label-filter-default-restored-in-view.png",
+      "caption": "PASS scoped #122 read-only verification: terms label filter default restored in view.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:10.799486+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "48753dd5c69bc6fa9b049b6bb380a7610aade89415c0f1fdcf8b1c033dc9da58",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-selected-only-excluded-focus-remembered.png",
+      "caption": "PASS scoped #122 read-only verification: terms selected only excluded focus remembered.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:30.864528+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "5788361d81afea915e0e107cf6e959ec5c37dd2ce3a2232b2549be7d1b4e982c",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-selected-only-restores-focus-no-selection.png",
+      "caption": "PASS scoped #122 read-only verification: terms selected only restores focus no selection.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:36.745061+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "604e3d7146069424877c5ad922b8a844aa5dbee2b0135c50ca99d763345f0e1b",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-two-members-A-focus-cleared.png",
+      "caption": "PASS scoped #122 read-only verification: terms two members A focus cleared.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:44.357942+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 114,
+      "sha256": "b119259ae4ab5feface48878d8a7209282ec7bef8af1bf65381246a50a5f9771",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-two-members-B-focused-membership-retained.png",
+      "caption": "PASS scoped #122 read-only verification: terms two members B focused membership retained.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:24:47.270310+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 114,
+      "sha256": "e40421e75308110c89675aab300db6fad8ec22f4c28d1434a5871a3e0fe239dd",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public Terms extract and original PDF",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-chromium-122-label-allowlist-ALWAYS-A-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist ALWAYS A excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:10.568994+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "524134dad386f657b2da3b4b4382b94b53e25892463f2746ac214f022ec0c38c",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-chromium-122-label-allowlist-ALWAYS-A-restored.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist ALWAYS A restored.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:18.732679+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "344a09748365bdb64457cb0b6281db4d6a000d680050dc25982120a8eb82195f",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-chromium-122-label-allowlist-HIDE-A-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist HIDE A excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:31.035125+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "44d65e77dd8871656716de24756c63f2a48e9ac4e222eab3b52389a1d984ebb7",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-chromium-122-label-allowlist-HIDE-A-restored.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist HIDE A restored.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:38.679415+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "105f3a89742eed5f2f895e3df783a751b897d4023ece267930e105e750cb497a",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-chromium-122-label-allowlist-default-A-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist default A excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:50.565660+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "37de69de51b3241a353067a44cfaa998fd641817c7f359a819dc4cdc32e54ccb",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-chromium-122-label-allowlist-default-A-restored.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist default A restored.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:39:58.861019+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "ac898b162f9a66552112d7ef6a7037cee2e55075975187b013e4ea05e357f67b",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-firefox-122-label-allowlist-ALWAYS-A-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist ALWAYS A excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:59.997812+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "d616c40804ba715d4ed1ade3ebb0b9e49cd0c32bc748db8177c85884cf500ca7",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-firefox-122-label-allowlist-ALWAYS-A-restored.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist ALWAYS A restored.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:41:08.255738+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "295de07ec2f9655af67850572b593b2138cb3cf29bbcad82669d29d432414be2",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-firefox-122-label-allowlist-HIDE-A-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist HIDE A excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:41:20.690364+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "d3dcb9f7e0c7855c90611324a7850e7c0ba591dd72cfdfcf0263feb56f5367d0",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-firefox-122-label-allowlist-HIDE-A-restored.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist HIDE A restored.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:41:29.538402+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "54490d1f938cfc9fea833f661d357931dcffaf2c728a6c424de11ff5cfc5e034",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-firefox-122-label-allowlist-default-A-excluded.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist default A excluded.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:34.241435+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "1ed2c47f236af3313fb581351d44289c7c9fb81d2ef09b9909022a33cc059f7d",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    },
+    {
+      "image": "after-reviewed122-final-visible-firefox-122-label-allowlist-default-A-restored.png",
+      "caption": "PASS scoped #122 read-only verification: label allowlist default A restored.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:40:45.680303+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 220,
+      "sha256": "3f9a7014a077c0097d4d30b24978aee584531344f27ae1ce8472db767c8d12b3",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture, unchanged public SME PDF, five intentional evidence identities",
+      "limitations": "Completed read-only scope; full #122 acceptance still awaits final native creation/link/touch and end-integrity proof. Synthetic fixtures verify UI interaction, not domain/model output."
+    }
+  ],
+  "acceptance": "PASS completed native read-only groups in both browsers; full #122 acceptance pending remaining native creation/link/touch and end-integrity proof",
+  "hosted_acceptance": "PASS scoped native readonly groups in both browsers; full #122 acceptance pending"
+}

@@ -10,6 +10,7 @@ from functools import lru_cache
 
 import psycopg2
 from databricks.sdk import WorkspaceClient
+from databricks_port.database_privileges import privilege_gaps
 from psycopg2 import sql
 
 _credential = None
@@ -27,6 +28,13 @@ def schema_name():
     if not re.fullmatch(r"[a-z][a-z0-9_]{0,62}", name):
         raise ValueError("OPENCONTRACTS_SCHEMA must be a PostgreSQL identifier")
     return name
+
+
+def database_mode():
+    mode = os.environ.get("OPENCONTRACTS_DATABASE_MODE", "owned")
+    if mode not in ("owned", "existing"):
+        raise ValueError("OPENCONTRACTS_DATABASE_MODE must be owned or existing")
+    return mode
 
 
 def password():
@@ -67,8 +75,40 @@ def connect():
 
 
 def bootstrap():
-    """Create only this app's schema and preserve its signing key on redeploy."""
+    """Create owned state or verify retained state without startup writes."""
+    mode = database_mode()
     with connect() as db, db.cursor() as cursor:
+        if mode == "existing":
+            cursor.execute("SET TRANSACTION READ ONLY")
+            cursor.execute(
+                "SELECT 1 FROM pg_namespace WHERE nspname=%s", (schema_name(),)
+            )
+            if not cursor.fetchone():
+                raise ValueError("Existing database schema is missing")
+            gaps = privilege_gaps(cursor, schema_name())
+            if gaps["schema"]:
+                raise ValueError("Existing database schema permissions are unavailable")
+            if gaps["tables"]:
+                raise ValueError(
+                    "Existing database table CRUD permissions are unavailable"
+                )
+            if gaps["sequences"]:
+                raise ValueError(
+                    "Existing database sequence permissions are unavailable"
+                )
+            for table in ("port_meta", "port_blob", "port_calls", "django_migrations"):
+                cursor.execute("SELECT to_regclass(%s)", (schema_name() + "." + table,))
+                row = cursor.fetchone()
+                if not row or not row[0]:
+                    raise ValueError(
+                        "Existing database required table is missing: " + table
+                    )
+            cursor.execute("SELECT value FROM port_meta WHERE key='django_secret'")
+            row = cursor.fetchone()
+            if not row or not row[0]:
+                raise ValueError("Existing database retained signing key is missing")
+            os.environ["DJANGO_SECRET_KEY"] = row[0]
+            return
         cursor.execute("SELECT pg_advisory_xact_lock(hashtext(%s))", (schema_name(),))
         cursor.execute(
             sql.SQL("CREATE SCHEMA IF NOT EXISTS {}").format(

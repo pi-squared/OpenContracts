@@ -1,0 +1,31 @@
+{
+  "fixture": "Issue 120 synthetic interaction fixture",
+  "source": "Public SME Finance hire purchase PDF; same immutable bytes as retained Terms sample",
+  "source_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+  "synthetic_ui_only": true,
+  "model_invocations": 0,
+  "background_task_admissions": 0,
+  "original_records_unchanged_after_fixture_creation_and_extension": true,
+  "native_source_projection": true,
+  "is_evidence_quote_marker": true,
+  "unique_annotations": 4,
+  "source_cards": 5,
+  "full_identical_geometry": [
+    "A",
+    "B",
+    "D"
+  ],
+  "partial_overlap": "C partially overlaps A/B/D and is absent at their exclusive hit point",
+  "identity_reuse": "A appears in two finding source cards and on two PDF pages",
+  "geometry_provenance": "A page 1 retains original sample rectangle/text. A page 2, B/C/D rectangles are deliberate UI inputs, not evidence-location or cross-page quotation claims. Labels reuse existing IDs without label/workflow edits.",
+  "before_observations": {
+    "chromium_and_firefox_full_identical_clicks": {
+      "clicks": 4,
+      "distinct_native_selection_states": 1,
+      "no_new_cycle": true
+    },
+    "escape_retains_native_selection": true,
+    "controls_closed_for_published_synthetic_clicks": true
+  },
+  "publication": "Approved public sample screenshots and safe summary only; payloads, native IDs, auth, logs, and full source snapshots remain private"
+}

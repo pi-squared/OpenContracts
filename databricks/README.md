@@ -2,7 +2,7 @@
 
 This fork keeps stock OpenContracts intact and maintains the Databricks recipe
 in this directory. The recipe pins the fork's stock commit, declares additions,
-and applies eighteen hash-verified patches in order. Patches 0001–0014 reproduce
+and applies hash-verified patches in order. Patches 0001–0014 reproduce
 live port release 0015. Patches 0015–0016 add automatic quotation repair with
 experiment 95's retained-word mechanism and ordinary quotation rendering.
 Patch 0017 regenerates the GraphQL contract for the served port API. Evidence
@@ -16,6 +16,11 @@ the uncapped shared pilot owner. It can install configured definition packages;
 it imports no documents, corpora, extracts or saved results.
 
 ## Build and deploy
+
+For development-to-testing promotion, existing Lakebase, bound workflow packages
+and direct deployment from the canonical Git testing branch, follow the
+[testing promotion workflow](docs/testing-promotion.md). It extends these same
+controllers and preserves the fresh provisioning/snapshot mode below.
 
 Use Git, Python 3.11, uv, Node 22.16 or later, Corepack/Yarn and Databricks CLI 1.0 or
 later. Select a workspace profile explicitly. Keep authentication configuration,

@@ -1,0 +1,336 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-reviewed124-final-chromium-native-URL-created-focus-retained.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. chromium native URL created focus retained.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:39:36.191525+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "747a6a2c92cb9b8f8efb6f2677a813077b5424bb6832592039d0b79d5a9ad7bb",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance.",
+        "Fresh route cleared the temporary drag event observer; native gesture/menu/foreground dialog/exact native response are retained, without claiming a preserved URL-drag event log."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-native-URL-foreground-before-create.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. chromium native URL foreground before create. Actual foreground Add link captured before the once-only native Create link save; exact Cancel/Create link controls and all ancestor/hit observations retained privately.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:35:40.340801+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "8dc304b06095a4123276205316f84b850b5e8e4f80a28092b736cab5ca4f44d4",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance.",
+        "Fresh route cleared the temporary drag event observer; native gesture/menu/foreground dialog/exact native response are retained, without claiming a preserved URL-drag event log."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-native-ordinary-saved-focus-retained.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. chromium native ordinary saved focus retained.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:34:37.476119+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "9346964710987e5ccde4b4535587920340093bf656f3dc11752fc720d37dd9bc",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-native-URL-created-focus-retained.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox native URL created focus retained.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:49:25.080266+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "9a3fc16c7f45833dedd7c5d932b987c2416457181dcafc7a80161bfe85e8f37e",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-native-URL-foreground-before-create.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox native URL foreground before create. Actual foreground Add link captured before the once-only native Create link save; exact Cancel/Create link controls and all ancestor/hit observations retained privately.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:47:10.518802+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "25f20ad2545c6c4d41242902d13464e3cc6e0f25a0c992017c93b18cffcdc02c",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-native-ordinary-saved-focus-retained.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox native ordinary saved focus retained.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:46:21.977028+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "ffd8acdcbd010af3f816896be86e181101b5a9a39d14580c45abf7ae76cd007c",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox157-multitouch-no-inspection.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox157 multitouch no inspection.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:25:44.052535+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 105,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "945ba7edd8ca00843784ae30160b11e377786fb14bd33e94e57f95a9a8308de6",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance.",
+        "Native software WebDriver touch inputs; no hardware-device claim. Firefox157 panning delta0 and lack of actual touchcancel protocol event are disclosed; Chromium trusted cancellation and observed panning are separate."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox157-overlapping-saved-highlight-held-copy-menu.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox157 overlapping saved highlight held copy menu. Trusted native public-text copying; clipboard contents remain private. Comparison exposes only expected-text match/hash.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:27:38.589812+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 108,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "273695d97de1fcebba4da3133749df8d12b485411b997cd84a15dc56df651efd",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance.",
+        "Native software WebDriver touch inputs; no hardware-device claim. Firefox157 panning delta0 and lack of actual touchcancel protocol event are disclosed; Chromium trusted cancellation and observed panning are separate."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox157-overlapping-saved-highlight-public-copy-focus-retained.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox157 overlapping saved highlight public copy focus retained. Trusted native public-text copying; clipboard contents remain private. Comparison exposes only expected-text match/hash.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:27:39.580067+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 108,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "66e0c385e1f0ebf95955f974c1c2522ccb82fe60fa79836e3d8320cf6708e392",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance.",
+        "Native software WebDriver touch inputs; no hardware-device claim. Firefox157 panning delta0 and lack of actual touchcancel protocol event are disclosed; Chromium trusted cancellation and observed panning are separate."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox157-pending-hold-Escape-no-selection.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox157 pending hold Escape no selection.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:25:51.148220+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 109,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "159e8b70a31940c462fa09abbc89e0dfcb4a73ea7246aaada28809e453fabada",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance.",
+        "Native software WebDriver touch inputs; no hardware-device claim. Firefox157 panning delta0 and lack of actual touchcancel protocol event are disclosed; Chromium trusted cancellation and observed panning are separate."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox157-prehold-movement-no-selection.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox157 prehold movement no selection.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:25:32.663688+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 108,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "5f3c142c75ba37260d2aac94b7caf2f9068a2c91866e5eb399b3bfb234800087",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance.",
+        "Native software WebDriver touch inputs; no hardware-device claim. Firefox157 panning delta0 and lack of actual touchcancel protocol event are disclosed; Chromium trusted cancellation and observed panning are separate."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox157-stationary-full-cycle-4.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox157 stationary full cycle 4.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:21:37.389738+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 108,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "0dd1281bd527c69525fd255b4842fd926700070678f9a45228b28b37c22a33df",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance.",
+        "Native software WebDriver touch inputs; no hardware-device claim. Firefox157 panning delta0 and lack of actual touchcancel protocol event are disclosed; Chromium trusted cancellation and observed panning are separate."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-native-chromium-custom-OC-URL-same-document-focus-retained.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. native chromium custom OC URL same document focus retained. Native custom OC_URL renderer path; not an HTML anchor or PDF embedded URI. Same-document navigation retains singular focus while removing ann/extract query targets.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:51:32.483718+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "d39017752e3001c306248c16cfd04eadf15d092f15b4e6ee474e8edf33b66aef",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-native-firefox-custom-OC-URL-same-document-focus-retained.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. native firefox custom OC URL same document focus retained. Native custom OC_URL renderer path; not an HTML anchor or PDF embedded URI. Same-document navigation retains singular focus while removing ann/extract query targets.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:51:38.916134+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "fed59075ca05f53eef3ed11f39afaa2a73f8feb6e3cc71f80e406fc985c50ae5",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    }
+  ],
+  "acceptance": "Root accepted the named deployed states on d9ace483 / recipe 61e9842c. Full branch review and tracker closure are recorded separately."
+}

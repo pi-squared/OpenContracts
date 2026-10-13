@@ -1,0 +1,11 @@
+--- a/frontend/src/views/Extracts.tsx
++++ b/frontend/src/views/Extracts.tsx
+@@ -436,7 +436,7 @@
+             <StatBlock
+               value={stats.completed.toString()}
+               label="Completed"
+-              sublabel="finished successfully"
++              sublabel="finished processing"
+             />
+             <StatBlock
+               value={stats.totalDocuments.toString()}

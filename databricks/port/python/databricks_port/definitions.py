@@ -1,7 +1,7 @@
 """Install trusted versioned Fieldsets and LabelSets only, preserving native edits."""
 
 
-def install_definitions(package_hash, username):
+def install_definitions(package_hash, username, *, verify_only=False):
     from databricks_port.workflows import package, resolve_response_model
 
     manifest, _ = package(package_hash)
@@ -36,11 +36,12 @@ def install_definitions(package_hash, username):
         from django.db import connection
 
         # Native names are not unique: serialize this package/owner admission.
-        with connection.cursor() as cursor:
-            cursor.execute(
-                "SELECT pg_advisory_xact_lock(hashtext(%s))",
-                (name + ":" + str(user.pk),),
-            )
+        if not verify_only:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT pg_advisory_xact_lock(hashtext(%s))",
+                    (name + ":" + str(user.pk),),
+                )
         registry_key = "workflow-definitions:" + package_hash + ":" + str(user.pk)
         import json
 
@@ -62,6 +63,8 @@ def install_definitions(package_hash, username):
                 )
             created = labels_created = False
         else:
+            if verify_only:
+                raise ValueError("Existing database workflow package is not registered")
             fieldset, created = Fieldset.objects.get_or_create(
                 name=name, creator=user, defaults={"description": description}
             )
@@ -138,18 +141,40 @@ def install_definitions(package_hash, username):
                 raise ValueError(
                     "Native workflow labels have changed; preserve edits and install a new package revision"
                 )
-        with connection.cursor() as cursor:
-            cursor.execute(
-                "INSERT INTO port_meta(key,value) VALUES(%s,%s) ON CONFLICT DO NOTHING",
-                (
-                    registry_key,
-                    json.dumps(
-                        {"fieldset_id": fieldset.pk, "labelset_id": labelset.pk}
-                    ),
-                ),
+        if verify_only:
+            from opencontractserver.utils.permissioning import (
+                get_users_permissions_for_obj,
             )
-        for obj in (fieldset, labelset):
-            set_permissions_for_obj_to_user(user, obj, [PermissionTypes.CRUD])
+
+            for obj in (
+                fieldset,
+                labelset,
+                *fieldset.columns.all(),
+                *labelset.annotation_labels.all(),
+            ):
+                expected_permissions = {
+                    action + "_" + obj._meta.model_name
+                    for action in ("create", "read", "update", "remove")
+                }
+                if not expected_permissions.issubset(
+                    get_users_permissions_for_obj(user, obj)
+                ):
+                    raise ValueError(
+                        "Existing database native workflow permissions have changed"
+                    )
+        else:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "INSERT INTO port_meta(key,value) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+                    (
+                        registry_key,
+                        json.dumps(
+                            {"fieldset_id": fieldset.pk, "labelset_id": labelset.pk}
+                        ),
+                    ),
+                )
+            for obj in (fieldset, labelset):
+                set_permissions_for_obj_to_user(user, obj, [PermissionTypes.CRUD])
     return {
         "package_hash": package_hash,
         "identity": manifest["identity"],
@@ -161,7 +186,7 @@ def install_definitions(package_hash, username):
     }
 
 
-def install_configured():
+def install_configured(*, verify_only=False):
     import json
     import os
 
@@ -169,6 +194,8 @@ def install_configured():
     if not isinstance(hashes, list) or len(hashes) != len(set(hashes)):
         raise ValueError("Definition installation requires distinct package hashes")
     return [
-        install_definitions(identity, os.environ["PILOT_USERNAME"])
+        install_definitions(
+            identity, os.environ["PILOT_USERNAME"], verify_only=verify_only
+        )
         for identity in hashes
     ]

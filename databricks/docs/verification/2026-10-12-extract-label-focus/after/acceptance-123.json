@@ -1,0 +1,205 @@
+{
+  "issue": 123,
+  "parent_issue": 120,
+  "accepted_at_utc": "2026-10-12T17:57:03.493960+00:00",
+  "hosted_acceptance": "PASS",
+  "maintained_commit": "5845c783360c4f9d0d71794727505c509877480d",
+  "upstream_commit": "1e859dcea0f083f374c160a04244f93bca5b989c",
+  "recipe_sha256": "07ada108b1e1ad45775846f88cc4b8398bc562b2135a480369303249c0ec2f90",
+  "tracked_patches": 50,
+  "overlay_files": 42,
+  "local_verification": {
+    "frontend_tests_passed": 96,
+    "frontend_tests_skipped": 0,
+    "typescript_and_production_build": "PASS",
+    "local_browsers": [
+      "Chromium 151",
+      "Firefox 153"
+    ],
+    "lifecycle_groups_each_browser": 8,
+    "focus_groups_each_browser": 9,
+    "merger_standards_findings": 0,
+    "merger_spec_findings": 0
+  },
+  "deployment_identity": {
+    "archive_sha256": "4e2ee96770d3be9fa314b7240d3625c7d827bf41e1438851a4b9aec3f81c15eb",
+    "release_identity": "eb4b3921d1125891417cd58910f98fe751700b06fe9b27dc65bbcc9b629bd2b4",
+    "exact_deployed_source_build_bytes_match": {
+      "release.json": true,
+      "app.py": true,
+      "app.yaml": true
+    },
+    "runtime_gate_zero_skips": true,
+    "app_configuration_and_eight_resource_bindings_preserved": true,
+    "same_successful_deployment_at_final_read_only_verification": true
+  },
+  "browser_viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "browser_engines": [
+    "Chromium 151.0.7922.34",
+    "Firefox 153.0"
+  ],
+  "hosted_checks": {
+    "native_selected_only_source_focus_clear_restore_preserves_membership_and_filter": true,
+    "both_public_samples_native_grid_View_Sources_preserves_two_members_during_A_clear_restore_and_B_inspection": true,
+    "manual_physical_pdf_page2_auto_zoom_sidebar_close_reopen_and_repeated_zoom_preserve_reading_occurrence": true,
+    "actual_physical_pdf_page3_without_focused_geometry_has_no_focused_label": true,
+    "explicit_native_source_navigation_still_scrolls_to_its_first_target": true,
+    "native_Terms_and_owned_distinct_label_allowlist_exclusion_restore_respects_Default_Always_Hide": true,
+    "native_Terms_FSPO_annotation_exclusion_restore_remembers_focus_without_adding_selection": true,
+    "warm_native_Home_then_Back_same_document_ordinary_reentry_without_reload_clears_focus": true,
+    "native_owned_version_picker_v1_v2_v1_clears_prior_version_focus": true,
+    "owned_historical_explicit_target_reload_restores_focus": true,
+    "owned_latest_version_stale_prior_version_target_has_no_invented_highlight": true,
+    "owned_ambiguous_finding_explicitly_reports_no_highlight_and_offers_no_invented_quotation_navigation": true,
+    "owned_native_original_value_modal_open_close_and_original_corrected_source_projection_navigation": true,
+    "retained_Terms_FSPO_default_Always_Hide_OnHover_entry_source_and_reload_effective_target_in_viewport": true,
+    "independent_retained_dense_127_167_percent_both_browsers_mode_focus_and_readable_Always_bars": true,
+    "narrow_v2_PDF_loaded_canvas_stable_absence_replay_both_browsers": true
+  },
+  "data_preservation": {
+    "original_findings_compared": 49,
+    "native_public_extracts_compared": 2,
+    "all_original_findings_sources_quotes_geometry_labels_corrections_reviews_unchanged": true,
+    "protected_original_and_existing_owned_main_version_rows_unchanged_from_reviewed_pre_E_snapshot": true,
+    "declared_synthetic_E_geometry_label_native_source_cache_matches_creation": true,
+    "models": 0,
+    "browser_or_operator_inspection_writes": 0,
+    "all_native_browser_write_mutations_blocked_by_AST_query_only_guard": true
+  },
+  "evidence": {
+    "lifecycle_image_count": 116,
+    "lifecycle_manifest": "manifest-after-reviewed123-lifecycle.json",
+    "independent_dense_image_count": 36,
+    "independent_dense_manifest": "manifest-after-123-retained121-dense.json",
+    "dense_retained_initial_precondition_image_count": 2,
+    "dense_initial_manifest": "intermediate/manifest-intermediate-123-dense-region-precondition.json"
+  },
+  "fixture_scope_and_limits": [
+    "Physical PDF page numbers use one-based PDF order; synthetic A geometry is on physical pages 1 and 2. Printed SME footers use a different Page N of 9 sequence.",
+    "Retained FSPO has one native raw label, Quotation evidence, so a second-label exclusion cannot be selected. Its native annotation exclusions pass all modes; distinct-label exclusion coverage comes from actual Terms and the declared owned fixture.",
+    "Retained actual Terms/FSPO extracts contain no corrected/reviewed cells or suitable version history; original/corrected and version/stale/ambiguity cases are explicitly synthetic native hosted UI verification with unchanged public PDF bytes.",
+    "Owned main fixture has five eligible annotation identities after the reviewed E-only strict transitive extension; old twelve queried evidence projections are unchanged. E is intentional, separate from all retained research.",
+    "#123 does not claim completion of mouse overlap cycling or keyboard/touch work owned by #122/#124."
+  ],
+  "retained_failed_observations": [
+    {
+      "observation": "First stage attempted expected 5845 against moving integration evidence HEAD and stopped",
+      "classification": "Correct guard stopped before SDK/staging/deployment mutations; final immutable123 worktree used"
+    },
+    {
+      "observation": "First source-loader and wrong-column waits timed out",
+      "classification": "Retained driver hydration/selector assumptions; native column scoping and attachment prerequisite corrected, final target visibility still asserted"
+    },
+    {
+      "observation": "First generic grid menu used button/hover and expected Extract rail without extract context",
+      "classification": "Retained native route/role assumptions; real status menu and View extracts selection used in passing replay"
+    },
+    {
+      "observation": "Reopened pane source rows initially collapsed; physical-page 3 wheel precondition initially incomplete",
+      "classification": "Retained driver setup assumptions; native expansion and bounded trusted wheel establish each visible precondition"
+    },
+    {
+      "observation": "Initial allowlist-restoration images showed remembered source geometry offscreen after zoom preservation",
+      "classification": "Retained privately; only fresh independent native-wheel in-view restoration images are in final112 packet"
+    },
+    {
+      "observation": "Generic FSPO peer-label filter requested nonexistent workflow option",
+      "classification": "Retained sample limitation; native filter meaning preserved, no API/UI alteration"
+    },
+    {
+      "observation": "Original Value modal waited for a heading role absent from caller contract",
+      "classification": "Retained selector failure; visible exact modal title and native Close prove open/cancel in final native replay"
+    },
+    {
+      "observation": "One inspection command omitted JSON driver envelope and terminated both older wrappers",
+      "classification": "Operator protocol mistake; completed receipts/images retained, fresh narrow query-only sessions completed subsequent modal/source proof"
+    },
+    {
+      "observation": "Dense initial Always readability assertion failed with region behind viewer header at retained native scrollTop 117",
+      "classification": "Viewport precondition, unchanged bar sizes/4px gap and PDF canvas; fresh native-wheel visible region replay passes"
+    },
+    {
+      "observation": "Original dense Chromium wrapper exited143 after complete durable protocol receipt",
+      "classification": "Undetermined wrapper teardown, retained explicitly; original wrapper never called green. Independent narrow E identity and Chromium closure exited0; Firefox full matrix exited0."
+    },
+    {
+      "observation": "Initial version-v2 focus-cleared and stale-target screenshots showed Loading PDF; zero mounted highlights before PDF settlement was insufficient absence proof",
+      "classification": "Concrete verification gap, retained as immediate transition evidence; narrow native v1\u2192v2 ordinary/stale replay now waits native network idle, Loading PDF absent and two identical nonzero ink canvas measurements 500ms apart before final zero highlight/label assertions. Four final proof images added."
+    },
+    {
+      "observation": "First stricter v2 canvas measurement caught transient clear/repaint after initial readiness wait; one continuation also assumed an ordinary-v2 state while Firefox already retained a stale target",
+      "classification": "Retained private precondition attempts; final stable consecutive canvas measurements and fresh native replay establish each required state."
+    }
+  ],
+  "final_narrow_driver_closure": {
+    "chromium_exit_code": 0,
+    "firefox_exit_code": 0,
+    "earlier_raw_command_wrapper_exit_code": 1,
+    "earlier_dense_chromium_exit143_stays_undetermined": true
+  },
+  "settled_v2_canvas_proof": {
+    "chromium": [
+      {
+        "case": "ordinary-focus-clear",
+        "native_version2_selected": true,
+        "two_consecutive_same_rendered_canvas_measurements_500ms_apart": true,
+        "native_network_idle_and_Loading_PDF_absent": true,
+        "mounted_highlight_count": 0,
+        "visible_label_count": 0,
+        "native_stale_ann_url_retained": false,
+        "pdf_zoom": 115,
+        "canvas_width": 704,
+        "canvas_height": 911,
+        "sampled_ink_pixels": 2342
+      },
+      {
+        "case": "stale-target-no-highlight",
+        "native_version2_selected": true,
+        "two_consecutive_same_rendered_canvas_measurements_500ms_apart": true,
+        "native_network_idle_and_Loading_PDF_absent": true,
+        "mounted_highlight_count": 0,
+        "visible_label_count": 0,
+        "native_stale_ann_url_retained": true,
+        "pdf_zoom": 115,
+        "canvas_width": 704,
+        "canvas_height": 911,
+        "sampled_ink_pixels": 2342
+      }
+    ],
+    "firefox": [
+      {
+        "case": "ordinary-focus-clear",
+        "native_version2_selected": true,
+        "two_consecutive_same_rendered_canvas_measurements_500ms_apart": true,
+        "native_network_idle_and_Loading_PDF_absent": true,
+        "mounted_highlight_count": 0,
+        "visible_label_count": 0,
+        "native_stale_ann_url_retained": false,
+        "pdf_zoom": 115,
+        "canvas_width": 704,
+        "canvas_height": 911,
+        "sampled_ink_pixels": 2340
+      },
+      {
+        "case": "stale-target-no-highlight",
+        "native_version2_selected": true,
+        "two_consecutive_same_rendered_canvas_measurements_500ms_apart": true,
+        "native_network_idle_and_Loading_PDF_absent": true,
+        "mounted_highlight_count": 0,
+        "visible_label_count": 0,
+        "native_stale_ann_url_retained": true,
+        "pdf_zoom": 115,
+        "canvas_width": 704,
+        "canvas_height": 911,
+        "sampled_ink_pixels": 2340
+      }
+    ]
+  },
+  "settled_v2_driver_closure": {
+    "chromium_exit_code": 0,
+    "firefox_exit_code": 0
+  }
+}

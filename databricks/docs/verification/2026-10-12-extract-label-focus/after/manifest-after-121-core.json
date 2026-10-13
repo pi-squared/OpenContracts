@@ -1,0 +1,446 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-final-chromium-121-fspo-grid-view-sources.png",
+      "caption": "AFTER #121: fspo grid view sources",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:20:18.397124+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 234,
+      "sha256": "9dd429cf7600070c1a45bee3af84fbac8980724b80aa9d2e048229b659f93cdc",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only"
+    },
+    {
+      "image": "after-final-chromium-121-fspo-individual-source.png",
+      "caption": "AFTER #121: fspo individual source",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:20:47.196630+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 117,
+      "sha256": "29cb854870e25fb903b0d8b8b7d35b48a66e9e294c628cf40d7574f01e82d432",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only"
+    },
+    {
+      "image": "after-final-chromium-121-pane-reopen.png",
+      "caption": "AFTER #121: pane reopen",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:18:46.094172+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 158,
+      "sha256": "9fb65e258534c0b9b205a83f8568083465f5e2c3145a09ede9351c6494db1339",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-chromium-121-synthetic-corrected-source-B.png",
+      "caption": "AFTER #121: synthetic corrected source B",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:18:19.020058+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 158,
+      "sha256": "8b6ef80f2cdc170ec2b9874b3cccc15622171dc2313706ef28bc18e973ab9bad",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-chromium-121-synthetic-default-entry.png",
+      "caption": "AFTER #121: synthetic default entry",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:15:09.757134+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 158,
+      "sha256": "bd7947c7d9825499018933062a22bdba0e9943b2474cd47c5901ad10e6d7b00f",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-chromium-121-synthetic-hover-with-A-focused.png",
+      "caption": "AFTER #121: synthetic hover with A focused",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:18:17.306241+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 158,
+      "sha256": "340066dc5561d04233d603c862183e7d59ef81089a0d09f1e3aae27cb87f2a31",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-chromium-121-synthetic-source-A.png",
+      "caption": "AFTER #121: synthetic source A",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:18:16.515602+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 158,
+      "sha256": "f7c82263d89022882855a953daaef31c967c48d42b9f6a56cdcb0b8dd9ed6842",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-chromium-121-synthetic-source-toggle-clear.png",
+      "caption": "AFTER #121: synthetic source toggle clear",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:18:20.043120+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 158,
+      "sha256": "ef60e28c429131b518e3cecf6da9771ebe6d630109e0b79f8bbfa1c8141bc956",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-chromium-121-terms-grid-view-sources.png",
+      "caption": "AFTER #121: terms grid view sources",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:24:48.623809+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "9207f157dea967350c6dccaeec94ec6fef4ee8a203869f0d31a4459597345eb6",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; inspection only"
+    },
+    {
+      "image": "after-final-chromium-121-terms-individual-source.png",
+      "caption": "AFTER #121: terms individual source",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:27:07.987891+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 114,
+      "sha256": "e2ef0d79c339c6fc3b97f70f1999360ce0b0da27abd511f60d12e958a00178f4",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; inspection only"
+    },
+    {
+      "image": "after-final-chromium-121-warm-same-corpus-document-entry.png",
+      "caption": "AFTER #121: warm same corpus document entry",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:19:06.059460+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "a07d1a10c464a88715ebe15b8d5fa4685cb6b0a0bc86cecf2a6fefa80c8effb6",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-firefox-121-fspo-grid-view-sources.png",
+      "caption": "AFTER #121: fspo grid view sources",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:20:18.902931+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 234,
+      "sha256": "0487da592f107c9e212a31d85cb2cd3352d1a511fc8775cb641e0b4ee33ef41c",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only"
+    },
+    {
+      "image": "after-final-firefox-121-fspo-individual-source.png",
+      "caption": "AFTER #121: fspo individual source",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:20:48.944745+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 117,
+      "sha256": "23abf08930d1a139f47dcad2481b377290b2d38440d1f4a53b545e503402348c",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only"
+    },
+    {
+      "image": "after-final-firefox-121-pane-reopen.png",
+      "caption": "AFTER #121: pane reopen",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:18:47.483237+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "b07e101b9855e88b6ed1f7d9ff9f289b458499e6a520fb9626cb42cdebf2354e",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-firefox-121-synthetic-corrected-source-B.png",
+      "caption": "AFTER #121: synthetic corrected source B",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:18:19.434050+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "ef6f2d757c8cb2ff54ddb0cd71c3ac7e91422b7af3ecdadad1363af6475b84b5",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-firefox-121-synthetic-default-entry.png",
+      "caption": "AFTER #121: synthetic default entry",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:15:11.136360+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "faeee0371ac33a68f4b9e3df39a7635f3efdedcb71ded216392c9b824a8c0730",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-firefox-121-synthetic-hover-with-A-focused.png",
+      "caption": "AFTER #121: synthetic hover with A focused",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:15:13.157204+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "b0af51f63823b855a495b41e7c6be34e1ce2eb75eeb71109e9d14c41aa162f7e",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-firefox-121-synthetic-source-A.png",
+      "caption": "AFTER #121: synthetic source A",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:15:12.461976+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "e4fc2eb00a28b5941957a1af46719670357e3a04b175384e292fb59132b9cf83",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-firefox-121-synthetic-source-toggle-clear.png",
+      "caption": "AFTER #121: synthetic source toggle clear",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:18:20.485874+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "651523154317501ae2e32cc82306265aec2fe9bd29343b31e8240c5d92c7ce13",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    },
+    {
+      "image": "after-final-firefox-121-terms-grid-view-sources.png",
+      "caption": "AFTER #121: terms grid view sources",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:27:01.274273+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "5b989ad7f0e2aa420f990a1170573265b1f08e55200374ca339bba38ea6e41db",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; inspection only"
+    },
+    {
+      "image": "after-final-firefox-121-terms-individual-source.png",
+      "caption": "AFTER #121: terms individual source",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:28:01.799152+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 114,
+      "sha256": "cb0913db14d18a78e35af5c7302c7d498ec60637a1ee816aaa5becd4260e2d85",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Public Terms SME hire-purchase PDF retained extract",
+      "limitations": "Retained original findings; inspection only"
+    },
+    {
+      "image": "after-final-firefox-121-warm-same-corpus-document-entry.png",
+      "caption": "AFTER #121: warm same corpus document entry",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T15:19:06.304259+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "2212f6f4e4adef3184062463a9f88cf6d51687a4c67533cad7e9a566c58c68b1",
+      "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+      "fixture": "Issue 120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment"
+    }
+  ],
+  "acceptance": "core/native source/warm checks passed; full final gate pending mode/control/dense results"
+}

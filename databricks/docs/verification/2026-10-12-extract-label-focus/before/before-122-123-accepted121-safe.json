@@ -1,0 +1,46 @@
+{
+  "captured_at": "2026-10-12T16:01:04.651389+00:00",
+  "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+  "fixture": "Issue 120 synthetic interaction fixture",
+  "browsers": [
+    "Chromium 151.0.7922.34",
+    "Firefox 153.0"
+  ],
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "plain_click_baseline": {
+    "three_full_identical_geometry_identities": "four native clicks keep focused A; cycling absent",
+    "partial_exclusive_hit": "C plain click keeps A focus",
+    "shared_annotation_emphasizes_two_source_cards": true
+  },
+  "filter_multipage_baseline": {
+    "same_A_focus_visible_on_later_page": true,
+    "selected_only_excluding_A_suppresses_label": true,
+    "restoring_eligibility_restores_focused_A_without_reclick": true,
+    "zoom_preserves_focused_identity": true,
+    "manual_later_occurrence_pane_close_autozoom": "DEFECT: closing pane changes110%\u2192220% and returns first-page viewport; focus A remains",
+    "defect_browsers": "both",
+    "ownership": "#123 extended manual reading-position stability; #121 covers source-navigation target-page cases"
+  },
+  "browser_mutations": 0,
+  "model_invocations": 0,
+  "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+  "synthetic_geometry_not_domain_acceptance": true,
+  "manifest": "manifest-before-122-123-accepted121.json",
+  "source_page_numbering": {
+    "physical_pdf_page_count": 8,
+    "first_occurrence": {
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "source_printed_footer": "Page 2 of 9"
+    },
+    "second_occurrence": {
+      "geometry_page_index": 1,
+      "pdf_page_number": 2,
+      "source_printed_footer": "Page 3 of 9"
+    },
+    "verification": "Immutable source bytes examined offline and native mounted PDFPage pageNumber props matched geometry indices. Printed source numbering differs from physical PDF page numbering."
+  }
+}

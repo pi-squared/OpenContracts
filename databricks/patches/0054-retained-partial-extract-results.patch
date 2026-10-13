@@ -1,0 +1,454 @@
+--- a/frontend/src/components/extracts/ExtractDetailContent.tsx
++++ b/frontend/src/components/extracts/ExtractDetailContent.tsx
+@@ -79,7 +79,11 @@
+ import { ExtractIterationsTab } from "./iterations/ExtractIterationsTab";
+ import { CreateColumnModal } from "../widgets/modals/CreateColumnModal";
+ import { ConfirmModal } from "../widgets/modals/ConfirmModal";
+-import { getExtractStatus, formatExtractDate } from "../../utils/extractUtils";
++import {
++  getExtractStatus,
++  formatExtractDate,
++  getExtractOutcomeSummary,
++} from "../../utils/extractUtils";
+ import { useExtractCompletionNotification } from "../../hooks/useExtractCompletionNotification";
+ import { LoadingOverlay } from "../common/LoadingOverlay";
+ 
+@@ -628,7 +632,7 @@
+ 
+   // Computed values
+   const isRunning = extract?.started && !extract?.finished && !extract?.error;
+-  const isComplete = extract?.started && extract?.finished && !extract?.error;
++  const isComplete = Boolean(extract?.finished || extract?.error);
+   const isFailed = Boolean(extract?.error);
+   const canEdit = !extract?.started;
+ 
+@@ -657,10 +661,22 @@
+ 
+   return (
+     <>
+-      {isComplete && stats.failedFields > 0 && (
++      {isComplete && (
+         <div role="status">
+-          Extraction finished with {stats.failedFields} failed field(s).
+-          Successful fields remain available for review.
++          <strong>
++            {getExtractOutcomeSummary(
++              cells,
++              rows.length * columns.length,
++              extract
++            )}
++          </strong>
++          {(isFailed || stats.failedFields > 0) && (
++            <p>
++              This run ended with errors and {stats.failedFields} failed
++              field(s). Saved results remain available for review. Check the
++              configuration and use Iterations to create a new run.
++            </p>
++          )}
+         </div>
+       )}
+       {/* Stats */}
+@@ -711,32 +727,7 @@
+         </RunningState>
+       )}
+ 
+-      {/* Failed state */}
+-      {isFailed && (
+-        <EmptyWrapper>
+-          <EmptyState
+-            title="Extraction failed"
+-            description="The extraction could not be completed."
+-            size={compact ? "md" : "lg"}
+-            action={
+-              <Button
+-                variant="primary"
+-                size="sm"
+-                leftIcon={<RefreshCw size={14} />}
+-                onClick={() =>
+-                  startExtract({ variables: { extractId: extract.id } })
+-                }
+-                disabled={startLoading || Boolean(extract.sourceReadinessError)}
+-              >
+-                Retry
+-              </Button>
+-            }
+-          />
+-        </EmptyWrapper>
+-      )}
+-
+-      {/* Tabs - only show when not running and not failed */}
+-      {!isRunning && !isFailed && (
++      {!isRunning && (
+         <TabsSection>
+           <Tabs value={activeTab} onChange={setActiveTab}>
+             <TabList>
+--- a/frontend/src/components/extracts/datagrid/DataGrid.tsx
++++ b/frontend/src/components/extracts/datagrid/DataGrid.tsx
+@@ -332,7 +332,11 @@
+         const extractIsProcessing =
+           extract.started && !extract.finished && !extract.error;
+         const cellIsProcessing =
+-          cell.started && !cell.completed && !cell.failed;
++          !extract.finished &&
++          !extract.error &&
++          cell.started &&
++          !cell.completed &&
++          !cell.failed;
+         const isProcessing =
+           cellIsProcessing || (extractIsProcessing && !cell.started);
+ 
+@@ -350,8 +354,7 @@
+     );
+ 
+     // Check if extract is complete
+-    const isExtractComplete =
+-      extract.started && extract.finished && !extract.error;
++    const isExtractComplete = Boolean(extract.finished || extract.error);
+ 
+     // Convert data to grid format
+     const gridRows = useMemo<ExtractGridRow[]>(() => {
+@@ -1086,9 +1089,16 @@
+                                 onEdit={handleEditDatacell}
+                                 cellId={cell?.id || ""}
+                                 readOnly={Boolean(
+-                                  !isExtractComplete || loading
++                                  !isExtractComplete ||
++                                    !cell?.completed ||
++                                    cell?.failed ||
++                                    loading
+                                 )}
+-                                isExtractComplete={Boolean(isExtractComplete)}
++                                isExtractComplete={Boolean(
++                                  isExtractComplete &&
++                                    cell?.completed &&
++                                    !cell?.failed
++                                )}
+                                 schema={columnSchemas.get(column.id) || {}}
+                                 extractIsList={column.extractIsList || false}
+                                 row={row}
+--- a/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
++++ b/frontend/src/components/extracts/datagrid/ExtractCellFormatter.tsx
+@@ -17,6 +17,7 @@
+ import { ExtractCellEditor } from "./ExtractCellEditor";
+ import { FindingPreview, FindingDetails } from "./FindingView";
+ import { findingFrom } from "../../../utils/findingValue";
++import { getDatacellOutcome } from "../../../utils/extractUtils";
+ import ReactJson from "react-json-view";
+ import { TruncatedText } from "../../widgets/data-display/TruncatedText";
+ import {
+@@ -392,22 +393,19 @@
+   const originalValue = cellStatus ? cellStatus.originalData : value;
+   const findingValue = findingFrom(displayedValue);
+ 
++  const outcome = extract ? getDatacellOutcome(cell, extract) : null;
++  const failed = Boolean(cellStatus?.error) || outcome === "failed";
++  const interrupted = outcome === "interrupted";
++  const hasSavedValue =
++    displayedValue !== null &&
++    displayedValue !== undefined &&
++    displayedValue !== "";
++
+   const displayValue = () => {
+-    if (cellStatus?.error)
+-      return (
+-        <div role="status">
+-          <strong>Extraction failed</strong>
+-          <Button
+-            size="sm"
+-            variant="secondary"
+-            aria-label={`View failure: ${column.name}`}
+-            onClick={() => setFailureOpen(true)}
+-          >
+-            View failure
+-          </Button>
+-        </div>
+-      );
+-    if (findingValue && !cellStatus?.isLoading && !cellStatus?.error) {
++    if (outcome === "notReported" && !hasSavedValue)
++      return <span>No result recorded</span>;
++    if (outcome === "pending" && !hasSavedValue) return <span>Pending</span>;
++    if (findingValue && !cellStatus?.isLoading) {
+       return (
+         <FindingPreview
+           value={findingValue}
+@@ -467,11 +465,19 @@
+   return (
+     <CellContainer ref={cellRef} style={{ background: getCellBackground() }}>
+       <Modal open={failureOpen} onClose={() => setFailureOpen(false)}>
+-        <ModalHeader>Extraction failed: {column.name}</ModalHeader>
++        <ModalHeader>
++          {interrupted ? "Extraction interrupted" : "Extraction failed"}:{" "}
++          {column.name}
++        </ModalHeader>
+         <ModalBody>
+           <p>
+-            No finding was produced for this field in{" "}
+-            {extract?.name || "this extract"}.
++            The field {column.name} {interrupted ? "was interrupted" : "failed"}{" "}
++            in {extract?.name || "this extract"}.
++          </p>
++          <p>
++            {hasSavedValue
++              ? "A saved value is available below; this field did not finish successfully."
++              : "No finding was produced for this field."}
+           </p>
+           {cell?.failed && (
+             <p>Failed at {new Date(cell.failed).toLocaleString()}.</p>
+@@ -487,7 +493,22 @@
+         </ModalFooter>
+       </Modal>
+       <div style={{ minWidth: 0 }}>
+-        {displayValue()}
++        {(failed || interrupted) && (
++          <div role="status">
++            <strong>
++              {interrupted ? "Extraction interrupted" : "Extraction failed"}
++            </strong>
++            <Button
++              size="sm"
++              variant="secondary"
++              aria-label={`View failure: ${column.name}`}
++              onClick={() => setFailureOpen(true)}
++            >
++              View failure
++            </Button>
++          </div>
++        )}
++        {(!(failed || interrupted) || hasSavedValue) && displayValue()}
+         {evidenceIntent === "sources" &&
+           !isModalOpen &&
+           (evidenceLoading ? (
+--- a/frontend/src/utils/extractUtils.ts
++++ b/frontend/src/utils/extractUtils.ts
+@@ -5,7 +5,7 @@
+  * components that display extract status and metadata.
+  */
+ 
+-import type { ExtractType } from "../types/graphql-api";
++import type { DatacellType, ExtractType } from "../types/graphql-api";
+ import { isRecord } from "./findingValue";
+ import {
+   EXTRACT_STATUS,
+@@ -18,6 +18,50 @@
+   return isRecord(value) && Object.prototype.hasOwnProperty.call(value, "data")
+     ? value.data
+     : value;
++}
++
++type ExtractLifecycle = Pick<ExtractType, "started" | "finished" | "error">;
++type CellLifecycle = Pick<DatacellType, "started" | "completed" | "failed">;
++
++/** Stopping a run does not turn unfinished or missing fields into successes. */
++export function getDatacellOutcome(
++  cell: CellLifecycle | undefined,
++  extract: ExtractLifecycle
++): "completed" | "failed" | "interrupted" | "pending" | "notReported" {
++  if (cell?.failed) return "failed";
++  if (cell?.completed) return "completed";
++  if (cell?.started) {
++    return extract.finished || extract.error ? "interrupted" : "pending";
++  }
++  return extract.started && !extract.finished && !extract.error
++    ? "pending"
++    : "notReported";
++}
++
++export function getExtractOutcomeSummary(
++  cells: ReadonlyArray<CellLifecycle>,
++  expectedCells: number,
++  extract: ExtractLifecycle
++): string {
++  const counts = {
++    completed: 0,
++    failed: 0,
++    interrupted: 0,
++    pending: 0,
++    notReported: 0,
++  };
++  for (const cell of cells) counts[getDatacellOutcome(cell, extract)] += 1;
++  counts[getDatacellOutcome(undefined, extract)] += Math.max(
++    0,
++    expectedCells - cells.length
++  );
++  return [
++    `${counts.completed} completed`,
++    `${counts.failed} failed`,
++    ...(counts.interrupted ? [`${counts.interrupted} interrupted`] : []),
++    ...(counts.pending ? [`${counts.pending} pending`] : []),
++    ...(counts.notReported ? [`${counts.notReported} not reported`] : []),
++  ].join(" · ");
+ }
+ 
+ /**
+@@ -50,16 +94,16 @@
+       color: EXTRACT_STATUS_COLORS[EXTRACT_STATUS.RUNNING],
+     };
+   }
++  if (extract.error) {
++    return {
++      label: EXTRACT_STATUS.FAILED,
++      color: EXTRACT_STATUS_COLORS[EXTRACT_STATUS.FAILED],
++    };
++  }
+   if (extract.finished) {
+     return {
+       label: EXTRACT_STATUS.COMPLETED,
+       color: EXTRACT_STATUS_COLORS[EXTRACT_STATUS.COMPLETED],
+-    };
+-  }
+-  if (extract.error) {
+-    return {
+-      label: EXTRACT_STATUS.FAILED,
+-      color: EXTRACT_STATUS_COLORS[EXTRACT_STATUS.FAILED],
+     };
+   }
+   return {
+--- a/frontend/src/utils/extractDetails.ts
++++ b/frontend/src/utils/extractDetails.ts
+@@ -19,11 +19,11 @@
+   const terminalColumns = new Map<string, Set<string>>();
+   const documentsWithResults = new Set<string>();
+   for (const cell of cells) {
+-    if (cell.completed) completed++;
++    if (cell.completed && !cell.failed) completed++;
+     if (cell.failed) failedFields++;
+     const documentId = cell.document?.id;
+     if (!documentId) continue;
+-    if (cell.completed) documentsWithResults.add(documentId);
++    if (cell.completed && !cell.failed) documentsWithResults.add(documentId);
+     const columnId = cell.column?.id;
+     if (columnId && (cell.completed || cell.failed)) {
+       const columnsForDocument = terminalColumns.get(documentId) ?? new Set();
+@@ -41,7 +41,15 @@
+     rows: rows.filter((doc) => documentsWithResults.has(doc.id)).length,
+     failedFields,
+     successRate: complete
+-      ? `${cells.length ? Math.round((completed / cells.length) * 100) : 0}%`
++      ? `${
++          Math.max(cells.length, rows.length * columns.length)
++            ? Math.round(
++                (completed /
++                  Math.max(cells.length, rows.length * columns.length)) *
++                  100
++              )
++            : 0
++        }%`
+       : "—",
+   };
+ }
+@@ -53,7 +61,7 @@
+   started: boolean
+ ) {
+   const own = cells.filter((cell) => cell.document?.id === doc.id);
+-  const completed = own.filter((cell) => cell.completed).length;
++  const completed = own.filter((cell) => cell.completed && !cell.failed).length;
+   const failed = own.filter((cell) => cell.failed).length;
+   return completed || failed
+     ? `${completed} of ${columnCount} fields extracted${
+--- a/frontend/src/utils/__tests__/extractUtils.test.ts
++++ b/frontend/src/utils/__tests__/extractUtils.test.ts
+@@ -52,15 +52,15 @@
+       expect(info.label).toBe(EXTRACT_STATUS.NOT_STARTED);
+     });
+ 
+-    it("prefers COMPLETED over FAILED when both finished and error are set", () => {
++    it("reports FAILED when both finished and error are set", () => {
+       const info = getExtractStatus(
+         makeExtract({
+           started: "2024-01-01",
+           finished: "2024-01-02",
+-          error: "ignored",
++          error: "interrupted",
+         })
+       );
+-      expect(info.label).toBe(EXTRACT_STATUS.COMPLETED);
++      expect(info.label).toBe(EXTRACT_STATUS.FAILED);
+     });
+   });
+ 
+--- a/frontend/src/views/ExtractDetail.tsx
++++ b/frontend/src/views/ExtractDetail.tsx
+@@ -85,7 +85,11 @@
+ import { ExtractIterationsTab } from "../components/extracts/iterations/ExtractIterationsTab";
+ import { CreateColumnModal } from "../components/widgets/modals/CreateColumnModal";
+ import { ConfirmModal } from "../components/widgets/modals/ConfirmModal";
+-import { getExtractStatus, formatExtractDate } from "../utils/extractUtils";
++import {
++  getExtractStatus,
++  formatExtractDate,
++  getExtractOutcomeSummary,
++} from "../utils/extractUtils";
+ import { useExtractCompletionNotification } from "../hooks/useExtractCompletionNotification";
+ 
+ // ═══════════════════════════════════════════════════════════════════════════════
+@@ -702,7 +706,7 @@
+ 
+   // Computed values
+   const isRunning = extract?.started && !extract?.finished && !extract?.error;
+-  const isComplete = extract?.started && extract?.finished && !extract?.error;
++  const isComplete = Boolean(extract?.finished || extract?.error);
+   const isFailed = Boolean(extract?.error);
+   const canEdit = !extract?.started;
+ 
+@@ -808,10 +812,22 @@
+           </Actions>
+         </Header>
+ 
+-        {isComplete && stats.failedFields > 0 && (
+-          <div role="status" style={{ padding: 12, background: "#fff4e5" }}>
+-            Extraction finished with {stats.failedFields} failed field(s).
+-            Successful fields remain available for review.
++        {isComplete && (
++          <div role="status">
++            <strong>
++              {getExtractOutcomeSummary(
++                cells,
++                rows.length * columns.length,
++                extract
++              )}
++            </strong>
++            {(isFailed || stats.failedFields > 0) && (
++              <p>
++                This run ended with errors and {stats.failedFields} failed
++                field(s). Saved results remain available for review. Check the
++                configuration and use Iterations to create a new run.
++              </p>
++            )}
+           </div>
+         )}
+         {/* Stats */}
+@@ -863,33 +879,7 @@
+           </RunningState>
+         )}
+ 
+-        {/* Failed state */}
+-        {isFailed && (
+-          <EmptyWrapper>
+-            <EmptyState
+-              title="Extraction failed"
+-              description="The extraction could not be completed. Please check the configuration and try again."
+-              size="lg"
+-              action={
+-                <Button
+-                  variant="primary"
+-                  leftIcon={<RefreshCw size={16} />}
+-                  onClick={() =>
+-                    startExtract({ variables: { extractId: extract.id } })
+-                  }
+-                  disabled={
+-                    startLoading || Boolean(extract.sourceReadinessError)
+-                  }
+-                >
+-                  Retry Extract
+-                </Button>
+-              }
+-            />
+-          </EmptyWrapper>
+-        )}
+-
+-        {/* Tabs - only show when not running and not failed */}
+-        {!isRunning && !isFailed && (
++        {!isRunning && (
+           <TabsSection>
+             <Tabs value={activeTab} onChange={setActiveTab}>
+               <TabList>

@@ -96,7 +96,7 @@ function chip() {
   expect(text).toBeDefined();
   return text!.parentElement!.parentElement!.parentElement!;
 }
-it("a domain evidence label stays visible without hover across selection and zoom transitions", () => {
+it("a domain evidence label remains hidden without hover across selection and zoom transitions", () => {
   for (const [selected, scale] of [
     [false, 1],
     [true, 1],
@@ -105,21 +105,21 @@ it("a domain evidence label stays visible without hover across selection and zoo
     [false, 0.75],
   ]) {
     render(Boolean(selected), Number(scale));
-    expect(getComputedStyle(chip()).display).not.toBe("none");
+    expect(getComputedStyle(chip()).display).toBe("none");
     expect(host.textContent).not.toContain("OC_EXTRACT_SOURCE");
   }
 });
-it("the label-text HIDE setting keeps evidence labels persistent", () => {
+it("the label-text HIDE setting suppresses evidence labels", () => {
   showAnnotationLabels(LabelDisplayBehavior.HIDE);
   render(false);
-  expect(getComputedStyle(chip()).display).not.toBe("none");
+  expect(getComputedStyle(chip()).display).toBe("none");
 });
 it("an explicit selected-only filter still excludes an unselected quotation", () => {
   showSelectedAnnotationOnly(true);
   render(false);
   expect(getComputedStyle(chip()).display).toBe("none");
   render(true);
-  expect(getComputedStyle(chip()).display).not.toBe("none");
+  expect(getComputedStyle(chip()).display).toBe("none");
 });
 
 function VisibleEvidence() {
@@ -140,8 +140,9 @@ function VisibleEvidence() {
 }
 
 it.each(["quotation", "relationship"])(
-  "an explicit label exclusion removes a selected %s's quotation and persistent chip until included again",
+  "an explicit label exclusion removes a selected %s's quotation and Always label until included again",
   (selection) => {
+    showAnnotationLabels(LabelDisplayBehavior.ALWAYS);
     const store = createStore();
     const relation = new RelationGroup(
       [quote.id],

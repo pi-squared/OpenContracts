@@ -1,0 +1,48 @@
+{
+  "phase": "intermediate",
+  "artifacts": [
+    {
+      "image": "after-reviewed123-retained121-always-inspect-chromium-127-wait-3.png",
+      "caption": "#123 retained #121 acceptance: initial unshifted Always measurement at 127%; retained reading point placed the page-1 evidence region above the visible PDF viewport",
+      "issues": [
+        120,
+        121,
+        123
+      ],
+      "captured_at": "2026-10-12T17:08:36.498811+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "04139eefe2d209c70b577a33fb6b0a9e07dd65f7b08d880cb2ad7023464ae3ed",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Retained failed driver precondition; does not establish label-layout success or final #120/#124 integrated acceptance"
+    },
+    {
+      "image": "after-reviewed123-retained121-always-inspect-firefox-127-wait-3.png",
+      "caption": "#123 retained #121 acceptance: initial unshifted Always measurement at 127%; retained reading point placed the page-1 evidence region above the visible PDF viewport",
+      "issues": [
+        120,
+        121,
+        123
+      ],
+      "captured_at": "2026-10-12T17:08:43.913884+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "dce89e13e39a78cdc2fbf9454ac0b713b80a1d138b88519b12ffbbe6a616883b",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Original #116 generic manual display fixture on the public SME PDF",
+      "limitations": "Retained failed driver precondition; does not establish label-layout success or final #120/#124 integrated acceptance"
+    }
+  ],
+  "hosted_acceptance": "Retained failed viewport precondition; does not establish acceptance"
+}

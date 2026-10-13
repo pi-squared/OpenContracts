@@ -1,0 +1,13 @@
+--- a/opencontractserver/shared/QuerySets.py
++++ b/opencontractserver/shared/QuerySets.py
+@@ -250,8 +250,8 @@
+ 
+         return queryset.with_tree_fields()
+ 
+-    def with_tree_fields(self) -> "PermissionedTreeQuerySet":
+-        return super().with_tree_fields()
++    def with_tree_fields(self, tree_fields=True) -> "PermissionedTreeQuerySet":
++        return super().with_tree_fields(tree_fields=tree_fields)
+ 
+ 
+ class UserFeedbackQuerySet(models.QuerySet):

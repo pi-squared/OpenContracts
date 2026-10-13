@@ -1,0 +1,30 @@
+{
+  "verified_at_utc": "2026-10-12T19:39:13.645188+00:00",
+  "source_commit": "24c6d01dbcd15f8e040c830c960ee7043b97d01e",
+  "hosted_acceptance": false,
+  "fixture": "Owned synthetic native editable UI verification; unchanged public SME PDF",
+  "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+  "native_saved_annotation_count": 1,
+  "chromium_native_ordinary_save": {
+    "http200_ok": true,
+    "exact_public_text_token_indices_and_native_padded_geometry": true,
+    "focused_source_retained": true
+  },
+  "native_url_save_count": 0,
+  "url_dialog_blocker": "Native Add link dialog is rendered below the fullscreen viewer. Create link center is intercepted by the underlying source card; no URL request was transmitted.",
+  "firefox_ordinary_attempt": "Menu closed with no request, no guard refusal, no JavaScript/network error and no server save. Cause remains unclassified; incomplete verification.",
+  "original_attempt": "Original tight-bounds guard rejected native 3-point padding before transmission; independently zero saved annotations at that point. Exact padding revision was reviewed before the successful save.",
+  "protected_existing_rows_and_permissions_unchanged": true,
+  "unique_owned_prepared_policy_unchanged": true,
+  "provider_operations": 0,
+  "reservations": 0,
+  "run_events": 0,
+  "embedding_records": 0,
+  "stock_native_signal_dispatch_not_claimed_zero": true,
+  "operator_saved_annotations": 0,
+  "completion_limitation": "Full122 fails the dense Always edit-control and native URL-dialog reachability criteria. Further saves are held for reviewed final source; prior native1 is protected before bounded final4 (max total5) review.",
+  "model_domain_acceptance_claimed": false,
+  "owned_editable_browser_wrappers_closed_exit0": true,
+  "readonly_core_browser_wrappers_closed_exit0": true,
+  "dense_failed_wrapper_statuses_recorded_separately": true
+}

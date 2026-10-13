@@ -1,0 +1,766 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-native-grid-view-sources-two-members.png",
+      "caption": "TERMS native grid \u2192 View Sources enters the extract with two plural source members. This existing capture was omitted from the earlier 112-image collection and is now included unchanged.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:23:55.937656+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "0e4a979dc0ea7a8ae2a3650cdcf39b5d2c194e013ce6fbe24de8689167744231",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public TERMS extract and original PDF",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-terms-actual-PDF-activation-focus-and-context.png",
+      "caption": "TERMS trusted stationary activation at an actual in-view PDF evidence point retains the focused label after pointer-away, pane context, plural membership and reading position.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:07:32.720331+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "e7809f645152f41e843201d78147ce743a99bff48eea70e39f1df09241b7066a",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public TERMS extract and original PDF",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-fspo-native-grid-view-sources-two-members.png",
+      "caption": "FSPO native grid \u2192 View Sources enters the extract with two plural source members. This existing capture was omitted from the earlier 112-image collection and is now included unchanged.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:34.046925+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 234,
+      "sha256": "8ad8ed63e7e14993457895550ea164f3f96a52b09cab00c2c5b4913691eb064b",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-fspo-actual-PDF-activation-focus-and-context.png",
+      "caption": "FSPO trusted stationary activation at an actual in-view PDF evidence point retains the focused label after pointer-away, pane context, plural membership and reading position.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:07:44.352658+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "a2df667cff81dc9d144faf2f344ba52ca2197cdfd41bc91324ada5b10893367f",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-chromium-ordinary-selection-menu-before-save.png",
+      "caption": "Native text drag opens the real selection menu before genuine ordinary annotation creation; seed evidence focus remains visible.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:31:47.129984+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "28ea68011696cce4a0342279b3464037bacb5d71f859ab5b15d8e687fa3aa2f0",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-chromium-ordinary-annotation-saved.png",
+      "caption": "Genuine native ordinary annotation saved, independently read back with exact native padded token geometry. Seed evidence focus remains visible; this is an intentional owned-fixture write.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:33:18.774481+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "a19a17d15d4c35e93dd6e3eb906f0630852cb6cf5b9433bd7ed99538f7d5449b",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-chromium-url-dialog-open-before-save.png",
+      "caption": "Settled foreground native Add link dialog, selected public text and usable Create link/Cancel controls, captured before the one genuine URL-annotation save.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:54:40.167840+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "b97da2b6841a7ea12d0220d5451878f9dd935c437cbe7580a3eee6ca739960d6",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-chromium-url-annotation-saved-focus-preserved.png",
+      "caption": "Genuine native URL annotation saved on the separate owned fixture, independently read back; seed evidence focus is retained. This custom OC_URL path is separate from embedded PDF URI handling.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:55:22.652495+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "aba9a3a1d27ae86787b39a3e46e058d869b0f1f39c9311438439c39d0632283b",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-chromium-url-selection-menu-after-native-neutral-entry.png",
+      "caption": "Native second text selection reaches the real action menu before URL creation. Chromium uses native neutral/source re-entry after the retained unclassified DOM-selection drag stop; Firefox follows ordinary save directly.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:51:25.839918+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "16315be6130980855e234b15e047e96a74aaf6d77d7b3c9b0d805d51b7d62971",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-chromium-custom-OC-URL-native-target-before-click.png",
+      "caption": "Native custom OC_URL label target before trusted activation. No HTML anchor or embedded-PDF-URI claim is made for this path.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:02:39.970071+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "1e465060fbdd9186a0115598e08b6843143f0113be939136fe93f06f8d104260",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-chromium-custom-OC-URL-same-document-focus-retained.png",
+      "caption": "Trusted custom OC_URL activation opens its exact same-document route in the same tab, closes extract context and retains document-scoped seed evidence focus in On Hover. It does not cycle evidence.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:06:40.498118+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "1169f37d73288f3f90d220fc5772b8b26cd8b261abed6c2f5d8523b75c34d03c",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-real-embedded-URI-native-anchor-hover.png",
+      "caption": "Real PDF.js NativeLinkLayer anchor over public VAT text is the trusted hit target; exact downloaded derivative PDF bytes and the single embedded URI are verified privately.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:18:20.795418+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "5ef462b57c8419991e50e20963adc9c14bf99d8dbe5ff8238096cc083f53b974",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic embedded-URI derivative: unchanged public PDF page content, text, pixels and PAWLS; one transparent native URI",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-real-embedded-URI-native-popup-rendered-owned-PDF.png",
+      "caption": "Trusted native embedded-PDF-URI click opens its own target in a real new tab; native document header and nonzero rendered PDF canvas settle before capture.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:18:25.865562+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "890faeda7aefb9b67db30941494428241cc0846678f933546c5d6db503f6365f",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic embedded-URI derivative: unchanged public PDF page content, text, pixels and PAWLS; one transparent native URI",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-real-embedded-URI-origin-focus-and-context-preserved.png",
+      "caption": "After the genuine embedded PDF link popup is closed, the original evidence focus, plural membership, pane, canvas and zoom remain fixed.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:18:26.775365+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "729a3c45e3cd5fc209a58e809d71e3ab7de21ac2ef443da0a305c2c8deb4de77",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic embedded-URI derivative: unchanged public PDF page content, text, pixels and PAWLS; one transparent native URI",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-native-mouse-text-menu-focus-preserved.png",
+      "caption": "Trusted native mouse text drag opens Copy Text without evidence cycling. The existing drag behavior clears plural annotation selection while retaining singular evidence focus and reading position.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:20:40.564652+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "221045f696531cb3e156aca6dcb0486976f0a116cec3d5217101d91e77791b7c",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture: public SME PDF, deliberate overlap/source geometry",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-chromium-122-native-mouse-copy-public-text-focus-preserved.png",
+      "caption": "Native Copy Text followed by trusted Ctrl+V into an isolated blank-tab textarea matches the expected public text hash. Clipboard contents stay private; evidence focus, pane, canvas and zoom are preserved.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:26:41.473671+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "11a8549f16c7e3a18b4a03caeaa3c274a09e5f532e80a57743e2a49d82624c5e",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture: public SME PDF, deliberate overlap/source geometry",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-native-grid-view-sources-two-members.png",
+      "caption": "TERMS native grid \u2192 View Sources enters the extract with two plural source members. This existing capture was omitted from the earlier 112-image collection and is now included unchanged.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:23:54.617117+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "474923e0157c877058de00c9e1aa11f4238dac170d5cb1d74edd67893d8b90d8",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public TERMS extract and original PDF",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-terms-actual-PDF-activation-focus-and-context.png",
+      "caption": "TERMS trusted stationary activation at an actual in-view PDF evidence point retains the focused label after pointer-away, pane context, plural membership and reading position.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:07:36.258840+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "54a7836597cfdf73935b70c96962ce6357e45242823130fe064fe87ca3afd54c",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public TERMS extract and original PDF",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-fspo-native-grid-view-sources-two-members.png",
+      "caption": "FSPO native grid \u2192 View Sources enters the extract with two plural source members. This existing capture was omitted from the earlier 112-image collection and is now included unchanged.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:35:47.341518+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 234,
+      "sha256": "0d8ef34c3daffdc3c09f0aeb1e875aa30ddba220171b18149ec45712d3f831f2",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-fspo-actual-PDF-activation-focus-and-context.png",
+      "caption": "FSPO trusted stationary activation at an actual in-view PDF evidence point retains the focused label after pointer-away, pane context, plural membership and reading position.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:07:52.175166+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 197,
+      "sha256": "b34b62cd501129358c742b6db1381d88dcae0306f5f60238cd621d28aad6121b",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Retained public FSPO extract and original PDF",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox-ordinary-selection-menu-before-save.png",
+      "caption": "Native text drag opens the real selection menu before genuine ordinary annotation creation; seed evidence focus remains visible.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:57:23.985639+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "80cbcf4f9a6e8890a5b5dabe09c1206eabd808ae04bed3b97d5f97d8d64098c5",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox-ordinary-annotation-saved-focus-preserved.png",
+      "caption": "Genuine native ordinary annotation saved, independently read back with exact native padded token geometry. Seed evidence focus remains visible; this is an intentional owned-fixture write.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:59:17.481931+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "b1dee39012c6cb0a53153fd46ab74372678f235060378c45ceb1d6132164df17",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox-url-dialog-open-before-save.png",
+      "caption": "Settled foreground native Add link dialog, selected public text and usable Create link/Cancel controls, captured before the one genuine URL-annotation save.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:00:08.608259+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "4bc7e323f83bb1732b21eaae63ba9dd8af316bdba279fad254ef9c996ca1be8d",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox-url-annotation-saved-focus-preserved.png",
+      "caption": "Genuine native URL annotation saved on the separate owned fixture, independently read back; seed evidence focus is retained. This custom OC_URL path is separate from embedded PDF URI handling.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:01:40.547428+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "0884e32f728b4c13156a2c3363c58187dbbb1954987f874d076563fd54290c37",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox-url-selection-menu-after-ordinary-save.png",
+      "caption": "Native second text selection reaches the real action menu before URL creation. Chromium uses native neutral/source re-entry after the retained unclassified DOM-selection drag stop; Firefox follows ordinary save directly.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:59:23.568162+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "abb6b2d9921411a51f40546665b109e3e6da7789068167cbb1fa37df4f90722a",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox-custom-OC-URL-native-target-before-click.png",
+      "caption": "Native custom OC_URL label target before trusted activation. No HTML anchor or embedded-PDF-URI claim is made for this path.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:07:28.964583+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "55820aed78ea1aabb01c0171995156894947823fa987c71893a7ecb63c2bf7e5",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox-custom-OC-URL-same-document-focus-retained.png",
+      "caption": "Trusted custom OC_URL activation opens its exact same-document route in the same tab, closes extract context and retains document-scoped seed evidence focus in On Hover. It does not cycle evidence.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:07:31.847498+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "dd0573d91674d985062b56070ac2a0cecad1e6362ba0d63e003c8be39eee4ffd",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-real-embedded-URI-native-anchor-hover.png",
+      "caption": "Real PDF.js NativeLinkLayer anchor over public VAT text is the trusted hit target; exact downloaded derivative PDF bytes and the single embedded URI are verified privately.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:18:24.348353+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "03fbd7617546baedd95a182f3e287041cc72d413f2c298574241ee2f5fc0031a",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic embedded-URI derivative: unchanged public PDF page content, text, pixels and PAWLS; one transparent native URI",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-real-embedded-URI-native-popup-rendered-owned-PDF.png",
+      "caption": "Trusted native embedded-PDF-URI click opens its own target in a real new tab; native document header and nonzero rendered PDF canvas settle before capture.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:18:29.188361+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 227,
+      "sha256": "5b047fec94665f5c37a580014977a1a773564a888dbbb6d86ded759e720280a9",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic embedded-URI derivative: unchanged public PDF page content, text, pixels and PAWLS; one transparent native URI",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-real-embedded-URI-origin-focus-and-context-preserved.png",
+      "caption": "After the genuine embedded PDF link popup is closed, the original evidence focus, plural membership, pane, canvas and zoom remain fixed.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:18:30.082084+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "846d7976f577a02cfeb414c44ec597c01778e50342cb1c14978c7387acdab8a9",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic embedded-URI derivative: unchanged public PDF page content, text, pixels and PAWLS; one transparent native URI",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-native-mouse-text-menu-focus-preserved.png",
+      "caption": "Trusted native mouse text drag opens Copy Text without evidence cycling. The existing drag behavior clears plural annotation selection while retaining singular evidence focus and reading position.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:20:44.435966+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "4de99621666514d52a66447e2241d9c9c0e9331c2af3878f85efb9e15c4e86b8",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture: public SME PDF, deliberate overlap/source geometry",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-firefox-122-native-mouse-copy-public-text-focus-preserved.png",
+      "caption": "Native Copy Text followed by trusted Ctrl+V into an isolated blank-tab textarea matches the expected public text hash. Clipboard contents stay private; evidence focus, pane, canvas and zoom are preserved.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:26:44.261511+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "3511acc1608400603c3419f709412612140296265c40383080349fd1b30edaaa",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture: public SME PDF, deliberate overlap/source geometry",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-chromium-fresh-first-drag-menu-before-cancel.png",
+      "caption": "Controlled fresh native first drag opens the genuine action menu with collapsed browser selection, before native Cancel; no save is armed.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:53:20.322928+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "41d6b5d22270a79d33684fd44264e5d76bfeeb41abdff8f6257ff0b6fa14909c",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-chromium-fresh-second-drag-observation.png",
+      "caption": "Controlled identical second native drag after Cancel opens the menu without an extra selection reset or trusted dragstart. The earlier DOM-selection drag stop remains separately retained with unknown provenance.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T20:53:25.085046+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "db83a1ebff22719b390683e96f4b50f972aad51cf7fa317cb4632bc363a7f18f",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Separate owned synthetic editable fixture: unchanged public SME PDF, prepared zero-provider binding",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox157-held-touch-menu-focus-preserved.png",
+      "caption": "Trusted Firefox 157 W3C touch: 650 ms hold and move opens the native text-selection menu and retains evidence focus.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:11:33.718386+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 108,
+      "sha256": "2b2609f5805ba558398356aaf85584f5216639bed12b5968b1319dfb8daa3913",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture: public SME PDF, deliberate overlap/source geometry",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox157-copy-public-text-focus-preserved.png",
+      "caption": "Trusted Firefox 157 native Copy Text \u2192 Ctrl+V matches the expected public text hash without privileged system access; evidence focus is retained.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:13:26.241067+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 108,
+      "sha256": "0fa6264eadb8f57f3d53e5a9d0fc1ba32aa0b23cc2ccc6d6532663b38ba4fade",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture: public SME PDF, deliberate overlap/source geometry",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox157-prehold-movement-cancels-menu-focus-retained.png",
+      "caption": "Trusted Firefox 157 movement before the native hold threshold cancels the text-selection menu and retains evidence focus.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:15:23.261048+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 108,
+      "sha256": "57b85701748a9195e63ca7c9e80a563927e0249bc39a22cf07eeaf5d9ebff94e",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture: public SME PDF, deliberate overlap/source geometry",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    },
+    {
+      "image": "after-reviewed122-final-native-firefox157-blank-text-short-tap-focus-cleared.png",
+      "caption": "Trusted Firefox 157 80 ms tap on public blank/non-evidence text clears focus with no selection menu; the actual point has zero eligible evidence. Evidence-touch cycle parity belongs to #124.",
+      "issues": [
+        120,
+        122
+      ],
+      "captured_at": "2026-10-12T21:27:02.649418+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "157.0.1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 108,
+      "sha256": "4ffeecaa10a9250d58df583a7a375e7fa3812bfa954bdcbbf64e8b3cbe0ed792",
+      "source_commit": "442a757e68b8dc958f6ac6ffa07ae9ff6a2110c2",
+      "fixture": "Owned synthetic interaction fixture: public SME PDF, deliberate overlap/source geometry",
+      "limitations": "Technical fixtures verify native UI behavior, not domain/model acceptance. The native write and inspection counts are stated separately in acceptance-122.json."
+    }
+  ],
+  "acceptance": "PASS final #122 native pointer/control/gesture/link scope; combined local/deployed/data receipt is acceptance-122.json"
+}

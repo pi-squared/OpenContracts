@@ -1,0 +1,81 @@
+{
+  "phase": "before",
+  "artifacts": [
+    {
+      "image": "before-chromium-121-fspo-pane-source-127.png",
+      "caption": "BEFORE: source-pane selection forces all FSPO evidence labels visible at 127%",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T13:53:28.501442+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2af445c0fe652da30a1498bd9c99c57fba472dcc97de1229a2924a2d13717ac9",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained FSPO 2020-0299.pdf extract 1, Practical difficulty source annotation 212",
+      "interactions": "Native source-pane card click, pointer moved away"
+    },
+    {
+      "image": "before-chromium-121-fspo-pane-source-167.png",
+      "caption": "BEFORE: source-pane selection forces all FSPO evidence labels visible at 167%",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T13:53:31.790835+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a1f6bfc0c5a93d7c852ae48720e84eb07e7c2f3d6950328790f633aec951d234",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Retained FSPO 2020-0299.pdf extract 1, Practical difficulty source annotation 212",
+      "interactions": "Native source-pane card click, pointer moved away"
+    },
+    {
+      "image": "before-chromium-121-original-default-127.png",
+      "caption": "BEFORE: original #116 public Terms page at 127%, default display mode",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T13:48:18.975664+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f5e32a561478482079373bf99cb24e1d813b01794820ce83afe0821fdedf5c70",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Original #116 same-byte public Terms rendering fixture",
+      "interactions": "Viewer opened without evidence target or labels override; pointer moved away"
+    },
+    {
+      "image": "before-chromium-121-original-default-167.png",
+      "caption": "BEFORE: original #116 public Terms page at 167%, default display mode",
+      "issues": [
+        120,
+        121
+      ],
+      "captured_at": "2026-10-12T13:48:21.172080+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "34f96edd6e434a00c048898fd64d78f54376d87d59daaf5fd660a3b97c162535",
+      "source_commit": "a4f81b0310d7195f9666ecde5515e52210a22467",
+      "fixture": "Original #116 same-byte public Terms rendering fixture",
+      "interactions": "Viewer opened without evidence target or labels override; pointer moved away"
+    }
+  ]
+}

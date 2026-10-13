@@ -1,0 +1,2322 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-reviewed123-chromium-123-explicit-source-return-physical-page1.png",
+      "caption": "AFTER #123: explicit source return physical page1",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:03:34.033773+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b4908119f1d913f97ed527a1c4e9d5d18f405f092230bc80109ec98fcd165c0e",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 120
+    },
+    {
+      "image": "after-reviewed123-chromium-123-fspo-annotation-filter-ALWAYS-excluded-focus-remembered.png",
+      "caption": "AFTER #123: fspo annotation filter ALWAYS excluded focus remembered; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:29:48.660452+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1480d347a8649465a4cd80cee59d1eefbbf6d0a56325380dbcde434d7a6a1b8c",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 113
+    },
+    {
+      "image": "after-reviewed123-chromium-123-fspo-annotation-filter-ALWAYS-restored-in-view.png",
+      "caption": "AFTER #123: fspo annotation filter ALWAYS restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:29:52.737408+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "738d7a050ba0688561ce800af910574a3905909a70661326b186686edc9e018e",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 226
+    },
+    {
+      "image": "after-reviewed123-chromium-123-fspo-annotation-filter-HIDE-excluded-focus-remembered.png",
+      "caption": "AFTER #123: fspo annotation filter HIDE excluded focus remembered; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:29:57.799126+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7588d64fd730645f37f873c7bea486810fa0b98c8c4643b82a78a5a6d38aa88a",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 113
+    },
+    {
+      "image": "after-reviewed123-chromium-123-fspo-annotation-filter-HIDE-restored-in-view.png",
+      "caption": "AFTER #123: fspo annotation filter HIDE restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:30:01.654678+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "bd413ce7c736a868a9ca6dd61cdc4ed29d90b794749d41381eaf9de1d760027f",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 226
+    },
+    {
+      "image": "after-reviewed123-chromium-123-fspo-annotation-filter-default-excluded-focus-remembered.png",
+      "caption": "AFTER #123: fspo annotation filter default excluded focus remembered; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:29:39.887955+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "72e28bb53176050d855510f7d3140831191e5a53d8f29cfa85dadd20ba2334c2",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 113
+    },
+    {
+      "image": "after-reviewed123-chromium-123-fspo-annotation-filter-default-restored-in-view.png",
+      "caption": "AFTER #123: fspo annotation filter default restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:29:44.507774+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4fa7fa43291cde006c4e1e3f56c2d91ca86b6c03d4827a9941f485aadb9858e5",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 226
+    },
+    {
+      "image": "after-reviewed123-chromium-123-fspo-native-grid-view-sources-two-members.png",
+      "caption": "AFTER #123: fspo native grid view sources two members",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:31:50.379289+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b78a7ecbdc099d645e7d6b4fd61795e67331224aa0443a6304f3f7c3436bbfb9",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 234
+    },
+    {
+      "image": "after-reviewed123-chromium-123-fspo-two-members-A-focus-cleared.png",
+      "caption": "AFTER #123: fspo two members A focus cleared",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:31:56.281949+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3fffb99465609c0e13fa37f91d356cde4da368be25f68b394d63cf69be798468",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 117
+    },
+    {
+      "image": "after-reviewed123-chromium-123-fspo-two-members-B-focused-membership-retained.png",
+      "caption": "AFTER #123: fspo two members B focused membership retained",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:31:58.503594+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a3f1061fee69d5cb8849f3ba2e7f7a1387858149770b89e1fdeb8229747b56d4",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 117
+    },
+    {
+      "image": "after-reviewed123-chromium-123-manual-page2-repeated-zoom-retained.png",
+      "caption": "AFTER #123: manual page2 repeated zoom retained; physical PDF page 2, printed footer Page 3 of 9",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:02:26.296806+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "66ee171ee03ed17148cc622ae19c0d62af064448041888fe0fa422ac74d4eac8",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 240
+    },
+    {
+      "image": "after-reviewed123-chromium-123-manual-physical-page2-focused-pane-open.png",
+      "caption": "AFTER #123: manual physical page2 focused pane open; physical PDF page 2, printed footer Page 3 of 9",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:02:22.191092+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ce9d3a34545214eed198f18daf0785293c95137efcbb679367e4c59460adeafe",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-manual-physical-page2-pane-close-retained.png",
+      "caption": "AFTER #123: manual physical page2 pane close retained; physical PDF page 2, printed footer Page 3 of 9",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:02:24.389083+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7afa68c49f307d0411a360cfb735dae1a3e01665f210fc1222d957ecf2e88e4b",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-chromium-123-manual-physical-page2-pane-reopen-retained.png",
+      "caption": "AFTER #123: manual physical page2 pane reopen retained; physical PDF page 2, printed footer Page 3 of 9",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:03:27.885544+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "68d73a745b91d5b4b98943f39346c7c4199f04a3f7db89a01d366012663e50b2",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 120
+    },
+    {
+      "image": "after-reviewed123-chromium-123-physical-page3-no-focused-geometry.png",
+      "caption": "AFTER #123: physical page3 no focused geometry",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:03:31.333310+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "5950349c4b41a8b2f09cf800be41cebc634e81b8b64f212836578dd1d0e51f71",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 120
+    },
+    {
+      "image": "after-reviewed123-chromium-123-retained121-fspo-mode-ALWAYS.png",
+      "caption": "AFTER #123: retained #121 fspo mode ALWAYS; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:22:49.030862+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "584283f20bf8a33c722c59df7164f9e3386b34abe3cb32217c5d3ce949d58de2",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 234
+    },
+    {
+      "image": "after-reviewed123-chromium-123-retained121-fspo-mode-HIDE.png",
+      "caption": "AFTER #123: retained #121 fspo mode HIDE; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:23:14.050818+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9735fc353de659813bf5b1dff93e3269dc6602d6e8eaa8cffa02100c7e8ea7e7",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 113
+    },
+    {
+      "image": "after-reviewed123-chromium-123-retained121-fspo-mode-ON_HOVER.png",
+      "caption": "AFTER #123: retained #121 fspo mode ON_HOVER; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:23:40.146032+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d5b26b098b757323095ecbf19369ae4ac25971d0d5af1119bc21c334e32bb1db",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 234
+    },
+    {
+      "image": "after-reviewed123-chromium-123-retained121-fspo-mode-default.png",
+      "caption": "AFTER #123: retained #121 fspo mode default; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:22:23.303267+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "64cf987bc11bbd6cff8f634566996a9d3ed5a983ae891fc9643dec9f48f510ab",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 113
+    },
+    {
+      "image": "after-reviewed123-chromium-123-retained121-terms-mode-ALWAYS.png",
+      "caption": "AFTER #123: retained #121 terms mode ALWAYS; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:14:43.350663+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d8a2081509322dcab7e4ecafb2403465ce6025a961411729e02dff33caa0ad89",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-retained121-terms-mode-HIDE.png",
+      "caption": "AFTER #123: retained #121 terms mode HIDE; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:16:12.382505+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ae3e150ba1bc32b685208e7a3cac52918105e91386baf6f5c516d0a38e96e100",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-retained121-terms-mode-ON_HOVER.png",
+      "caption": "AFTER #123: retained #121 terms mode ON_HOVER; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:17:30.035279+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1568fd4cf0872790396ab5da263e4bebb3f6725c3a12c821b70180844ee716f0",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-retained121-terms-mode-default.png",
+      "caption": "AFTER #123: retained #121 terms mode default; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:13:15.334340+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6c916a476ef3ec41bed9b600cde45af90f26ac1aa7d667aa48d9e3c2909199e5",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-selected-source-focus-cleared.png",
+      "caption": "AFTER #123: selected source focus cleared",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:00:17.760562+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d099587be2a8aad9ba357ddfbe9a50853945f6ed77fb725c9f3b7408dcd96b2a",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-selected-source-focus-restored-filter-preserved.png",
+      "caption": "AFTER #123: selected source focus restored filter preserved; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:00:19.383438+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "cadf92b4b906446efbead524dfd7e142096817bef12a3efb457d913c2b77f0ee",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-selected-source-initial.png",
+      "caption": "AFTER #123: selected source initial",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:00:16.183481+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ff3dab32e31aff76aa76b9d7c7b22aca52ef59657ed488f3db2ea466b401b7cb",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-synthetic-corrected-native-view-sources-B.png",
+      "caption": "AFTER #123: synthetic corrected native view sources B",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:43:33.572954+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "85a7dd8c8b7481f3aec04b5beae01248ae2529e9befaa974acfee0df12043c95",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 227
+    },
+    {
+      "image": "after-reviewed123-chromium-123-synthetic-corrected-source-B-return.png",
+      "caption": "AFTER #123: synthetic corrected source B return",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:43:40.251421+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "805b4e4587fab30d1123c60057e5fbc1b1e90c553352c5e87fd109a6aca4d3c4",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 114
+    },
+    {
+      "image": "after-reviewed123-chromium-123-synthetic-original-source-A.png",
+      "caption": "AFTER #123: synthetic original source A",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:43:38.890883+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "52b1e4d370ed08dc99aebe2896fa14cae9598b33451149fdc2c998532c13370c",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 114
+    },
+    {
+      "image": "after-reviewed123-chromium-123-synthetic-original-value-modal.png",
+      "caption": "AFTER #123: synthetic original value modal; visible native Original Value modal, no saved edit; PDF not displayed",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:43:28.295563+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0357cd3de751d5d4cf4c42196633b7e9e22b57a1175433aaee8d3333975ad24b",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim"
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-label-filter-ALWAYS-excluded.png",
+      "caption": "AFTER #123: terms label filter ALWAYS excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:20:22.026941+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c4dfb325f8c2600e3fe6d9fbb443f7bb4e5b45484cadba5f460e230dae22402f",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-label-filter-ALWAYS-restored-in-view.png",
+      "caption": "AFTER #123: terms label filter ALWAYS restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:20:23.477401+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2cde402250fc27e30b0d3760d32bbf8acad931d4d9dbc3d8ebcca4345daf87b6",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-label-filter-HIDE-excluded.png",
+      "caption": "AFTER #123: terms label filter HIDE excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:20:25.162880+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2b92281bf31466caa06784710f356cb5c45fa933efd0520d693cca26588b039f",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-label-filter-HIDE-restored-in-view.png",
+      "caption": "AFTER #123: terms label filter HIDE restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:20:26.374265+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "68a232938623430db22af33ea8a15bf53d2725757fe08087114ad130f90fe98f",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-label-filter-default-excluded.png",
+      "caption": "AFTER #123: terms label filter default excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:20:18.982902+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "67f115301c40d083f95b9b74dede02cf0344d00975b6c5b052ee43155f6491a3",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-label-filter-default-restored-in-view.png",
+      "caption": "AFTER #123: terms label filter default restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:20:20.283376+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8e71275aae327f2c2862ddbc91a7d94dc7debe5f411f08303aa6e883293592f7",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-native-grid-view-sources-two-members.png",
+      "caption": "AFTER #123: terms native grid view sources two members",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:35:56.110861+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7fe3f183ea3c78d198cec377e23154770682aa565393f24a9d76f2e37862f82d",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 227
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-selected-only-excluded-focus-remembered.png",
+      "caption": "AFTER #123: terms selected only excluded focus remembered",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:20:31.007837+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "d1bc71c6cbc9e7d071674fdc6e82969081444ae1bb912299e0194cf9869d6b34",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-selected-only-restores-focus-no-selection.png",
+      "caption": "AFTER #123: terms selected only restores focus no selection",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:20:35.068085+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3ba5db1fdbb1b969bf7052b2d6d849c82f3b9a2bda89a38c596d8dac365626c7",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-two-members-A-focus-cleared.png",
+      "caption": "AFTER #123: terms two members A focus cleared",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:36:21.859262+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "85d13210c86f09225df9a341d19f5b9364e800f2886edcb06dd038f89dbf1781",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 114
+    },
+    {
+      "image": "after-reviewed123-chromium-123-terms-two-members-B-focused-membership-retained.png",
+      "caption": "AFTER #123: terms two members B focused membership retained",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:36:24.461263+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "336ef290ae9113a02cf67b94865a6adfc45d9a945cfbfed9d7552b8d77e007f3",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 114
+    },
+    {
+      "image": "after-reviewed123-chromium-123-version-ambiguous-explicit-no-target.png",
+      "caption": "AFTER #123: version ambiguous explicit no target; owned synthetic lineage; PDF not displayed",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:05:16.013673+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "5007a9d0a50d80c296c858354c559e6c949f6e4f566833fe839634d12ced1cc3",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim"
+    },
+    {
+      "image": "after-reviewed123-chromium-123-version-historical-reload-focused.png",
+      "caption": "AFTER #123: version historical reload focused; owned synthetic lineage",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:05:10.458814+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "84b6486ff6d3fa7c4ff1433b5962b42daa9c9cd0d53636f78d504140f68631be",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-version-native-return-v1-unfocused.png",
+      "caption": "AFTER #123: version native return v1 unfocused; owned synthetic lineage",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:05:04.109164+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "127c32beb99200703ffe8c29032a5b19f7d207e46551f63b3902069596350671",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "after-reviewed123-chromium-123-version-v1-focused.png",
+      "caption": "AFTER #123: version v1 focused; owned synthetic lineage",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:04:56.753402+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2372270a654f89fc2590eb8de9ad3c41948e5025cff0f91767cf7be6c9dce52a",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-version-v1-picker-focus-no-ann.png",
+      "caption": "AFTER #123: version v1 picker focus no ann; owned synthetic lineage",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:04:58.104388+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e0683c08abc6f89c14f6e808d3928c9981a1989a0c4b55759c46d4c16138b4e6",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-chromium-123-version-v2-focus-cleared.png",
+      "caption": "AFTER #123: version v2 focus cleared; owned synthetic lineage; immediate header/focus transition while PDF is loading; not settled absence proof",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:05:00.441492+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "00f8567d79548a8178b6f52c8d43b6d6d8cb63d1104cc60858dd89c6433e0d60",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim; PDF still loading in this capture",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "after-reviewed123-chromium-123-version-v2-stale-target-no-highlight.png",
+      "caption": "AFTER #123: version v2 stale target no highlight; owned synthetic lineage; immediate header/focus transition while PDF is loading; not settled absence proof",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:05:12.726846+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6b22fe7010234ef99843999960985b1f04af4d3402ec3cfd017647cde43be751",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim; PDF still loading in this capture",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "after-reviewed123-chromium-123-warm-native-same-document-return-unfocused.png",
+      "caption": "AFTER #123: warm native same document return unfocused",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:50.051358+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "409c71397b588e548564df87be0e029000fac553a29374be72ceb64292035267",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 227
+    },
+    {
+      "image": "after-reviewed123-chromium-123-warm-return-before-exit-focus-without-ann.png",
+      "caption": "AFTER #123: warm return before exit focus without ann",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:45.640912+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "cc6e42b72cc8d0e4636dada77843f75e6873ae4c1d4632c9a5f65478b41dd4ab",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-explicit-source-return-physical-page1.png",
+      "caption": "AFTER #123: explicit source return physical page1",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:04:55.426080+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f440c2a845ea69bda4c45d128fa309b3c4e387eb2779dc4c9ee028cd213187e1",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 120
+    },
+    {
+      "image": "after-reviewed123-firefox-123-fspo-annotation-filter-ALWAYS-excluded-focus-remembered.png",
+      "caption": "AFTER #123: fspo annotation filter ALWAYS excluded focus remembered; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:18.946196+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "030425c0e363ea1d4693c9637cc1678fea31ba682a3bde1f45eab361eae2332e",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "after-reviewed123-firefox-123-fspo-annotation-filter-ALWAYS-restored-in-view.png",
+      "caption": "AFTER #123: fspo annotation filter ALWAYS restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:23.066700+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e423a1203244285f1e5b774a99c9d5629b227d1da6563c8a4cd9ad14b2666bb4",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 230
+    },
+    {
+      "image": "after-reviewed123-firefox-123-fspo-annotation-filter-HIDE-excluded-focus-remembered.png",
+      "caption": "AFTER #123: fspo annotation filter HIDE excluded focus remembered; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:29.055577+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9577cece05ad5108a4c2254b992568693a0b96074ee7d6e0b86a72b0c73e0c03",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "after-reviewed123-firefox-123-fspo-annotation-filter-HIDE-restored-in-view.png",
+      "caption": "AFTER #123: fspo annotation filter HIDE restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:33.216671+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6997df3732ed427fe200fb212b2700cff18c321ffed064b4f4ea06d1c962be7c",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 230
+    },
+    {
+      "image": "after-reviewed123-firefox-123-fspo-annotation-filter-default-excluded-focus-remembered.png",
+      "caption": "AFTER #123: fspo annotation filter default excluded focus remembered; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:07.484335+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "31e154d849665afe0eb66e3f79075ab50b929ed0c5368789936357e12989412f",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "after-reviewed123-firefox-123-fspo-annotation-filter-default-restored-in-view.png",
+      "caption": "AFTER #123: fspo annotation filter default restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:12.434673+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2f030b5b532124cfad5428b9b9b8c77ce5d0de267d98243aec883357d69368cf",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 230
+    },
+    {
+      "image": "after-reviewed123-firefox-123-fspo-native-grid-view-sources-two-members.png",
+      "caption": "AFTER #123: fspo native grid view sources two members",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:16:06.661921+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "608b1cf3f94962d481767d761922578f02ad1dfcd2da507bf84b325816202460",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 234
+    },
+    {
+      "image": "after-reviewed123-firefox-123-fspo-two-members-A-focus-cleared.png",
+      "caption": "AFTER #123: fspo two members A focus cleared",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:21:59.283147+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "9a551679d3471cb53eb2e39317633d4670d5f908b8e89b9ccef3d55e1a9688d3",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 117
+    },
+    {
+      "image": "after-reviewed123-firefox-123-fspo-two-members-B-focused-membership-retained.png",
+      "caption": "AFTER #123: fspo two members B focused membership retained",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:22:01.861381+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4c6af2150bd82bcf5cc1e8e01ae9b8d1369cc87b7d472cfe0c75708e0d048db2",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 117
+    },
+    {
+      "image": "after-reviewed123-firefox-123-manual-page2-repeated-zoom-retained.png",
+      "caption": "AFTER #123: manual page2 repeated zoom retained; physical PDF page 2, printed footer Page 3 of 9",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:03:41.332866+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "17c760c3eada99d94bd733acb67028b5fbc2b748296854d8a694e03f5df22ec0",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 240
+    },
+    {
+      "image": "after-reviewed123-firefox-123-manual-physical-page2-focused-pane-open.png",
+      "caption": "AFTER #123: manual physical page2 focused pane open; physical PDF page 2, printed footer Page 3 of 9",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:03:36.595734+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0047d7b52d7ac32e3db99a5062a04dcc655661ca54667ce96083a57f4fcc9207",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-manual-physical-page2-pane-close-retained.png",
+      "caption": "AFTER #123: manual physical page2 pane close retained; physical PDF page 2, printed footer Page 3 of 9",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:03:39.048807+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3c404217ecd44cee43dffc82ae815a909d116c26c08a24d96e9d1bdeebedc658",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-firefox-123-manual-physical-page2-pane-reopen-retained.png",
+      "caption": "AFTER #123: manual physical page2 pane reopen retained; physical PDF page 2, printed footer Page 3 of 9",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:03:47.285030+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "dd7d395c1054d98e417d209646d0d5abb917e27b33f0c73e63284cf3ee6ca621",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 120
+    },
+    {
+      "image": "after-reviewed123-firefox-123-physical-page3-no-focused-geometry.png",
+      "caption": "AFTER #123: physical page3 no focused geometry",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:04:52.300529+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8681c4e55eb0378a5a1e7927c94925a8c08d17830305f4f0ecc87c1552093e14",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 120
+    },
+    {
+      "image": "after-reviewed123-firefox-123-retained121-fspo-mode-ALWAYS.png",
+      "caption": "AFTER #123: retained #121 fspo mode ALWAYS; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:10:07.259093+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "bef5297e70cea0a7347120d3e3a79fc82074999399a778b4e2b865b51bf572d9",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 113
+    },
+    {
+      "image": "after-reviewed123-firefox-123-retained121-fspo-mode-HIDE.png",
+      "caption": "AFTER #123: retained #121 fspo mode HIDE; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:10:38.757414+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "98c25d5599ef2fafc740897f2181c869227fa222b87dd05e32a1ec2649041a4b",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 114
+    },
+    {
+      "image": "after-reviewed123-firefox-123-retained121-fspo-mode-ON_HOVER.png",
+      "caption": "AFTER #123: retained #121 fspo mode ON_HOVER; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:11:03.393416+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6335d3f1a278c9c01383049c44f4a90638ef8f39a476eba1c7bdcf67562a9dce",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 113
+    },
+    {
+      "image": "after-reviewed123-firefox-123-retained121-fspo-mode-default.png",
+      "caption": "AFTER #123: retained #121 fspo mode default; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:09:22.973138+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "bdea1b8aa043d00ef72dd4b2070722d853f1314c97ba9fd66f44ad1344f32495",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public FSPO 2020-0299.pdf retained extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 113
+    },
+    {
+      "image": "after-reviewed123-firefox-123-retained121-terms-mode-ALWAYS.png",
+      "caption": "AFTER #123: retained #121 terms mode ALWAYS; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:27:03.785603+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4bbc31c0f771e451d74cd0ce16937477f7e99f92e76533dbfd2c35b5850fbf96",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-retained121-terms-mode-HIDE.png",
+      "caption": "AFTER #123: retained #121 terms mode HIDE; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:28:18.531575+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b465b1816d56a03958a6ccd60597487821f36eb838a21f5306686473fa6ca4b9",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-retained121-terms-mode-ON_HOVER.png",
+      "caption": "AFTER #123: retained #121 terms mode ON_HOVER; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:29:43.248335+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "07cec6acb0ea3d534799f99e54e6babce2c8f7af3a775bfb578a38281e887982",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-retained121-terms-mode-default.png",
+      "caption": "AFTER #123: retained #121 terms mode default; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:25:49.122288+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "87ee409baa484d906d2234ddfeb7025471d2451c4c18cde1e24fa4fa8c49179e",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-selected-source-focus-cleared.png",
+      "caption": "AFTER #123: selected source focus cleared",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:00:16.407168+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "81e551b574f3873e579354fa18ecdf9a6bbe37a8b5806edd88a22b7989173434",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-selected-source-focus-restored-filter-preserved.png",
+      "caption": "AFTER #123: selected source focus restored filter preserved; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:00:18.162480+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "5911f1a9ed9919a721ea5d2d509ff680ba50c80807c70e729c2343a5ff8346ce",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-selected-source-initial.png",
+      "caption": "AFTER #123: selected source initial",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:00:14.743095+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ff72cf6a1e9d466caeb7dd49137fb4bcc978735b07b4aea25d6a5122d1c9984f",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-synthetic-corrected-native-view-sources-B.png",
+      "caption": "AFTER #123: synthetic corrected native view sources B",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:43:34.627116+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6c116c1012f461f8f330d0779c18dfca7aaaff5bf283e109b2ebd1c6f02551e9",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 227
+    },
+    {
+      "image": "after-reviewed123-firefox-123-synthetic-corrected-source-B-return.png",
+      "caption": "AFTER #123: synthetic corrected source B return",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:43:41.442097+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "adaa768826e779d0e821fe0308a530f997969dc2811f84bcacd5fa2f4d3d4ca6",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 114
+    },
+    {
+      "image": "after-reviewed123-firefox-123-synthetic-original-source-A.png",
+      "caption": "AFTER #123: synthetic original source A",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:43:39.935555+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0ed22e1715210db827e64de51f6ae3d23f2cc0c74c0d24b43f3aeddd6a266965",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 114
+    },
+    {
+      "image": "after-reviewed123-firefox-123-synthetic-original-value-modal.png",
+      "caption": "AFTER #123: synthetic original value modal; visible native Original Value modal, no saved edit; PDF not displayed",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:43:28.704406+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c30611c63c1c9970c5558377dda183380f6beb2a109fa246f94d57418fb3c0ac",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim"
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-label-filter-ALWAYS-excluded.png",
+      "caption": "AFTER #123: terms label filter ALWAYS excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:32:05.520021+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ab4d9f9037b50ea2deeb86a365edfd95652931ed9592c8f5ed6880bc9900a697",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-label-filter-ALWAYS-restored-in-view.png",
+      "caption": "AFTER #123: terms label filter ALWAYS restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:32:07.332908+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "873d4aed580634aeb5b303db2d27968d535777e9152a64a89c0d1aca2420d1ab",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-label-filter-HIDE-excluded.png",
+      "caption": "AFTER #123: terms label filter HIDE excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:32:10.062359+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "a67fe94ee9bbd923ccc34c9a995d53ffe80943381ff087e4bb28a91f55d18d7c",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-label-filter-HIDE-restored-in-view.png",
+      "caption": "AFTER #123: terms label filter HIDE restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:32:11.916629+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "91191278230df8646c3e38fbc51b24d94d3975b7e6ea0d168330c80a598c4eb9",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-label-filter-default-excluded.png",
+      "caption": "AFTER #123: terms label filter default excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:32:00.727941+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "562732731a769074a5178aecc3869eb11e817018d742747da4b2912be420fe85",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-label-filter-default-restored-in-view.png",
+      "caption": "AFTER #123: terms label filter default restored in view; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:32:02.535514+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3bf72aa3bcc047b18c77b3b875d1774ebe0acccb1d8c4137d712b9728bfb16f1",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-native-grid-view-sources-two-members.png",
+      "caption": "AFTER #123: terms native grid view sources two members",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:44:18.314080+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "7d7d130871d834a3a0cdba685fd744eb656eac05c101d6683f8580a46bf2e6af",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 227
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-selected-only-excluded-focus-remembered.png",
+      "caption": "AFTER #123: terms selected only excluded focus remembered",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:32:18.564926+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f54cb62f19aa4aa5916ecc35e9d10ef642ad1f19d2f587966ef579833382b768",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-selected-only-restores-focus-no-selection.png",
+      "caption": "AFTER #123: terms selected only restores focus no selection",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:32:23.472835+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "372a7e255f8b033b84624eeb1ffe32b543c7cca19eb16fa1d49de15b875eb639",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-two-members-A-focus-cleared.png",
+      "caption": "AFTER #123: terms two members A focus cleared",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:44:43.110632+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b119259ae4ab5feface48878d8a7209282ec7bef8af1bf65381246a50a5f9771",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 114
+    },
+    {
+      "image": "after-reviewed123-firefox-123-terms-two-members-B-focused-membership-retained.png",
+      "caption": "AFTER #123: terms two members B focused membership retained",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:44:45.258867+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "76f266c14dddfc40ca5e4b7021ae4cdce785f68cfdde8189dc673a8ffb2f743b",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Public SME Finance HP Credit Agreement including T&C.PDF retained Terms extract",
+      "limitations": "Retained original findings; inspection only",
+      "pdf_zoom": 114
+    },
+    {
+      "image": "after-reviewed123-firefox-123-version-ambiguous-explicit-no-target.png",
+      "caption": "AFTER #123: version ambiguous explicit no target; owned synthetic lineage; PDF not displayed",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:02:41.786318+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "4f4de484d7cc015668a693450d5c7cc75e50d4b84b76828f07bb4ab56a2675c1",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim"
+    },
+    {
+      "image": "after-reviewed123-firefox-123-version-historical-reload-focused.png",
+      "caption": "AFTER #123: version historical reload focused; owned synthetic lineage",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:02:35.868981+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e8ce57fbe2e5c775b2e0c04aeac19734071985d49165aba6322df50c8bff22fe",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-version-native-return-v1-unfocused.png",
+      "caption": "AFTER #123: version native return v1 unfocused; owned synthetic lineage",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:02:29.360869+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "1c36d543d8896cd852344554acdd7944d315e89768f0c7e86641b8d8c4543a2a",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "after-reviewed123-firefox-123-version-v1-focused.png",
+      "caption": "AFTER #123: version v1 focused; owned synthetic lineage",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:02:21.560416+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6efd24fa4039c5176c5d0df4760b8fb78ef8633a8c96d4c63757b497d10cffd0",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-version-v1-picker-focus-no-ann.png",
+      "caption": "AFTER #123: version v1 picker focus no ann; owned synthetic lineage",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:02:22.881572+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "27c1c5cbc67901ca78f1dc1909b570ff7ce13481b3120a50f56ac77b9f73d1ab",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-firefox-123-version-v2-focus-cleared.png",
+      "caption": "AFTER #123: version v2 focus cleared; owned synthetic lineage; immediate header/focus transition while PDF is loading; not settled absence proof",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:02:24.871118+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "66f1ff6a46bc5826be5f1654f23fd901bab2e0027c68ae8ebf13d6658d4b955c",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim; PDF still loading in this capture",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "after-reviewed123-firefox-123-version-v2-stale-target-no-highlight.png",
+      "caption": "AFTER #123: version v2 stale target no highlight; owned synthetic lineage; immediate header/focus transition while PDF is loading; not settled absence proof",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:02:38.299734+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8f9f16107c8476d0ca5da1ac3b4dfdadf0203f7006c13a80b7955cac3461c7c5",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim; PDF still loading in this capture",
+      "pdf_zoom": 115
+    },
+    {
+      "image": "after-reviewed123-firefox-123-warm-native-same-document-return-unfocused.png",
+      "caption": "AFTER #123: warm native same document return unfocused",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:37:03.112164+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ec6c7814ea136ff7f45a80517dcd6c0f75c837e85b9f428ef244692d57b2e106",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 227
+    },
+    {
+      "image": "after-reviewed123-firefox-123-warm-return-before-exit-focus-without-ann.png",
+      "caption": "AFTER #123: warm return before exit focus without ann",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:36:58.526929+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "ce46024c9c21c20502b3dc1e6fbe5e69b29e939c6f262325b5369234f133702d",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 110
+    },
+    {
+      "image": "after-reviewed123-proof-chromium-123-version-v2-ordinary-focus-clear.png",
+      "caption": "AFTER #123: native v2 PDF fully loaded; ordinary native version change clears prior focus; stable nonzero rendered canvas measured twice 500ms apart",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:54:55.569679+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 115,
+      "sha256": "994d60031ffb2c07b8a577c07a8f04a5651e92c981c950647e06c96b0260501e",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic native UI verification; no model/domain or content-version-difference assessment"
+    },
+    {
+      "image": "after-reviewed123-proof-chromium-123-version-v2-stale-target-no-highlight.png",
+      "caption": "AFTER #123: native v2 PDF fully loaded; stale prior-version target retained in URL with no invented highlight; stable nonzero rendered canvas measured twice 500ms apart",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:55:04.723012+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 115,
+      "sha256": "f41b8630c8a42aac1caf9bda857d7b1e46e03d6a178ef5affcdc07a2a8cb8bdd",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic native UI verification; no model/domain or content-version-difference assessment"
+    },
+    {
+      "image": "after-reviewed123-proof-firefox-123-version-v2-ordinary-focus-clear.png",
+      "caption": "AFTER #123: native v2 PDF fully loaded; ordinary native version change clears prior focus; stable nonzero rendered canvas measured twice 500ms apart",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:55:44.098118+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 115,
+      "sha256": "12bf3f30a96114cb59a9b9aa13ef781f48ffc5e4c69fca3a045d17bf68f6b645",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic native UI verification; no model/domain or content-version-difference assessment"
+    },
+    {
+      "image": "after-reviewed123-proof-firefox-123-version-v2-stale-target-no-highlight.png",
+      "caption": "AFTER #123: native v2 PDF fully loaded; stale prior-version target retained in URL with no invented highlight; stable nonzero rendered canvas measured twice 500ms apart",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:55:54.594296+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 115,
+      "sha256": "e8b11788ac7c16d744b80bc58b452c77c7595bf37e0a6e311fa3e058e0f95a5e",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Separate issue120 synthetic native version lineage; identical public SME PDF bytes",
+      "limitations": "Synthetic native UI verification; no model/domain or content-version-difference assessment"
+    },
+    {
+      "image": "after-reviewed123-visible-chromium-123-label-allowlist-ALWAYS-A-excluded.png",
+      "caption": "AFTER #123: label allowlist ALWAYS A excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:15.027685+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b4ab1a71fb666b49fa7b34dfe80dc238ad3e17f111140ab644e3f18f4d649aed",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-visible-chromium-123-label-allowlist-ALWAYS-A-restored.png",
+      "caption": "AFTER #123: label allowlist ALWAYS A restored; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:22.704060+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "366ab78c40db157f43ae743de4cca10848e1858fe631ade9ce676706a785f3ac",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-visible-chromium-123-label-allowlist-HIDE-A-excluded.png",
+      "caption": "AFTER #123: label allowlist HIDE A excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:33.037632+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "51fdc91ddb67217bc1100f6fc9836f96749d55a70112d849ff0a56bc1d7ec7ea",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 227
+    },
+    {
+      "image": "after-reviewed123-visible-chromium-123-label-allowlist-HIDE-A-restored.png",
+      "caption": "AFTER #123: label allowlist HIDE A restored; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:39.878205+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "b325b3d8f4a15a72497841dcba8d891399cacef5f6614e6858713f96bf2f4597",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 227
+    },
+    {
+      "image": "after-reviewed123-visible-chromium-123-label-allowlist-default-A-excluded.png",
+      "caption": "AFTER #123: label allowlist default A excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:33:57.922916+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8fa0e8a6bf663543215db8e0b2431acda06815010ad477f505e01f64ab16cece",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-visible-chromium-123-label-allowlist-default-A-restored.png",
+      "caption": "AFTER #123: label allowlist default A restored; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:34:04.614789+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6b1852fcab95f3ae7052635876587d8d974a5d532877bfd630a37b0f2eb272df",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-visible-firefox-123-label-allowlist-ALWAYS-A-excluded.png",
+      "caption": "AFTER #123: label allowlist ALWAYS A excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:36:22.907545+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f9a8d2ec9ea581b1052ad7be263a5a89fc07c7ed7a83bf75538964a3aecbaec9",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-visible-firefox-123-label-allowlist-ALWAYS-A-restored.png",
+      "caption": "AFTER #123: label allowlist ALWAYS A restored; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:36:31.958365+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8c9462548ec005612042ae326c9e9f47ad1c2d065ce27db045177e711a9e9398",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-visible-firefox-123-label-allowlist-HIDE-A-excluded.png",
+      "caption": "AFTER #123: label allowlist HIDE A excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:36:44.231779+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "28319ad9844d325465bc275d643c02a574889a13e3d3ab1b85dc7a84365ba38a",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-visible-firefox-123-label-allowlist-HIDE-A-restored.png",
+      "caption": "AFTER #123: label allowlist HIDE A restored; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:36:52.352219+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8d05c4f71e2c0e7c8eaec9c8668998f2e46bb67038faa8cbcd75ab4cd5a2b4d9",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-visible-firefox-123-label-allowlist-default-A-excluded.png",
+      "caption": "AFTER #123: label allowlist default A excluded; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:36:00.154986+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "477f19d0e962bb6e915d3b2a1fa38434a28fd94bd7f3db59395353d25ab6cfcc",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    },
+    {
+      "image": "after-reviewed123-visible-firefox-123-label-allowlist-default-A-restored.png",
+      "caption": "AFTER #123: label allowlist default A restored; native display/filter state",
+      "issues": [
+        120,
+        123
+      ],
+      "captured_at": "2026-10-12T17:36:09.228098+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6c371cfe0cf88e3981ea30ad92600d6b9f08327500caa48c6dfcc6ab39f82dc6",
+      "source_commit": "5845c783360c4f9d0d71794727505c509877480d",
+      "fixture": "Issue120 synthetic interaction fixture; unchanged public SME PDF bytes",
+      "limitations": "Synthetic UI verification; no model/domain assessment or source-location accuracy claim",
+      "pdf_zoom": 220
+    }
+  ],
+  "acceptance": "Full #123 lifecycle and retained #121 acceptance PASS; immediate-loading transitions distinguished from four new settled v2 PDF proofs"
+}

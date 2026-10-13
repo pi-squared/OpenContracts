@@ -1,0 +1,95 @@
+{
+  "phase": "intermediate",
+  "artifacts": [
+    {
+      "image": "intermediate-124-hosted-input-after-reviewed124-final-firefox-124-floating-Settings-first-Escape-focus-retained.png",
+      "caption": "Owned public SME technical copy. First Escape closes native Settings and retains the focused B label, with the Extract pane closed.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:24:27.230875+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "ccb4b5c4100170ae55eebc9c534e96c3ecfdc388a2faba9415ac4036038c4349",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Owned generic interaction fixture; public SME source PDF",
+      "limitations": [
+        "Fresh deployed progress evidence. Full integrated hosted acceptance, final preservation and whole branch review remain pending."
+      ]
+    },
+    {
+      "image": "intermediate-124-hosted-input-after-reviewed124-final-chromium-keyboard-selected-AB-HIDE-Space.png",
+      "caption": "Owned technical copy. Space cycles selected-only evidence from B to A under Hide; highlights remain and PDF labels stay hidden. The right Extract pane is open.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:29:34.290904+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "11961238b177cce2f4e97c0a392e990be1ebd38a71061f6b33f9d9b7b56e2dcb",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Owned generic interaction fixture; public SME source PDF",
+      "limitations": [
+        "Fresh deployed progress evidence. Full integrated hosted acceptance, final preservation and whole branch review remain pending."
+      ]
+    },
+    {
+      "image": "intermediate-124-hosted-input-after-reviewed124-final-firefox-fspo-keyboard-Enter-actual-evidence.png",
+      "caption": "Actual retained FSPO sample. Native Tab/Enter reaches the quotation highlight and displays its label; current finding remains open. This capture alone does not establish Escape clearing.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:37:19.323867+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "sha256": "e9a16087a9b1595b547b97dc860715830a0aa922f00ef241355df50d5e8fb93b",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Actual public FSPO 2020-0299 PDF and retained extract-source quotation",
+      "limitations": [
+        "Fresh deployed progress evidence. Full integrated hosted acceptance, final preservation and whole branch review remain pending."
+      ]
+    },
+    {
+      "image": "intermediate-124-hosted-input-after-reviewed124-final-firefox-original-value-settled-foreground-Close-proof.png",
+      "caption": "Owned synthetic original-value fixture. Native Original Value dialog is settled, with readable content and a reachable Close control. This contains no model assessment.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:20:36.490034+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": null,
+      "sha256": "096315ff314708b7fc6be152e59be161e56b5a02bed09d3d29351380fe0c97db",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "fixture": "Owned technical corrected/original-value fixture on public SME PDF",
+      "limitations": [
+        "Fresh deployed progress evidence. Full integrated hosted acceptance, final preservation and whole branch review remain pending."
+      ]
+    }
+  ],
+  "acceptance": "Actual deployed input/control progress only. Images are unchanged and visually reviewed. Required local checks passed; full hosted acceptance and whole branch review remain pending.",
+  "hosted_acceptance": false
+}

@@ -1,0 +1,133 @@
+diff --git a/frontend/src/components/extracts/ExtractDetailContent.tsx b/frontend/src/components/extracts/ExtractDetailContent.tsx
+index 950e4bd08..eb84a6e39 100644
+--- a/frontend/src/components/extracts/ExtractDetailContent.tsx
++++ b/frontend/src/components/extracts/ExtractDetailContent.tsx
+@@ -82,11 +82,12 @@ import { ConfirmModal } from "../widgets/modals/ConfirmModal";
+ import {
+   getExtractStatus,
+   formatExtractDate,
+-  getExtractOutcomeSummary,
+ } from "../../utils/extractUtils";
+ import { useExtractCompletionNotification } from "../../hooks/useExtractCompletionNotification";
+ import { LoadingOverlay } from "../common/LoadingOverlay";
+ 
++import { ExtractOutcomeNotice } from "./ExtractOutcomeNotice";
++
+ // Styled Components
+ const StatsSection = styled.div`
+   margin-bottom: 24px;
+@@ -662,22 +663,13 @@ export const ExtractDetailContent = forwardRef<
+   return (
+     <>
+       {isComplete && (
+-        <div role="status">
+-          <strong>
+-            {getExtractOutcomeSummary(
+-              cells,
+-              rows.length * columns.length,
+-              extract
+-            )}
+-          </strong>
+-          {(isFailed || stats.failedFields > 0) && (
+-            <p>
+-              This run ended with errors and {stats.failedFields} failed
+-              field(s). Saved results remain available for review. Check the
+-              configuration and use Iterations to create a new run.
+-            </p>
+-          )}
+-        </div>
++        <ExtractOutcomeNotice
++          cells={cells}
++          expectedFields={rows.length * columns.length}
++          extract={extract}
++          failedFields={stats.failedFields}
++          isFailed={isFailed}
++        />
+       )}
+       {/* Stats */}
+       <StatsSection>
+diff --git a/frontend/src/views/ExtractDetail.tsx b/frontend/src/views/ExtractDetail.tsx
+index 766bfe936..47fda2e3e 100644
+--- a/frontend/src/views/ExtractDetail.tsx
++++ b/frontend/src/views/ExtractDetail.tsx
+@@ -88,10 +88,11 @@ import { ConfirmModal } from "../components/widgets/modals/ConfirmModal";
+ import {
+   getExtractStatus,
+   formatExtractDate,
+-  getExtractOutcomeSummary,
+ } from "../utils/extractUtils";
+ import { useExtractCompletionNotification } from "../hooks/useExtractCompletionNotification";
+ 
++import { ExtractOutcomeNotice } from "../components/extracts/ExtractOutcomeNotice";
++
+ // ═══════════════════════════════════════════════════════════════════════════════
+ // STYLED COMPONENTS
+ // ═══════════════════════════════════════════════════════════════════════════════
+@@ -813,22 +814,13 @@ export const ExtractDetail: React.FC = () => {
+         </Header>
+ 
+         {isComplete && (
+-          <div role="status">
+-            <strong>
+-              {getExtractOutcomeSummary(
+-                cells,
+-                rows.length * columns.length,
+-                extract
+-              )}
+-            </strong>
+-            {(isFailed || stats.failedFields > 0) && (
+-              <p>
+-                This run ended with errors and {stats.failedFields} failed
+-                field(s). Saved results remain available for review. Check the
+-                configuration and use Iterations to create a new run.
+-              </p>
+-            )}
+-          </div>
++          <ExtractOutcomeNotice
++            cells={cells}
++            expectedFields={rows.length * columns.length}
++            extract={extract}
++            failedFields={stats.failedFields}
++            isFailed={isFailed}
++          />
+         )}
+         {/* Stats */}
+         <StatsSection>
+diff --git a/frontend/src/components/extracts/ExtractOutcomeNotice.tsx b/frontend/src/components/extracts/ExtractOutcomeNotice.tsx
+new file mode 100644
+index 000000000..c5c2e0d7e
+--- /dev/null
++++ b/frontend/src/components/extracts/ExtractOutcomeNotice.tsx
+@@ -0,0 +1,32 @@
++import type { DatacellType, ExtractType } from "../../types/graphql-api";
++import { getExtractOutcomeSummary } from "../../utils/extractUtils";
++
++interface ExtractOutcomeNoticeProps {
++  cells: DatacellType[];
++  expectedFields: number;
++  extract: ExtractType;
++  failedFields: number;
++  isFailed: boolean;
++}
++
++/** The same terminal outcome and recovery guidance in every extract detail. */
++export function ExtractOutcomeNotice({
++  cells,
++  expectedFields,
++  extract,
++  failedFields,
++  isFailed,
++}: ExtractOutcomeNoticeProps) {
++  return (
++    <div role="status">
++      <strong>{getExtractOutcomeSummary(cells, expectedFields, extract)}</strong>
++      {(isFailed || failedFields > 0) && (
++        <p>
++          This run ended with errors and {failedFields} failed field(s). Saved
++          results remain available for review. Check the configuration and use
++          Iterations to create a new run.
++        </p>
++      )}
++    </div>
++  );
++}

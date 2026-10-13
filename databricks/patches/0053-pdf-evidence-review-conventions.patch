@@ -1,0 +1,234 @@
+diff --git a/.cursor/rules/pdf-viewer-and-annotator-architecture.mdc b/.cursor/rules/pdf-viewer-and-annotator-architecture.mdc
+--- a/.cursor/rules/pdf-viewer-and-annotator-architecture.mdc
++++ b/.cursor/rules/pdf-viewer-and-annotator-architecture.mdc
+@@ -76,6 +76,10 @@
+ ├── scrollContainerRefAtom - Scroll container reference
+ ├── pendingScrollAnnotationIdAtom - Annotation to scroll to
+ └── textSearchStateAtom - Search state management
++
++useEvidenceFocus.ts
++├── evidenceFocusAtom - One transient evidence identity for source inspection
++└── evidenceNavigationAtom - Explicit source-navigation intent, separate from focus
+ ```
+ 
+ This approach provides:
+@@ -83,6 +87,45 @@
+ - Computed derivations that automatically update
+ - Efficient re-rendering when only relevant state changes
+ - Layer-aware state transitions
++
++### Evidence Inspection and Native Interaction Owners
++
++`useEvidenceFocus.ts` keeps singular **focused evidence** separate from plural
++viewer selection in `UISettingsAtom.tsx`. Both focus and navigation intent are
++scoped by route, selected source version, document identity and PDF hash. Leaving
++that scope clears them; closing the Extract pane retains them. Focus does not
++change saved findings, quotation associations, labels or review outcomes.
++
++`Selection.tsx` combines local pointer and keyboard ownership with page-wide
++hover from `usePdfEvidenceInteraction.ts`. These temporary label owners do not
++change focused evidence. Label controls and their native editor retain temporary
++ownership during pointer transfer or keyboard use. Eligibility comes from native
++annotation/label filters before inspection: filtered evidence stays absent and
++remembers its focus for restoration. On Hover shows an eligible label for hover,
++keyboard focus or evidence focus; Always shows every eligible label; Hide hides
++all labels while retaining eligible highlights. Explicit URL display modes persist.
++
++`usePdfEvidenceInteraction.ts` finds evidence covering the actual page point,
++deduplicates annotation identities and advances a stable continuous cycle.
++Keyboard Enter/Space uses each reachable highlight's center. A stationary touch
++uses the browser's compatibility click; movement, held touches, cancellation and
++multitouch exclude evidence activation. `SelectionLayer.tsx` retains native drag
++and held-touch text selection, copying and annotation/link creation. Evidence
++movement admission and native long-press cancellation use distinct thresholds.
++
++`utils/pdfEvidenceInteraction.ts` centralizes native interaction owners. Hover
++excludes anchors so PDF links can reveal underlying labels; activation and native
++mouse/touch selection include anchors. Annotation labels, buttons, non-evidence
++role buttons, selection menus and child dialogs own their gestures. The desktop
++and mobile fullscreen knowledge-base shells remain interactive PDF containers.
++`SelectionBoundary.tsx` places label anchors separately above highlight surfaces
++and raises the label in use without changing page geometry or overlap candidates.
++
++Escape follows native owners before the `useEvidenceFocusEscape` window-bubbling
++fallback: child dialogs, rendered filters/settings, annotation actions, pending
++mouse/touch selection, selection menus and browser text ranges handle their first
++Escape. Native child-dialog cancellation restores its launcher. Only an eligible
++PDF Escape with no earlier owner clears focused evidence.
+ 
+ ### PDF Rendering Pipeline
+ 
+@@ -210,10 +253,17 @@
+ 
+ ### Scroll-to-Annotation System
+ 
+-The system uses a two-phase approach for scrolling to annotations, triggered by:
+-- URL parameters (`?ann=id1,id2`)
+-- Direct props (`initialAnnotationIds`)
+-- Programmatic selection
++The system uses a two-phase approach for scrolling to annotations. New URL
++parameters (`?ann=id1,id2`), direct props (`initialAnnotationIds`) and viewer
++selection can supply a destination. Explicit source actions use
++`useEvidenceFocus.ts::navigateToEvidence`, which sets focused evidence and a new
++`evidenceNavigationAtom` intent even when revisiting the same annotation.
++
++`PDF.tsx` tracks handled navigation and selection destinations. Changing focused
++evidence through page-point cycling does not navigate. Remembered focus or an
++already handled selection does not replay scrolling during reading, zoom or pane
++layout changes. Manual/sidebar zoom preserves the point being read; explicit
++source navigation still scrolls to its destination.
+ 
+ 1. **Phase 1 (PDF.tsx)**: Scroll to make the page visible
+    - Calculate which page contains the annotation
+diff --git a/frontend/src/assets/configurations/constants.ts b/frontend/src/assets/configurations/constants.ts
+--- a/frontend/src/assets/configurations/constants.ts
++++ b/frontend/src/assets/configurations/constants.ts
+@@ -309,11 +309,17 @@
+   /** PDF page SelectionLayer — full-page overlay capturing mouse for the
+    *  annotator. Sits above the rendered canvas so drag-to-select works. */
+   PDF_SELECTION_LAYER: 1,
++  /** Saved highlight raised during label inspection, below native PDF links. */
++  PDF_ANNOTATION_FOREGROUND: 3,
+   /** PDF page NativeLinkLayer — anchors hovering over PDF.js external link
+    *  annotations. Must sit above ``PDF_SELECTION_LAYER`` so its
+    *  ``pointer-events: auto`` anchors receive clicks first, including above
+    *  saved highlights raised during label inspection. */
+   PDF_NATIVE_LINK_LAYER: 4,
++  /** Separate annotation labels sit above highlight and native link surfaces. */
++  PDF_ANNOTATION_LABEL: 5,
++  /** The label currently being used stays above its neighboring labels. */
++  PDF_ANNOTATION_LABEL_FOREGROUND: 6,
+   /** Mobile floating document-controls pill — overlays the viewer's top-right
+    *  corner inside ViewerArea's local stacking context, above the rendered
+    *  page but below in-page loading overlays. */
+@@ -1199,6 +1205,12 @@
+ // Evidence label layout and browser file downloads.
+ export const ANNOTATION_LABEL_GAP = 4;
+ export const ANNOTATION_LABEL_MIN_HEIGHT = 4;
++/** Allow pointer transfer from a highlight to its separate label controls. */
++export const ANNOTATION_LABEL_HOVER_EXIT_DELAY_MS = 160;
++/** Maximum stationary movement for evidence activation and drag admission. */
++export const PDF_EVIDENCE_MOVEMENT_THRESHOLD_PX = 3;
++/** Held touches belong to native text selection instead of evidence clicks. */
++export const PDF_EVIDENCE_TOUCH_HOLD_DURATION_MS = 500;
+ export const EXCEL_MAX_CELL_LENGTH = 32767;
+ export const EXCEL_MAX_ROWS = 1048576;
+ export const EXCEL_MAX_COLUMNS = 16384;
+diff --git a/frontend/src/components/annotator/display/components/Selection.tsx b/frontend/src/components/annotator/display/components/Selection.tsx
+--- a/frontend/src/components/annotator/display/components/Selection.tsx
++++ b/frontend/src/components/annotator/display/components/Selection.tsx
+@@ -31,7 +31,10 @@
+ import { useEvidenceFocus } from "../../../../hooks/useEvidenceFocus";
+ import { useUpdateAnnotation } from "../../hooks/AnnotationHooks";
+ import { LabelDisplayBehavior } from "../../../../types/graphql-api";
+-import { OC_URL_LABEL } from "../../../../assets/configurations/constants";
++import {
++  ANNOTATION_LABEL_HOVER_EXIT_DELAY_MS,
++  OC_URL_LABEL,
++} from "../../../../assets/configurations/constants";
+ import { useReactiveVar } from "@apollo/client";
+ import { authToken } from "../../../../graphql/cache";
+ import { PDFPageInfo } from "../../types/pdf";
+@@ -144,7 +147,11 @@
+   const handleHover = useCallback((active: boolean) => {
+     clearTimeout(hoverExitTimer.current);
+     if (active) setHovered(true);
+-    else hoverExitTimer.current = setTimeout(() => setHovered(false), 160);
++    else
++      hoverExitTimer.current = setTimeout(
++        () => setHovered(false),
++        ANNOTATION_LABEL_HOVER_EXIT_DELAY_MS
++      );
+   }, []);
+   useEffect(() => () => clearTimeout(hoverExitTimer.current), []);
+   const [isEditLabelModalVisible, setIsEditLabelModalVisible] = useState(false);
+diff --git a/frontend/src/components/annotator/display/components/SelectionBoundary.tsx b/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
+--- a/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
++++ b/frontend/src/components/annotator/display/components/SelectionBoundary.tsx
+@@ -9,6 +9,7 @@
+   ANNOTATION_BOUNDARY_RADIUS,
+   BOUNDARY_OPACITY_SELECTED,
+   BOUNDARY_OPACITY_UNSELECTED,
++  Z_INDEX,
+ } from "../../../../assets/configurations/constants";
+ import { pulseGreen, pulseMaroon } from "../effects";
+ import { useAnnotationRefs } from "../../hooks/useAnnotationRefs";
+@@ -70,10 +71,10 @@
+     backgroundColor: props.$backgroundColor,
+     zIndex: props.$labelAnchor
+       ? props.$foreground
+-        ? 6
+-        : 5
++        ? Z_INDEX.PDF_ANNOTATION_LABEL_FOREGROUND
++        : Z_INDEX.PDF_ANNOTATION_LABEL
+       : props.$foreground
+-      ? 3
++      ? Z_INDEX.PDF_ANNOTATION_FOREGROUND
+       : 2,
+     border: "none",
+     boxShadow: props.$boxShadow,
+diff --git a/frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx b/frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx
+--- a/frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx
++++ b/frontend/src/components/annotator/renderers/pdf/SelectionLayer.tsx
+@@ -8,6 +8,7 @@
+ } from "../../../types";
+ 
+ import { normalizeBounds } from "../../../../utils/transform";
++import { ownsPdfEvidenceInteraction } from "../../../../utils/pdfEvidenceInteraction";
+ import { PDFPageInfo } from "../../types/pdf";
+ import { AnnotationLabelType } from "../../../../types/graphql-api";
+ import { ServerTokenAnnotation } from "../../types/annotations";
+@@ -40,6 +41,7 @@
+   OC_URL_LABEL_COLOR,
+   PENDING_OC_URL_LABEL_ID,
+   SELECTION_MENU_COOLDOWN_MS,
++  PDF_EVIDENCE_MOVEMENT_THRESHOLD_PX,
+   Z_INDEX,
+ } from "../../../../assets/configurations/constants";
+ 
+@@ -501,13 +503,7 @@
+     const down = (event: MouseEvent) => {
+       if (event.shiftKey || event.ctrlKey || event.metaKey || event.altKey)
+         return;
+-      if (
+-        event.target instanceof Element &&
+-        event.target.closest(
+-          "[data-annotation-label], a, button, [role=button]:not([data-pdf-evidence-target]), [role=dialog]:not(#knowledge-base-modal):not(#mobile-knowledge-base-modal), [data-testid=selection-action-menu]"
+-        )
+-      )
+-        return;
++      if (ownsPdfEvidenceInteraction(event.target)) return;
+       handleMouseDown(event);
+     };
+     wrapper.addEventListener("mousedown", down, true);
+@@ -521,8 +517,13 @@
+         setPendingMouseStart(null);
+         return;
+       }
+-      if (Math.hypot(event.clientX - pendingMouseStart.x,
+-        event.clientY - pendingMouseStart.y) <= 3) return;
++      if (
++        Math.hypot(
++          event.clientX - pendingMouseStart.x,
++          event.clientY - pendingMouseStart.y
++        ) <= PDF_EVIDENCE_MOVEMENT_THRESHOLD_PX
++      )
++        return;
+       const canvas = containerRef.current?.previousSibling as HTMLCanvasElement | null;
+       if (!canvas) return;
+       const bounds = canvas.getBoundingClientRect();
+@@ -779,13 +780,7 @@
+     const wrapper = mouseEventContainerRef?.current;
+     if (!wrapper) return;
+     const start = (event: TouchEvent) => {
+-      if (
+-        event.target instanceof Element &&
+-        event.target.closest(
+-          "[data-annotation-label], a, button, [role=button]:not([data-pdf-evidence-target]), [role=dialog]:not(#knowledge-base-modal):not(#mobile-knowledge-base-modal), [data-testid=selection-action-menu]"
+-        )
+-      )
+-        return;
++      if (ownsPdfEvidenceInteraction(event.target)) return;
+       handleTouchStart(event);
+     };
+     const move = (event: TouchEvent) => {

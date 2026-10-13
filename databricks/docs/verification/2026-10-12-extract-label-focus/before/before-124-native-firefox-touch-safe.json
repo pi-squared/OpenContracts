@@ -1,0 +1,33 @@
+{
+  "captured_at": "2026-10-12T16:19:21.832172+00:00",
+  "source_commit": "aa383ca4c13eac3e11facf73e7f373e8167190ed",
+  "browser": "Firefox 157.0.1",
+  "driver": "GeckoDriver 0.37.1 W3C native touch actions",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "pdf_zoom": 108,
+  "held_touch_ms": 650,
+  "move_ms": 250,
+  "trusted_touchstart_move_end": true,
+  "native_menu_visible": true,
+  "expected_text_match": true,
+  "expected_text_sha256": "c282b550e3b2da888a673b9d12bbcee147cef38d74f40815a85a92c05d14baa3",
+  "pasted_text_sha256": "c282b550e3b2da888a673b9d12bbcee147cef38d74f40815a85a92c05d14baa3",
+  "clipboard_method": "Native app Copy Text followed by trusted Ctrl+V into an isolated blank-tab textarea; actual clipboard, no stub",
+  "focus_A_retained_after_copy_and_return": true,
+  "menu_closed_after_copy": true,
+  "system_access_flag_used": false,
+  "network_policy": "Same-origin service-principal authentication; real assets/responses; AST permits GraphQL queries only; other writes and redirects rejected",
+  "observation_limitations": [
+    "One local data: pseudo-network continue request was already complete; retained as transport diagnostic. It involved no HTTP request or app content. Future protocol skips local non-HTTP pseudo-events.",
+    "Broad system-access driver flag was rejected by automatic approval review; completed clipboard proof with ordinary non-privileged browser paste."
+  ],
+  "original_records_unchanged": true,
+  "browser_mutations": 0,
+  "model_invocations": 0,
+  "fixture": "Synthetic UI verification; not domain/model acceptance",
+  "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+  "manifest": "manifest-before-124-native-firefox-touch.json"
+}

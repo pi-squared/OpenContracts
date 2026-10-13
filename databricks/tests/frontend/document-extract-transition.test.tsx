@@ -19,6 +19,7 @@ import {
   useAnalysisSelection,
 } from "../src/components/annotator/hooks/AnalysisHooks";
 import { SingleDocumentExtractResults } from "../src/components/annotator/sidebar/SingleDocumentExtractResults";
+import { ExtractDetail } from "../src/views/ExtractDetail";
 import { ExtractDataGrid } from "../src/components/extracts/datagrid/DataGrid";
 import { PDF } from "../src/components/annotator/renderers/pdf/PDF";
 import { usePdfAnnotations } from "../src/components/annotator/hooks/AnnotationHooks";
@@ -126,6 +127,7 @@ const column = {
   extractIsList: false,
   taskName: "fixture",
 };
+let extractError: string | null = null;
 const extract = {
   __typename: "ExtractType",
   id: id("ExtractType", 1),
@@ -143,7 +145,9 @@ const extract = {
   created: "2026-10-06T10:00:00Z",
   started: "2026-10-06T10:00:00Z",
   finished: "2026-10-06T10:01:00Z",
-  error: null,
+  get error() {
+    return extractError;
+  },
   myPermissions: ["READ"],
   corpusAction: null,
 };
@@ -307,6 +311,19 @@ function response(name: string, variables: Record<string, any>) {
       },
     };
   if (name === "ResolveExtractById") return { extract };
+  if (name === "GetExtract")
+    return {
+      extract: {
+        ...extract,
+        fullDocumentList: documents,
+        fullDatacellList: cells,
+        fullIterationList: [],
+        parentExtract: null,
+        modelConfig: null,
+        iterationAxis: null,
+        sourceReadinessError: null,
+      },
+    };
   if (name === "ResolveDocumentInCorpusFull")
     return { corpusBySlugs: corpus, documentInCorpusBySlugs: doc };
   if (name === "GetDocumentKnowledgeAndAnnotations")
@@ -432,6 +449,14 @@ function DocumentView({ documentId }: { documentId: string }) {
   return (
     <>
       <h1>{loader.combinedData?.document?.title}</h1>
+      <button
+        onClick={() =>
+          navigate(`/d/reviewer/fixtures/document-b?extract=${extract.id}`)
+        }
+      >
+        Open other document
+      </button>
+      <button onClick={() => navigate(gridPath)}>Open extract grid</button>
       <output aria-label="Zoom">{zoomLevel}</output>
       <button onClick={() => setZoomLevel(1.5)}>Set zoom 150%</button>
       <button
@@ -466,8 +491,20 @@ function DocumentView({ documentId }: { documentId: string }) {
           })
         }
       >
-        Show labels without hover
+        Default labels
       </button>
+      {[LabelDisplayBehavior.ALWAYS, LabelDisplayBehavior.HIDE].map((mode) => (
+        <button
+          key={mode}
+          onClick={() =>
+            updateAnnotationDisplayParams(location, navigate, {
+              labelDisplay: mode,
+            })
+          }
+        >
+          {mode} labels
+        </button>
+      ))}
       <button onClick={() => onSelectExtract(extracts[0])}>
         View fixture extract
       </button>
@@ -504,25 +541,36 @@ function DocumentView({ documentId }: { documentId: string }) {
 }
 function Workspace() {
   const location = useLocation();
+  const navigate = useNavigate();
   const doc = useReactiveVar(openedDocument);
   const loading = useReactiveVar(routeLoading);
   return location.pathname.startsWith("/d/") ? (
     doc && !loading && <DocumentView documentId={doc.id} />
   ) : (
-    <ExtractDataGrid
-      extract={extract as any}
-      cells={cells as any}
-      rows={documents as any}
-      columns={[column] as any}
-      onAddDocIds={() => {}}
-      onRemoveDocIds={() => {}}
-      onRemoveColumnId={() => {}}
-      onAddColumn={() => {}}
-    />
+    <>
+      <button
+        onClick={() =>
+          navigate(`/d/reviewer/fixtures/document-a?extract=${extract.id}`)
+        }
+      >
+        Open Document A
+      </button>
+      <ExtractDataGrid
+        extract={extract as any}
+        cells={cells as any}
+        rows={documents as any}
+        columns={[column] as any}
+        onAddDocIds={() => {}}
+        onRemoveDocIds={() => {}}
+        onRemoveColumnId={() => {}}
+        onAddColumn={() => {}}
+      />
+    </>
   );
 }
 
 beforeEach(() => {
+  extractError = null;
   cache.restore({});
   pending = [];
   requests = [];
@@ -688,45 +736,26 @@ function expectHighlights(index: number) {
   for (const source of sources[1 - index])
     expect(pdf().querySelector(`[id="SELECTION_${source.id}"]`)).toBeNull();
 }
-async function inspectQuotes(index: number, withoutHover = true) {
+async function inspectQuotes(index: number) {
   await click(button("2 Annotations"));
+  await click(button("Default labels"));
   for (const source of sources[index]) {
-    if (selectedAnnotationIds().includes(source.id))
-      await click(
-        host.querySelector(
-          `[data-testid="extract-pane"] [data-annotation-id="${source.id}"]`
-        )
-      );
+    const card = host.querySelector(
+      `[data-testid="extract-pane"] [data-annotation-id="${source.id}"]`
+    )!;
+    if (card.getAttribute("aria-current") === "true") await click(card);
     scrollTargets = [];
-    await click(
-      host.querySelector(
-        `[data-testid="extract-pane"] [data-annotation-id="${source.id}"]`
-      )
-    );
+    await click(card);
     expect(new URLSearchParams(window.location.search).get("ann")).toBe(
       source.id
     );
     expectHighlights(index);
     expect(
-      scrollTargets.some((target) =>
-        target.classList.contains(`selection_${source.id}`)
-      ),
-      "selected PDF quote was actually focused"
+      scrollTargets.some((target) => target.id === `SELECTION_${source.id}`),
+      "source navigation centers its PDF quote"
     ).toBe(true);
-    if (withoutHover) await click(button("Show labels without hover"));
-    for (const quote of sources[index]) {
-      const label = Array.from(pdf().querySelectorAll("span")).find(
-        (item) =>
-          item.children.length === 0 &&
-          item.textContent === quote.annotationLabel.text
-      );
-      expect(label, `${quote.rawText} persistent label`).toBeDefined();
-      expect(
-        getComputedStyle(label!.parentElement!.parentElement!.parentElement!)
-          .display,
-        `${quote.rawText} label without hover`
-      ).not.toBe("none");
-    }
+    for (const quote of sources[index])
+      expectLabel(quote, quote.id === source.id);
   }
 }
 
@@ -755,7 +784,7 @@ it("keeps extract highlights, source focus and labels through a warm-cache A →
   await act(async () => extractRequest!.release());
   await settle();
   expectHighlights(0);
-  await inspectQuotes(0, false);
+  await inspectQuotes(0);
   // A seeded Apollo with the extract's sources for BOTH documents.
   await history("back");
   await openFromGrid(1);
@@ -942,6 +971,9 @@ it.each([
     pending = pending.filter((item) => item !== extractRequest);
     await act(async () => extractRequest.release());
     await settle();
+    // This review case inspects one source in the ordinary display. The separate
+    // selected-only regressions retain every member of a View Sources entry.
+    await click(button("Default labels"));
     await click(button(corrected ? "1 Annotation" : "2 Annotations"));
     const selectedSource = evidence[0];
     if (selectedAnnotationIds().includes(selectedSource.id))
@@ -956,7 +988,6 @@ it.each([
       )
     );
     expect(selectedAnnotationIds()).toEqual([selectedSource.id]);
-    await click(button("Show labels without hover"));
     await click(button("Set zoom 150%"));
     await act(async () => new Promise((resolve) => setTimeout(resolve, 150)));
     const selection = selectedAnnotationIds();
@@ -1000,27 +1031,17 @@ it.each([
     expect(unresolvedRow.textContent).not.toContain("Annotation");
     expect(pdf().querySelectorAll('[id^="SELECTION_"]')).toHaveLength(2);
 
-    // Deselecting or selecting another quotation changes emphasis, not evidence.
+    // Clearing evidence focus preserves native selection and saved evidence.
     await click(
       host.querySelector(
         `[data-testid="extract-pane"] [data-annotation-id="${selectedSource.id}"]`
       )
     );
-    expect(selectedAnnotationIds()).toEqual([]);
+    expect(selectedAnnotationIds()).toEqual([selectedSource.id]);
     expectHighlights(index);
-    for (const source of sources[index]) {
-      const label = Array.from(pdf().querySelectorAll("span")).find(
-        (item) =>
-          item.children.length === 0 &&
-          item.textContent === source.annotationLabel.text
-      )!;
-      expect(
-        getComputedStyle(label.parentElement!.parentElement!.parentElement!)
-          .display
-      ).not.toBe("none");
-    }
+    for (const source of sources[index]) expectLabel(source, false);
     await click(button("Show selected only"));
-    expect(pdf().querySelectorAll('[id^="SELECTION_"]')).toHaveLength(0);
+    expect(pdf().querySelectorAll('[id^="SELECTION_"]')).toHaveLength(1);
     await click(
       host.querySelector(
         `[data-testid="extract-pane"] [data-annotation-id="${selectedSource.id}"]`
@@ -1048,7 +1069,7 @@ it.each([
     expect(
       pdf().querySelector(`[id="SELECTION_${selectedSource.id}"]`)
     ).not.toBeNull();
-    await click(button("Show labels without hover"));
+    await click(button("Default labels"));
     expectHighlights(index);
 
     // Reload from the fixture's persisted review response with a fresh cache.
@@ -1100,3 +1121,299 @@ it.each([
   },
   15000
 );
+
+function labelFor(source: (typeof sources)[number][number]) {
+  return pdf().querySelector<HTMLElement>(
+    `[data-annotation-label="${source.id}"]`
+  )!;
+}
+function expectLabel(
+  source: (typeof sources)[number][number],
+  visible: boolean
+) {
+  const label = labelFor(source);
+  expect(label, `${source.rawText} label`).not.toBeNull();
+  expect(
+    getComputedStyle(label).display !== "none",
+    `${source.rawText} effective label visibility`
+  ).toBe(visible);
+}
+async function mountWorkspace() {
+  await act(async () =>
+    root.render(
+      <Provider>
+        <ApolloProvider client={client}>
+          <BrowserRouter>
+            <CentralRouteManager />
+            <Workspace />
+          </BrowserRouter>
+        </ApolloProvider>
+      </Provider>
+    )
+  );
+  await settle();
+}
+async function ordinaryEntry(index = 0, mode = "") {
+  window.history.replaceState(
+    null,
+    "",
+    `/d/reviewer/fixtures/document-${index ? "b" : "a"}?extract=${
+      extract.id
+    }${mode}`
+  );
+  await mountWorkspace();
+  await releaseRefreshes();
+  const request = pending.find(
+    (item) => item.name === "GetDatacellsForExtract"
+  );
+  if (request) {
+    pending = pending.filter((item) => item !== request);
+    await act(async () => request.release());
+    await settle();
+  }
+}
+it("ordinary extract entry keeps workflow evidence highlights while default labels wait for hover", async () => {
+  await ordinaryEntry();
+  expectHighlights(0);
+  for (const source of sources[0]) expectLabel(source, false);
+  const first = sources[0][0];
+  const target = pdf().querySelector(`[id="SELECTION_${first.id}"]`)!;
+  await act(async () =>
+    target.dispatchEvent(new MouseEvent("mouseover", { bubbles: true }))
+  );
+  expectLabel(first, true);
+  await act(async () => {
+    target.dispatchEvent(
+      new MouseEvent("mouseout", { bubbles: true, relatedTarget: pdf() })
+    );
+    await new Promise((resolve) => setTimeout(resolve, 200));
+  });
+  expectLabel(first, false);
+  expectHighlights(0);
+});
+
+it("individual sources focus one quotation, replace its label, and toggle focus without losing viewer selection", async () => {
+  await ordinaryEntry();
+  await click(button("2 Annotations"));
+  const cards = sources[0].map(
+    (source) =>
+      host.querySelector<HTMLElement>(
+        `[data-testid="extract-pane"] [data-annotation-id="${source.id}"]`
+      )!
+  );
+  await click(cards[0]);
+  expectLabel(sources[0][0], true);
+  expectLabel(sources[0][1], false);
+  expect(cards[0].getAttribute("aria-current")).toBe("true");
+  await click(cards[1]);
+  expectLabel(sources[0][0], false);
+  expectLabel(sources[0][1], true);
+  expect(cards[0].hasAttribute("aria-current")).toBe(false);
+  expect(cards[1].getAttribute("aria-current")).toBe("true");
+  expectHighlights(0);
+  const navigation = window.location.search;
+  scrollTargets = [];
+  await click(cards[1]);
+  expectLabel(sources[0][1], false);
+  expect(cards[1].hasAttribute("aria-current")).toBe(false);
+  expect(window.location.search).toBe(navigation);
+  expect(scrollTargets).toHaveLength(0);
+  expectHighlights(0);
+});
+
+it.each(["", "&labels=ON_HOVER", "&labels=HIDE", "&labels=ALWAYS"])(
+  "View Sources focuses its first target and preserves label mode %s",
+  async (mode) => {
+    window.history.replaceState(
+      null,
+      "",
+      `${gridPath}${mode ? "?" + mode.slice(1) : ""}`
+    );
+    await mountWorkspace();
+    await openFromGrid(0);
+    await releaseRefreshes();
+    const request = pending.find(
+      (item) => item.name === "GetDatacellsForExtract"
+    )!;
+    pending = pending.filter((item) => item !== request);
+    await act(async () => request.release());
+    await settle();
+    expect(new URLSearchParams(window.location.search).get("labels")).toBe(
+      mode ? mode.slice(8) : null
+    );
+    expectHighlights(0);
+    expectLabel(sources[0][0], mode !== "&labels=HIDE");
+    expectLabel(sources[0][1], mode === "&labels=ALWAYS");
+    await click(button("2 Annotations"));
+    const card = host.querySelector(
+      `[data-testid="extract-pane"] [data-annotation-id="${sources[0][0].id}"]`
+    )!;
+    expect(card.getAttribute("aria-current")).toBe("true");
+    await click(
+      host.querySelector(
+        `[data-testid="extract-pane"] [data-annotation-id="${sources[0][1].id}"]`
+      )
+    );
+    expect(new URLSearchParams(window.location.search).get("labels")).toBe(
+      mode ? mode.slice(8) : null
+    );
+    expectLabel(sources[0][0], mode === "&labels=ALWAYS");
+    expectLabel(sources[0][1], mode !== "&labels=HIDE");
+  }
+);
+
+it("activating a source after clearing focus repeats its PDF navigation even when native selection is unchanged", async () => {
+  await ordinaryEntry();
+  await click(button("2 Annotations"));
+  const card = host.querySelector(
+    `[data-testid="extract-pane"] [data-annotation-id="${sources[0][0].id}"]`
+  )!;
+  await click(card);
+  await act(async () => new Promise((resolve) => setTimeout(resolve, 200)));
+  await click(card);
+  scrollTargets = [];
+  vi.mocked(window.scrollTo).mockClear();
+  await click(card);
+  expect(
+    scrollTargets.some(
+      (target) => target.id === `SELECTION_${sources[0][0].id}`
+    ),
+    "explicit source action navigates again to its retained PDF geometry"
+  ).toBe(true);
+  expectLabel(sources[0][0], true);
+});
+
+it("ordinary document navigation clears evidence focus and cannot leak a previous quotation", async () => {
+  await ordinaryEntry();
+  await click(button("2 Annotations"));
+  await click(
+    host.querySelector(
+      `[data-testid="extract-pane"] [data-annotation-id="${sources[0][0].id}"]`
+    )
+  );
+  expectLabel(sources[0][0], true);
+  await click(button("Open other document"));
+  await releaseRefreshes();
+  expectHighlights(1);
+  for (const source of sources[1]) expectLabel(source, false);
+  expect(
+    pdf().querySelector(`[data-annotation-label="${sources[0][0].id}"]`)
+  ).toBeNull();
+  expect(
+    host.querySelector('[data-testid="extract-pane"] [aria-current="true"]')
+  ).toBeNull();
+});
+
+it("ordinary warm SPA return to the same document after leaving the viewer starts without evidence focus", async () => {
+  await ordinaryEntry();
+  await click(button("2 Annotations"));
+  await click(
+    host.querySelector(
+      `[data-testid="extract-pane"] [data-annotation-id="${sources[0][0].id}"]`
+    )
+  );
+  expectLabel(sources[0][0], true);
+  await click(button("Open extract grid"));
+  expect(host.querySelector('[data-testid="pdf-pane"]')).toBeNull();
+  expect(window.location.pathname).toBe(gridPath);
+  await click(button("Open Document A"));
+  await releaseRefreshes();
+  expect(new URLSearchParams(window.location.search).get("ann")).toBeNull();
+  expectHighlights(0);
+  for (const source of sources[0]) expectLabel(source, false);
+  await click(button("2 Annotations"));
+  expect(
+    host.querySelector('[data-testid="extract-pane"] [aria-current="true"]')
+  ).toBeNull();
+});
+
+it.each(["ON_HOVER", "ALWAYS", "HIDE"])(
+  "selected-only source inspection preserves all viewer members while toggling focus in %s",
+  async (mode) => {
+    const memberIds = sources[0].map((source) => source.id).join(",");
+    await ordinaryEntry(0, `&ann=${memberIds}&labels=${mode}`);
+    await click(button("2 Annotations"));
+    await click(button("Show selected only"));
+    const cards = sources[0].map(
+      (source) =>
+        host.querySelector<HTMLElement>(
+          `[data-testid="extract-pane"] [data-annotation-id="${source.id}"]`
+        )!
+    );
+    expectHighlights(0);
+    await click(cards[0]);
+    expect(cards[0].hasAttribute("aria-current")).toBe(false);
+    await click(cards[0]);
+    expect(cards[0].getAttribute("aria-current")).toBe("true");
+    await click(cards[1]);
+    expect(cards[1].getAttribute("aria-current")).toBe("true");
+    expect(cards[0].hasAttribute("aria-current")).toBe(false);
+    expectHighlights(0);
+    const params = new URLSearchParams(window.location.search);
+    expect(params.get("ann")).toBe(memberIds);
+    expect(params.get("selectedOnly")).toBe("true");
+    expect(params.get("labels")).toBe(mode);
+    expectLabel(sources[0][0], mode === "ALWAYS");
+    expectLabel(sources[0][1], mode !== "HIDE");
+  }
+);
+
+it("keeps completed fields and their PDF evidence focus reviewable after the parent extract fails", async () => {
+  extractError = "Another field failed; these completed findings are retained.";
+  vi.spyOn(HTMLElement.prototype, "offsetWidth", "get").mockReturnValue(320);
+  await act(async () =>
+    root.render(
+      <Provider>
+        <ApolloProvider client={client}>
+          <BrowserRouter>
+            <CentralRouteManager />
+            <Workspace />
+          </BrowserRouter>
+        </ApolloProvider>
+      </Provider>
+    )
+  );
+  await settle();
+  expect(host.textContent).toContain("Finding 1");
+  await openFromGrid(0);
+  await releaseRefreshes();
+  const request = pending.find(
+    (item) => item.name === "GetDatacellsForExtract"
+  );
+  expect(request).toBeDefined();
+  pending = pending.filter((item) => item !== request);
+  await act(async () => request!.release());
+  await settle();
+  expectHighlights(0);
+  await inspectQuotes(0);
+  expect(requests.some((request) => request.name === "StartExtract")).toBe(
+    false
+  );
+}, 15000);
+
+it("retains completed findings and review controls in the full-page failed extract", async () => {
+  extractError = "A field failed; completed findings were retained.";
+  vi.spyOn(HTMLElement.prototype, "offsetWidth", "get").mockReturnValue(320);
+  await act(async () =>
+    root.render(
+      <Provider>
+        <ApolloProvider client={client}>
+          <BrowserRouter>
+            <CentralRouteManager />
+            <ExtractDetail />
+          </BrowserRouter>
+        </ApolloProvider>
+      </Provider>
+    )
+  );
+  await settle();
+  expect(host.textContent).toContain("Finding 1");
+  expect(host.textContent).toContain("2 completed · 0 failed");
+  expect(host.textContent).toContain("Failed");
+  expect(
+    host.querySelectorAll('[aria-label="Cell status actions"]')
+  ).toHaveLength(2);
+  expect(requests.some((request) => request.name === "StartExtract")).toBe(
+    false
+  );
+});

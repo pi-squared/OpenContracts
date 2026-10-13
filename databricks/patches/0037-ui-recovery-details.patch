@@ -1,0 +1,62 @@
+--- a/frontend/src/components/knowledge_base/document/FloatingExtractsPanel.tsx
++++ b/frontend/src/components/knowledge_base/document/FloatingExtractsPanel.tsx
+@@ -2,7 +2,7 @@
+ import styled from "styled-components";
+ import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
+ import { motion, AnimatePresence } from "framer-motion";
+-import { X, Minimize2, Database, ArrowLeft } from "lucide-react";
++import { X, Minimize2, Database, ArrowLeft, Loader2 } from "lucide-react";
+ import ExtractTraySelector from "../../analyses/ExtractTraySelector";
+ import { SingleDocumentExtractResults } from "../../annotator/sidebar/SingleDocumentExtractResults";
+ import {
+@@ -177,6 +177,15 @@
+       color: ${OS_LEGAL_COLORS.textTertiary};
+     }
+   }
++`;
++
++const LoadingStatus = styled.div`
++  padding: 24px;
++  display: flex;
++  align-items: center;
++  gap: 8px;
++  @keyframes extract-spin { to { transform: rotate(360deg); } }
++  svg { animation: extract-spin 1s linear infinite; }
+ `;
+ 
+ const Content = styled.div`
+@@ -338,9 +347,9 @@
+                   <button onClick={onRetry}>Retry extracts</button>
+                 </div>
+               ) : loading ? (
+-                <div role="status" aria-live="polite" style={{ padding: 24 }}>
+-                  <span aria-hidden="true">⏳ </span>Loading extracts…
+-                </div>
++                <LoadingStatus role="status" aria-live="polite">
++                  <Loader2 size={18} aria-hidden="true" />Loading extracts…
++                </LoadingStatus>
+               ) : selectedExtract ? (
+                 <>
+                   <BackBar>
+--- a/frontend/src/views/Documents.tsx
++++ b/frontend/src/views/Documents.tsx
+@@ -542,7 +542,7 @@
+           </HeroTitle>
+           <HeroSubtitle>
+             Browse, search, and manage all documents across your corpuses.
+-            Upload new files or explore your existing library.
++            Search matches any part of a title or description, ignoring case.
+           </HeroSubtitle>
+ 
+           <SearchContainer>
+--- a/frontend/src/views/ExtractDetail.tsx
++++ b/frontend/src/views/ExtractDetail.tsx
+@@ -962,7 +962,7 @@
+                                 })()}</span>
+                               </DocumentMeta>
+                             </DocumentInfo>
+-                            {doc.fileType === "application/pdf" && getDocumentUrl(doc, extract.corpus) !== "#" ? (
++                            {doc.fileType === "application/pdf" && doc.pdfFile && getDocumentUrl(doc, extract.corpus) !== "#" ? (
+                               <Button variant="secondary" size="sm" aria-label={`Open PDF: ${doc.title}`} onClick={() => navigate(getDocumentUrl(doc, extract.corpus))}>Open PDF</Button>
+                             ) : <span role="status">Original PDF unavailable</span>}
+                           </DocumentItem>

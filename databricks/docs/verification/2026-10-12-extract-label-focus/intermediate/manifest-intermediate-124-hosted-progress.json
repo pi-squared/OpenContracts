@@ -1,0 +1,199 @@
+{
+  "phase": "intermediate",
+  "artifacts": [
+    {
+      "image": "intermediate-124-hosted-after-reviewed124-final-chromium-122-full-identical-cycle-stop-2.png",
+      "caption": "Owned technical full-overlap fixture: Chromium focuses the second stable cycle stop; its PDF label and matching source card agree at110%.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:14.877869+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "e40de6d3e7911f7f0f74ef7713abacc2f6460e0a7699624e6d77934adb379eb0",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+      "fixture": "Public SME PDF with identified owned technical extract-source projections; manual-display screenshot explicitly identified separately",
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "interactions": "Owned technical full-overlap fixture: Chromium focuses the second stable cycle stop; its PDF label and matching source card agree at110%.",
+      "limitations": "Partial fresh deployed progress only. Full keyboard/touch, lifecycle, creation and dense127/167 acceptance remains pending. Screenshots do not independently prove event/cycle order."
+    },
+    {
+      "image": "intermediate-124-hosted-after-reviewed124-final-firefox-122-partial-shared-cycle-stop-3.png",
+      "caption": "Owned technical partial-overlap fixture: Firefox retains the third candidate label at110%; cycle membership is established by the native interaction receipt, not this image alone.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:35:21.701331+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "sha256": "febd7e781f2a62a6433e927c001861986164adc8982dd39f547fdc5c72f8277a",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+      "fixture": "Public SME PDF with identified owned technical extract-source projections; manual-display screenshot explicitly identified separately",
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "interactions": "Owned technical partial-overlap fixture: Firefox retains the third candidate label at110%; cycle membership is established by the native interaction receipt, not this image alone.",
+      "limitations": "Partial fresh deployed progress only. Full keyboard/touch, lifecycle, creation and dense127/167 acceptance remains pending. Screenshots do not independently prove event/cycle order."
+    },
+    {
+      "image": "intermediate-124-hosted-after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-127-default-hovered.png",
+      "caption": "Owned quote fixture at127%: shared-point hover reveals three eligible associated labels with separate native controls.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:18.551766+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "b99a21330c858a160dfe445e60d2cca12e4c835d9de41ee9be3661ee1c8391b2",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+      "fixture": "Public SME PDF with identified owned technical extract-source projections; manual-display screenshot explicitly identified separately",
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "interactions": "Owned quote fixture at127%: shared-point hover reveals three eligible associated labels with separate native controls.",
+      "limitations": "Partial fresh deployed progress only. Full keyboard/touch, lifecycle, creation and dense127/167 acceptance remains pending. Screenshots do not independently prove event/cycle order."
+    },
+    {
+      "image": "intermediate-124-hosted-after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-127-focused-pointer-away.png",
+      "caption": "Owned quote fixture at127%: the targeted evidence label remains visible after the pointer moves away.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:37.912482+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "67ec0fddd123739a7dd056ead5512bc54ce9cae04db7b8e1a062901d9d82563c",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+      "fixture": "Public SME PDF with identified owned technical extract-source projections; manual-display screenshot explicitly identified separately",
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "interactions": "Owned quote fixture at127%: the targeted evidence label remains visible after the pointer moves away.",
+      "limitations": "Partial fresh deployed progress only. Full keyboard/touch, lifecycle, creation and dense127/167 acceptance remains pending. Screenshots do not independently prove event/cycle order."
+    },
+    {
+      "image": "intermediate-124-hosted-after-reviewed124-final-dense-chromium-public-sme-manual-display-167-always-pointer-away.png",
+      "caption": "Public issue116 manual-display region at167%: Always displays two readable labels. Manual annotations establish layout continuity; the owned quote fixture establishes evidence focus.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:45:42.202906+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 167,
+      "sha256": "977ad9c5d2c8913be2bd86ce8849f2d639dfb3d223bfbf121a07fa53d0a592ed",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+      "fixture": "Public SME PDF with identified owned technical extract-source projections; manual-display screenshot explicitly identified separately",
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "interactions": "Public issue116 manual-display region at167%: Always displays two readable labels. Manual annotations establish layout continuity; the owned quote fixture establishes evidence focus.",
+      "limitations": "Partial fresh deployed progress only. Full keyboard/touch, lifecycle, creation and dense127/167 acceptance remains pending. Screenshots do not independently prove event/cycle order."
+    },
+    {
+      "image": "intermediate-124-hosted-after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-127-default-unhovered.png",
+      "caption": "Owned quote fixture at127%: ordinary default entry retains highlights without any visible PDF evidence label.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:46:16.113235+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "36207bc0fc01b3a266f1760aff0231a2ced569542913d2a17373d84abc468c31",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+      "fixture": "Public SME PDF with identified owned technical extract-source projections; manual-display screenshot explicitly identified separately",
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "interactions": "Owned quote fixture at127%: ordinary default entry retains highlights without any visible PDF evidence label.",
+      "limitations": "Partial fresh deployed progress only. Full keyboard/touch, lifecycle, creation and dense127/167 acceptance remains pending. Screenshots do not independently prove event/cycle order."
+    },
+    {
+      "image": "intermediate-124-hosted-after-reviewed124-final-dense-chromium-owned-sme-extract-evidence-127-editor-open-e.png",
+      "caption": "Owned quote fixture at127%: genuine native Edit Label dialog opened from evidence E, captured before Cancel after its controls settled in the foreground.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:47:50.607961+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "9d148c0baa2aaf9016017a2dcd027e0adc9b0ee0f531bcff691e14b0dc401a8f",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+      "fixture": "Public SME PDF with identified owned technical extract-source projections; manual-display screenshot explicitly identified separately",
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "interactions": "Owned quote fixture at127%: genuine native Edit Label dialog opened from evidence E, captured before Cancel after its controls settled in the foreground.",
+      "limitations": "Partial fresh deployed progress only. Full keyboard/touch, lifecycle, creation and dense127/167 acceptance remains pending. Screenshots do not independently prove event/cycle order."
+    },
+    {
+      "image": "intermediate-124-hosted-after-reviewed124-final-dense-firefox-owned-sme-extract-evidence-127-editor-open-e.png",
+      "caption": "Owned quote fixture at127%: Firefox genuine native Edit Label dialog and reachable Cancel/Save Change controls, captured before Cancel. No label change was saved.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-12T23:48:17.167299+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "sha256": "ea5f88950589cf55dbba433f50680470dd4d8aeaab96f2ea3ecc79ac2bd5a974",
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad",
+      "fixture": "Public SME PDF with identified owned technical extract-source projections; manual-display screenshot explicitly identified separately",
+      "geometry_page_index": 0,
+      "pdf_page_number": 1,
+      "interactions": "Owned quote fixture at127%: Firefox genuine native Edit Label dialog and reachable Cancel/Save Change controls, captured before Cancel. No label change was saved.",
+      "limitations": "Partial fresh deployed progress only. Full keyboard/touch, lifecycle, creation and dense127/167 acceptance remains pending. Screenshots do not independently prove event/cycle order."
+    }
+  ],
+  "acceptance": "Fresh reviewed124 deployed progress only; full integrated120/124 acceptance and wholebranch review remain pending. Original two untraced mouse assertion stops are retained as unknown; a separately reproduced Firefox DOM-visibility premise was corrected using actual off-viewport/opacity/detachment observations.",
+  "hosted_acceptance": false
+}

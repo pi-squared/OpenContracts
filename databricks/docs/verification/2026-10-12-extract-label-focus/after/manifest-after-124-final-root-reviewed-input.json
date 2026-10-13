@@ -1,0 +1,1242 @@
+{
+  "phase": "after",
+  "artifacts": [
+    {
+      "image": "after-reviewed124-final-chromium-124-floating-Settings-first-Escape-focus-retained.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 124 floating Settings first Escape focus retained.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:24:21.782712+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "9d44e6443420625304c5e2c9e82474c888efe07aad0f6519254e7c8032ed163a",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-124-floating-Settings-second-PDF-Escape-expanded-source-cleared.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 124 floating Settings second PDF Escape expanded source cleared.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:26:26.474447+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 55,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7ed0f8cefb3d29c9b1e4387924e6167c8beddea064f83c245a98c51f046bba9a",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-124-fullwidth-protected-after-native-View-extracts-positive-source-oracle.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. chromium 124 fullwidth protected after native View extracts positive source oracle.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:08:46.889610+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 64,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "11056cf50026f3e5df3ae8ec8c96e3a46eba0c1b744e8cef38ab90151c47d054",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-124-fullwidth-temporary-EditLabel-Escape-focus-return.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. chromium 124 fullwidth temporary EditLabel Escape focus return.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:08:15.926254+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "417bff963ed0a9a68acaf08192aec86936cbe0fa8d2b731909992bc36380489c",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-124-fullwidth-temporary-EditLabel-open-before-Escape.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. chromium 124 fullwidth temporary EditLabel open before Escape.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:08:15.323502+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "6f2f3b304c040d7cefa954dfb5fd8c5230d92b90e1a0af5bf094978e96a427f4",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-124-fullwidth-temporary-protected-No-launcher-focus-return.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. chromium 124 fullwidth temporary protected No launcher focus return. Protected confirmation was cancelled using genuine Tab to No and Enter; Yes was never activated.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:08:37.683573+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "bd735048281a226df413d3dc42d076035c0e75c30da7022225b2d52a7e2c7b1d",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-124-fullwidth-temporary-protected-confirmation-open-before-No.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. chromium 124 fullwidth temporary protected confirmation open before No.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:08:36.865764+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "fec75746d9ed9bb036ba76b5742a4bc4c457abab04745485d7c917c31bbe3f59",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-124-keyboard-A-three-candidate-cycle-1.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 124 keyboard A three candidate cycle 1.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:20:50.878263+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "4299c150580467857773c94310c597ddf7b735ec4c2c8432b3306347e9fa4304",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-124-keyboard-A-three-candidate-cycle-4.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 124 keyboard A three candidate cycle 4.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:20:53.795867+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "a1c14f25f00ce60d4b83f6e2d5d6fb36c8af0d57c9bf8a41251c4a66958f2579",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-124-keyboard-C-observed-singleton-1.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium 124 keyboard C observed singleton 1. The meaningful keyboard target center is a singleton; it is not the four-way shared pointer/touch point.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:20:26.654619+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7c6d0ae8039963f722de824a6674201ffb7e2e9ae9c92d72698c35be43be550f",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-FSPO-keyboard-Escape-cleared-positive-visible-highlight-Tab-away.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. chromium FSPO keyboard Escape cleared positive visible highlight Tab away. Prior native source-card aria-current and genuine Tab departure prove no persistent label remains on the same visible eligible highlight.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:48:55.100931+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 140,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "cc820152c9f0565d3b0343546f07bcbd4ce51f3c9e9fd19d11e4507322ec9933",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-chromium-closed-pane-cycle-full-reading-scroll-preserved.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium closed pane cycle full reading scroll preserved. Pane closure is established through native effective pane geometry, not the extracts toolbar aria state.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:13:01.359988+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7d2359a893f3c0dd83a5aab42a1d09927c8bb26e9f63ab5d591483ba1cfdb57c",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-fspo-keyboard-Enter-actual-evidence.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. chromium fspo keyboard Enter actual evidence.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:37:13.133554+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "b377a10180f46a5d7375e9841d50e92b5e52a9249837f65a0a29755ac3c64564",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-chromium-keyboard-selected-AB-HIDE-Space.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium keyboard selected AB HIDE Space.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:29:34.290904+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "11961238b177cce2f4e97c0a392e990be1ebd38a71061f6b33f9d9b7b56e2dcb",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-original-value-settled-foreground-Close-proof.png",
+      "caption": "Owned synthetic original/corrected finding and native source projection. chromium original value settled foreground Close proof.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:20:35.087600+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": null,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "96c8ffdfedacaaf2733e91eb9fe0e3d45162230fa84cf607421ede44d3e14e75",
+      "fixture": "Owned synthetic original/corrected finding and native source projection",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance.",
+        "Native viewer/zoom control not painted in this owner-visibility observation"
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-terms-keyboard-Enter-actual-evidence.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. chromium terms keyboard Enter actual evidence.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:36:51.220184+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "5a0936c17446341a07bbef498fbf22e4f7c7aaf75b2c7bfbce92e39e1f9785c9",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-trusted-touch-blank-focus-cleared-pane-effectively-closed.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium trusted touch blank focus cleared pane effectively closed. Pane closure is established through native effective pane geometry, not the extracts toolbar aria state.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:51:16.372698+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "fabc4f32b79116e5998e112fe9e210a354b2463690141d7d7c7c682b7a127f06",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-trusted-touch-panning-observation.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium trusted touch panning observation.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:23:28.503877+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "fbf97d8b702a60cce081a0c54447292270390f26d486fb569cd78c2b5efc8eff",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-trusted-touch-partial-four-cycle-stop-3.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium trusted touch partial four cycle stop 3. Actual shared-point four-candidate trusted touch cycle; identity reuse is deduplicated.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:50:51.329248+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "0c9036eb250508dd670c3b38684e4bf92a93003fb640e22f2844de6a699d1fa0",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-trusted-touch-partial-four-cycle-stop-5.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium trusted touch partial four cycle stop 5. Actual shared-point four-candidate trusted touch cycle; identity reuse is deduplicated.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:50:58.595402+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "d4993ad522df63946c030894e3c019532db788f9d17c9dda00f3ce186ae571d7",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-chromium-trusted-touchcancel-pending-hold-canceled.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). chromium trusted touchcancel pending hold canceled.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:23:10.668813+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "a757c7fd139a6403d49cc61b54309f1387f88cdbc4ea9742c650d962c68f235c",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-124-floating-Settings-first-Escape-focus-retained.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 124 floating Settings first Escape focus retained.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:24:27.230875+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "ccb4b5c4100170ae55eebc9c534e96c3ecfdc388a2faba9415ac4036038c4349",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-124-floating-Settings-second-PDF-Escape-expanded-source-cleared.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 124 floating Settings second PDF Escape expanded source cleared.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:26:38.369042+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 55,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7e6463652cf0994830f18af84fb0ee8f318947c236840043debc2fad4420ae75",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-124-fullwidth-forward-protected-after-native-View-extracts-positive-source-oracle.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox 124 fullwidth forward protected after native View extracts positive source oracle.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:10:11.874782+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 64,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "a834894e803bc1967b485b0fe2d7dbaaabe3025a26b3dc12b55caa1750fa6a8f",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-124-fullwidth-forward-temporary-EditLabel-Escape-focus-return.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox 124 fullwidth forward temporary EditLabel Escape focus return.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:09:33.449440+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "868f334e7d1ecb033346d8af31d8b66bd548050b9592d3c6851654b6a7742695",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-124-fullwidth-forward-temporary-EditLabel-open-before-Escape.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox 124 fullwidth forward temporary EditLabel open before Escape.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:09:32.859504+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "bb49f4a02677d5d5d3339cd76ae47e1999ba3930a85c3990869f1b01da763a77",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-124-fullwidth-forward-temporary-protected-No-launcher-focus-return.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox 124 fullwidth forward temporary protected No launcher focus return. Protected confirmation was cancelled using genuine Tab to No and Enter; Yes was never activated.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:10:01.071204+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "cad06e853757c4db5acec73c44c9ec54fc8e697ee6e3c0e014963022a65c5332",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-124-fullwidth-forward-temporary-protected-confirmation-open-before-No.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. firefox 124 fullwidth forward temporary protected confirmation open before No.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:10:00.496172+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 127,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "45ead41fea036f22eb37ec2d154087a75d01cf5240a15681976627bb79e73544",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-124-keyboard-A-three-candidate-cycle-1.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 124 keyboard A three candidate cycle 1.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:20:50.930613+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "b8297dff80772638ea308da2e5d0c4522d6356f7effb601edb0e9f30fc0e4e42",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-124-keyboard-A-three-candidate-cycle-4.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 124 keyboard A three candidate cycle 4.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:20:53.353544+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7c196b9ef67f8cb4bb4017381677a32cdf531c13056e192c610bce1672267095",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-124-keyboard-C-observed-singleton-1.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox 124 keyboard C observed singleton 1. The meaningful keyboard target center is a singleton; it is not the four-way shared pointer/touch point.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:20:26.469726+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "71e0f70d63131091801c64d0119625ec5c4293d1978cc118f92a5b653b95706b",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-FSPO-keyboard-Escape-cleared-positive-visible-highlight-Tab-away.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. firefox FSPO keyboard Escape cleared positive visible highlight Tab away. Prior native source-card aria-current and genuine Tab departure prove no persistent label remains on the same visible eligible highlight.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:48:52.895184+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "db957dcd9f7de61fbc94ad0fc28368ea19e5f9cac2a64bc31ff39a4372720f89",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-firefox-closed-pane-cycle-full-reading-scroll-preserved.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox closed pane cycle full reading scroll preserved. Pane closure is established through native effective pane geometry, not the extracts toolbar aria state.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:13:04.009084+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7a77447ceba18559c7b0da0c73d2dc773e124696ec0dfd6b1847259f851c6c0d",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-fspo-keyboard-Enter-actual-evidence.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. firefox fspo keyboard Enter actual evidence.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:37:19.323867+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "e9a16087a9b1595b547b97dc860715830a0aa922f00ef241355df50d5e8fb93b",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-firefox-keyboard-selected-AB-HIDE-Space.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox keyboard selected AB HIDE Space.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:29:31.051114+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "4b00b663e779db289b7bf1e039a2b39f885a911596abbc3cd617070736a89f5e",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-original-value-settled-foreground-Close-proof.png",
+      "caption": "Owned synthetic original/corrected finding and native source projection. firefox original value settled foreground Close proof.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:20:36.490034+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": null,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "096315ff314708b7fc6be152e59be161e56b5a02bed09d3d29351380fe0c97db",
+      "fixture": "Owned synthetic original/corrected finding and native source projection",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance.",
+        "Native viewer/zoom control not painted in this owner-visibility observation"
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-terms-keyboard-Enter-actual-evidence.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. firefox terms keyboard Enter actual evidence.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:36:53.320619+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "2efecee1ab75106c99dca04be2ed1c7197e044e1a30767e171ab3705b0f8cc14",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-trusted-touch-blank-focus-cleared-pane-effectively-closed.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox trusted touch blank focus cleared pane effectively closed. Pane closure is established through native effective pane geometry, not the extracts toolbar aria state.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:50:57.855816+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "2e1e063c89b70c7d933d0b62796d040cf65e1351d00e8e912e4535e690ca3a3e",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-trusted-touch-partial-four-cycle-stop-3.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox trusted touch partial four cycle stop 3. Actual shared-point four-candidate trusted touch cycle; identity reuse is deduplicated.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:50:39.932176+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "d95971ce38a1bbb32ec368dc7d61061ae5e96406eaae481593b8a24280b43d40",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-firefox-trusted-touch-partial-four-cycle-stop-5.png",
+      "caption": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap). firefox trusted touch partial four cycle stop 5. Actual shared-point four-candidate trusted touch cycle; identity reuse is deduplicated.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:50:41.758130+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "51322175c64adbc1845783541519d843b4f2ce7fc65caa7e966b519952291df8",
+      "fixture": "Owned synthetic public-PDF evidence fixture (shared identities, distinct labels, partial/strict overlap)",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-supplement-chromium-native-selection-menu-first-Escape-owner.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. supplement chromium native selection menu first Escape owner.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:48:01.239436+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "18aa7eb7b4b88b0ef4f1fb4d21987abc61bd9793a9287d1553231fb36cb4aa84",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-supplement-chromium-native-selection-subsequent-Escape-singular-cleared.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. supplement chromium native selection subsequent Escape singular cleared.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:48:02.487884+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "2cf3985366ada63d2ef2bcf43a1a2509284d3579fce548c81f08ce907fbfa501",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-supplement-chromium-native-version-picker-first-Escape-focus-retained.png",
+      "caption": "Owned synthetic native source-version lineage using unchanged public PDF bytes. supplement chromium native version picker first Escape focus retained.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:48:10.626736+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "d76fd08eead293da0d72fe72e3c240ba7e286acef80b5fd3551d2cd4c8048238",
+      "fixture": "Owned synthetic native source-version lineage using unchanged public PDF bytes",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-supplement-firefox-native-selection-menu-first-Escape-owner.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. supplement firefox native selection menu first Escape owner.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:48:02.794965+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "49cc8afb1bc34aa04c048d963db08b8ba6af0e92df4d537b6ec22dcf75104edc",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-supplement-firefox-native-selection-subsequent-Escape-singular-cleared.png",
+      "caption": "Owned isolated editable/public-PDF technical fixture; native controls and gestures. supplement firefox native selection subsequent Escape singular cleared.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:48:03.972202+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "11f45d64301114d061dec4265c8e1d20000f75854b2d480a8fa443955d8f6620",
+      "fixture": "Owned isolated editable/public-PDF technical fixture; native controls and gestures",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-supplement-firefox-native-version-picker-first-Escape-focus-retained.png",
+      "caption": "Owned synthetic native source-version lineage using unchanged public PDF bytes. supplement firefox native version picker first Escape focus retained.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T00:48:13.045763+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "90f777d011a01c197203b95b07aa2ead53211bb7558ca2f23c03798a73ed53a3",
+      "fixture": "Owned synthetic native source-version lineage using unchanged public PDF bytes",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-touch-contract-chromium-fspo-trusted-touch-empty-background-singular-cleared.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. touch contract chromium fspo trusted touch empty background singular cleared. Actual retained evidence: genuine source-card clear precedes first tap, singleton PDF repeats retain focus, empty eligible PDF background clears. Terms first-tap images reuse the same reviewed source-bound preceding stage.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T01:18:13.676870+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "2ef26970b371643df60f4e6f893ea1b8bb8f905ed50b83adb15af99dec7f96bd",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-touch-contract-chromium-fspo-trusted-touch-stationary-singleton-focused.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. touch contract chromium fspo trusted touch stationary singleton focused. Actual retained evidence: genuine source-card clear precedes first tap, singleton PDF repeats retain focus, empty eligible PDF background clears. Terms first-tap images reuse the same reviewed source-bound preceding stage.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T01:18:11.709774+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "4077537dcffc835cc38ca9bdd77a95c673d0f1d5a82f0bbaa287aed042b28a6b",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-touch-contract-chromium-terms-trusted-touch-empty-background-singular-cleared.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. touch contract chromium terms trusted touch empty background singular cleared. Actual retained evidence: genuine source-card clear precedes first tap, singleton PDF repeats retain focus, empty eligible PDF background clears. Terms first-tap images reuse the same reviewed source-bound preceding stage.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T01:17:56.923944+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "7742e83299510384e57ea2d06e28bec7013df453a7f95677e5dc25384a8eae42",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-touch-contract-chromium-terms-trusted-touch-stationary-singleton-focused.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. touch contract chromium terms trusted touch stationary singleton focused. Actual retained evidence: genuine source-card clear precedes first tap, singleton PDF repeats retain focus, empty eligible PDF background clears. Terms first-tap images reuse the same reviewed source-bound preceding stage.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T01:09:19.237254+00:00",
+      "browser_engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "25a9704ec39d3f2c91a2cc651668f51a910572dcd82e6a120d56d4f5331c1218",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-touch-contract-firefox-fspo-trusted-touch-empty-background-singular-cleared.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. touch contract firefox fspo trusted touch empty background singular cleared. Actual retained evidence: genuine source-card clear precedes first tap, singleton PDF repeats retain focus, empty eligible PDF background clears. Terms first-tap images reuse the same reviewed source-bound preceding stage.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T01:18:16.429759+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "9278cb8e6fed836e0509988880c97d30c14c8c7ee4c71958e7f6dffc24db4b6b",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-touch-contract-firefox-fspo-trusted-touch-stationary-singleton-focused.png",
+      "caption": "Actual retained public FSPO extract and original PDF evidence. touch contract firefox fspo trusted touch stationary singleton focused. Actual retained evidence: genuine source-card clear precedes first tap, singleton PDF repeats retain focus, empty eligible PDF background clears. Terms first-tap images reuse the same reviewed source-bound preceding stage.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T01:18:14.714790+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 113,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "ec8baa9e2551841fe293940ce43ccd01fd3451823d7ff4a2505c2b3abbeb294b",
+      "fixture": "Actual retained public FSPO extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ]
+    },
+    {
+      "image": "after-reviewed124-final-touch-contract-firefox-terms-trusted-touch-empty-background-singular-cleared.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. touch contract firefox terms trusted touch empty background singular cleared. Actual retained evidence: genuine source-card clear precedes first tap, singleton PDF repeats retain focus, empty eligible PDF background clears. Terms first-tap images reuse the same reviewed source-bound preceding stage.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T01:17:57.708506+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "d732802ab5ada7f3c144f807ff65c81ccfb0685bfbb4cf5e24ce3423ccf1e1b2",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    },
+    {
+      "image": "after-reviewed124-final-touch-contract-firefox-terms-trusted-touch-stationary-singleton-focused.png",
+      "caption": "Actual retained public Terms extract and original PDF evidence. touch contract firefox terms trusted touch stationary singleton focused. Actual retained evidence: genuine source-card clear precedes first tap, singleton PDF repeats retain focus, empty eligible PDF background clears. Terms first-tap images reuse the same reviewed source-bound preceding stage.",
+      "issues": [
+        120,
+        124
+      ],
+      "captured_at": "2026-10-13T01:09:21.823849+00:00",
+      "browser_engine": "firefox",
+      "browser_version": "153.0",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pdf_zoom": 110,
+      "source_commit": "d9ace48322d8007e27f3c5e2ede142166cd579cd",
+      "sha256": "54b4638e6138012a8ded02f98fe63429d9dd14eb0a9da5fb79d5593d91c8e7e3",
+      "fixture": "Actual retained public Terms extract and original PDF evidence",
+      "limitations": [
+        "Technical fixtures verify native UI behavior, not domain/model acceptance."
+      ],
+      "source_pdf_sha256": "32b4b08f8ce0d22c1fb0448132be82d3306835c04f6f867e54ab55d854b85cad"
+    }
+  ],
+  "acceptance": "Root accepted the named deployed states on d9ace483 / recipe 61e9842c. Full branch review and tracker closure are recorded separately."
+}
