@@ -229,25 +229,22 @@ describe("useVisibleAnnotations", () => {
   });
 
   describe("forced-by-selection", () => {
-    it("keeps a selected annotation even if its label is filtered out", () => {
+    it("respects an explicit label exclusion even when its annotation is selected", () => {
       const withA = makeAnnot({ id: "a-annot", label: labelA });
       const withB = makeAnnot({ id: "b-annot", label: labelB });
       primeMocks(
         defaultState({
           annotations: [withA, withB],
-          controls: { spanLabelsToView: [labelA] }, // B would be filtered…
+          controls: { spanLabelsToView: [labelA] },
           selection: {
-            selectedAnnotations: ["b-annot"], // …but it is selected.
+            selectedAnnotations: ["b-annot"],
             selectedRelations: [],
           },
         })
       );
 
       const { result } = renderHook(() => useVisibleAnnotations());
-      expect(result.current.map((x) => x.id).sort()).toEqual([
-        "a-annot",
-        "b-annot",
-      ]);
+      expect(result.current.map((x) => x.id)).toEqual(["a-annot"]);
     });
 
     it("keeps a selected structural annotation even when showStructural is false", () => {
@@ -273,7 +270,7 @@ describe("useVisibleAnnotations", () => {
   });
 
   describe("forced-by-selected-relation", () => {
-    it("shows source + target annotations of a selected relation (showStructural=true)", () => {
+    it("respects label exclusions for both endpoints of a selected relation", () => {
       const src = makeAnnot({ id: "src", label: labelB });
       const tgt = makeAnnot({ id: "tgt", label: labelB });
       const other = makeAnnot({ id: "other", label: labelB });
@@ -294,7 +291,7 @@ describe("useVisibleAnnotations", () => {
 
       const { result } = renderHook(() => useVisibleAnnotations());
       const ids = result.current.map((x) => x.id).sort();
-      expect(ids).toEqual(["src", "tgt"]); // "other" still filtered out
+      expect(ids).toEqual([]);
     });
 
     it("applies forced-by-selected-relation even when showStructural is false (issue #1289)", () => {
@@ -314,7 +311,7 @@ describe("useVisibleAnnotations", () => {
             showStructuralRelationships: false,
             showSelectedOnly: false,
           },
-          controls: { spanLabelsToView: [labelB] }, // would otherwise exclude both
+          controls: { spanLabelsToView: [labelA] },
           selection: {
             selectedAnnotations: [],
             selectedRelations: [rel],
@@ -356,7 +353,7 @@ describe("useVisibleAnnotations", () => {
   });
 
   describe("forced-by-all-relationships", () => {
-    it("when showStructuralRelationships is on (and showStructural is on), all relation members are visible", () => {
+    it("respects label exclusions when all structural relationships are shown", () => {
       const src = makeAnnot({ id: "src", label: labelB });
       const tgt = makeAnnot({ id: "tgt", label: labelB });
       const loose = makeAnnot({ id: "loose", label: labelB });
@@ -378,7 +375,7 @@ describe("useVisibleAnnotations", () => {
 
       const { result } = renderHook(() => useVisibleAnnotations());
       const ids = result.current.map((x) => x.id).sort();
-      expect(ids).toEqual(["src", "tgt"]); // loose still hidden
+      expect(ids).toEqual([]);
     });
 
     it("stays gated on showStructural: does NOT force-show relation members when showStructural is false and no relation is selected", () => {
@@ -465,7 +462,7 @@ describe("useVisibleAnnotations", () => {
   });
 
   describe("combined filters", () => {
-    it("respects precedence: forced-by-selection beats showSelectedOnly + label filter", () => {
+    it("respects label exclusions in showSelectedOnly mode", () => {
       const selected = makeAnnot({ id: "sel", label: labelB });
       const filtered = makeAnnot({ id: "filt", label: labelB });
 
@@ -486,7 +483,7 @@ describe("useVisibleAnnotations", () => {
       );
 
       const { result } = renderHook(() => useVisibleAnnotations());
-      expect(result.current.map((x) => x.id)).toEqual(["sel"]);
+      expect(result.current.map((x) => x.id)).toEqual([]);
     });
   });
 
