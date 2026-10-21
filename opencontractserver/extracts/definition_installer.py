@@ -1,6 +1,10 @@
 """Install trusted versioned Fieldsets and LabelSets only, preserving native edits."""
 
 
+class DefinitionDriftError(ValueError):
+    """Native user edits prevent certifying the original package definitions."""
+
+
 def install_definitions(package_hash, username, *, verify_only=False):
     from opencontractserver.extracts.workflows import package, resolve_response_model
 
@@ -61,7 +65,7 @@ def install_definitions(package_hash, username, *, verify_only=False):
                 or fieldset.description != description
                 or labelset.description != description
             ):
-                raise ValueError(
+                raise DefinitionDriftError(
                     "Installed definition headers were edited; preserve edits and use a new revision"
                 )
             created = labels_created = False
@@ -121,7 +125,7 @@ def install_definitions(package_hash, username, *, verify_only=False):
                 for d in manifest["columns"]
             ]
             if observed != expected:
-                raise ValueError(
+                raise DefinitionDriftError(
                     "Native workflow definitions have changed; preserve edits and install a new package revision"
                 )
         if labels_created:
@@ -145,7 +149,7 @@ def install_definitions(package_hash, username, *, verify_only=False):
                 key=lambda d: d["text"],
             )
             if observed != expected:
-                raise ValueError(
+                raise DefinitionDriftError(
                     "Native workflow labels have changed; preserve edits and install a new package revision"
                 )
         if verify_only:
@@ -169,7 +173,7 @@ def install_definitions(package_hash, username, *, verify_only=False):
                 if not expected_permissions.issubset(
                     get_users_permissions_for_obj(user, obj)
                 ):
-                    raise ValueError(
+                    raise DefinitionDriftError(
                         "Existing database native workflow permissions have changed"
                     )
         else:

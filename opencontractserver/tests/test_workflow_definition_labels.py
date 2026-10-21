@@ -89,5 +89,19 @@ class WorkflowDefinitionLabelTests(TestCase):
             )
             with self.assertRaisesRegex(ValueError, "labels have changed"):
                 install_definitions(identity, user.username, verify_only=True)
+            from tools.local_workspace.bootstrap import install_workspace_workflows
+
+            report = install_workspace_workflows(user.username)
+            self.assertEqual(report[0]["status"], "edited")
+            self.assertEqual(
+                AnnotationLabel.objects.get(creator=user, text="alpha").color, "#998877"
+            )
+            # Availability must not silently re-certify edits, and corrupt
+            # package bytes must still fail rather than being treated as drift.
+            with self.assertRaisesRegex(ValueError, "labels have changed"):
+                install_definitions(identity, user.username, verify_only=True)
+            (directory / "schema.py").write_bytes(b"tampered")
+            with self.assertRaisesRegex(ValueError, "hash mismatch"):
+                install_workspace_workflows(user.username)
         package.cache_clear()
         resolve_response_model.cache_clear()

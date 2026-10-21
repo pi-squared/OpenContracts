@@ -68,6 +68,10 @@ Place each verified local workflow package under
 native definition installer and the `InstalledWorkflowPackage` ORM registry.
 Repeated installation retains user edits and uses normal object permissions.
 Workflow data is installation input, not bundled private evidence.
+Startup verifies registered packages without rewriting their native definitions.
+Valid definition edits are reported in private `bootstrap-report.json` and remain
+usable across restart; they are not certified as reproducing the original
+package. Invalid package bytes or provenance still fail validation.
 
 This branch starts at upstream `8bc8254d0c03efcf3cdb7b383a675016fcb51351`
 and carries selected frontend, retrieval, grounding, and finding-contract work
