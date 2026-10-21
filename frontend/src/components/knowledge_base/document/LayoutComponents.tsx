@@ -1,10 +1,125 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Modal } from "@os-legal/ui";
 import styled, { createGlobalStyle } from "styled-components";
 import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
 
 export const DOCUMENT_KB_CHILD_MODAL_OVERLAY_CLASS =
   "document-kb-child-modal-overlay";
+
+const childDialogStack: HTMLElement[] = [];
+const focusableSelector =
+  'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+/** Native viewer child dialog: portal layer, scoped focus and launcher return. */
+export const DocumentChildModal = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentProps<typeof Modal>
+>(
+  (
+    {
+      open,
+      onClose,
+      children,
+      overlayClassName,
+      closeOnEscape = true,
+      ...props
+    },
+    forwardedRef
+  ) => {
+    const dialogRef = useRef<HTMLDivElement | null>(null);
+    const closeRef = useRef(onClose);
+    closeRef.current = onClose;
+    useEffect(() => {
+      const dialog = dialogRef.current;
+      if (!open || !dialog) return;
+      const launcher =
+        document.activeElement instanceof HTMLElement ||
+        document.activeElement instanceof SVGElement
+          ? document.activeElement
+          : null;
+      childDialogStack.push(dialog);
+      const isTopmost = () =>
+        childDialogStack[childDialogStack.length - 1] === dialog;
+      const ownedPortals = () =>
+        Array.from(dialog.querySelectorAll("[aria-controls]"))
+          .map((control) =>
+            document.getElementById(control.getAttribute("aria-controls") ?? "")
+          )
+          .filter((element): element is HTMLElement => element !== null);
+      const containsFocus = (target: Node | null) =>
+        !!target &&
+        (dialog.contains(target) ||
+          ownedPortals().some((portal) => portal.contains(target)));
+      const focusable = () =>
+        [dialog, ...ownedPortals()]
+          .flatMap((region) =>
+            Array.from(region.querySelectorAll<HTMLElement>(focusableSelector))
+          )
+          .filter(
+            (element) =>
+              element.getClientRects().length > 0 && !element.closest("[inert]")
+          );
+      const focusFirst = () => (focusable()[0] ?? dialog).focus();
+      focusFirst();
+      const handleFocus = (event: FocusEvent) => {
+        if (isTopmost() && !containsFocus(event.target as Node)) focusFirst();
+      };
+      const handleKey = (event: KeyboardEvent) => {
+        if (!isTopmost()) return;
+        if (event.key === "Escape" && closeOnEscape) {
+          // Let an open native picker dismiss its popup before the dialog.
+          if (dialog.querySelector('[aria-expanded="true"]')) return;
+          event.preventDefault();
+          event.stopPropagation();
+          closeRef.current();
+        } else if (event.key === "Tab") {
+          const items = focusable();
+          const index = items.indexOf(document.activeElement as HTMLElement);
+          const next = event.shiftKey
+            ? index <= 0
+              ? items.length - 1
+              : index - 1
+            : (index + 1) % items.length;
+          event.preventDefault();
+          event.stopPropagation();
+          (items[next] ?? dialog).focus();
+        }
+      };
+      document.addEventListener("keydown", handleKey, true);
+      document.addEventListener("focusin", handleFocus);
+      return () => {
+        const index = childDialogStack.indexOf(dialog);
+        if (index >= 0) childDialogStack.splice(index, 1);
+        document.removeEventListener("keydown", handleKey, true);
+        document.removeEventListener("focusin", handleFocus);
+        if (launcher?.isConnected) launcher.focus();
+      };
+    }, [open, closeOnEscape]);
+    return (
+      <Modal
+        {...props}
+        open={open}
+        onClose={onClose}
+        closeOnEscape={false}
+        overlayClassName={[
+          DOCUMENT_KB_CHILD_MODAL_OVERLAY_CLASS,
+          overlayClassName,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        tabIndex={-1}
+        ref={(node) => {
+          dialogRef.current = node;
+          if (typeof forwardedRef === "function") forwardedRef(node);
+          else if (forwardedRef) forwardedRef.current = node;
+        }}
+      >
+        {children}
+      </Modal>
+    );
+  }
+);
+DocumentChildModal.displayName = "DocumentChildModal";
 
 // Minimal overrides for the fullscreen modal body — the native size="fullscreen"
 // variant handles positioning, sizing, border-radius, and overlay padding.

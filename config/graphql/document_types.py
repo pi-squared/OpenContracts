@@ -108,12 +108,16 @@ def _current_path_for_corpus(document, info, corpus_pk):
     return cache[key]
 
 
-def _dedupe_doc_type_labels(annotations: Any) -> list[Any]:
+def _dedupe_doc_type_labels(annotations: Any, corpus_pk=None) -> list[Any]:
     # A document can carry multiple DOC_TYPE_LABEL annotations sharing the same
     # label; the badge UI shows each label once, so dedupe by label pk.
     seen: set[int] = set()
     labels: list[Any] = []
     for ann in annotations:
+        if (ann.data or {}).get("domainEvidence", {}).get("active") is False:
+            continue
+        if corpus_pk is not None and ann.corpus_id != corpus_pk:
+            continue
         label = ann.annotation_label
         if label is None or label.pk in seen:
             continue
@@ -247,15 +251,27 @@ def _resolve_DocumentType_doc_annotations(root, info, **kwargs):
     return resolve_doc_annotations_optimized(root, info, **kwargs)
 
 
-def _resolve_DocumentType_doc_type_labels(root, info):
+def _resolve_DocumentType_doc_type_labels(root, info, corpus_id=None):
     from opencontractserver.annotations.models import DOC_TYPE_LABEL
     from opencontractserver.annotations.services import AnnotationService
+    from opencontractserver.corpuses.models import Corpus
+
+    corpus_pk = None
+    if corpus_id is not None:
+        corpus_pk = int(from_global_id(corpus_id)[1])
+        if (
+            BaseService.get_or_none(
+                Corpus, corpus_pk, info.context.user, request=info.context
+            )
+            is None
+        ):
+            return []
 
     prefetched = getattr(root, "_prefetched_doc_annotations", None)
     if prefetched is not None:
         # ``_apply_document_prefetches`` already filtered to DOC_TYPE_LABEL
         # and ``select_related``-cached ``annotation_label``.
-        return _dedupe_doc_type_labels(prefetched)
+        return _dedupe_doc_type_labels(prefetched, corpus_pk)
 
     # Fallback path: ``DocumentType`` accessed outside the corpus-list
     # batch (e.g. ``node(id:)``). Push ``label_type == DOC_TYPE_LABEL``
@@ -267,11 +283,12 @@ def _resolve_DocumentType_doc_type_labels(root, info):
             document_id=root.id,
             user=getattr(info.context, "user", None),
             context=info.context,
+            corpus_id=corpus_pk,
         )
         .filter(annotation_label__label_type=DOC_TYPE_LABEL)
         .select_related("annotation_label")
     )
-    return _dedupe_doc_type_labels(fallback_qs)
+    return _dedupe_doc_type_labels(fallback_qs, corpus_pk)
 
 
 def _resolve_DocumentType_all_structural_annotations(root, info, annotation_ids=None):
@@ -2149,7 +2166,13 @@ class DocumentType(Node):
         name="docTypeLabels",
         description="Flat list of distinct ``DOC_TYPE_LABEL`` annotation labels for this document — the corpus list view's per-card badges. Resolved from a single batched prefetch when the parent ``documents`` resolver opts in via ``requests_doc_type_labels``; falls back to one targeted SELECT per document otherwise. Skipping the Relay connection wrapper avoids the per-document COUNT + SELECT + FK descriptor storm the old ``docAnnotations`` shape forced.",
     )
-    def doc_type_labels(self, info: strawberry.Info) -> None | (
+    def doc_type_labels(
+        self,
+        info: strawberry.Info,
+        corpus_id: Annotated[
+            strawberry.ID | None, strawberry.argument(name="corpusId")
+        ] = strawberry.UNSET,
+    ) -> None | (
         list[
             Annotated[
                 AnnotationLabelType,
@@ -2157,7 +2180,7 @@ class DocumentType(Node):
             ]
         ]
     ):
-        kwargs = strip_unset({})
+        kwargs = strip_unset({"corpus_id": corpus_id})
         return _resolve_DocumentType_doc_type_labels(self, info, **kwargs)
 
     @strawberry.field(name="allStructuralAnnotations")

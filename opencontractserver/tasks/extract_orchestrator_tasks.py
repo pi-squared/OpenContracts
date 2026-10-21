@@ -115,6 +115,19 @@ def run_extract(extract_id: Optional[str | int], user_id: str | int):
         )
         return
 
+    from opencontractserver.extracts.services.source_readiness import (
+        SourceNotReady,
+        ensure_extract_ready,
+    )
+
+    try:
+        ensure_extract_ready(extract)
+    except SourceNotReady as error:
+        extract.error = str(error)
+        extract.finished = timezone.now()
+        extract.save(update_fields=["error", "finished"])
+        return
+
     logger.info(f"Setting started timestamp for extract {extract.id}")
     with transaction.atomic():
         extract.started = timezone.now()

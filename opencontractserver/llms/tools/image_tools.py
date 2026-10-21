@@ -39,7 +39,9 @@ except ModuleNotFoundError:
 class ImageReference(BaseModel):
     """Reference to an image token in a document."""
 
-    page_index: int = Field(description="0-based page index")
+    page_index: int = Field(
+        description="0-based embedded-image page index; physical citation page is index + 1"
+    )
     token_index: int = Field(
         description="0-based token index within the page's tokens array"
     )
@@ -61,7 +63,9 @@ class ImageData(BaseModel):
     base64_data: str = Field(description="Base64-encoded image data")
     format: str = Field(description="Image format (jpeg, png)")
     data_url: str = Field(description="Data URL for embedding in prompts")
-    page_index: int = Field(description="0-based page index")
+    page_index: int = Field(
+        description="0-based embedded-image page index; physical citation page is index + 1"
+    )
     token_index: int = Field(
         description="0-based token index within the page's tokens array"
     )

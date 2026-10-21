@@ -483,18 +483,33 @@ export const Labelsets = () => {
               <EmptyState
                 icon={<TagsIcon />}
                 title={
-                  activeFilter !== "all"
+                  labelset_search_term
+                    ? "No label sets match your search"
+                    : activeFilter !== "all"
                     ? `No ${getSectionTitle().toLowerCase()}`
                     : "No label sets yet"
                 }
                 description={
-                  activeFilter !== "all"
+                  labelset_search_term
+                    ? "Search checks titles and descriptions, ignoring case. Try another search or clear it."
+                    : activeFilter !== "all"
                     ? "Try selecting a different filter to see more label sets."
                     : "Create your first label set to start organizing annotations across your documents."
                 }
                 size="lg"
                 action={
-                  activeFilter === "all" && isAuthenticated ? (
+                  labelset_search_term ? (
+                    <Button
+                      variant="secondary"
+                      onClick={() => {
+                        debouncedSearch.current.cancel();
+                        setSearchCache("");
+                        labelsetSearchTerm("");
+                      }}
+                    >
+                      Clear search
+                    </Button>
+                  ) : activeFilter === "all" && isAuthenticated ? (
                     <Button
                       variant="primary"
                       leftIcon={<Plus size={16} />}

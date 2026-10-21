@@ -1,3 +1,4 @@
+import { isReviewerVisibleLabel } from "../../../../utils/annotationVisibility";
 import React, { useMemo } from "react";
 import { Dropdown, DropdownOption } from "@os-legal/ui";
 import _ from "lodash";
@@ -36,8 +37,9 @@ export const ViewLabelSelector: React.FC = () => {
     // (structural annotations might use either type)
     const uniqueLabels = _.uniqBy(combinedLabels, "id").filter((label) => {
       return (
-        label.labelType === LabelType.SpanLabel ||
-        label.labelType === LabelType.TokenLabel
+        isReviewerVisibleLabel(label) &&
+        (label.labelType === LabelType.SpanLabel ||
+          label.labelType === LabelType.TokenLabel)
       );
     });
 

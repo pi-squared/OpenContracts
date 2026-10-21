@@ -120,6 +120,7 @@ export const CorpusDocumentCards = ({
       ? {
           annotateDocLabels: true,
           inCorpusWithId: opened_corpus_id,
+          badgeCorpusId: opened_corpus_id,
           includeMetadata: true,
           includeCaml: true,
           // Folder filter is descendant-aware (see DocumentFilter.in_folder):

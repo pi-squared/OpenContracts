@@ -845,19 +845,44 @@ def _mutate_UpdateCorpusMutation(payload_cls, root, info, **kwargs):
                 if embedder_error:
                     return payload_cls(ok=False, message=embedder_error)
 
-    # ``super().mutate()`` in the graphene original (see
-    # _mutate_CreateCorpusMutation).
-    return drf_mutation(
-        payload_cls=payload_cls,
-        model=Corpus,
-        serializer=CorpusSerializer,
-        type_name="CorpusType",
-        pk_fields=("label_set", "categories"),
-        lookup_field="id",
-        root=root,
-        info=info,
-        kwargs=kwargs,
-    )
+    # Description is a cache of the versioned Readme.CAML article. Summary
+    # edits must use the canonical writer, with its existing creator-only rule.
+    description_supplied = "description" in kwargs
+    new_content = kwargs.pop("description", None)
+    corpus = None
+    if description_supplied:
+        not_found = "Corpus not found or you do not have permission to update it."
+        try:
+            corpus_pk = from_global_id(kwargs.get("id"))[1]
+            corpus = get_for_user_or_none(Corpus, corpus_pk, info.context.user)
+        except (TypeError, ValueError):
+            return payload_cls(ok=False, message=not_found)
+        if corpus is None or corpus.creator_id != getattr(
+            info.context.user, "id", None
+        ):
+            return payload_cls(ok=False, message=not_found)
+
+    with transaction.atomic():
+        result = drf_mutation(
+            payload_cls=payload_cls,
+            model=Corpus,
+            serializer=CorpusSerializer,
+            type_name="CorpusType",
+            pk_fields=("label_set", "categories"),
+            lookup_field="id",
+            root=root,
+            info=info,
+            kwargs=kwargs,
+        )
+        if result.ok and description_supplied and corpus is not None:
+            corpus.refresh_from_db()
+            article = CorpusService.update_description(
+                info.context.user, corpus, new_content
+            )
+            if not article.ok:
+                transaction.set_rollback(True)
+                return payload_cls(ok=False, message=article.error)
+        return result
 
 
 def m_update_corpus(

@@ -1,3 +1,5 @@
+import { usePdfEvidenceInteraction } from "../../../../hooks/usePdfEvidenceInteraction";
+import { useAnnotationLabelLayout } from "../../../../hooks/useAnnotationLabelLayout";
 import { useRef, useState, useEffect, useMemo, useLayoutEffect } from "react";
 import styled from "styled-components";
 import { useAtom } from "jotai";
@@ -39,6 +41,7 @@ import {
   PdfTokenBlock,
   textBlockToBounds,
 } from "../../../../utils/textBlockEncoding";
+import { useEvidenceFocus } from "../../../../hooks/useEvidenceFocus";
 import { computeFitToWidthZoom } from "../../../../utils/pdfZoom";
 
 /**
@@ -84,6 +87,7 @@ export const PDFPage = ({
   onZoomRenderRequest,
 }: PDFPageProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasWrapperRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<PDFPageRenderer | null>(null);
   const { pdfAnnotations } = usePdfAnnotations();
 
@@ -99,6 +103,7 @@ export const PDFPage = ({
 
   const { showSelectedOnly, showBoundingBoxes } = useAnnotationDisplay();
   const { zoomLevel, setZoomLevel } = useZoomLevel();
+  const { evidenceNavigation } = useEvidenceFocus();
   const { selectedAnnotations, selectedRelations } = useAnnotationSelection();
 
   const { annotationElementRefs, registerRef, unregisterRef } =
@@ -379,39 +384,38 @@ export const PDFPage = ({
     });
   }, [visibleAnnotations, pageIndex]);
 
+  const renderedAnnotations = useMemo(
+    () =>
+      annots_to_render.filter(
+        (annotation) =>
+          !(selectedMessage || showSelectedOnly) ||
+          selectedAnnotations.includes(annotation.id)
+      ),
+    [annots_to_render, selectedMessage, showSelectedOnly, selectedAnnotations]
+  );
+  const { hoveredEvidenceIds, mouseHandlers, activateAt } =
+    usePdfEvidenceInteraction(canvasRef, updatedPageInfo, renderedAnnotations);
   const pageAnnotationComponents = useMemo(() => {
     if (!hasPdfPageRendered || !zoomLevel || !pageBounds) return [];
-
-    const isVisible = (annot: ServerTokenAnnotation): boolean => {
-      // When chat sources are displayed, only show explicitly selected annotations
-      if (selectedMessage) {
-        return selectedAnnotations.includes(annot.id);
-      }
-      if (showSelectedOnly) {
-        return selectedAnnotations.includes(annot.id);
-      }
-      return true; // existing checks (labels, structural, …) stay here
-    };
-
-    return annots_to_render
-      .filter(isVisible)
-      .map((annotation) => (
-        <Selection
-          key={annotation.id}
-          selected={selectedAnnotations.includes(annotation.id)}
-          pageInfo={updatedPageInfo}
-          annotation={annotation}
-        />
-      ));
+    return renderedAnnotations.map((annotation) => (
+      <Selection
+        key={annotation.id}
+        selected={selectedAnnotations.includes(annotation.id)}
+        pageInfo={updatedPageInfo}
+        annotation={annotation}
+        evidenceHovered={hoveredEvidenceIds.includes(annotation.id)}
+        onEvidenceActivate={activateAt}
+      />
+    ));
   }, [
-    annots_to_render,
-    showSelectedOnly,
+    renderedAnnotations,
     selectedAnnotations,
-    selectedMessage,
     hasPdfPageRendered,
     zoomLevel,
     pageBounds,
     updatedPageInfo,
+    hoveredEvidenceIds,
+    activateAt,
   ]);
 
   /**
@@ -495,41 +499,53 @@ export const PDFPage = ({
     }
 
     /* 3️⃣  NORMAL ANNOTATION */
-    if (pendingScrollId) {
+    if (
+      pendingScrollId &&
+      (selectedAnnotations[0] === pendingScrollId ||
+        evidenceNavigation?.annotationId === pendingScrollId)
+    ) {
       const pageOwnsAnnotation = visibleAnnotations.some(
         (a) =>
           a instanceof ServerTokenAnnotation &&
           a.id === pendingScrollId &&
+          a.page === pageIndex &&
           a.json[pageIndex] !== undefined
       );
       if (!pageOwnsAnnotation) return;
 
       let cancelled = false;
+      let frame: number | undefined;
       const tryScrollAnnot = () => {
         if (cancelled) return;
         try {
           // Escape special characters in ID (e.g., '=' from base64 encoding)
           // CSS.escape() handles all special CSS selector characters
-          const el = document.querySelector(
-            `.selection_${CSS.escape(pendingScrollId)}`
-          ) as HTMLElement | null;
+          const el = pageContainerRef.current?.querySelector<HTMLElement>(
+            `#${CSS.escape(`SELECTION_${pendingScrollId}`)}`
+          );
           if (el) {
             el.scrollIntoView({ behavior: "smooth", block: "center" });
             setPendingScrollId(null); // done
           } else {
-            requestAnimationFrame(tryScrollAnnot);
+            frame = requestAnimationFrame(tryScrollAnnot);
           }
         } catch (error) {
           console.error("Error scrolling to annotation:", error);
         }
       };
       tryScrollAnnot();
+      return () => {
+        cancelled = true;
+        if (frame !== undefined) cancelAnimationFrame(frame);
+      };
     }
   }, [
     hasPdfPageRendered,
     pendingScrollSearchId,
     pendingScrollChatSourceKey,
     pendingScrollId,
+    evidenceNavigation,
+    selectedAnnotations,
     searchResults,
     visibleAnnotations,
     pageIndex,
@@ -562,15 +578,23 @@ export const PDFPage = ({
     }
   }, [zoomLevel, hasPdfPageRendered, pageInfo.page]);
 
+  useAnnotationLabelLayout(
+    pageContainerRef,
+    pageAnnotationComponents,
+    zoomLevel
+  );
+
   return (
     <PageAnnotationsContainer
       className="PageAnnotationsContainer"
       ref={pageContainerRef}
+      {...mouseHandlers}
       style={{ position: "relative" }}
     >
-      <CanvasWrapper>
+      <CanvasWrapper ref={canvasWrapperRef}>
         <PageCanvas ref={canvasRef} />
         <SelectionLayer
+          mouseEventContainerRef={canvasWrapperRef}
           pageInfo={updatedPageInfo}
           read_only={read_only}
           activeSpanLabel={activeSpanLabel ?? null}

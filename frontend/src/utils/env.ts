@@ -10,6 +10,7 @@ export interface EnvConfig {
   REACT_APP_APPLICATION_CLIENT_ID: string;
   REACT_APP_AUDIENCE: string;
   REACT_APP_API_ROOT_URL: string;
+  REACT_APP_BASE_PATH?: string;
   REACT_APP_USE_AUTH0: boolean;
   REACT_APP_USE_ANALYZERS: boolean;
   REACT_APP_ALLOW_IMPORTS: boolean;
@@ -64,6 +65,7 @@ export function getRuntimeEnv(): EnvConfig {
       "REACT_APP_API_ROOT_URL",
       "http://localhost:8000"
     ),
+    REACT_APP_BASE_PATH: getString("REACT_APP_BASE_PATH"),
     REACT_APP_USE_AUTH0: toBoolean(
       winEnv["REACT_APP_USE_AUTH0"] ?? metaEnv["REACT_APP_USE_AUTH0"]
     ),

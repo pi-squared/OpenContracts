@@ -637,43 +637,27 @@ export function buildRequestKey(
  *   labelDisplay: "ALWAYS"
  * });
  */
-export function updateAnnotationDisplayParams(
-  location: LocationLike,
-  navigate: NavigateFn,
-  settings: {
-    showStructural?: boolean;
-    showSelectedOnly?: boolean;
-    showBoundingBoxes?: boolean;
-    labelDisplay?: string;
-  }
+type AnnotationDisplaySettings = {
+  showStructural?: boolean;
+  showSelectedOnly?: boolean;
+  showBoundingBoxes?: boolean;
+  labelDisplay?: string;
+};
+
+function applyAnnotationDisplayParams(
+  searchParams: URLSearchParams,
+  settings: AnnotationDisplaySettings
 ) {
-  const searchParams = new URLSearchParams(location.search);
-
-  // Update only specified params
-  if (settings.showStructural !== undefined) {
-    if (settings.showStructural) {
-      searchParams.set("structural", "true");
-    } else {
-      searchParams.delete("structural");
+  for (const [setting, param] of [
+    ["showStructural", "structural"],
+    ["showSelectedOnly", "selectedOnly"],
+    ["showBoundingBoxes", "boundingBoxes"],
+  ] as const) {
+    if (settings[setting] !== undefined) {
+      if (settings[setting]) searchParams.set(param, "true");
+      else searchParams.delete(param);
     }
   }
-
-  if (settings.showSelectedOnly !== undefined) {
-    if (settings.showSelectedOnly) {
-      searchParams.set("selectedOnly", "true");
-    } else {
-      searchParams.delete("selectedOnly");
-    }
-  }
-
-  if (settings.showBoundingBoxes !== undefined) {
-    if (settings.showBoundingBoxes) {
-      searchParams.set("boundingBoxes", "true");
-    } else {
-      searchParams.delete("boundingBoxes");
-    }
-  }
-
   if (settings.labelDisplay !== undefined) {
     if (settings.labelDisplay !== "ON_HOVER") {
       searchParams.set("labels", settings.labelDisplay);
@@ -681,7 +665,15 @@ export function updateAnnotationDisplayParams(
       searchParams.delete("labels");
     }
   }
+}
 
+export function updateAnnotationDisplayParams(
+  location: LocationLike,
+  navigate: NavigateFn,
+  settings: AnnotationDisplaySettings
+) {
+  const searchParams = new URLSearchParams(location.search);
+  applyAnnotationDisplayParams(searchParams, settings);
   navigate({ search: searchParams.toString() }, { replace: true });
 }
 
@@ -705,6 +697,7 @@ export function updateAnnotationSelectionParams(
     annotationIds?: string[];
     analysisIds?: string[];
     extractIds?: string[];
+    display?: AnnotationDisplaySettings;
   }
 ) {
   const searchParams = new URLSearchParams(location.search);
@@ -735,6 +728,9 @@ export function updateAnnotationSelectionParams(
     }
   }
 
+  if (selection.display) {
+    applyAnnotationDisplayParams(searchParams, selection.display);
+  }
   navigate({ search: searchParams.toString() }, { replace: true });
 }
 

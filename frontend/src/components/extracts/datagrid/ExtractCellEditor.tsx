@@ -1,3 +1,7 @@
+import {
+  projectFindingValue,
+  applyFindingJsonEdit,
+} from "../../../utils/findingValue";
 import React, { useState } from "react";
 import {
   Modal,
@@ -8,8 +12,7 @@ import {
   Input,
 } from "@os-legal/ui";
 import { JSONSchema7 } from "json-schema";
-import JsonView from "@uiw/react-json-view";
-import { darkTheme } from "@uiw/react-json-view/dark";
+import ReactJson from "react-json-view";
 import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
 
 interface ExtractCellEditorProps {
@@ -67,20 +70,20 @@ export const ExtractCellEditor: React.FC<ExtractCellEditorProps> = ({
           overflow: "auto",
         }}
       >
-        <JsonView
-          src={value}
-          theme={{
-            ...darkTheme,
-            backgroundColor: "#0f172a",
-            fontSize: "14px",
-            borderRadius: "8px",
-          }}
+        <ReactJson
+          src={projectFindingValue(value)}
+          theme="rjv-default"
           displayDataTypes={true}
-          displayObjectSize={true}
           enableClipboard={true}
           onEdit={(edit: any) => {
-            handleJsonChange(edit.updated_src);
+            handleJsonChange(applyFindingJsonEdit(value, edit));
           }}
+          onAdd={(edit) => handleJsonChange(applyFindingJsonEdit(value, edit))}
+          onDelete={(edit) =>
+            handleJsonChange(
+              applyFindingJsonEdit(value, { ...edit, type: "delete" })
+            )
+          }
           indentWidth={4}
           collapsed={false}
         />

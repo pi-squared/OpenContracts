@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 from uuid import uuid4
 
 from opencontractserver.documents.models import Document
+from opencontractserver.llms.citation_pages import citation_page_metadata
 from opencontractserver.utils.compact_pawls import expand_pawls_pages
 from opencontractserver.utils.files import read_field_file_text
 
@@ -43,7 +44,10 @@ def search_exact_text_as_sources(
         - annotation_id: Synthetic negative ID (unique per match)
         - content: The matched text
         - similarity_score: 1.0 (perfect match)
-        - metadata: document_id, corpus_id, page, position info, search_string
+        - metadata: document_id, corpus_id, page, position info, search_string.
+          PDF page/pages are one-based physical pages (including a cover), not
+          printed labels; null page means unavailable. Multi-page geometry in
+          annotation_json retains native zero-based indices.
 
     Raises
     ------
@@ -116,7 +120,9 @@ def search_exact_text_as_sources(
                         metadata={
                             "document_id": document_id,
                             "corpus_id": corpus_id,
-                            "page": oc_ann.get("page", 1),
+                            **citation_page_metadata(
+                                doc, oc_ann.get("page"), oc_ann.get("annotation_json")
+                            ),
                             "annotation_json": oc_ann[
                                 "annotation_json"
                             ],  # Full MultipageAnnotationJson from PlasmaPDF

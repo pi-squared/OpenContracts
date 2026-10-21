@@ -150,6 +150,7 @@ class Corpus(InstanceUserCanMixin, TreeNode):
     # Model variables
     title = django.db.models.CharField(max_length=1024, db_index=True)
     description = django.db.models.TextField(default="", blank=True)
+    workflow_label_policy = django.db.models.JSONField(default=dict, blank=True)
     description_preview = django.db.models.TextField(
         default="",
         blank=True,

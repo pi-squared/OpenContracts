@@ -16,6 +16,27 @@ from opencontractserver.shared.Models import BaseOCModel
 
 User = get_user_model()
 
+
+class InstalledWorkflowPackage(django.db.models.Model):
+    """Bind a verified package to its native definitions without replacing edits."""
+
+    package_hash = django.db.models.CharField(max_length=64)
+    owner = django.db.models.ForeignKey(User, on_delete=django.db.models.CASCADE)
+    fieldset = django.db.models.ForeignKey(
+        "Fieldset", on_delete=django.db.models.PROTECT
+    )
+    labelset = django.db.models.ForeignKey(
+        "annotations.LabelSet", on_delete=django.db.models.PROTECT
+    )
+
+    class Meta:
+        constraints = [
+            django.db.models.UniqueConstraint(
+                fields=["package_hash", "owner"], name="unique_workflow_package_owner"
+            )
+        ]
+
+
 # Define metadata data types
 METADATA_DATA_TYPES = [
     ("STRING", "String"),
@@ -384,6 +405,15 @@ class Datacell(BaseOCModel):
         related_name="rejected_cells",
     )
     corrected_data = NullableJSONField(default=None, null=True, blank=True)
+
+    evidence_anchors = django.db.models.JSONField(
+        default=dict,
+        blank=True,
+        help_text=(
+            "Quotation anchors for original and corrected finding versions; "
+            "retrieval history remains in sources."
+        ),
+    )
 
     # LLM call logging for debugging/visibility
     llm_call_log = django.db.models.TextField(

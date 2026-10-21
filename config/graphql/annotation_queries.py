@@ -72,6 +72,9 @@ from opencontractserver.annotations.models import (
     Note,
     Relationship,
 )
+from opencontractserver.annotations.services.evidence_visibility import (
+    filter_finding_annotations,
+)
 from opencontractserver.constants.annotations import (
     DOCUMENT_ANNOTATION_INDEX_LIMIT,
     MANUAL_ANNOTATION_SENTINEL,
@@ -694,7 +697,9 @@ def _resolve_Query_annotations(
         queryset = BaseService.filter_visible(
             Annotation, info.context.user, request=info.context
         ).with_cached_count()
+        queryset = filter_finding_annotations(queryset)
 
+    # Scoped service feeds already project finding eligibility before paging.
     queryset = queryset.select_related(
         "annotation_label",
         "creator",
@@ -1302,7 +1307,12 @@ def q_annotation(
 ) -> None | (
     Annotated[AnnotationType, strawberry.lazy("config.graphql.annotation_types")]
 ):
-    return get_node_from_global_id(info, id, only_type_name="AnnotationType")
+    annotation = get_node_from_global_id(info, id, only_type_name="AnnotationType")
+    if annotation is None:
+        return None
+    return filter_finding_annotations(
+        Annotation.objects.filter(pk=annotation.pk)
+    ).first()
 
 
 def _resolve_Query_relationships(root, info, **kwargs):

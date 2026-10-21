@@ -1,9 +1,9 @@
+import { DocumentChildModal } from "../LayoutComponents";
 import React, { useState, useMemo } from "react";
 import {
   Button,
   Dropdown,
   Input,
-  Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
@@ -355,7 +355,7 @@ export const RelationshipActionModal: React.FC<
   );
 
   return (
-    <Modal open={open} onClose={onClose} size="sm">
+    <DocumentChildModal open={open} onClose={onClose} size="sm">
       <ModalHeader
         title={
           <span>
@@ -844,6 +844,6 @@ export const RelationshipActionModal: React.FC<
             : "Create Relationship"}
         </Button>
       </ModalFooter>
-    </Modal>
+    </DocumentChildModal>
   );
 };

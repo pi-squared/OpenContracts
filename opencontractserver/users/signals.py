@@ -127,6 +127,10 @@ def user_created_signal(
         # Log but don't raise - we don't want to break user creation if telemetry fails
         logger.error(f"Error recording user created event: {e}")
 
+    # Hosted installations may defer the empty personal corpus to first upload.
+    if not getattr(settings, "AUTO_CREATE_PERSONAL_CORPUS", True):
+        return
+
     # Create personal corpus for new user
     try:
         with transaction.atomic():

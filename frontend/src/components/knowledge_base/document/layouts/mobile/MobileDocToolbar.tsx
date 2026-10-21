@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { List, Search, Maximize2 } from "lucide-react";
+import { List, Search, Maximize2, ZoomIn, ZoomOut } from "lucide-react";
 import { OS_LEGAL_COLORS } from "../../../../../assets/configurations/osLegalStyles";
-import { Z_INDEX } from "../../../../../assets/configurations/constants";
+import {
+  Z_INDEX,
+  ZOOM_MIN,
+  ZOOM_MAX,
+} from "../../../../../assets/configurations/constants";
 import { MOBILE_RADIUS, MOBILE_SHADOW } from "./mobileTheme";
 
 export interface MobileDocToolbarProps {
@@ -10,6 +14,8 @@ export interface MobileDocToolbarProps {
   onSections: () => void;
   onFind: () => void;
   onFitWidth: () => void;
+  onZoomIn?: () => void;
+  onZoomOut?: () => void;
 }
 
 /** Compact frosted-pill toolbar that floats over the viewer's top-right corner. */
@@ -85,6 +91,8 @@ export const MobileDocToolbar: React.FC<MobileDocToolbarProps> = ({
   onSections,
   onFind,
   onFitWidth,
+  onZoomIn,
+  onZoomOut,
 }) => (
   <Cluster>
     <IconButton aria-label="Sections" onClick={onSections}>
@@ -94,8 +102,26 @@ export const MobileDocToolbar: React.FC<MobileDocToolbarProps> = ({
       <Search size={17} />
     </IconButton>
     <Divider aria-hidden="true" />
+    {onZoomOut && (
+      <IconButton
+        aria-label="Zoom Out"
+        onClick={onZoomOut}
+        disabled={zoomPercent <= ZOOM_MIN * 100}
+      >
+        <ZoomOut size={17} />
+      </IconButton>
+    )}
     <ZoomButton aria-label="Fit width" onClick={onFitWidth}>
       <Maximize2 size={15} /> {Math.round(zoomPercent)}%
     </ZoomButton>
+    {onZoomIn && (
+      <IconButton
+        aria-label="Zoom In"
+        onClick={onZoomIn}
+        disabled={zoomPercent >= ZOOM_MAX * 100}
+      >
+        <ZoomIn size={17} />
+      </IconButton>
+    )}
   </Cluster>
 );

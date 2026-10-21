@@ -1,4 +1,7 @@
+import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
 import React, { useState, useEffect, useRef } from "react";
+import { useApolloClient, useReactiveVar } from "@apollo/client";
+import { GET_DATACELL_EVIDENCE } from "../../../graphql/queries";
 import {
   Modal,
   ModalHeader,
@@ -12,29 +15,32 @@ import { CellStatus } from "../../../types/extract-grid";
 import styled from "styled-components";
 import { JSONSchema7 } from "json-schema";
 import { ExtractCellEditor } from "./ExtractCellEditor";
+import { FindingPreview, FindingDetails } from "./FindingView";
+import {
+  findingFrom,
+  projectFindingValue,
+  applyFindingJsonEdit,
+  findingOutcome,
+} from "../../../utils/findingValue";
+import { getDatacellOutcome } from "../../../utils/extractUtils";
 import ReactJson from "react-json-view";
 import { TruncatedText } from "../../widgets/data-display/TruncatedText";
-import { useReactiveVar } from "@apollo/client";
 import {
   displayAnnotationOnAnnotatorLoad,
   onlyDisplayTheseAnnotations,
   selectedExtract,
-  showAnnotationBoundingBoxes,
-  showAnnotationLabels,
-  showSelectedAnnotationOnly,
-  showStructuralAnnotations,
+  userObj,
 } from "../../../graphql/cache";
 import {
   DatacellType,
   ExtractType,
   ServerAnnotationType,
-  LabelDisplayBehavior,
 } from "../../../types/graphql-api";
 import { Z_INDEX } from "../../../assets/configurations/constants";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   getDocumentUrl,
-  updateAnnotationDisplayParams,
+  buildQueryParams,
 } from "../../../utils/navigationUtils";
 import {
   OS_LEGAL_COLORS,
@@ -118,6 +124,12 @@ const CellContainer = styled.div`
     font-style: italic;
   }
 
+  .source-feedback {
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: ${OS_LEGAL_COLORS.textSecondary};
+  }
+
   &:hover {
     background-color: ${primaryBlueAlpha(0.05)};
   }
@@ -164,16 +176,10 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
 }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [failureOpen, setFailureOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOriginalModalOpen, setIsOriginalModalOpen] = useState(false);
-
-  const [viewSourceAnnotations, setViewSourceAnnotations] = useState<
-    ServerAnnotationType[] | null
-  >(null);
-
-  const only_display_these_annotations = useReactiveVar(
-    onlyDisplayTheseAnnotations
-  );
+  const [showRawJson, setShowRawJson] = useState(false);
 
   const cellRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -187,6 +193,44 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
 
   const navigate = useNavigate();
   const location = useLocation();
+  const client = useApolloClient();
+  const user = useReactiveVar(userObj);
+  const [evidence, setEvidence] = useState<Pick<
+    DatacellType,
+    "findingEvidence" | "fullSourceList"
+  > | null>(null);
+  const [evidenceLoading, setEvidenceLoading] = useState(false);
+  const [evidenceError, setEvidenceError] = useState<string | null>(null);
+  const [sourcesUnavailable, setSourcesUnavailable] = useState(false);
+  const [evidenceIntent, setEvidenceIntent] = useState<"detail" | "sources">(
+    "detail"
+  );
+  // No projection data enters the overview query or Apollo's shared cache.
+  // Request generations also reject late responses after correction, sign-out,
+  // cell reuse, dismissal or another evidence inspection.
+  const evidenceGeneration = useRef(0);
+  const pendingEvidence = useRef<Promise<void> | null>(null);
+  const evidenceVersion = JSON.stringify([
+    cellId,
+    value,
+    cellStatus?.correctedData,
+    user?.id,
+    isOriginalModalOpen,
+  ]);
+  useEffect(() => {
+    evidenceGeneration.current += 1;
+    pendingEvidence.current = null;
+    setEvidence(null);
+    setEvidenceLoading(false);
+    setEvidenceError(null);
+    setSourcesUnavailable(false);
+    if (isOriginalModalOpen) void loadEvidence("detail", "original");
+    else if (isModalOpen && cell?.hasFindingEvidence)
+      void loadEvidence("detail");
+    return () => {
+      evidenceGeneration.current += 1;
+    };
+  }, [evidenceVersion, client]);
 
   useEffect(() => {
     if (cellRef.current) {
@@ -268,31 +312,132 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
     return "transparent";
   };
 
+  const loadEvidence = (
+    intent: "detail" | "sources",
+    version: "effective" | "original" = "effective"
+  ) => {
+    if (
+      findingOutcome(
+        version === "original" ? originalValue : displayedValue
+      ) === "not_found"
+    ) {
+      return Promise.resolve();
+    }
+    setEvidenceIntent(intent);
+    if (pendingEvidence.current && evidenceIntent === intent) {
+      return pendingEvidence.current;
+    }
+    const generation = ++evidenceGeneration.current;
+    setEvidence(null);
+    setEvidenceError(null);
+    setSourcesUnavailable(false);
+    setEvidenceLoading(true);
+    const request = client
+      .query<{
+        datacell: Pick<
+          DatacellType,
+          "findingEvidence" | "fullSourceList"
+        > | null;
+      }>({
+        query: GET_DATACELL_EVIDENCE,
+        variables: { id: cellId, version },
+        fetchPolicy: "no-cache",
+        context: { queryDeduplication: false },
+      })
+      .then(({ data }) => {
+        if (generation !== evidenceGeneration.current) return;
+        if (!data.datacell) throw new Error("Source access failed");
+        setEvidence(data.datacell);
+        if (intent === "sources") {
+          setSourcesUnavailable(
+            !openSources(data.datacell.fullSourceList ?? [])
+          );
+          setIsModalOpen(false);
+        }
+      })
+      .catch(() => {
+        if (generation === evidenceGeneration.current) {
+          setEvidenceError(
+            intent === "sources"
+              ? "Source locations could not be loaded. Check source access and retry."
+              : "Quotation locations could not be loaded. Check source access and retry."
+          );
+        }
+      })
+      .finally(() => {
+        if (generation === evidenceGeneration.current) {
+          setEvidenceLoading(false);
+          pendingEvidence.current = null;
+        }
+      });
+    pendingEvidence.current = request;
+    return request;
+  };
+
   const openViewer = () => {
+    setEvidenceIntent("detail");
+    setShowRawJson(false);
     setIsModalOpen(true);
+    if (cell?.hasFindingEvidence) void loadEvidence("detail");
   };
 
   const closeModal = () => {
+    evidenceGeneration.current += 1;
+    pendingEvidence.current = null;
+    setEvidence(null);
+    setEvidenceLoading(false);
+    setEvidenceError(null);
+    setSourcesUnavailable(false);
     setIsModalOpen(false);
   };
 
   const openOriginalViewer = () => {
+    closeModal();
+    setIsPopupOpen(false);
     setIsOriginalModalOpen(true);
   };
 
   const closeOriginalModal = () => {
+    closeModal();
     setIsOriginalModalOpen(false);
   };
 
   const handleJsonEdit = (edit: any) => {
-    const updatedValue = edit.updated_src;
+    const updatedValue = applyFindingJsonEdit(
+      cellStatus?.correctedData ?? value,
+      edit
+    );
     onEdit(cellId, updatedValue);
   };
 
   const displayedValue =
     cellStatus?.correctedData != null ? cellStatus.correctedData : value;
+  const originalValue = cellStatus ? cellStatus.originalData : value;
+  const findingValue = findingFrom(displayedValue);
+
+  const outcome = extract ? getDatacellOutcome(cell, extract) : null;
+  const failed = Boolean(cellStatus?.error) || outcome === "failed";
+  const interrupted = outcome === "interrupted";
+  const hasSavedValue =
+    displayedValue !== null &&
+    displayedValue !== undefined &&
+    displayedValue !== "";
 
   const displayValue = () => {
+    if (outcome === "notReported" && !hasSavedValue)
+      return <span>No result recorded</span>;
+    if (outcome === "pending" && !hasSavedValue) return <span>Pending</span>;
+    if (findingValue && !cellStatus?.isLoading) {
+      return (
+        <FindingPreview
+          value={findingValue}
+          onOpen={openViewer}
+          isApproved={cellStatus?.isApproved}
+          isRejected={cellStatus?.isRejected}
+          isEdited={cellStatus?.isEdited}
+        />
+      );
+    }
     if (typeof displayedValue === "object" && displayedValue !== null) {
       return (
         <div
@@ -312,43 +457,116 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
     }
   };
 
-  useEffect(() => {
-    if (viewSourceAnnotations !== null) {
-      onlyDisplayTheseAnnotations(viewSourceAnnotations);
-      displayAnnotationOnAnnotatorLoad(viewSourceAnnotations[0]);
-      // Update display settings via URL - CentralRouteManager will set reactive vars
-      updateAnnotationDisplayParams(location, navigate, {
-        showSelectedOnly: false,
+  // The clicked cell owns this transition. Shared display state must never
+  // navigate from every formatter subscribed to it.
+  const openSources = (sources: ServerAnnotationType[]) => {
+    const annotations = sources.filter((source) =>
+      isReviewerVisibleLabel(source.annotationLabel)
+    );
+    const first = annotations[0];
+    if (!first?.document || !first.corpus) return false;
+    const url = getDocumentUrl(first.document, first.corpus);
+    if (url === "#") return false;
+    selectedExtract(extract);
+    onlyDisplayTheseAnnotations(annotations);
+    displayAnnotationOnAnnotatorLoad(first);
+    const params = new URLSearchParams(
+      buildQueryParams({
+        annotationIds: annotations.map((annotation) => annotation.id),
+        extractIds: extract?.id ? [extract.id] : undefined,
+        showSelectedOnly: true,
         showBoundingBoxes: true,
-        showStructural: true,
-        labelDisplay: LabelDisplayBehavior.ALWAYS,
-      });
+        showStructural: false,
+      })
+    );
+    const labelMode = new URLSearchParams(location.search).get("labels");
+    if (labelMode) params.set("labels", labelMode);
+    if (isOriginalModalOpen) {
+      params.set("findingCell", cellId);
+      params.set("findingVersion", "original");
     }
-  }, [viewSourceAnnotations, location, navigate]);
-
-  useEffect(() => {
-    if (
-      only_display_these_annotations &&
-      only_display_these_annotations.length > 0
-    ) {
-      const first = only_display_these_annotations[0];
-      if (first.document && first.corpus) {
-        const url = getDocumentUrl(first.document, first.corpus);
-        if (url !== "#") {
-          navigate(`${url}?ann=${first.id}`);
-        } else {
-          console.warn("Cannot navigate - missing slugs:", first);
-        }
-      }
-      setViewSourceAnnotations(null);
-    }
-  }, [only_display_these_annotations, navigate]);
+    navigate(`${url}?${params.toString()}`);
+    return true;
+  };
 
   return (
     <CellContainer ref={cellRef} style={{ background: getCellBackground() }}>
-      {displayValue()}
+      <Modal open={failureOpen} onClose={() => setFailureOpen(false)}>
+        <ModalHeader>
+          {interrupted ? "Extraction interrupted" : "Extraction failed"}:{" "}
+          {column.name}
+        </ModalHeader>
+        <ModalBody>
+          <p>
+            The field {column.name} {interrupted ? "was interrupted" : "failed"}{" "}
+            in {extract?.name || "this extract"}.
+          </p>
+          <p>
+            {hasSavedValue
+              ? "A saved value is available below; this field did not finish successfully."
+              : "No finding was produced for this field."}
+          </p>
+          {cell?.failed && (
+            <p>Failed at {new Date(cell.failed).toLocaleString()}.</p>
+          )}
+          <p>
+            Successful fields remain available for review. Check the extraction
+            configuration, then use Iterations to create a new run. Opening this
+            notice does not rerun extraction.
+          </p>
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={() => setFailureOpen(false)}>Close</Button>
+        </ModalFooter>
+      </Modal>
+      <div style={{ minWidth: 0 }}>
+        {(failed || interrupted) && (
+          <div role="status">
+            <strong>
+              {interrupted ? "Extraction interrupted" : "Extraction failed"}
+            </strong>
+            <Button
+              size="sm"
+              variant="secondary"
+              aria-label={`View failure: ${column.name}`}
+              onClick={() => setFailureOpen(true)}
+            >
+              View failure
+            </Button>
+          </div>
+        )}
+        {(!(failed || interrupted) || hasSavedValue) && displayValue()}
+        {evidenceIntent === "sources" &&
+          !isModalOpen &&
+          (evidenceLoading ? (
+            <div className="source-feedback" role="status">
+              Loading source locations…
+            </div>
+          ) : evidenceError ? (
+            <div className="source-feedback" role="alert">
+              <p>{evidenceError}</p>
+              <Button size="sm" onClick={() => void loadEvidence("sources")}>
+                Retry source locations
+              </Button>
+            </div>
+          ) : sourcesUnavailable ? (
+            <div className="source-feedback" role="status">
+              No highlighted source available.
+            </div>
+          ) : null)}
+      </div>
+      {cellStatus?.correctedData != null && (
+        <Button
+          aria-label="View original"
+          variant="secondary"
+          size="sm"
+          onClick={openOriginalViewer}
+        >
+          View original
+        </Button>
+      )}
       {cellStatus?.isLoading && <div className="cell-loader">Loading...</div>}
-      {!cellStatus?.isLoading && isExtractComplete && (
+      {!cellStatus?.isLoading && !cellStatus?.error && isExtractComplete && (
         <>
           <StatusDot
             ref={statusDotRef}
@@ -458,11 +676,13 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
                     size="sm"
                     variant="secondary"
                     onClick={() => {
+                      closeModal();
                       if (
                         typeof displayedValue === "object" &&
                         displayedValue !== null
                       ) {
-                        openViewer();
+                        setShowRawJson(true);
+                        setIsModalOpen(true);
                       } else {
                         setIsEditing(true);
                       }
@@ -472,31 +692,34 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
                   >
                     <Edit2 size={14} />
                   </IconButton>
-                  <IconButton
-                    role="menuitem"
-                    tabIndex={-1}
-                    aria-label="View Sources"
-                    title="View Sources"
-                    size="sm"
-                    variant="primary"
-                    onClick={() => {
-                      if (
-                        cell?.fullSourceList &&
-                        cell.fullSourceList.length > 0
-                      ) {
-                        selectedExtract(extract);
-                        setViewSourceAnnotations(
-                          cell.fullSourceList as ServerAnnotationType[]
-                        );
+                  {findingOutcome(displayedValue) !== "not_found" && (
+                    <IconButton
+                      role="menuitem"
+                      tabIndex={-1}
+                      aria-label="View Sources"
+                      title="View Sources"
+                      size="sm"
+                      variant="primary"
+                      onClick={() => {
+                        if (
+                          cell?.hasFindingEvidence ||
+                          (!findingValue && cell && !cell.fullSourceList)
+                        ) {
+                          void loadEvidence("sources");
+                        } else if (cell?.fullSourceList?.length) {
+                          openSources(cell.fullSourceList);
+                        }
+                        setIsPopupOpen(false);
+                      }}
+                      disabled={
+                        !cell?.hasFindingEvidence &&
+                        !cell?.fullSourceList?.length &&
+                        (Boolean(findingValue) || !cell)
                       }
-                      setIsPopupOpen(false);
-                    }}
-                    disabled={
-                      !cell?.fullSourceList || cell.fullSourceList.length === 0
-                    }
-                  >
-                    <Eye size={14} />
-                  </IconButton>
+                    >
+                      <Eye size={14} />
+                    </IconButton>
+                  )}
                   <IconButton
                     role="menuitem"
                     tabIndex={-1}
@@ -550,49 +773,118 @@ export const ExtractCellFormatter: React.FC<ExtractCellFormatterProps> = ({
               </ModalBody>
             </Modal>
           )}
-          <Modal open={isModalOpen} onClose={closeModal}>
-            <ModalHeader>Edit JSON Data</ModalHeader>
-            <ModalBody>
-              <ReactJson
-                src={displayedValue}
-                onEdit={handleJsonEdit}
-                onAdd={handleJsonEdit}
-                onDelete={handleJsonEdit}
-                theme="rjv-default"
-                style={{ padding: "20px" }}
-                enableClipboard={false}
-                displayDataTypes={false}
-              />
-            </ModalBody>
-            <ModalFooter>
-              <Button variant="secondary" onClick={closeModal}>
-                Close
-              </Button>
-            </ModalFooter>
-          </Modal>
-          <Modal open={isOriginalModalOpen} onClose={closeOriginalModal}>
-            <ModalHeader>Original Value</ModalHeader>
-            <ModalBody>
-              {typeof value === "object" && value !== null ? (
+        </>
+      )}
+      <Modal open={isOriginalModalOpen} onClose={closeOriginalModal}>
+        <ModalHeader>Original Value</ModalHeader>
+        <ModalBody>
+          {findingFrom(originalValue) ? (
+            <FindingDetails
+              value={findingFrom(originalValue)!}
+              evidenceAnchors={evidence?.findingEvidence}
+              evidenceLoading={evidenceLoading}
+              evidenceError={evidenceError}
+              onRetryEvidence={() => void loadEvidence("detail", "original")}
+              onViewQuote={(id) => {
+                const source = evidence?.fullSourceList?.find(
+                  (item) => item.id === id
+                );
+                if (source) {
+                  openSources([source]);
+                  closeOriginalModal();
+                }
+              }}
+            />
+          ) : typeof originalValue === "object" && originalValue !== null ? (
+            <ReactJson
+              src={projectFindingValue(originalValue)}
+              theme="rjv-default"
+              style={{ padding: "20px" }}
+              enableClipboard={false}
+              displayDataTypes={false}
+            />
+          ) : (
+            <div style={{ padding: "20px" }}>{String(originalValue)}</div>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="secondary" onClick={closeOriginalModal}>
+            Close
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal open={isModalOpen} onClose={closeModal}>
+        <ModalHeader>
+          {findingValue && !showRawJson ? column.name : "Edit JSON Data"}
+        </ModalHeader>
+        <ModalBody>
+          {findingValue && !showRawJson ? (
+            <FindingDetails
+              value={findingValue}
+              evidenceAnchors={
+                evidence?.findingEvidence ?? cell?.findingEvidence
+              }
+              evidenceLoading={evidenceLoading}
+              evidenceError={evidenceError}
+              onRetryEvidence={() => void loadEvidence("detail")}
+              onViewQuote={(annotationId) => {
+                const source = (
+                  evidence?.fullSourceList ?? cell?.fullSourceList
+                )?.find((annotation) => annotation.id === annotationId);
+                if (source) {
+                  openSources([source]);
+                  closeModal();
+                }
+              }}
+              isApproved={cellStatus?.isApproved}
+              isRejected={cellStatus?.isRejected}
+              isEdited={cellStatus?.isEdited}
+            />
+          ) : (
+            <>
+              {typeof displayedValue === "object" && displayedValue !== null ? (
                 <ReactJson
-                  src={value}
+                  src={projectFindingValue(displayedValue)}
+                  onEdit={
+                    !readOnly && isExtractComplete ? handleJsonEdit : undefined
+                  }
+                  onAdd={
+                    !readOnly && isExtractComplete ? handleJsonEdit : undefined
+                  }
+                  onDelete={
+                    !readOnly && isExtractComplete
+                      ? (edit) => handleJsonEdit({ ...edit, type: "delete" })
+                      : undefined
+                  }
                   theme="rjv-default"
                   style={{ padding: "20px" }}
                   enableClipboard={false}
                   displayDataTypes={false}
                 />
               ) : (
-                <div style={{ padding: "20px" }}>{String(value)}</div>
+                <div>{String(displayedValue)}</div>
               )}
-            </ModalBody>
-            <ModalFooter>
-              <Button variant="secondary" onClick={closeOriginalModal}>
-                Close
-              </Button>
-            </ModalFooter>
-          </Modal>
-        </>
-      )}
+            </>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          {findingValue && (
+            <Button
+              variant="secondary"
+              onClick={() => setShowRawJson(!showRawJson)}
+            >
+              {showRawJson
+                ? "View finding"
+                : readOnly || !isExtractComplete
+                ? "View data"
+                : "Edit data"}
+            </Button>
+          )}
+          <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </ModalFooter>
+      </Modal>
     </CellContainer>
   );
 };

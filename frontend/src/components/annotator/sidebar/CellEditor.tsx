@@ -1,3 +1,7 @@
+import {
+  projectFindingValue,
+  applyFindingJsonEdit,
+} from "../../../utils/findingValue";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ReactJson from "react-json-view";
@@ -42,10 +46,18 @@ export const CellEditor: React.FC<CellEditorProps> = ({
         <ModalHeader>Edit Value</ModalHeader>
         {isObject ? (
           <ReactJson
-            src={editedValue}
-            onEdit={(edit) => setEditedValue(edit.updated_src)}
-            onAdd={(add) => setEditedValue(add.updated_src)}
-            onDelete={(del) => setEditedValue(del.updated_src)}
+            src={projectFindingValue(editedValue)}
+            onEdit={(edit) =>
+              setEditedValue(applyFindingJsonEdit(editedValue, edit))
+            }
+            onAdd={(add) =>
+              setEditedValue(applyFindingJsonEdit(editedValue, add))
+            }
+            onDelete={(del) =>
+              setEditedValue(
+                applyFindingJsonEdit(editedValue, { ...del, type: "delete" })
+              )
+            }
             enableClipboard={false}
             displayDataTypes={false}
           />

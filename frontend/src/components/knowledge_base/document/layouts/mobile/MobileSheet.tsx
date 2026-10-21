@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useId, useRef } from "react";
+import { useDialogFocus } from "../../../../../hooks/useDialogFocus";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
@@ -87,31 +88,41 @@ export const MobileSheet: React.FC<MobileSheetProps> = ({
   title,
   onClose,
   children,
-}) => (
-  <AnimatePresence>
-    {open && (
-      <>
-        <Scrim
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-        />
-        <Panel
-          initial={{ y: "100%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "100%" }}
-          transition={{ type: "tween", duration: 0.22 }}
-        >
-          <Header>
-            <Title>{title}</Title>
-            <CloseButton aria-label="Close" onClick={onClose}>
-              <X size={18} />
-            </CloseButton>
-          </Header>
-          <Body>{children}</Body>
-        </Panel>
-      </>
-    )}
-  </AnimatePresence>
-);
+}) => {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
+  useDialogFocus(open, panelRef, onClose);
+  return (
+    <AnimatePresence>
+      {open && (
+        <>
+          <Scrim
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+          />
+          <Panel
+            ref={panelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
+            tabIndex={-1}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "tween", duration: 0.22 }}
+          >
+            <Header>
+              <Title id={titleId}>{title}</Title>
+              <CloseButton aria-label="Close" onClick={onClose}>
+                <X size={18} />
+              </CloseButton>
+            </Header>
+            <Body>{children}</Body>
+          </Panel>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};

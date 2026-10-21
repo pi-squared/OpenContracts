@@ -1,8 +1,8 @@
+import { DocumentChildModal } from "../../../knowledge_base/document/LayoutComponents";
 import { MouseEvent, useState, useEffect, SyntheticEvent } from "react";
 import _ from "lodash";
 
 import {
-  Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
@@ -38,12 +38,13 @@ export const EditLabelModal = ({
   };
 
   useEffect(() => {
+    if (!visible) return;
     const onKeyPress = (e: KeyboardEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (e.keyCode >= 49 && e.keyCode <= 57) {
+      if (/^[1-9]$/.test(e.key)) {
         const index = Number.parseInt(e.key) - 1;
         if (index < spanLabels.length) {
+          e.preventDefault();
+          e.stopPropagation();
           // Note: You'll need to implement updateAnnotation functionality separately
           setCorpus({
             humanSpanLabels: spanLabels.map((label, i) =>
@@ -58,7 +59,7 @@ export const EditLabelModal = ({
     return () => {
       window.removeEventListener("keydown", onKeyPress);
     };
-  }, [spanLabels, annotation]);
+  }, [visible, spanLabels, annotation]);
 
   const dropdownOptions: DropdownOption[] = spanLabels.map((label) => ({
     value: label.id,
@@ -75,7 +76,7 @@ export const EditLabelModal = ({
   };
 
   return (
-    <Modal open={visible} onClose={onHide}>
+    <DocumentChildModal open={visible} onClose={onHide}>
       <ModalHeader>Edit Label</ModalHeader>
       <ModalBody>
         <div onMouseDown={onMouseDown}>
@@ -119,6 +120,6 @@ export const EditLabelModal = ({
           Save Change
         </Button>
       </ModalFooter>
-    </Modal>
+    </DocumentChildModal>
   );
 };

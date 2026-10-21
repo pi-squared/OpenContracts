@@ -28,6 +28,10 @@ type CorpusActionType implements Node {
   created: DateTime!
   modified: DateTime!
   corpus: CorpusType!
+  disabled: Boolean!
+  runOnAllCorpuses: Boolean!
+  sourceTemplate: CorpusActionTemplateType
+  name: String!
   fieldset: FieldsetType
   analyzer: AnalyzerType
 
@@ -35,10 +39,6 @@ type CorpusActionType implements Node {
   Optional agent configuration for persona/tool defaults. Not required for agent actions — task_instructions alone is sufficient.
   """
   agentConfig: AgentConfigurationType
-  disabled: Boolean!
-  runOnAllCorpuses: Boolean!
-  sourceTemplate: CorpusActionTemplateType
-  name: String!
 
   """
   What the agent should do (e.g., 'Read this document and update its description with a one-paragraph summary'). This is the single required field for agent-based actions.
@@ -192,9 +192,6 @@ type CorpusActionExecutionType implements Node {
   """The corpus action configuration that was executed"""
   corpusAction: CorpusActionType!
 
-  """The message that triggered this execution (for NEW_MESSAGE trigger)"""
-  message: MessageType
-
   """Denormalized corpus reference for fast queries"""
   corpus: CorpusType!
 
@@ -210,12 +207,6 @@ type CorpusActionExecutionType implements Node {
   """Detailed agent result (for agent actions only)"""
   agentResult: AgentActionResultType
 
-  """Extract created (for fieldset actions only)"""
-  extract: ExtractType
-
-  """Analysis created (for analyzer actions only)"""
-  analysis: AnalysisType
-
   """
   The document this action was executed on (null for thread-based actions)
   """
@@ -224,6 +215,9 @@ type CorpusActionExecutionType implements Node {
   """The thread that triggered this execution (for thread-based actions)"""
   conversation: ConversationType
 
+  """The message that triggered this execution (for NEW_MESSAGE trigger)"""
+  message: MessageType
+
   """Type of action (fieldset/analyzer/agent)"""
   actionType: CorpusesCorpusActionExecutionActionTypeChoices!
   status: CorpusesCorpusActionExecutionStatusChoices!
@@ -231,6 +225,12 @@ type CorpusActionExecutionType implements Node {
   """What triggered this execution"""
   trigger: CorpusesCorpusActionExecutionTriggerChoices!
   affectedObjects: [JSONString]
+
+  """Extract created (for fieldset actions only)"""
+  extract: ExtractType
+
+  """Analysis created (for analyzer actions only)"""
+  analysis: AnalysisType
 
   """Error message if status is FAILED"""
   errorMessage: String!
@@ -366,9 +366,6 @@ type AgentActionResultType implements Node {
 
   """The corpus action that triggered this execution"""
   corpusAction: CorpusActionType!
-
-  """Message that triggered this agent action (for NEW_MESSAGE trigger)"""
-  triggeringMessage: MessageType
   startedAt: DateTime
   completedAt: DateTime
 
@@ -380,6 +377,9 @@ type AgentActionResultType implements Node {
 
   """Thread that triggered this agent action (for thread-based triggers)"""
   triggeringConversation: ConversationType
+
+  """Message that triggered this agent action (for NEW_MESSAGE trigger)"""
+  triggeringMessage: MessageType
   status: AgentsAgentActionResultStatusChoices!
 
   """Final response content from the agent"""
@@ -422,9 +422,6 @@ type CorpusActionTemplateType implements Node {
   id: ID!
   created: DateTime!
 
-  """Optional agent configuration for persona/tool defaults."""
-  agentConfig: AgentConfigurationType
-
   """Whether this template appears in the Action Library for users to add."""
   isActive: Boolean!
 
@@ -435,6 +432,9 @@ type CorpusActionTemplateType implements Node {
   sortOrder: Int!
   name: String!
   description: String!
+
+  """Optional agent configuration for persona/tool defaults."""
+  agentConfig: AgentConfigurationType
   preAuthorizedTools: [String]
   trigger: CorpusesCorpusActionTemplateTriggerChoices!
 }
@@ -753,15 +753,7 @@ type AnnotationType implements Node {
   backendLock: Boolean!
   page: Int!
   json: GenericScalar
-  parent: AnnotationType
   annotationLabel: AnnotationLabelType
-  analysis: AnalysisType
-
-  """If set, this annotation is private to the analysis that created it"""
-  createdByAnalysis: AnalysisType
-
-  """If set, this annotation is private to the extract that created it"""
-  createdByExtract: ExtractType
 
   """If set, this annotation was created by a corpus action agent"""
   corpusAction: CorpusActionType
@@ -778,6 +770,9 @@ type AnnotationType implements Node {
   Optional markdown description for this annotation, e.g. a section summary in a document index.
   """
   longDescription: String
+  isEvidenceQuote: Boolean!
+  domainProvenance: GenericScalar!
+  parent: AnnotationType
 
   """
   Annotation type (e.g. TOKEN_LABEL, SPAN_LABEL). Returns raw DB value to avoid enum serialization errors on invalid data.
@@ -789,6 +784,13 @@ type AnnotationType implements Node {
   """
   document: DocumentType
   corpus: CorpusType
+  analysis: AnalysisType
+
+  """If set, this annotation is private to the analysis that created it"""
+  createdByAnalysis: AnalysisType
+
+  """If set, this annotation is private to the extract that created it"""
+  createdByExtract: ExtractType
 
   """
   Target URL opened when the annotation is clicked. Only meaningful for annotations labelled OC_URL.
@@ -891,11 +893,11 @@ type AnnotationLabelType implements Node {
   backendLock: Boolean!
   created: DateTime!
   modified: DateTime!
-  analyzer: AnalyzerType
   readOnly: Boolean!
   isPublic: Boolean!
   creator: UserType!
   labelType: AnnotationsAnnotationLabelLabelTypeChoices!
+  analyzer: AnalyzerType
   color: String!
   description: String!
   icon: String!
@@ -958,12 +960,12 @@ type LabelSetType implements Node {
   creator: UserType!
   created: DateTime!
   modified: DateTime!
-  analyzer: AnalyzerType
   isDefault: Boolean!
   title: String!
   description: String!
   icon: String!
   annotationLabels(offset: Int, before: String, after: String, first: Int, last: Int, description_Contains: String, text: String, text_Contains: String, labelType: AnnotationsAnnotationLabelLabelTypeChoices, usedInLabelsetId: String, usedInLabelsetForCorpusId: String, usedInAnalysisIds: String): AnnotationLabelTypeConnection
+  analyzer: AnalyzerType
   usedByCorpuses(offset: Int, before: String, after: String, first: Int, last: Int): CorpusTypeConnection!
   myPermissions: GenericScalar
   isPublished: Boolean
@@ -1007,14 +1009,6 @@ type RelationshipType implements Node {
   userLock: UserType
   backendLock: Boolean!
   relationshipLabel: AnnotationLabelType
-  analyzer: AnalyzerType
-  analysis: AnalysisType
-
-  """If set, this relationship is private to the analysis that created it"""
-  createdByAnalysis: AnalysisType
-
-  """If set, this relationship is private to the extract that created it"""
-  createdByExtract: ExtractType
   structural: Boolean!
   isPublic: Boolean!
   creator: UserType!
@@ -1068,6 +1062,14 @@ type RelationshipType implements Node {
     """Ordering"""
     orderBy: String
   ): AnnotationTypeConnection!
+  analyzer: AnalyzerType
+  analysis: AnalysisType
+
+  """If set, this relationship is private to the analysis that created it"""
+  createdByAnalysis: AnalysisType
+
+  """If set, this relationship is private to the extract that created it"""
+  createdByExtract: ExtractType
   assignmentSet(offset: Int, before: String, after: String, first: Int, last: Int): AssignmentTypeConnection!
   myPermissions: GenericScalar
   isPublished: Boolean
@@ -1113,7 +1115,6 @@ type CorpusReferenceType implements Node {
   normalizedData: GenericScalar
   confidence: Float!
   detectionConfidence: Float!
-  createdByAnalysis: AnalysisType
   isProvisional: Boolean!
   referenceType: AnnotationsCorpusReferenceReferenceTypeChoices!
   targetAnnotation: AnnotationType
@@ -1124,6 +1125,7 @@ type CorpusReferenceType implements Node {
   authorityType: AnnotationsCorpusReferenceAuthorityTypeChoices
   detectionTier: AnnotationsCorpusReferenceDetectionTierChoices!
   resolutionStatus: AnnotationsCorpusReferenceResolutionStatusChoices!
+  createdByAnalysis: AnalysisType
 }
 
 """An enumeration."""
@@ -1185,16 +1187,16 @@ type NoteType implements Node {
   id: ID!
   userLock: UserType
   backendLock: Boolean!
-  parent: NoteType
-  corpus: CorpusType
   document: DocumentType!
-  annotation: AnnotationType
   isPublic: Boolean!
   creator: UserType!
   created: DateTime!
   modified: DateTime!
   title: String!
   content: String!
+  parent: NoteType
+  corpus: CorpusType
+  annotation: AnnotationType
   children(offset: Int, before: String, after: String, first: Int, last: Int): NoteTypeConnection!
 
   """List of all revisions/versions of this note, ordered by version."""
@@ -1374,9 +1376,6 @@ type AuthorityFrontierNode implements Node {
   Per-corpus demand breakdown: [{corpus_id, mention_count, top_detection_tier}].
   """
   candidateSources: GenericScalar
-
-  """The Document imported for this key once ingested (else null)."""
-  ingestedDocument: DocumentType
   canonicalKey: String!
   authority: String!
   jurisdiction: String
@@ -1384,6 +1383,9 @@ type AuthorityFrontierNode implements Node {
   discoveryState: AnnotationsAuthorityFrontierDiscoveryStateChoices!
   provider: String
   lastError: String
+
+  """The Document imported for this key once ingested (else null)."""
+  ingestedDocument: DocumentType
 
   """
   True if a source provider can_handle this key directly or via an AuthorityKeyEquivalence bridge (i.e. discovery could ingest it). False keys would record 'unsupported' if run.
@@ -2316,9 +2318,6 @@ type MessageType implements Node {
 
   """The conversation to which this chat message belongs"""
   conversation: ConversationType!
-
-  """Parent message for threaded replies"""
-  parentMessage: MessageType
   data: GenericScalar
 
   """Timestamp when the chat message was created"""
@@ -2341,6 +2340,9 @@ type MessageType implements Node {
 
   """Agent configuration that generated this message"""
   agentConfiguration: AgentConfigurationType
+
+  """Parent message for threaded replies"""
+  parentMessage: MessageType
 
   """The textual content of the chat message"""
   content: String!
@@ -2481,14 +2483,14 @@ type ModerationActionType implements Node {
   created: DateTime!
   modified: DateTime!
 
-  """The message that was moderated"""
-  message: MessageType
-
   """Moderator who took this action"""
   moderator: UserType
 
   """The conversation that was moderated"""
   conversation: ConversationType
+
+  """The message that was moderated"""
+  message: MessageType
 
   """Type of moderation action taken"""
   actionType: ConversationsModerationActionActionTypeChoices!
@@ -3024,7 +3026,6 @@ type CorpusType implements Node {
   score: Int!
   created: DateTime!
   modified: DateTime!
-  metadataSchema: FieldsetType
   parent: CorpusType
   title: String!
   description: String!
@@ -3131,6 +3132,7 @@ type CorpusType implements Node {
   inboundReferences(offset: Int, before: String, after: String, first: Int, last: Int): CorpusReferenceTypeConnection!
   authorityNamespaces(offset: Int, before: String, after: String, first: Int, last: Int): AuthorityNamespaceNodeConnection!
   analyses(offset: Int, before: String, after: String, first: Int, last: Int): AnalysisTypeConnection!
+  metadataSchema: FieldsetType
   extracts(offset: Int, before: String, after: String, first: Int, last: Int): ExtractTypeConnection!
 
   """The corpus to which this conversation belongs"""
@@ -3929,7 +3931,6 @@ type DocumentType implements Node {
   isCurrent: Boolean!
   processingStarted: DateTime
   processingFinished: DateTime
-  memoryForCorpus: CorpusType
   parent: DocumentType
   title: String
   description: String
@@ -3982,6 +3983,7 @@ type DocumentType implements Node {
   List of all summary revisions/versions for a specific corpus, ordered by version.
   """
   summaryRevisions(corpusId: ID!): [DocumentSummaryRevisionType]
+  memoryForCorpus: CorpusType
 
   """
   The document this action was executed on (null for thread-based actions)
@@ -4036,7 +4038,7 @@ type DocumentType implements Node {
   """
   Flat list of distinct ``DOC_TYPE_LABEL`` annotation labels for this document — the corpus list view's per-card badges. Resolved from a single batched prefetch when the parent ``documents`` resolver opts in via ``requests_doc_type_labels``; falls back to one targeted SELECT per document otherwise. Skipping the Relay connection wrapper avoids the per-document COUNT + SELECT + FK descriptor storm the old ``docAnnotations`` shape forced.
   """
-  docTypeLabels: [AnnotationLabelType!]
+  docTypeLabels(corpusId: ID): [AnnotationLabelType!]
   allStructuralAnnotations(annotationIds: [ID!]): [AnnotationType]
   allAnnotations(corpusId: ID, analysisId: ID, isStructural: Boolean): [AnnotationType]
   allRelationships(corpusId: ID, analysisId: ID, isStructural: Boolean): [RelationshipType]
@@ -4152,8 +4154,6 @@ type DocumentAnalysisRowType implements Node {
   created: DateTime!
   modified: DateTime!
   document: DocumentType!
-  analysis: AnalysisType
-  extract: ExtractType
   annotations(
     offset: Int
     before: String
@@ -4178,6 +4178,8 @@ type DocumentAnalysisRowType implements Node {
     orderBy: String
   ): AnnotationTypeConnection!
   data(offset: Int, before: String, after: String, first: Int, last: Int): DatacellTypeConnection!
+  analysis: AnalysisType
+  extract: ExtractType
   myPermissions: GenericScalar
   isPublished: Boolean
   objectSharedWith: GenericScalar
@@ -4214,9 +4216,9 @@ type DocumentRelationshipType implements Node {
   sourceDocument: DocumentType!
   targetDocument: DocumentType!
   annotationLabel: AnnotationLabelType
-  corpus: CorpusType
   data: GenericScalar
   relationshipType: DocumentsDocumentRelationshipRelationshipTypeChoices!
+  corpus: CorpusType
   myPermissions: GenericScalar
   isPublished: Boolean
   objectSharedWith: GenericScalar
@@ -4743,12 +4745,12 @@ type AnalyzerType implements Node {
   manifest: GenericScalar
   disabled: Boolean!
   isPublic: Boolean!
-  hostGremlin: GremlinEngineType_WRITE
 
   """JSONSchema describing the analyzer's expected input if provided."""
   inputSchema: GenericScalar
   description: String!
   icon: String!
+  hostGremlin: GremlinEngineType_WRITE
   taskName: String
   corpusactionSet(offset: Int, before: String, after: String, first: Int, last: Int, id: ID, name: String, name_Icontains: String, name_Istartswith: String, corpus_Id: ID, fieldset_Id: ID, analyzer_Id: ID, agentConfig_Id: ID, trigger: CorpusesCorpusActionTriggerChoices, creator_Id: ID, sourceTemplate_Id: ID): CorpusActionTypeConnection!
   annotationLabels(offset: Int, before: String, after: String, first: Int, last: Int): AnnotationLabelTypeConnection!
@@ -4832,17 +4834,18 @@ type ExtractType implements Node {
   finished: DateTime
   corpusAction: CorpusActionType
 
-  """
-  Extract this iteration was forked from. Null for the root of an iteration series.
-  """
-  parentExtract: ExtractType
-
   """Captured model/run configuration for this iteration."""
   modelConfig: GenericScalar
+  sourceReadinessError: String
   corpus: CorpusType
   documents(offset: Int, before: String, after: String, first: Int, last: Int): DocumentTypeConnection!
   name: String!
   error: String
+
+  """
+  Extract this iteration was forked from. Null for the root of an iteration series.
+  """
+  parentExtract: ExtractType
   rows(offset: Int, before: String, after: String, first: Int, last: Int): DocumentAnalysisRowTypeConnection!
 
   """Extract created (for fieldset actions only)"""
@@ -5067,7 +5070,6 @@ type DatacellType implements Node {
   creator: UserType!
   created: DateTime!
   modified: DateTime!
-  extract: ExtractType
   column: ColumnType!
   document: DocumentType!
   data: GenericScalar
@@ -5077,6 +5079,7 @@ type DatacellType implements Node {
   approvedBy: UserType
   rejectedBy: UserType
   correctedData: GenericScalar
+  extract: ExtractType
   sources(
     offset: Int
     before: String
@@ -5109,7 +5112,9 @@ type DatacellType implements Node {
   myPermissions: GenericScalar
   isPublished: Boolean
   objectSharedWith: GenericScalar
-  fullSourceList: [AnnotationType]
+  hasFindingEvidence: Boolean!
+  findingEvidence(version: String! = "effective"): GenericScalar!
+  fullSourceList(version: String! = "effective"): [AnnotationType]
 }
 
 type DatacellTypeConnection {
@@ -6159,9 +6164,6 @@ type ResearchReportType implements Node {
   toolCallLog: GenericScalar
   modelUsage: GenericScalar
   warnings: GenericScalar
-
-  """User chat message that triggered this run, if any"""
-  originatingMessage: MessageType
   title: String!
   slug: String!
 
@@ -6208,6 +6210,9 @@ type ResearchReportType implements Node {
 
   """Chat conversation that kicked this off, if any"""
   conversation: ConversationType
+
+  """User chat message that triggered this run, if any"""
+  originatingMessage: MessageType
 
   """
   Markdown copy of this report filed in the creator's personal 'My Documents' workspace. Null until the report completes, or if the (non-fatal) workspace write failed.
@@ -7493,10 +7498,6 @@ type CorpusAccessTokenCreatedType {
 }
 
 type Query {
-  automationCredentials(limit: Int! = 20, offset: Int! = 0): AutomationCredentialPage!
-  automationCredential(id: UUID!): AutomationCredentialMetadata!
-  automationCredentialScopes: [String!]!
-  automationCredentialChoices(kind: String!, search: String! = "", limit: Int! = 20, offset: Int! = 0): AutomationCredentialChoicePage!
   corpusActionTemplates(isActive: Boolean, offset: Int, before: String, after: String, first: Int, last: Int): CorpusActionTemplateTypeConnection
   corpusActions(corpusId: ID, trigger: String, disabled: Boolean, offset: Int, before: String, after: String, first: Int, last: Int): CorpusActionTypeConnection
   agentActionResults(corpusActionId: ID, documentId: ID, status: String, offset: Int, before: String, after: String, first: Int, last: Int): AgentActionResultTypeConnection
@@ -7627,7 +7628,6 @@ type Query {
   The registry of bodies of law (AuthorityNamespace): one row per canonical-key prefix (e.g. 'usc-15', 'dgcl') whose aliases drive Tier-1 citation extraction. SUPERUSER-ONLY (empty otherwise) — gating + default order live on the node's get_queryset.
   """
   authorityNamespaces(offset: Int, before: String, after: String, first: Int, last: Int, jurisdiction: String, authorityType: String, scope: String, search: String): AuthorityNamespaceNodeConnection
-
   authorityPackActivationStatus: GenericScalar!
 
   """Trusted authority packs configured on this server."""
@@ -7635,6 +7635,10 @@ type Query {
 
   """Side-effect-free validation of one trusted authority pack."""
   authorityPackPreflight(packId: String!): AuthorityPack
+  automationCredentials(limit: Int! = 20, offset: Int! = 0): AutomationCredentialPage!
+  automationCredential(id: UUID!): AutomationCredentialMetadata!
+  automationCredentialScopes: [String!]!
+  automationCredentialChoices(kind: String!, search: String! = "", limit: Int! = 20, offset: Int! = 0): AutomationCredentialChoicePage!
 
   """
   Retrieve conversations, optionally filtered by document_id or corpus_id
@@ -8215,10 +8219,36 @@ enum LabelType {
   SPAN_LABEL
 }
 
+type AutomationCredentialPage {
+  items: [AutomationCredentialMetadata!]!
+  totalCount: Int!
+}
+
+type AutomationCredentialMetadata {
+  id: UUID!
+  userId: ID!
+  username: String!
+  name: String!
+  scopes: [String!]!
+  corpusIds: [ID!]
+  expiresAt: DateTime
+  revokedAt: DateTime
+  createdAt: DateTime!
+  rotatedAt: DateTime
+  status: String!
+}
+
+type AutomationCredentialChoicePage {
+  items: [AutomationCredentialChoice!]!
+  totalCount: Int!
+}
+
+type AutomationCredentialChoice {
+  id: ID!
+  label: String!
+}
+
 type Mutation {
-  mintAutomationCredential(name: String!, scopes: [String!]!, userId: ID = null, corpusIds: [ID!] = null, allCorpuses: Boolean! = false, expiresDays: Int! = 30): AutomationCredentialSecret!
-  rotateAutomationCredential(id: UUID!): AutomationCredentialSecret!
-  revokeAutomationCredential(id: UUID!): AutomationCredentialMetadata!
   """Create a new agent configuration (admin/corpus owner only)."""
   createAgentConfiguration(
     """List of tools available to the agent"""
@@ -8670,6 +8700,9 @@ type Mutation {
 
   """Install a freshly preflighted trusted authority pack."""
   installAuthorityPack(packId: String!, expectedFingerprint: String!, publish: Boolean!): InstallAuthorityPackMutation!
+  mintAutomationCredential(name: String!, scopes: [String!]!, userId: ID = null, corpusIds: [ID!] = null, allCorpuses: Boolean! = false, expiresDays: Int! = 30): AutomationCredentialSecret!
+  rotateAutomationCredential(id: UUID!): AutomationCredentialSecret!
+  revokeAutomationCredential(id: UUID!): AutomationCredentialMetadata!
 
   """Create a new badge (admin/corpus owner only)."""
   createBadge(
@@ -10476,6 +10509,11 @@ type Mutation {
   revokeCorpusAccessToken(tokenId: Int!): RevokeCorpusAccessTokenMutation
 }
 
+type AutomationCredentialSecret {
+  credential: AutomationCredentialMetadata!
+  token: String!
+}
+
 """An enumeration."""
 enum AnnotationFilterMode {
   CORPUS_LABELSET_ONLY
@@ -10498,38 +10536,4 @@ enum IngestionSourceTypeEnum {
   API
   PIPELINE
   SYNC
-}
-
-type AutomationCredentialMetadata {
-  id: UUID!
-  userId: ID!
-  username: String!
-  name: String!
-  scopes: [String!]!
-  corpusIds: [ID!]
-  expiresAt: DateTime
-  revokedAt: DateTime
-  createdAt: DateTime!
-  rotatedAt: DateTime
-  status: String!
-}
-
-type AutomationCredentialPage {
-  items: [AutomationCredentialMetadata!]!
-  totalCount: Int!
-}
-
-type AutomationCredentialSecret {
-  credential: AutomationCredentialMetadata!
-  token: String!
-}
-
-type AutomationCredentialChoice {
-  id: ID!
-  label: String!
-}
-
-type AutomationCredentialChoicePage {
-  items: [AutomationCredentialChoice!]!
-  totalCount: Int!
 }

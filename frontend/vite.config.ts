@@ -53,7 +53,7 @@ async function loadIstanbulPlugins() {
 export default defineConfig(async () => {
   const istanbulPlugins = await loadIstanbulPlugins();
   return {
-    base: "/",
+    base: process.env.OPENCONTRACTS_BASE_PATH || "/",
     plugins: [
       react(),
       assetPlugin(),

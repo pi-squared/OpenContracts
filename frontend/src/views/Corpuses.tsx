@@ -583,6 +583,7 @@ export const Corpuses = () => {
               annotateDocLabels: true,
               includeMetadata: true,
               inCorpusWithId: opened_corpus_id,
+              badgeCorpusId: opened_corpus_id,
               includeCaml: true,
             }
           : { annotateDocLabels: false, includeMetadata: false }),

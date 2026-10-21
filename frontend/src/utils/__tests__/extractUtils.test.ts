@@ -52,15 +52,15 @@ describe("extractUtils", () => {
       expect(info.label).toBe(EXTRACT_STATUS.NOT_STARTED);
     });
 
-    it("prefers COMPLETED over FAILED when both finished and error are set", () => {
+    it("reports FAILED when both finished and error are set", () => {
       const info = getExtractStatus(
         makeExtract({
           started: "2024-01-01",
           finished: "2024-01-02",
-          error: "ignored",
+          error: "interrupted",
         })
       );
-      expect(info.label).toBe(EXTRACT_STATUS.COMPLETED);
+      expect(info.label).toBe(EXTRACT_STATUS.FAILED);
     });
   });
 

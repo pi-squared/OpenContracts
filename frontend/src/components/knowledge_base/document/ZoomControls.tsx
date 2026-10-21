@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
-import { ZOOM_MIN, ZOOM_MAX } from "../../../assets/configurations/constants";
+import {
+  ZOOM_MIN,
+  ZOOM_MAX,
+  ZOOM_CONTROLS_COMPACT_WIDTH_PX,
+} from "../../../assets/configurations/constants";
 import { ZoomIn, ZoomOut } from "lucide-react";
 
 interface ZoomControlsProps {
@@ -9,13 +13,34 @@ interface ZoomControlsProps {
   onZoomOut: () => void;
   zoomLevel: number;
   className?: string;
+  panelWidth?: number;
 }
+
+const ZoomRegion = styled.div<{ $panelWidth: number }>`
+  position: absolute;
+  inset: 0 ${(props) => props.$panelWidth}% 0 0;
+  z-index: 900;
+  pointer-events: none;
+  container-type: inline-size;
+`;
 
 const StyledZoomControls = styled.div`
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  z-index: 900;
+  pointer-events: auto;
+
+  @container (max-width: ${ZOOM_CONTROLS_COMPACT_WIDTH_PX}px) {
+    right: 0.5rem;
+    .zoom-group .zoom-controls {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .zoom-group .zoom-level {
+      min-width: 0;
+      padding: 0;
+    }
+  }
 
   @media (max-width: 768px) {
     position: absolute; /* Stay within document container */
@@ -85,29 +110,32 @@ export const ZoomControls: React.FC<ZoomControlsProps> = ({
   onZoomOut,
   zoomLevel,
   className,
+  panelWidth = 0,
 }) => {
   return (
-    <StyledZoomControls className={className}>
-      <div className="zoom-group">
-        <div className="zoom-controls">
-          <button
-            onClick={onZoomOut}
-            title="Zoom Out"
-            disabled={zoomLevel <= ZOOM_MIN}
-          >
-            <ZoomOut />
-          </button>
-          <div className="zoom-level">{Math.round(zoomLevel * 100)}%</div>
-          <button
-            onClick={onZoomIn}
-            title="Zoom In"
-            disabled={zoomLevel >= ZOOM_MAX}
-          >
-            <ZoomIn />
-          </button>
+    <ZoomRegion $panelWidth={Math.min(100, Math.max(0, panelWidth))}>
+      <StyledZoomControls className={className}>
+        <div className="zoom-group">
+          <div className="zoom-controls">
+            <button
+              onClick={onZoomOut}
+              title="Zoom Out"
+              disabled={zoomLevel <= ZOOM_MIN}
+            >
+              <ZoomOut />
+            </button>
+            <div className="zoom-level">{Math.round(zoomLevel * 100)}%</div>
+            <button
+              onClick={onZoomIn}
+              title="Zoom In"
+              disabled={zoomLevel >= ZOOM_MAX}
+            >
+              <ZoomIn />
+            </button>
+          </div>
         </div>
-      </div>
-    </StyledZoomControls>
+      </StyledZoomControls>
+    </ZoomRegion>
   );
 };
 

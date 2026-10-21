@@ -1,3 +1,4 @@
+import { useEvidenceFocus } from "../hooks/useEvidenceFocus";
 /**
  * CentralRouteManager - Single source of truth for routing state
  *
@@ -112,6 +113,8 @@ import { routingLogger } from "../utils/routingLogger";
  * Debug mode: Enable verbose logging with window.DEBUG_ROUTING = true
  */
 export function CentralRouteManager() {
+  // Observe focus scope while the viewer is unmounted on grid or library routes.
+  useEvidenceFocus();
   const location = useLocation();
   const baseNavigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -1258,6 +1261,32 @@ export function CentralRouteManager() {
       return;
     }
 
+    // A document-to-document jump may leave the old entities selected until
+    // Phase 1 finishes. Only normalize entities belonging to the current URL.
+    const matchesIdentifier = (
+      identifier: string | undefined,
+      entity: { id: string; slug?: string | null } | null | undefined
+    ) => Boolean(identifier && entity && (
+      identifier === entity.id ||
+      (entity.slug && identifier.toLowerCase() === entity.slug.toLowerCase())
+    ));
+    if (currentRoute.type === "document") {
+      const owner = currentRoute.corpusIdent ? corpus?.creator : document?.creator;
+      if (
+        !matchesIdentifier(currentRoute.documentIdent, document) ||
+        (currentRoute.userIdent && !matchesIdentifier(currentRoute.userIdent, owner)) ||
+        (currentRoute.corpusIdent && !matchesIdentifier(currentRoute.corpusIdent, corpus))
+      ) {
+        return;
+      }
+    }
+
+    // A standalone target must not inherit the previous collection context.
+    // Phase 1 clears openedCorpus when the standalone document is resolved.
+    if (currentRoute.type === "document" && !currentRoute.corpusIdent && corpus) {
+      return;
+    }
+
     // CRITICAL: Prevent redirects during route transitions when entities don't match route type
     // Phase 1 is async - it may not have cleared stale entities yet when Phase 3 runs
     // Example: Navigating from /d/user/corpus/doc → /c/user/corpus
@@ -1325,7 +1354,7 @@ export function CentralRouteManager() {
       return;
     }
 
-    const canonicalPath = buildCanonicalPath(document, corpus, extract);
+    const canonicalPath = buildCanonicalPath(document, corpus, currentRoute.type === "extract" ? extract : null);
     if (!canonicalPath) return;
 
     // Normalize paths for comparison (remove trailing slashes)
@@ -1449,7 +1478,7 @@ export function CentralRouteManager() {
       }
     );
 
-    const queryString = buildQueryParams({
+    let queryString = buildQueryParams({
       annotationIds: annIds,
       analysisIds,
       extractIds,
@@ -1469,6 +1498,13 @@ export function CentralRouteManager() {
       labelDisplay: labels,
       textBlock,
     });
+
+    // Retain an explicitly chosen default mode while source navigation updates the URL.
+    if (labels === "ON_HOVER" && currentUrlParams.get("labels") === "ON_HOVER") {
+      const explicitParams = new URLSearchParams(queryString);
+      explicitParams.set("labels", "ON_HOVER");
+      queryString = `?${explicitParams.toString()}`;
+    }
 
     // Both should have consistent "?" prefix for comparison
     const expectedSearch = queryString; // Already has "?" from buildQueryParams

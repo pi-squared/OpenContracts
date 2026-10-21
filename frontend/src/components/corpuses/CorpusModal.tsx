@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useApolloClient, useMutation } from "@apollo/client";
+import { useApolloClient, useMutation, useReactiveVar } from "@apollo/client";
+import { backendUserObj } from "../../graphql/cache";
 import styled, { createGlobalStyle } from "styled-components";
 import {
   Modal,
@@ -407,6 +408,10 @@ export const CorpusModal: React.FC<CorpusModalProps> = ({
 }) => {
   const isReadOnly = mode === "VIEW";
   const isCreate = mode === "CREATE";
+  const currentUser = useReactiveVar(backendUserObj);
+  const canEditSummary =
+    isCreate ||
+    Boolean(currentUser?.id && corpus?.creator?.id === currentUser.id);
 
   // Form state
   const [title, setTitle] = useState("");
@@ -415,6 +420,7 @@ export const CorpusModal: React.FC<CorpusModalProps> = ({
   const [setupIntelligence, setSetupIntelligence] = useState(true);
   const [slug, setSlug] = useState("");
   const [description, setDescription] = useState("");
+  const [articleLayout, setArticleLayout] = useState("");
   const [icon, setIcon] = useState<string | null>(null);
   const [labelSetId, setLabelSetId] = useState<string | null>(null);
   const [labelSetObj, setLabelSetObj] = useState<LabelSetType | undefined>(
@@ -496,7 +502,14 @@ export const CorpusModal: React.FC<CorpusModalProps> = ({
     if (corpus) {
       const corpusTitle = corpus.title || "";
       const corpusSlug = corpus.slug || "";
-      const corpusDescription = corpus.description || "";
+      // Collection intelligence appends CAML to the canonical article. Basic
+      // editing changes only its leading summary; retain the layout verbatim.
+      const article = corpus.description || "";
+      const layoutStart = article.search(/^::: oc-component\b/m);
+      const corpusDescription = (
+        layoutStart >= 0 ? article.slice(0, layoutStart) : article
+      ).trim();
+      setArticleLayout(layoutStart >= 0 ? article.slice(layoutStart) : "");
       const corpusIcon = corpus.icon || null;
       const corpusLabelSetId = corpus.labelSet?.id || null;
       const corpusPreferredEmbedder = corpus.preferredEmbedder || null;
@@ -535,6 +548,7 @@ export const CorpusModal: React.FC<CorpusModalProps> = ({
       setTitle("");
       setSlug("");
       setDescription("");
+      setArticleLayout("");
       setIcon(null);
       setLabelSetId(null);
       setLabelSetObj(undefined);
@@ -640,7 +654,7 @@ export const CorpusModal: React.FC<CorpusModalProps> = ({
   // and CorpusSerializer.validate() (GraphQL serializer) for defense-in-depth.
   const isFormValid =
     title.trim().length > 0 &&
-    description.trim().length > 0 &&
+    (description.trim().length > 0 || articleLayout.length > 0) &&
     (license !== "CUSTOM" || licenseLink.trim().length > 0);
 
   // Compute isDirty by comparing current values against original values
@@ -678,7 +692,8 @@ export const CorpusModal: React.FC<CorpusModalProps> = ({
         formData.slug = slug.trim();
       }
       if (description.trim() !== originalValues.description) {
-        formData.description = description.trim();
+        formData.description =
+          description.trim() + (articleLayout ? "\n\n" + articleLayout : "");
       }
       if (icon !== originalValues.icon) {
         formData.icon = icon;
@@ -726,6 +741,7 @@ export const CorpusModal: React.FC<CorpusModalProps> = ({
     title,
     slug,
     description,
+    articleLayout,
     icon,
     labelSetId,
     preferredEmbedder,
@@ -833,13 +849,19 @@ export const CorpusModal: React.FC<CorpusModalProps> = ({
                 id="corpus-description"
                 label="Description *"
                 placeholder="Describe what this corpus is about..."
+                aria-describedby="corpus-summary-help"
                 value={description}
                 onChange={handleDescriptionChange}
-                disabled={loading || isReadOnly}
+                disabled={loading || isReadOnly || !canEditSummary}
                 fullWidth
                 autoResize
                 maxRows={6}
               />
+              <p id="corpus-summary-help">
+                Summary shown above the collection page. Generated layout is
+                preserved. Use Manage → Edit on the corpus page to deliberately
+                change the article and its components.
+              </p>
             </CorpusFormField>
           </FormSection>
 

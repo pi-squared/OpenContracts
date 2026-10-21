@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useDialogFocus } from "../../../hooks/useDialogFocus";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { toast } from "react-toastify";
@@ -894,12 +895,20 @@ export const FieldsetModal: React.FC<FieldsetModalProps> = ({
 
   const canSave = name.trim() && columns.length > 0;
 
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialogFocus(open && isMounted, dialogRef, onClose);
+
   if (!open || !isMounted) return null;
 
   return createPortal(
     <>
       <ModalOverlay onClick={onClose}>
         <ModalContainer
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={isEditMode ? "Edit Fieldset" : "Create New Fieldset"}
+          tabIndex={-1}
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}

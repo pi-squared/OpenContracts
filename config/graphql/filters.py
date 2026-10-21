@@ -3,13 +3,14 @@
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, cast
 
 import django_filters
 from django.contrib.auth import get_user_model
 from django.db.models import Q, QuerySet
 from django_filters import OrderingFilter
 from django_filters import rest_framework as filters
+from tree_queries.query import TreeQuerySet
 
 from opencontractserver.analyzer.models import Analysis, Analyzer, GremlinEngine
 from opencontractserver.annotations.models import (
@@ -360,7 +361,13 @@ class CorpusFilter(OwnershipScopeFilterMixin, django_filters.FilterSet):
     )
 
     def filter_queryset(self, queryset: QuerySet) -> QuerySet:
+        # The library is a flat list. TreeCompiler imposes depth-first order
+        # even after order_by(), so explicit library sorts must omit tree fields.
+        if self.data.get("order_by"):
+            queryset = cast(TreeQuerySet, queryset).without_tree_fields()
         qs = super().filter_queryset(queryset)
+        if self.data.get("order_by"):
+            qs = qs.order_by(*qs.query.order_by, "pk")
         # Personal corpuses are private singletons — they should not
         # surface when the user is browsing shared/public content via a
         # Top sort (ranking a single-user "My Documents" corpus against
@@ -693,7 +700,9 @@ class DocumentFilter(django_filters.FilterSet):
         return queryset
 
     def naive_text_search(self, queryset: QuerySet, name: str, value: Any) -> QuerySet:
-        return queryset.filter(Q(description__contains=value)).distinct()
+        return queryset.filter(
+            Q(title__icontains=value) | Q(description__icontains=value)
+        ).distinct()
 
     def has_pdf_search(self, queryset: QuerySet, name: str, value: Any) -> QuerySet:
         # Filter to analyzed docs only (has meta_data value)

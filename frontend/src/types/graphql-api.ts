@@ -140,6 +140,7 @@ export type RawServerAnnotationType = Node & {
   annotationLabel: AnnotationLabelType;
   document?: DocumentType;
   structural?: boolean;
+  isEvidenceQuote?: boolean;
   /**
    * Target URL for clickable-link annotations (OC_URL label).
    * Null/absent for all other annotations.
@@ -1449,6 +1450,7 @@ export type DatacellTypeEdge = {
 };
 
 export interface ExtractType extends Node {
+  sourceReadinessError?: Maybe<Scalars["String"]>;
   corpus: CorpusType;
   name: string;
   fieldset: FieldsetType;
@@ -1509,6 +1511,8 @@ export interface DatacellType extends Node {
   approvedBy: Maybe<UserType>;
   correctedData: any;
   fullSourceList?: ServerAnnotationType[];
+  findingEvidence?: unknown[];
+  hasFindingEvidence?: boolean;
   sources?: AnnotationTypeConnection;
 }
 export interface ExportObject {

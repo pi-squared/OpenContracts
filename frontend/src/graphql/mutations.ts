@@ -1673,6 +1673,7 @@ export const REQUEST_ADD_ANNOTATION = gql`
         isPublic
         myPermissions
         annotationType
+        isEvidenceQuote
         annotationLabel {
           id
           icon
@@ -1754,6 +1755,7 @@ export const REQUEST_ADD_URL_ANNOTATION = gql`
         isPublic
         myPermissions
         annotationType
+        isEvidenceQuote
         annotationLabel {
           id
           icon
@@ -2634,6 +2636,74 @@ export const REQUEST_EDIT_DATACELL = gql`
         completed
         stacktrace
         correctedData
+        hasFindingEvidence
+        findingEvidence
+        column {
+          id
+          name
+        }
+        document {
+          id
+          title
+          fileType
+        }
+        fullSourceList {
+          id
+          isPublic
+          myPermissions
+          annotationLabel {
+            id
+            text
+            color
+            icon
+            labelType
+            description
+          }
+          document {
+            id
+            slug
+            creator {
+              id
+              slug
+            }
+            fileType
+            pdfFile
+            txtExtractFile
+            pawlsParseFile
+          }
+          corpus {
+            id
+            slug
+            creator {
+              id
+              slug
+            }
+          }
+          page
+          rawText
+          json
+          annotationType
+          isEvidenceQuote
+          sourceNodeInRelationships {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+          targetNodeInRelationships {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+          creator {
+            id
+            slug
+            email
+          }
+        }
         approvedBy {
           id
           username

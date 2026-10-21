@@ -377,6 +377,24 @@ export const FloatingDocumentControls: React.FC<FloatingDocumentControlsProps> =
         }
       }, [showRightPanel]);
 
+      // Native settings/width menus own Escape before PDF inspection.
+      useEffect(() => {
+        if (
+          !visible ||
+          (!expandedSettings && !(expandedWidthMenu && showRightPanel))
+        )
+          return;
+        const escape = (event: KeyboardEvent) => {
+          if (event.key !== "Escape" || event.defaultPrevented) return;
+          event.preventDefault();
+          event.stopPropagation();
+          setExpandedSettings(false);
+          setExpandedWidthMenu(false);
+        };
+        document.addEventListener("keydown", escape);
+        return () => document.removeEventListener("keydown", escape);
+      }, [visible, showRightPanel, expandedSettings, expandedWidthMenu]);
+
       // Add logging for early return
       if (!visible) {
         return null;

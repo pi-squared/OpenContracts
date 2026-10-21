@@ -43,8 +43,8 @@ interface SelectionInfoProps {
 
 export const SelectionInfo = styled.div<SelectionInfoProps>`
   position: absolute;
-  width: ${(props) => props.$bounds.right - props.$bounds.left}px;
-  right: 0px;
+  width: max-content;
+  left: 0px;
   bottom: calc(100% - 2px);
   border-radius: ${ANNOTATION_BOUNDARY_RADIUS} ${ANNOTATION_BOUNDARY_RADIUS} 0 0;
   background: ${(props) =>
@@ -54,7 +54,15 @@ export const SelectionInfo = styled.div<SelectionInfoProps>`
   font-size: 12px;
   user-select: none;
   box-sizing: border-box;
-  transition: all 0.4s ease-in-out;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: calc(8px - var(--label-shift, 0px));
+    height: var(--label-lift, 0px);
+    border-left: 2px solid ${(props) => props.$color};
+    pointer-events: none;
+  }
 
   ${(props) =>
     props.$approved &&

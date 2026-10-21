@@ -36,6 +36,7 @@ def create_structural_annotation_set(
     *,
     parser_name: str,
     parser_version: str = "1.0",
+    artifact_identity: str | None = None,
 ) -> StructuralAnnotationSet | None:
     """
     Create a :class:`StructuralAnnotationSet` for *document* and migrate its
@@ -56,6 +57,8 @@ def create_structural_annotation_set(
         user: The user to credit as the set's creator.
         parser_name: Name of the parser that produced the structural layer
             (stored on the set for provenance / dedup bookkeeping).
+        artifact_identity: Optional identity of independently retained parsing artifacts.
+            Omit it to preserve stock PDF-content deduplication.
         parser_version: Version string for the parser.
 
     Returns:
@@ -79,7 +82,7 @@ def create_structural_annotation_set(
         return None
 
     # Stable content hash so re-ingesting the same source PDF reuses the set.
-    content_hash = document.pdf_file_hash or f"doc_{document.pk}"
+    content_hash = artifact_identity or document.pdf_file_hash or f"doc_{document.pk}"
     if document.ingestion_run_id:
         # Run policy and accounting must not inherit another run's structural
         # tasks when identical source bytes are uploaded more than once.

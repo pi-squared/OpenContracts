@@ -1,3 +1,4 @@
+import { useDialogFocus } from "../hooks/useDialogFocus";
 import { useAuthenticated } from "../hooks/useAuthenticated";
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import {
@@ -172,6 +173,7 @@ export const Documents = () => {
   const filtered_to_label_id = useReactiveVar(filterToLabelId);
   const filtered_to_corpus = useReactiveVar(filterToCorpus);
   const selected_document_ids = useReactiveVar(selectedDocumentIds);
+  const filterDialogRef = useRef<HTMLDivElement>(null);
   const document_search_term = useReactiveVar(documentSearchTerm);
   const show_add_docs_to_corpus_modal = useReactiveVar(
     showAddDocsToCorpusModal
@@ -192,6 +194,10 @@ export const Documents = () => {
   const filterPopupRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
+
+  useDialogFocus(showFilterPopup, filterDialogRef, () =>
+    setShowFilterPopup(false)
+  );
 
   // Build query variables. Memoized on the underlying primitives so Apollo's
   // ``useQuery`` only re-fetches when something the user actually changed (a
@@ -538,12 +544,13 @@ export const Documents = () => {
           </HeroTitle>
           <HeroSubtitle>
             Browse, search, and manage all documents across your corpuses.
-            Upload new files or explore your existing library.
+            Search matches any part of a title or description, ignoring case.
           </HeroSubtitle>
 
           <SearchContainer>
             <SearchBox
-              placeholder="Search for documents..."
+              placeholder="Search titles and descriptions..."
+              aria-label="Search document titles and descriptions (case-insensitive substring)"
               value={searchCache}
               onChange={handleSearchChange}
               onSubmit={() => documentSearchTerm(searchCache)}
@@ -573,10 +580,19 @@ export const Documents = () => {
                 )}
               </FilterButton>
               {showFilterPopup && (
-                <FilterPopup role="dialog" aria-label="Advanced filters">
+                <FilterPopup
+                  ref={filterDialogRef}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label="Advanced filters"
+                  tabIndex={-1}
+                >
                   <FilterPopupHeader>
                     <FilterPopupTitle>Advanced Filters</FilterPopupTitle>
-                    <FilterPopupClose onClick={() => setShowFilterPopup(false)}>
+                    <FilterPopupClose
+                      aria-label="Close advanced filters"
+                      onClick={() => setShowFilterPopup(false)}
+                    >
                       <X size={16} />
                     </FilterPopupClose>
                   </FilterPopupHeader>
@@ -622,7 +638,11 @@ export const Documents = () => {
             <StatBlock
               value={stats.totalDocs.toString()}
               label="Documents"
-              sublabel="in your library"
+              sublabel={
+                document_search_term || hasAdvancedFilters
+                  ? "matching your search and filters"
+                  : "in your library"
+              }
             />
             <StatBlock
               value={stats.totalPages.toLocaleString()}
@@ -802,6 +822,8 @@ export const Documents = () => {
                 title={
                   activeStatusFilter !== STATUS_FILTERS.ALL
                     ? `No ${getSectionTitle().toLowerCase()}`
+                    : document_search_term
+                    ? "No documents match your search"
                     : hasAdvancedFilters
                     ? "No documents match your filters"
                     : "No documents yet"
@@ -809,6 +831,8 @@ export const Documents = () => {
                 description={
                   activeStatusFilter !== STATUS_FILTERS.ALL
                     ? "Try selecting a different filter to see more documents."
+                    : document_search_term
+                    ? "Try a different search or clear your search and filters."
                     : hasAdvancedFilters
                     ? "Try adjusting your filters or clearing them to see more documents."
                     : "Upload your first document to get started with document analysis, annotation, and AI-powered insights."
@@ -817,6 +841,7 @@ export const Documents = () => {
                 action={
                   activeStatusFilter === STATUS_FILTERS.ALL &&
                   !hasAdvancedFilters &&
+                  !document_search_term &&
                   isAuthenticated ? (
                     <Button
                       variant="primary"
@@ -824,6 +849,18 @@ export const Documents = () => {
                       onClick={() => showUploadNewDocumentsModal(true)}
                     >
                       Upload Your First Document
+                    </Button>
+                  ) : document_search_term || hasAdvancedFilters ? (
+                    <Button
+                      variant="secondary"
+                      onClick={() => {
+                        debouncedSearch.current.cancel();
+                        setSearchCache("");
+                        documentSearchTerm("");
+                        handleClearFilters();
+                      }}
+                    >
+                      Clear search and filters
                     </Button>
                   ) : undefined
                 }

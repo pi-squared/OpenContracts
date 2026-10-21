@@ -8,6 +8,7 @@ from channels.db import database_sync_to_async
 from pydantic import BaseModel
 from pydantic_ai.tools import RunContext
 
+from opencontractserver.llms.citation_pages import citation_page_metadata
 from opencontractserver.llms.tools.pydantic_ai_tools import PydanticAIDependencies
 from opencontractserver.llms.vector_stores.core_vector_stores import (
     BlockContext,
@@ -80,7 +81,11 @@ class PydanticAIVectorSearchResponse(BaseModel):
                 "content": result.annotation.raw_text,
                 "document_id": result.annotation.document_id,
                 "corpus_id": result.annotation.corpus_id,
-                "page": result.annotation.page,
+                **citation_page_metadata(
+                    result.annotation.document,
+                    result.annotation.page,
+                    result.annotation.json,
+                ),
                 "annotation_label": (
                     result.annotation.annotation_label.text
                     if result.annotation.annotation_label
@@ -128,7 +133,9 @@ class PydanticAIVectorSearchResponse(BaseModel):
                 "content": annotation.raw_text,
                 "document_id": annotation.document_id,
                 "corpus_id": annotation.corpus_id,
-                "page": annotation.page,
+                **citation_page_metadata(
+                    annotation.document, annotation.page, annotation.json
+                ),
                 "annotation_label": (
                     annotation.annotation_label.text
                     if annotation.annotation_label
@@ -397,7 +404,10 @@ class PydanticAIAnnotationVectorStore:
         # Set proper metadata for PydanticAI
         vector_search_tool.__name__ = "vector_search"
         vector_search_tool.__doc__ = (
-            "Search document annotations using vector similarity"
+            "Search document annotations using vector similarity. PDF page/pages are "
+            "one-based physical pages including the cover, not printed labels; null "
+            "page means unavailable. Multi-page hits list pages; json geometry keeps "
+            "native zero-based indices."
         )
 
         return vector_search_tool
