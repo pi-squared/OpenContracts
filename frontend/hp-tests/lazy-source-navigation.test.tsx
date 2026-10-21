@@ -154,7 +154,9 @@ it("lazy finding sources make one PDF history entry after evidence arrives", asy
   expect(new URLSearchParams(window.location.search).get("ann")).toBe(
     "source-A"
   );
-  expect(new URLSearchParams(window.location.search).get("extract")).toBe("extract");
+  expect(new URLSearchParams(window.location.search).get("extract")).toBe(
+    "extract"
+  );
   expect(document.body.querySelector('[role="dialog"]')).toBeNull();
   await act(async () => {
     window.history.back();

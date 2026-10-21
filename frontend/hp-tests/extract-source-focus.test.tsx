@@ -215,22 +215,49 @@ it("a review-only mutation preserves the loaded heading's quotations and source 
 });
 
 it("inline findings use retained quotation locations and offer PDF navigation", async () => {
-  await act(async () => root.render(
-    <Provider><MockedProvider><BrowserRouter>
-      <SingleDocumentExtractResults
-        columns={[{id: "price", name: "Price"} as any]}
-        datacells={[{
-          id: "located-finding", column: {id: "price"},
-          data: {data: {finding: "present_blank", rationale: "The field is blank.", evidence: [{quote: "Raw model quotation", page: null}]}},
-          findingEvidence: [{quote: "Retained source quotation", status: "matched", locatedPage: 4, reportedPage: null, annotationId: "located-quote"}],
-          fullSourceList: [],
-        } as any]}
-      />
-    </BrowserRouter></MockedProvider></Provider>
-  ));
+  await act(async () =>
+    root.render(
+      <Provider>
+        <MockedProvider>
+          <BrowserRouter>
+            <SingleDocumentExtractResults
+              columns={[{ id: "price", name: "Price" } as any]}
+              datacells={[
+                {
+                  id: "located-finding",
+                  column: { id: "price" },
+                  data: {
+                    data: {
+                      finding: "present_blank",
+                      rationale: "The field is blank.",
+                      evidence: [{ quote: "Raw model quotation", page: null }],
+                    },
+                  },
+                  findingEvidence: [
+                    {
+                      quote: "Retained source quotation",
+                      status: "matched",
+                      locatedPage: 4,
+                      reportedPage: null,
+                      annotationId: "located-quote",
+                    },
+                  ],
+                  fullSourceList: [],
+                } as any,
+              ]}
+            />
+          </BrowserRouter>
+        </MockedProvider>
+      </Provider>
+    )
+  );
   expect(host.textContent).toContain("Present blank");
   expect(host.textContent).toContain("Retained source quotation");
   expect(host.textContent).toContain("Matched in parsed text on PDF page 4.");
   expect(host.textContent).not.toContain("Raw model quotation");
-  expect(Array.from(host.querySelectorAll("button")).some(button => button.textContent === "View quotation in PDF")).toBe(true);
+  expect(
+    Array.from(host.querySelectorAll("button")).some(
+      (button) => button.textContent === "View quotation in PDF"
+    )
+  ).toBe(true);
 });

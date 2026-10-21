@@ -111,10 +111,16 @@ beforeEach(() => {
             };
             const returned = { ...savedCell };
             if (refreshEvidenceAvailability) {
-              savedCell.hasFindingEvidence = operation.variables.editedData.finding !== "not_found";
+              savedCell.hasFindingEvidence =
+                operation.variables.editedData.finding !== "not_found";
               const fields: string[] = [];
-              visit(operation.query, { Field(node) { fields.push(node.name.value); } });
-              if (fields.includes("hasFindingEvidence")) returned.hasFindingEvidence = savedCell.hasFindingEvidence;
+              visit(operation.query, {
+                Field(node) {
+                  fields.push(node.name.value);
+                },
+              });
+              if (fields.includes("hasFindingEvidence"))
+                returned.hasFindingEvidence = savedCell.hasFindingEvidence;
               else delete returned.hasFindingEvidence;
             }
             observer.next({
@@ -123,7 +129,9 @@ beforeEach(() => {
               },
             });
           } else if (operation.operationName === "GetDatacellEvidence") {
-            expect(operation.variables.version).toBe(refreshEvidenceAvailability ? "effective" : "original");
+            expect(operation.variables.version).toBe(
+              refreshEvidenceAvailability ? "effective" : "original"
+            );
             observer.next({
               data: {
                 datacell: {
@@ -400,19 +408,20 @@ it("downloads an Excel workbook with the document title and current reviewer val
   ]);
 });
 
-
 it("reloads PDF locations after a native correction restores selected evidence", async () => {
   refreshEvidenceAvailability = true;
   savedCell = cell({ data: { ...finding, finding: "not_found" } });
   render([savedCell]);
   click("View finding: Not found");
   click("Edit data");
-  const value = Array.from(document.body.querySelectorAll(".variable-value")).find(
-    (node) => node.textContent?.includes("not_found")
-  );
+  const value = Array.from(
+    document.body.querySelectorAll(".variable-value")
+  ).find((node) => node.textContent?.includes("not_found"));
   expect(value).toBeDefined();
   act(() => fireEvent.click(value!, { ctrlKey: true }));
-  const input = document.body.querySelector('[placeholder="update this value"]');
+  const input = document.body.querySelector(
+    '[placeholder="update this value"]'
+  );
   expect(input).not.toBeNull();
   act(() => fireEvent.change(input!, { target: { value: "supported" } }));
   await act(async () => {

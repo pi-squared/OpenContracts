@@ -1266,16 +1266,24 @@ export function CentralRouteManager() {
     const matchesIdentifier = (
       identifier: string | undefined,
       entity: { id: string; slug?: string | null } | null | undefined
-    ) => Boolean(identifier && entity && (
-      identifier === entity.id ||
-      (entity.slug && identifier.toLowerCase() === entity.slug.toLowerCase())
-    ));
+    ) =>
+      Boolean(
+        identifier &&
+          entity &&
+          (identifier === entity.id ||
+            (entity.slug &&
+              identifier.toLowerCase() === entity.slug.toLowerCase()))
+      );
     if (currentRoute.type === "document") {
-      const owner = currentRoute.corpusIdent ? corpus?.creator : document?.creator;
+      const owner = currentRoute.corpusIdent
+        ? corpus?.creator
+        : document?.creator;
       if (
         !matchesIdentifier(currentRoute.documentIdent, document) ||
-        (currentRoute.userIdent && !matchesIdentifier(currentRoute.userIdent, owner)) ||
-        (currentRoute.corpusIdent && !matchesIdentifier(currentRoute.corpusIdent, corpus))
+        (currentRoute.userIdent &&
+          !matchesIdentifier(currentRoute.userIdent, owner)) ||
+        (currentRoute.corpusIdent &&
+          !matchesIdentifier(currentRoute.corpusIdent, corpus))
       ) {
         return;
       }
@@ -1283,7 +1291,11 @@ export function CentralRouteManager() {
 
     // A standalone target must not inherit the previous collection context.
     // Phase 1 clears openedCorpus when the standalone document is resolved.
-    if (currentRoute.type === "document" && !currentRoute.corpusIdent && corpus) {
+    if (
+      currentRoute.type === "document" &&
+      !currentRoute.corpusIdent &&
+      corpus
+    ) {
       return;
     }
 
@@ -1354,7 +1366,11 @@ export function CentralRouteManager() {
       return;
     }
 
-    const canonicalPath = buildCanonicalPath(document, corpus, currentRoute.type === "extract" ? extract : null);
+    const canonicalPath = buildCanonicalPath(
+      document,
+      corpus,
+      currentRoute.type === "extract" ? extract : null
+    );
     if (!canonicalPath) return;
 
     // Normalize paths for comparison (remove trailing slashes)
@@ -1500,7 +1516,10 @@ export function CentralRouteManager() {
     });
 
     // Retain an explicitly chosen default mode while source navigation updates the URL.
-    if (labels === "ON_HOVER" && currentUrlParams.get("labels") === "ON_HOVER") {
+    if (
+      labels === "ON_HOVER" &&
+      currentUrlParams.get("labels") === "ON_HOVER"
+    ) {
       const explicitParams = new URLSearchParams(queryString);
       explicitParams.set("labels", "ON_HOVER");
       queryString = `?${explicitParams.toString()}`;

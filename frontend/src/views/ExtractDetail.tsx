@@ -85,10 +85,7 @@ import {
 import { ExtractIterationsTab } from "../components/extracts/iterations/ExtractIterationsTab";
 import { CreateColumnModal } from "../components/widgets/modals/CreateColumnModal";
 import { ConfirmModal } from "../components/widgets/modals/ConfirmModal";
-import {
-  getExtractStatus,
-  formatExtractDate,
-} from "../utils/extractUtils";
+import { getExtractStatus, formatExtractDate } from "../utils/extractUtils";
 import { useExtractCompletionNotification } from "../hooks/useExtractCompletionNotification";
 
 import { ExtractOutcomeNotice } from "../components/extracts/ExtractOutcomeNotice";

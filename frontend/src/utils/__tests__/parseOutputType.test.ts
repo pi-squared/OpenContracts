@@ -3,8 +3,12 @@ import { parseOutputType, parsePydanticModel } from "../parseOutputType";
 
 describe("parseOutputType", () => {
   it("recognizes installed workflow factories while rejecting malformed identities", () => {
-    expect(parseOutputType(`workflow:${"a".repeat(64)}:goods_conformity`)).toEqual({ type: "object" });
-    expect(() => parseOutputType("workflow:invalid:goods_conformity")).toThrow();
+    expect(
+      parseOutputType(`workflow:${"a".repeat(64)}:goods_conformity`)
+    ).toEqual({ type: "object" });
+    expect(() =>
+      parseOutputType("workflow:invalid:goods_conformity")
+    ).toThrow();
   });
 
   describe("primitive types", () => {

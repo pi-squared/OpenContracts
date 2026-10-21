@@ -42,7 +42,7 @@ export function reconcileFindingEdit(
   retained: unknown,
   edited: unknown,
   suppressed = false
-): any {
+): unknown {
   suppressed = suppressed || findingOutcome(retained) === "not_found";
   if (Array.isArray(edited))
     return edited.map((item, index) =>
@@ -79,14 +79,19 @@ export function applyFindingJsonEdit(
     name?: string | number | null;
     type?: string;
   }
-): any {
+): unknown {
   // Align retained array entries after an explicit deletion before merging.
   let base = retained;
   if (edit.type === "delete" && edit.name != null) {
     base = structuredClone(retained);
-    let parent: any = base;
+    let parent: unknown = base;
     for (const key of edit.namespace ?? []) {
-      if (key != null) parent = parent?.[key];
+      if (key != null) {
+        parent =
+          typeof parent === "object" && parent !== null
+            ? Reflect.get(parent, String(key))
+            : undefined;
+      }
     }
     if (Array.isArray(parent)) parent.splice(Number(edit.name), 1);
   }

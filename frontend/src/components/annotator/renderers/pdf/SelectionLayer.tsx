@@ -524,7 +524,8 @@ const SelectionLayer = ({
         ) <= PDF_EVIDENCE_MOVEMENT_THRESHOLD_PX
       )
         return;
-      const canvas = containerRef.current?.previousSibling as HTMLCanvasElement | null;
+      const canvas = containerRef.current
+        ?.previousSibling as HTMLCanvasElement | null;
       if (!canvas) return;
       const bounds = canvas.getBoundingClientRect();
       setSelectedAnnotations([]);
@@ -1074,8 +1075,14 @@ const SelectionLayer = ({
       id="selection-layer"
       ref={containerRef}
       onMouseDown={(event) => {
-        if (!mouseEventContainerRef || event.shiftKey || event.ctrlKey ||
-            event.metaKey || event.altKey) handleMouseDown(event);
+        if (
+          !mouseEventContainerRef ||
+          event.shiftKey ||
+          event.ctrlKey ||
+          event.metaKey ||
+          event.altKey
+        )
+          handleMouseDown(event);
       }}
       onMouseMove={localPageSelection ? handleMouseMove : undefined}
       onMouseUp={handleMouseUp}

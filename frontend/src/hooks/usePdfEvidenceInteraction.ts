@@ -51,7 +51,7 @@ export function usePdfEvidenceInteraction(
         start &&
         event.buttons & 1 &&
         Math.hypot(event.clientX - start.x, event.clientY - start.y) >
-        PDF_EVIDENCE_MOVEMENT_THRESHOLD_PX
+          PDF_EVIDENCE_MOVEMENT_THRESHOLD_PX
       )
         start.moved = true;
     };

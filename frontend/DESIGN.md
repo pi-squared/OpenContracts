@@ -48,26 +48,26 @@ typography:
     fontSize: "24px"
     fontWeight: 400
   body:
-    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif"
     fontSize: "15px"
     fontWeight: 400
     lineHeight: 1.5
   subtitle:
-    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif"
     fontSize: "17px"
     fontWeight: 400
     lineHeight: 1.6
   finding-body:
-    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif"
     fontSize: "14px"
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif"
     fontSize: "13px"
     fontWeight: 500
   caption:
-    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif"
     fontSize: "12px"
     fontWeight: 400
 rounded:

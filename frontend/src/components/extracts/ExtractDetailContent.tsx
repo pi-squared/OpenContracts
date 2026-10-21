@@ -79,10 +79,7 @@ import { ExtractDataGrid, ExtractDataGridHandle } from "./datagrid/DataGrid";
 import { ExtractIterationsTab } from "./iterations/ExtractIterationsTab";
 import { CreateColumnModal } from "../widgets/modals/CreateColumnModal";
 import { ConfirmModal } from "../widgets/modals/ConfirmModal";
-import {
-  getExtractStatus,
-  formatExtractDate,
-} from "../../utils/extractUtils";
+import { getExtractStatus, formatExtractDate } from "../../utils/extractUtils";
 import { useExtractCompletionNotification } from "../../hooks/useExtractCompletionNotification";
 import { LoadingOverlay } from "../common/LoadingOverlay";
 

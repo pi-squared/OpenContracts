@@ -30,7 +30,6 @@ export function parseOutputType(outputType: string): JSONSchema7 {
     return { type: "object" };
   }
 
-
   // Check if it's a primitive type
   if (primitiveTypeMap.hasOwnProperty(trimmedOutputType)) {
     return { type: primitiveTypeMap[trimmedOutputType] };
