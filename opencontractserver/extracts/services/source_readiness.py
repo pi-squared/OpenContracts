@@ -21,6 +21,7 @@ def document_readiness(document, corpus_id=None):
     from opencontractserver.documents.models import DocumentPath
     from opencontractserver.pipeline.utils import get_embedder_instance
     from opencontractserver.utils.compact_pawls import expand_pawls_pages
+    from opencontractserver.utils.embedding_identity import embeddable_annotations
     from opencontractserver.utils.embeddings import get_embedder
 
     if document.processing_status == "failed":
@@ -57,11 +58,7 @@ def document_readiness(document, corpus_id=None):
         scope |= Q(
             structural_set_id=document.structural_annotation_set_id, structural=True
         )
-    passages = (
-        Annotation.objects.filter(scope)
-        .exclude(raw_text="")
-        .exclude(raw_text__isnull=True)
-    )
+    passages = embeddable_annotations(Annotation.objects.filter(scope))
     if not passages.exists():
         return (
             "Document passages are unavailable. Reprocess the source before extracting."
