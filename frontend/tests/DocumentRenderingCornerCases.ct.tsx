@@ -154,6 +154,105 @@ test.describe("Selection Menu Positioning Corner Cases", () => {
       await page.mouse.up();
     }
   }
+
+  test("initial fit keeps the document top visible and later zoom preserves reading position", async ({
+    mount,
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await mount(
+      <DocumentKnowledgeBaseTestWrapper
+        mocks={graphqlMocks}
+        documentId={PDF_DOC_ID}
+        corpusId={CORPUS_ID}
+      />
+    );
+
+    const canvas = page.locator("#pdf-container canvas").first();
+    await expect(canvas).toBeVisible({ timeout: LONG_TIMEOUT });
+    // The fixture's natural page is narrower than this desktop viewport.
+    // Wait for its initial fit, then for virtual page heights to match the
+    // rendered canvas rather than measuring the temporary 100% layout.
+    await expect
+      .poll(() =>
+        canvas.evaluate((element) => (element as HTMLCanvasElement).width)
+      )
+      .toBeGreaterThan(1000);
+    const waitForMeasuredLayout = async () => {
+      await expect
+        .poll(() =>
+          canvas.evaluate((element) => {
+            const page = element.closest(
+              ".PageAnnotationsContainer"
+            )?.parentElement;
+            return Math.abs(
+              Number.parseFloat(page?.style.height ?? "0") -
+                (element as HTMLCanvasElement).height -
+                32 // virtual page spacing
+            );
+          })
+        )
+        .toBeLessThanOrEqual(2);
+    };
+    const readPosition = () =>
+      page.locator("#pdf-container").evaluate((container) => {
+        const canvas = container.querySelector("canvas")!;
+        const viewport = container.getBoundingClientRect();
+        const page = canvas.getBoundingClientRect();
+        return {
+          top: container.scrollTop,
+          left: container.scrollLeft,
+          height: canvas.height,
+          pageTop: page.top,
+          viewportTop: viewport.top,
+          readingFraction:
+            (viewport.top + container.clientHeight / 2 - page.top) /
+            page.height,
+        };
+      });
+
+    await waitForMeasuredLayout();
+    const initial = await readPosition();
+    expect(initial.top).toBe(0);
+    expect(initial.pageTop).toBeGreaterThanOrEqual(initial.viewportTop);
+
+    await page.locator("#pdf-container").evaluate((container) => {
+      container.scrollTop = 250;
+    });
+    const before = await readPosition();
+    await page.keyboard.press("Control++");
+    await expect
+      .poll(() =>
+        canvas.evaluate((element) => (element as HTMLCanvasElement).height)
+      )
+      .toBeGreaterThan(before.height);
+    await waitForMeasuredLayout();
+    const zoomed = await readPosition();
+    expect(zoomed.top).toBeGreaterThan(before.top);
+    expect(
+      Math.abs(zoomed.readingFraction - before.readingFraction)
+    ).toBeLessThan(0.005);
+
+    // A deliberate horizontal pan must also survive a later zoom.
+    await page.locator("#pdf-container").evaluate((container) => {
+      container.scrollLeft = 20;
+    });
+    const panned = await readPosition();
+    expect(panned.left).toBeGreaterThan(0);
+    await page.keyboard.press("Control++");
+    await expect
+      .poll(() =>
+        canvas.evaluate((element) => (element as HTMLCanvasElement).height)
+      )
+      .toBeGreaterThan(panned.height);
+    await waitForMeasuredLayout();
+    const final = await readPosition();
+    expect(final.left).toBe(panned.left);
+    expect(
+      Math.abs(final.readingFraction - panned.readingFraction)
+    ).toBeLessThan(0.005);
+  });
+
   test("selection menu appears off-screen on mobile viewport", async ({
     mount,
     page,

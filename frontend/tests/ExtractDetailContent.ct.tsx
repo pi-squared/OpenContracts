@@ -15,6 +15,7 @@ import React from "react";
 import { test, expect } from "./utils/coverage";
 import { docScreenshot } from "./utils/docScreenshot";
 import { ExtractDetailContentTestWrapper } from "./ExtractDetailContentTestWrapper";
+import { REQUEST_CREATE_EXTRACT_ITERATION } from "../src/graphql/mutations";
 
 test.describe("ExtractDetailContent — loading & empty states", () => {
   test("shows loading overlay while the extract is being fetched", async ({
@@ -81,7 +82,9 @@ test.describe("ExtractDetailContent — completed extract", () => {
     // The Data tab is the default; the inner DataGrid renders column headers
     // and document rows.
     await expect(page.getByText("Extracted Data")).toBeVisible();
-    await expect(page.getByText(/2 rows/)).toBeVisible();
+    await expect(
+      page.getByText("2 selected document rows", { exact: true })
+    ).toBeVisible();
     await expect(
       page.locator("text=Master Service Agreement.pdf").first()
     ).toBeVisible();
@@ -169,7 +172,7 @@ test.describe("ExtractDetailContent — running & failed states", () => {
     await component.unmount();
   });
 
-  test("renders the failed state with a Retry button", async ({
+  test("keeps saved results and iteration recovery available after errors", async ({
     mount,
     page,
   }) => {
@@ -177,42 +180,95 @@ test.describe("ExtractDetailContent — running & failed states", () => {
       <ExtractDetailContentTestWrapper scenario="failed" />
     );
 
-    await expect(page.locator("text=Extraction failed").first()).toBeVisible({
+    await expect(page.getByText(/This run ended with errors/i)).toBeVisible({
       timeout: 10000,
     });
     await expect(
-      page.getByText(/could not be completed/).first()
+      page.getByText(/Saved results remain available for review/)
     ).toBeVisible();
-    await expect(page.getByRole("button", { name: /Retry/i })).toBeVisible();
-
-    // Tabs are hidden on failure.
-    await expect(page.getByRole("tab", { name: "Data" })).toHaveCount(0);
+    await expect(page.getByText("$150,000", { exact: true })).toBeVisible();
+    await expect(
+      page.getByRole("tab", { name: "Data", exact: true })
+    ).toBeVisible();
+    await expect(
+      page.getByRole("tab", { name: "Iterations", exact: true })
+    ).toBeVisible();
+    await expect(page.getByRole("button", { name: /Retry/i })).toHaveCount(0);
 
     await docScreenshot(page, "extracts--detail-content--failed");
     await component.unmount();
   });
 
-  test("clicking Retry triggers the start-extract mutation", async ({
+  test("creates a recovery iteration while retaining the failed run's saved results", async ({
     mount,
     page,
   }) => {
     const component = await mount(
-      <ExtractDetailContentTestWrapper scenario="failed" />
+      <ExtractDetailContentTestWrapper
+        scenario="failed"
+        additionalMocks={[
+          {
+            request: {
+              query: REQUEST_CREATE_EXTRACT_ITERATION,
+              variables: {
+                sourceExtractId: "extract-1",
+                axis: "MODEL",
+                name: "Recovery iteration",
+                modelConfig: { model: "openai:test-iteration" },
+                autoStart: true,
+              },
+            },
+            result: {
+              data: {
+                createExtractIteration: {
+                  ok: true,
+                  message: "Iteration queued",
+                  obj: {
+                    __typename: "ExtractType",
+                    id: "extract-recovery",
+                    name: "Recovery iteration",
+                    started: "2024-01-03T00:00:00Z",
+                    finished: null,
+                    modelConfig: { model: "openai:test-iteration" },
+                    iterationAxis: "MODEL",
+                    parentExtract: {
+                      __typename: "ExtractType",
+                      id: "extract-1",
+                    },
+                  },
+                },
+              },
+            },
+          },
+        ]}
+      />
     );
 
-    await expect(page.getByRole("button", { name: /Retry/i })).toBeVisible({
+    await expect(page.getByText(/This run ended with errors/i)).toBeVisible({
       timeout: 10000,
     });
-
-    // Clicking Retry should call startExtract — success toast is rendered
-    // by react-toastify at document root.
-    await page.getByRole("button", { name: /Retry/i }).click();
-
-    // After the mutation completes, the success toast appears. Toasts are
-    // portalled outside the wrapper so a text lookup over the page works.
-    await expect(page.getByText(/Extract started!/)).toBeVisible({
+    await page.getByRole("tab", { name: "Iterations", exact: true }).click();
+    await page
+      .getByRole("button", { name: "New iteration", exact: true })
+      .click();
+    const dialog = page.getByRole("dialog", {
+      name: "New iteration",
+      exact: true,
+    });
+    await dialog.getByLabel("Name (optional)").fill("Recovery iteration");
+    await dialog.getByLabel("Model identifier").fill("openai:test-iteration");
+    await dialog
+      .getByRole("button", { name: "Create iteration", exact: true })
+      .click();
+    await expect(
+      page.getByText("Iteration queued.", { exact: true })
+    ).toBeVisible({
       timeout: 5000,
     });
+    await expect(dialog).toHaveCount(0);
+    await page.getByRole("tab", { name: "Data", exact: true }).click();
+    await expect(page.getByText("$150,000", { exact: true })).toBeVisible();
+    await expect(page.getByText(/This run ended with errors/i)).toBeVisible();
 
     await component.unmount();
   });

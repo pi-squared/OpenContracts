@@ -411,6 +411,7 @@ const createDocumentsMocks = (corpusId: string): MockedResponse[] => {
           // limit comment in CorpusDocumentCards.tsx).
           limit: DEFAULT_LIST_PAGE_SIZE,
           inCorpusWithId: corpusId,
+          badgeCorpusId: corpusId,
           annotateDocLabels: true,
           includeMetadata: true,
           includeCaml: true,
@@ -424,6 +425,7 @@ const createDocumentsMocks = (corpusId: string): MockedResponse[] => {
         variables: {
           limit: DEFAULT_LIST_PAGE_SIZE,
           inCorpusWithId: corpusId,
+          badgeCorpusId: corpusId,
           inFolderId: "__root__",
           annotateDocLabels: true,
           includeMetadata: true,

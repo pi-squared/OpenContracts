@@ -5,6 +5,7 @@ import {
   exportExtractTab,
 } from "../utils/extractDetails";
 import { getDocumentUrl } from "../utils/navigationUtils";
+import { getSourceReadinessPollInterval } from "../utils/extractSourceReadiness";
 import { SourceReadinessNotice } from "../components/extracts/SourceReadinessNotice";
 import React, {
   useState,
@@ -464,6 +465,7 @@ export const ExtractDetail: React.FC = () => {
       variables: { id: extract?.id ?? "" },
       skip: !extract?.id,
       nextFetchPolicy: "network-only",
+      pollInterval: getSourceReadinessPollInterval(extract),
       notifyOnNetworkStatusChange: true,
     }
   );

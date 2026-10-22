@@ -28,6 +28,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import {
   useZoomLevel,
   useAnnotationSelection,
+  initialZoomSetAtom,
 } from "../../context/UISettingsAtom";
 import { useAllAnnotations } from "../../hooks/useAllAnnotations";
 import { pendingScrollSearchResultIdAtom } from "../../context/DocumentAtom";
@@ -148,6 +149,7 @@ export const PDF: React.FC<PDFProps> = ({
   const { pages } = usePages();
   const setViewStateError = useSetViewStateError();
   const { zoomLevel } = useZoomLevel();
+  const initialZoomSet = useAtomValue(initialZoomSetAtom);
   const { selectedAnnotations } = useAnnotationSelection();
   useEvidenceFocusNavigation();
   const { evidenceNavigation } = useEvidenceFocus();
@@ -177,7 +179,12 @@ export const PDF: React.FC<PDFProps> = ({
   /* reference to the scrolling element                                 */
   const scrollContainerRef = useAtomValue(scrollContainerRefAtom);
   useEvidenceFocusEscape(scrollContainerRef);
-  const [pageHeights, setPageHeights] = useState<number[]>([]);
+  const [pageLayout, setPageLayout] = useState<{
+    document: typeof pdfDoc;
+    zoom: number;
+    heights: number[];
+  }>({ document: pdfDoc, zoom: zoomLevel, heights: [] });
+  const pageHeights = pageLayout.heights;
   const allAnnotations = useAllAnnotations();
 
   /* ---------- build index & heights ---------------------------------- */
@@ -262,6 +269,7 @@ export const PDF: React.FC<PDFProps> = ({
   /* build the cache once per zoom level */
   useEffect(() => {
     if (!pdfDoc) return;
+    let active = true;
     (async () => {
       const h: number[] = [];
       for (let i = 1; i <= pdfDoc.numPages; i++) {
@@ -272,8 +280,14 @@ export const PDF: React.FC<PDFProps> = ({
         );
         h.push(height);
       }
-      setPageHeights(h); // updates state → re-render
+      // Bind the measurements to their source and scale. A fit/zoom can
+      // change while getPage is pending, so discard an obsolete measurement.
+      if (active)
+        setPageLayout({ document: pdfDoc, zoom: zoomLevel, heights: h });
     })();
+    return () => {
+      active = false;
+    };
   }, [pdfDoc, zoomLevel]);
 
   /* prefix sums for quick offset lookup */
@@ -307,6 +321,15 @@ export const PDF: React.FC<PDFProps> = ({
     offsets: number[];
   } | null>(null);
   useLayoutEffect(() => {
+    if (!initialZoomSet || pageLayout.document !== pdfDoc) {
+      previousLayout.current = null;
+      return;
+    }
+    // Initial fit establishes the first reading position; it must not move
+    // the document to preserve a point from the temporary 100% layout.
+    // Retain a settled baseline while later zoom measurements are pending.
+    if (pageLayout.zoom !== zoomLevel) return;
+
     const previous = previousLayout.current;
     previousLayout.current = {
       document: pdfDoc,
@@ -343,7 +366,15 @@ export const PDF: React.FC<PDFProps> = ({
     if (element instanceof Window)
       element.scrollTo({ top: nextScroll, behavior: "auto" });
     else element.scrollTop = nextScroll;
-  }, [pdfDoc, pageHeights, cumulative, getScrollElement]);
+  }, [
+    pdfDoc,
+    pageLayout,
+    pageHeights,
+    cumulative,
+    getScrollElement,
+    initialZoomSet,
+    zoomLevel,
+  ]);
 
   /* ---------- visible window tracking -------------------------------- */
   const [range, setRange] = useState<[number, number]>([0, 0]); // [startIdx, endIdx]

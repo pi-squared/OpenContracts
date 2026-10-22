@@ -109,7 +109,9 @@ test.describe("RadialButtonCloud", () => {
 
     // Should have Yes/No buttons
     await expect(page.getByRole("button", { name: "Yes" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "No" })).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "No", exact: true })
+    ).toBeVisible();
 
     await docScreenshot(
       page,
@@ -134,7 +136,7 @@ test.describe("RadialButtonCloud", () => {
     await expect(page.locator('[role="dialog"]')).toBeVisible();
 
     // Click No
-    await page.getByRole("button", { name: "No" }).click();
+    await page.getByRole("button", { name: "No", exact: true }).click();
 
     // Modal should close
     await expect(page.locator('[role="dialog"]')).not.toBeVisible();

@@ -6,6 +6,7 @@ import {
 } from "../../utils/extractDetails";
 import { useNavigate } from "react-router-dom";
 import { getDocumentUrl } from "../../utils/navigationUtils";
+import { getSourceReadinessPollInterval } from "../../utils/extractSourceReadiness";
 import { SourceReadinessNotice } from "./SourceReadinessNotice";
 /**
  * ExtractDetailContent - Shared content component for extract detail views
@@ -383,6 +384,7 @@ export const ExtractDetailContent = forwardRef<
       skip: !extractId,
       fetchPolicy: "cache-and-network",
       nextFetchPolicy: "cache-first",
+      pollInterval: getSourceReadinessPollInterval(extract),
       notifyOnNetworkStatusChange: true,
     }
   );
