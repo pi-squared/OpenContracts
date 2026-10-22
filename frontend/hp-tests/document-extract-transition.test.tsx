@@ -736,8 +736,12 @@ function expectHighlights(index: number) {
   for (const source of sources[1 - index])
     expect(pdf().querySelector(`[id="SELECTION_${source.id}"]`)).toBeNull();
 }
+async function revealExtractSources(count = 2) {
+  if (!host.querySelector('[data-testid="extract-pane"] [data-annotation-id]'))
+    await click(button(`${count} Annotation${count === 1 ? "" : "s"}`));
+}
 async function inspectQuotes(index: number) {
-  await click(button("2 Annotations"));
+  await revealExtractSources();
   await click(button("Default labels"));
   for (const source of sources[index]) {
     const card = host.querySelector(
@@ -974,7 +978,7 @@ it.each([
     // This review case inspects one source in the ordinary display. The separate
     // selected-only regressions retain every member of a View Sources entry.
     await click(button("Default labels"));
-    await click(button(corrected ? "1 Annotation" : "2 Annotations"));
+    await revealExtractSources(corrected ? 1 : 2);
     const selectedSource = evidence[0];
     if (selectedAnnotationIds().includes(selectedSource.id))
       await click(
@@ -1111,7 +1115,7 @@ it.each([
     expect(
       host.querySelector('[data-testid="extract-pane"]')?.textContent
     ).toContain("Rejected");
-    await click(button(corrected ? "1 Annotation" : "2 Annotations"));
+    await revealExtractSources(corrected ? 1 : 2);
     for (const source of evidence)
       expect(
         host.querySelector(
@@ -1194,7 +1198,7 @@ it("ordinary extract entry keeps workflow evidence highlights while default labe
 
 it("individual sources focus one quotation, replace its label, and toggle focus without losing viewer selection", async () => {
   await ordinaryEntry();
-  await click(button("2 Annotations"));
+  await revealExtractSources();
   const cards = sources[0].map(
     (source) =>
       host.querySelector<HTMLElement>(
@@ -1244,7 +1248,7 @@ it.each(["", "&labels=ON_HOVER", "&labels=HIDE", "&labels=ALWAYS"])(
     expectHighlights(0);
     expectLabel(sources[0][0], mode !== "&labels=HIDE");
     expectLabel(sources[0][1], mode === "&labels=ALWAYS");
-    await click(button("2 Annotations"));
+    await revealExtractSources();
     const card = host.querySelector(
       `[data-testid="extract-pane"] [data-annotation-id="${sources[0][0].id}"]`
     )!;
@@ -1264,7 +1268,7 @@ it.each(["", "&labels=ON_HOVER", "&labels=HIDE", "&labels=ALWAYS"])(
 
 it("activating a source after clearing focus repeats its PDF navigation even when native selection is unchanged", async () => {
   await ordinaryEntry();
-  await click(button("2 Annotations"));
+  await revealExtractSources();
   const card = host.querySelector(
     `[data-testid="extract-pane"] [data-annotation-id="${sources[0][0].id}"]`
   )!;
@@ -1285,7 +1289,7 @@ it("activating a source after clearing focus repeats its PDF navigation even whe
 
 it("ordinary document navigation clears evidence focus and cannot leak a previous quotation", async () => {
   await ordinaryEntry();
-  await click(button("2 Annotations"));
+  await revealExtractSources();
   await click(
     host.querySelector(
       `[data-testid="extract-pane"] [data-annotation-id="${sources[0][0].id}"]`
@@ -1306,7 +1310,7 @@ it("ordinary document navigation clears evidence focus and cannot leak a previou
 
 it("ordinary warm SPA return to the same document after leaving the viewer starts without evidence focus", async () => {
   await ordinaryEntry();
-  await click(button("2 Annotations"));
+  await revealExtractSources();
   await click(
     host.querySelector(
       `[data-testid="extract-pane"] [data-annotation-id="${sources[0][0].id}"]`
@@ -1321,7 +1325,7 @@ it("ordinary warm SPA return to the same document after leaving the viewer start
   expect(new URLSearchParams(window.location.search).get("ann")).toBeNull();
   expectHighlights(0);
   for (const source of sources[0]) expectLabel(source, false);
-  await click(button("2 Annotations"));
+  await revealExtractSources();
   expect(
     host.querySelector('[data-testid="extract-pane"] [aria-current="true"]')
   ).toBeNull();
@@ -1332,7 +1336,7 @@ it.each(["ON_HOVER", "ALWAYS", "HIDE"])(
   async (mode) => {
     const memberIds = sources[0].map((source) => source.id).join(",");
     await ordinaryEntry(0, `&ann=${memberIds}&labels=${mode}`);
-    await click(button("2 Annotations"));
+    await revealExtractSources();
     await click(button("Show selected only"));
     const cards = sources[0].map(
       (source) =>

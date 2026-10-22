@@ -1,4 +1,8 @@
 import {
+  ReviewSaveOptions,
+  reviewEnvelope,
+} from "../../../utils/reviewerFeedback";
+import {
   projectFindingValue,
   findingFrom,
   findingOutcome,
@@ -6,7 +10,7 @@ import {
 import { useLocation } from "react-router-dom";
 import { useEvidenceFocus } from "../../../hooks/useEvidenceFocus";
 import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FindingDetails } from "../../extracts/datagrid/FindingView";
 import styled, { keyframes } from "styled-components";
 import { Code, Check, X, Eye, Edit3, EyeOff, Loader2 } from "lucide-react";
@@ -88,14 +92,9 @@ function InlineResultValue({
   };
   if (finding)
     return (
-      <FindingDetails
-        value={finding}
-        isApproved={isApproved}
-        isRejected={isRejected}
-        isEdited={isEdited}
-        evidenceAnchors={evidenceAnchors}
-        onViewQuote={onViewQuote}
-      />
+      <div className="finding-summary-panel">
+        <FindingDetails value={finding} summaryOnly />
+      </div>
     );
   return (
     <div>
@@ -128,8 +127,12 @@ interface SingleDocumentExtractResultsProps {
 export const SingleDocumentExtractResults: React.FC<
   SingleDocumentExtractResultsProps
 > = ({ datacells, columns }) => {
-  const { focusedEvidenceId, setFocusedEvidence, navigateToEvidence } =
-    useEvidenceFocus();
+  const {
+    focusedEvidenceId,
+    focusRequest,
+    setFocusedEvidence,
+    navigateToEvidence,
+  } = useEvidenceFocus();
   // State variables
   const [hoveredRow, setHoveredRow] = useState<string | null>(null);
   const [tryingApprove, setTryingApprove] = useState(false);
@@ -137,6 +140,7 @@ export const SingleDocumentExtractResults: React.FC<
   const [annotationVisibility, setAnnotationVisibility] = useState<{
     [key: string]: boolean;
   }>({});
+  const annotationTargets = useRef(new Map<string, HTMLDivElement>());
   const [isEditing, setIsEditing] = useState(false);
   const [editingCell, setEditingCell] = useState<DatacellType | null>(null);
 
@@ -189,15 +193,47 @@ export const SingleDocumentExtractResults: React.FC<
     inspection.get("findingVersion") === "original"
       ? inspection.get("findingCell")
       : null;
-  const retainedValue = (cell: DatacellType) => {
-    const value = cell.correctedData ?? cell.data;
-    return value?.data ?? value;
-  };
   const valueForInspection = (cell: DatacellType) => {
     const value =
       cell.id === originalCellId ? cell.data : cell.correctedData ?? cell.data;
     return projectFindingValue(value?.data ?? value);
   };
+
+  const focusedCellId = focusedEvidenceId
+    ? lastCells.find(
+        (cell) =>
+          findingOutcome(valueForInspection(cell)) !== "not_found" &&
+          cell.fullSourceList?.some(
+            (source) =>
+              source.id === focusedEvidenceId &&
+              isReviewerVisibleLabel(source.annotationLabel)
+          )
+      )?.id
+    : undefined;
+  const focusedGroupOpen = focusedCellId
+    ? Boolean(annotationVisibility[focusedCellId])
+    : false;
+  useEffect(() => {
+    if (!focusedCellId || isEditing) return;
+    setAnnotationVisibility((previous) =>
+      previous[focusedCellId]
+        ? previous
+        : { ...previous, [focusedCellId]: true }
+    );
+  }, [focusedCellId, focusRequest, isEditing]);
+  useLayoutEffect(() => {
+    if (!focusedEvidenceId || !focusedGroupOpen || isEditing) return;
+    const target = annotationTargets.current.get(focusedEvidenceId);
+    if (!target) return;
+    target.focus({ preventScroll: true });
+    target.scrollIntoView?.({
+      block: "nearest",
+      inline: "nearest",
+      behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
+  }, [focusedEvidenceId, focusRequest, focusedGroupOpen, isEditing]);
 
   /**
    * Toggles the visibility of annotations under a cell.
@@ -343,48 +379,53 @@ export const SingleDocumentExtractResults: React.FC<
     );
   };
 
-  const handleSave = (newValue: any) => {
-    console.log("Handle save with newValue:", newValue);
-    if (editingCell) {
-      updateDatacell({
+  const handleSave = async (
+    newValue: unknown,
+    options: ReviewSaveOptions = {}
+  ) => {
+    if (!editingCell) return false;
+    try {
+      const response = await updateDatacell({
         variables: {
           datacellId: editingCell.id,
-          editedData: { data: newValue },
+          editedData: findingFrom(newValue)
+            ? reviewEnvelope(newValue)
+            : { data: newValue },
         },
-      })
-        .then((response) => {
-          const updatedCell = response.data?.editDatacell?.obj;
-          if (updatedCell) {
-            // Log the updated cell for debugging
-            console.log("Updated Cell:", updatedCell);
-
-            // Update the dataCells state
-            setDataCells((prevCells) =>
-              prevCells.map((cell) =>
-                cell.id === updatedCell.id ? { ...cell, ...updatedCell } : cell
-              )
-            );
-            toast.success("Cell updated successfully.");
-            console.log("Updated Cell:", updatedCell);
-            console.log("Updated dataCells:", dataCells);
-          } else {
-            toast.error("Failed to update cell.");
-          }
-        })
-        .catch((error) => {
-          toast.error("Error updating cell.");
-          console.error(error);
-        })
-        .finally(() => {
-          setIsEditing(false);
-          setEditingCell(null);
-        });
+      });
+      const updated = response.data?.editDatacell?.obj;
+      if (!response.data?.editDatacell?.ok || !updated) {
+        toast.error("Failed to save the review. Please try again.");
+        return false;
+      }
+      setDataCells((previous) =>
+        previous.map((cell) =>
+          cell.id === updated.id ? { ...cell, ...updated } : cell
+        )
+      );
+      if (options.keepOpen)
+        setEditingCell((previous) =>
+          previous ? { ...previous, ...updated } : null
+        );
+      else {
+        setIsEditing(false);
+        setEditingCell(null);
+      }
+      toast.success(
+        options.successMessage ??
+          (findingFrom(newValue) && reviewEnvelope(newValue).reviewer_feedback
+            ? "Review comments saved."
+            : "Cell updated successfully.")
+      );
+      return true;
+    } catch {
+      toast.error("The review could not be saved. Please try again.");
+      return false;
     }
   };
 
-  console.log("Sample datacell:", dataCells[0]);
-
-  if (extractResultsLoading) {
+  // Keep an active review mounted while evidence updates refresh the query.
+  if (extractResultsLoading && !isEditing) {
     return (
       <ResultsStatus role="status" aria-live="polite">
         <Spinner size={20} aria-hidden="true" />
@@ -393,7 +434,7 @@ export const SingleDocumentExtractResults: React.FC<
     );
   }
 
-  if (extractResultsError) {
+  if (extractResultsError && !isEditing) {
     return (
       <ResultsStatus role="alert">
         <p>Could not load extract results. Please try again.</p>
@@ -404,7 +445,7 @@ export const SingleDocumentExtractResults: React.FC<
     );
   }
 
-  if (lastCells.length === 0) {
+  if (lastCells.length === 0 && !isEditing) {
     return <ResultsStatus>No extract results for this document.</ResultsStatus>;
   }
 
@@ -494,29 +535,57 @@ export const SingleDocumentExtractResults: React.FC<
                         <TableCell colSpan={2}>
                           <AnnotationsContainer>
                             {visibleSources.map((annotation) => (
-                              <HighlightItem
+                              <div
                                 key={annotation.id}
-                                annotation={convertToServerAnnotation(
-                                  annotation
-                                )}
-                                read_only={true}
-                                relations={[]}
-                                focused={focusedEvidenceId === annotation.id}
-                                onInspect={() =>
-                                  focusedEvidenceId === annotation.id
-                                    ? setFocusedEvidence(null)
-                                    : navigateToEvidence(annotation.id)
-                                }
-                                selectionDisplay={{
-                                  showSelectedOnly: false,
-                                  showBoundingBoxes: true,
-                                  showStructural: false,
+                                ref={(node) => {
+                                  if (node)
+                                    annotationTargets.current.set(
+                                      annotation.id,
+                                      node
+                                    );
+                                  else
+                                    annotationTargets.current.delete(
+                                      annotation.id
+                                    );
                                 }}
-                                onSelect={() => {
-                                  onlyDisplayTheseAnnotations([annotation]);
-                                  displayAnnotationOnAnnotatorLoad(annotation);
+                                tabIndex={-1}
+                                data-extract-annotation-target={annotation.id}
+                                style={{
+                                  scrollMarginTop: 56,
+                                  scrollMarginBottom: 12,
                                 }}
-                              />
+                                onKeyDown={(event) => {
+                                  if (event.key === "Escape") {
+                                    event.stopPropagation();
+                                    setFocusedEvidence(null);
+                                  }
+                                }}
+                              >
+                                <HighlightItem
+                                  annotation={convertToServerAnnotation(
+                                    annotation
+                                  )}
+                                  read_only={true}
+                                  relations={[]}
+                                  focused={focusedEvidenceId === annotation.id}
+                                  onInspect={() =>
+                                    focusedEvidenceId === annotation.id
+                                      ? setFocusedEvidence(null)
+                                      : navigateToEvidence(annotation.id)
+                                  }
+                                  selectionDisplay={{
+                                    showSelectedOnly: false,
+                                    showBoundingBoxes: true,
+                                    showStructural: false,
+                                  }}
+                                  onSelect={() => {
+                                    onlyDisplayTheseAnnotations([annotation]);
+                                    displayAnnotationOnAnnotatorLoad(
+                                      annotation
+                                    );
+                                  }}
+                                />
+                              </div>
                             ))}
                           </AnnotationsContainer>
                         </TableCell>
@@ -531,7 +600,8 @@ export const SingleDocumentExtractResults: React.FC<
 
       {isEditing && editingCell && (
         <CellEditor
-          value={retainedValue(editingCell) ?? ""}
+          key={editingCell.id}
+          value={editingCell.correctedData ?? editingCell.data ?? ""}
           onSave={handleSave}
           onClose={() => {
             setIsEditing(false);
@@ -712,6 +782,49 @@ const InlineDataCell = styled(DataCell)`
   }
   .inline-result-content > div > section:first-of-type > span {
     color: #1e293b;
+  }
+  .finding-summary-panel {
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: #f8fafc;
+    color: #334155;
+    font: inherit;
+  }
+  .finding-summary-panel .finding-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .finding-summary-panel .finding-verdict {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .finding-summary-panel .finding-summary section {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+  }
+  .finding-summary-panel h3 {
+    margin: 0 0 6px;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .finding-summary-panel section > span {
+    color: #334155;
+    white-space: pre-wrap;
   }
   button:focus-visible {
     outline: 2px solid #0f766e;

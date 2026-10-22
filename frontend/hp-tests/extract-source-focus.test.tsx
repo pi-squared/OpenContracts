@@ -214,7 +214,7 @@ it("a review-only mutation preserves the loaded heading's quotations and source 
   expect(host.textContent).toContain("Rejected");
 });
 
-it("inline findings use retained quotation locations and offer PDF navigation", async () => {
+it("keeps the finding summary minimal and source quotations available for PDF navigation", async () => {
   await act(async () =>
     root.render(
       <Provider>
@@ -242,7 +242,28 @@ it("inline findings use retained quotation locations and offer PDF navigation", 
                       annotationId: "located-quote",
                     },
                   ],
-                  fullSourceList: [],
+                  fullSourceList: [
+                    {
+                      id: "located-quote",
+                      page: 3,
+                      rawText: "Retained source quotation",
+                      annotationType: "TOKEN_LABEL",
+                      structural: false,
+                      isEvidenceQuote: true,
+                      annotationLabel: {
+                        id: "label",
+                        text: "Criterion",
+                        color: "#2563eb",
+                        labelType: "TOKEN_LABEL",
+                      },
+                      json: {
+                        "3": {
+                          bounds: { left: 10, right: 80, top: 20, bottom: 30 },
+                          tokensJsons: [],
+                        },
+                      },
+                    },
+                  ],
                 } as any,
               ]}
             />
@@ -252,12 +273,20 @@ it("inline findings use retained quotation locations and offer PDF navigation", 
     )
   );
   expect(host.textContent).toContain("Present blank");
-  expect(host.textContent).toContain("Retained source quotation");
-  expect(host.textContent).toContain("Matched in parsed text on PDF page 4.");
+  expect(host.textContent).toContain("The field is blank.");
   expect(host.textContent).not.toContain("Raw model quotation");
-  expect(
-    Array.from(host.querySelectorAll("button")).some(
-      (button) => button.textContent === "View quotation in PDF"
-    )
-  ).toBe(true);
+  expect(host.textContent).not.toContain("Retained source quotation");
+  await act(async () =>
+    Array.from(host.querySelectorAll("button"))
+      .find((button) => button.textContent === "1 Annotation")!
+      .click()
+  );
+  const source = host.querySelector<HTMLElement>(
+    '[data-annotation-id="located-quote"]'
+  )!;
+  expect(source.textContent).toContain("Retained source quotation");
+  await act(async () => source.click());
+  expect(new URLSearchParams(window.location.search).get("ann")).toBe(
+    "located-quote"
+  );
 });

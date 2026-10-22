@@ -54,6 +54,9 @@ export function useEvidenceFocus() {
   );
   return {
     focusedEvidenceId,
+    // Retain the request identity so repeated activation of one highlight can
+    // reveal its card again after the user scrolls away or collapses its group.
+    focusRequest: focusedEvidenceId ? focus : null,
     setFocusedEvidence,
     navigateToEvidence,
     evidenceNavigation: navigation?.scope === scope ? navigation : null,

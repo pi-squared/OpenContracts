@@ -76,6 +76,43 @@ const terms = {
   uncertainty: "A blank field does not establish actual signing.",
 };
 
+it("limits an opted-in summary to the verdict and rationale while full details retain their fields", () => {
+  const value = { ...terms, customer_purpose: "consumer" };
+  const before = JSON.stringify(value);
+  act(() =>
+    root.render(<FindingDetails value={value} summaryOnly isApproved />)
+  );
+  expect(host.querySelector(".finding-verdict")?.textContent).toBe("Supported");
+  expect(host.textContent).toBe(`SupportedRationale${terms.rationale}`);
+  expect(host.querySelectorAll("h3")).toHaveLength(1);
+  expect(host.querySelector("blockquote")).toBeNull();
+
+  act(() => root.render(<FindingDetails value={value} isApproved />));
+  expect(host.textContent).toContain("Review: Approved");
+  expect(host.textContent).toContain("Customer purpose");
+  expect(host.textContent).toContain("consumer");
+  expect(host.textContent).toContain(terms.uncertainty);
+  expect(host.querySelector("blockquote")?.textContent).toBe("Owner signature");
+  expect(JSON.stringify(value)).toBe(before);
+});
+
+it("uses a native finding note as the rationale in the compact summary", () => {
+  act(() =>
+    root.render(
+      <FindingDetails
+        value={{
+          state: "uncertain",
+          note: "The agreement date is unavailable.",
+        }}
+        summaryOnly
+      />
+    )
+  );
+  expect(host.textContent).toBe(
+    "UncertainRationaleThe agreement date is unavailable."
+  );
+});
+
 describe("finding quotation locations", () => {
   it("omits the whole evidence section for not_found despite stale anchors and loading state", () => {
     act(() =>

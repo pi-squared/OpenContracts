@@ -23,9 +23,11 @@ it("round trips hidden evidence through the editor's real deletion callback and 
     root.render(
       <CellEditor
         value={{
-          finding: "not_found",
-          rationale: "Initial",
-          scoped_entries: [first, second],
+          assessment: {
+            finding: "not_found",
+            rationale: "Initial",
+            scoped_entries: [first, second],
+          },
         }}
         onSave={save}
         onClose={() => {}}
@@ -37,29 +39,37 @@ it("round trips hidden evidence through the editor's real deletion callback and 
   // react-json-view supplies namespace/name, without a type discriminator.
   act(() =>
     editor.props.onDelete({
-      namespace: ["scoped_entries"],
+      namespace: ["assessment", "scoped_entries"],
       name: "0",
       updated_src: {
-        ...editor.props.src,
-        scoped_entries: [{ scope: "second" }],
+        assessment: {
+          ...editor.props.src.assessment,
+          scoped_entries: [{ scope: "second" }],
+        },
       },
     })
   );
   act(() =>
     editor.props.onEdit({
-      updated_src: { ...editor.props.src, rationale: "Edited" },
+      updated_src: {
+        assessment: { ...editor.props.src.assessment, rationale: "Edited" },
+      },
     })
   );
   act(() =>
     editor.props.onEdit({
-      updated_src: { ...editor.props.src, finding: "uncertain" },
+      updated_src: {
+        assessment: { ...editor.props.src.assessment, finding: "uncertain" },
+      },
     })
   );
   expect(host.textContent).toContain("second hidden quote");
   expect(host.textContent).not.toContain("first hidden quote");
   act(() =>
     editor.props.onEdit({
-      updated_src: { ...editor.props.src, finding: "not_found" },
+      updated_src: {
+        assessment: { ...editor.props.src.assessment, finding: "not_found" },
+      },
     })
   );
   expect(host.textContent).not.toContain("hidden quote");
@@ -69,8 +79,10 @@ it("round trips hidden evidence through the editor's real deletion callback and 
       .click()
   );
   expect(save).toHaveBeenCalledWith({
-    finding: "not_found",
-    rationale: "Edited",
-    scoped_entries: [second],
+    assessment: {
+      finding: "not_found",
+      rationale: "Edited",
+      scoped_entries: [second],
+    },
   });
 });

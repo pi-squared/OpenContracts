@@ -276,6 +276,7 @@ function Evidence({
 
 interface FindingProps {
   value: Finding;
+  summaryOnly?: boolean;
   isApproved?: boolean;
   isRejected?: boolean;
   isEdited?: boolean;
@@ -323,6 +324,7 @@ export function FindingPreview({
 
 export function FindingDetails({
   value,
+  summaryOnly = false,
   isApproved,
   isRejected,
   isEdited,
@@ -337,8 +339,9 @@ export function FindingDetails({
   const result = outcome(value);
   const evidenceKey = "evidence" in value ? "evidence" : "evidence_quote";
   return (
-    <Details>
+    <Details className={summaryOnly ? "finding-summary" : undefined}>
       <span
+        className={summaryOnly ? "finding-verdict" : undefined}
         style={{
           color: result.color,
           background: result.background,
@@ -349,16 +352,25 @@ export function FindingDetails({
       >
         {result.label}
       </span>
-      <div className="review">{review(isApproved, isRejected, isEdited)}</div>
-      {Object.entries(value)
-        .filter(([key]) => !["finding", "state", evidenceKey].includes(key))
-        .map(([key, item]) => (
-          <section key={key}>
-            <h3>{label(key)}</h3>
-            <Value value={item} />
-          </section>
-        ))}
-      {!suppressed && (
+      {!summaryOnly && (
+        <div className="review">{review(isApproved, isRejected, isEdited)}</div>
+      )}
+      {summaryOnly ? (
+        <section>
+          <h3>Rationale</h3>
+          <Value value={value.rationale ?? value.note} />
+        </section>
+      ) : (
+        Object.entries(value)
+          .filter(([key]) => !["finding", "state", evidenceKey].includes(key))
+          .map(([key, item]) => (
+            <section key={key}>
+              <h3>{label(key)}</h3>
+              <Value value={item} />
+            </section>
+          ))
+      )}
+      {!summaryOnly && !suppressed && (
         <section>
           <h3>Evidence</h3>
           {evidenceLoading ? (

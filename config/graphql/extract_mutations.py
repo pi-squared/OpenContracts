@@ -1516,19 +1516,30 @@ def _mutate_EditDatacell(payload_cls, root, info, datacell_id, edited_data):
 
     try:
         pk = from_global_id(datacell_id)[1]
-        obj = Datacell.objects.get(pk=pk, creator=info.context.user)
-        obj.corrected_data = edited_data
-        obj.save()
-        try:
-            from opencontractserver.extracts.services.quotation_evidence import (
-                finding_evidence,
+        with transaction.atomic():
+            obj = Datacell.objects.select_for_update().get(
+                pk=pk, creator=info.context.user
+            )
+            from opencontractserver.extracts.services.review_edits import (
+                prepare_review_evidence,
+                preserve_review_evidence,
             )
 
-            finding_evidence(obj)
-        except Exception:
-            logger.exception(
-                "Quotation re-anchoring unavailable for corrected cell %s", obj.pk
-            )
+            review_quotes = prepare_review_evidence(obj, edited_data)
+            obj.corrected_data = edited_data
+            obj.save()
+            if review_quotes is not None:
+                preserve_review_evidence(obj, review_quotes)
+            try:
+                from opencontractserver.extracts.services.quotation_evidence import (
+                    finding_evidence,
+                )
+
+                finding_evidence(obj)
+            except Exception:
+                logger.exception(
+                    "Quotation re-anchoring unavailable for corrected cell %s", obj.pk
+                )
 
     except Datacell.DoesNotExist:
         ok = False

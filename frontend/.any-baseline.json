@@ -1,8 +1,8 @@
 {
-  "total": 431,
+  "total": 429,
   "byArea": {
     "components_other": 113,
-    "annotator": 90,
+    "annotator": 88,
     "utils": 76,
     "graphql": 27,
     "knowledge_base": 27,

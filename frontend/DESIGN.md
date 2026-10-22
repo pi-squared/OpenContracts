@@ -135,7 +135,7 @@ components:
 
 A clear, practical, restrained workspace for reading documents and reviewing findings. Deep teal marks actions and selection; slate text and white surfaces keep the document and its results prominent. Subtle layers and softly rounded controls organize dense information without competing with it.
 
-This records the implemented system and the inline-results layout accepted on 20 October 2026. Existing screen families have local variations: list pages pair serif headings with sans-serif controls, while document tools use compact sans-serif labels and findings. Preserve those distinctions when extending a screen.
+This records the implemented system, the inline-results layout accepted on 20 October 2026, and the simplified finding summary accepted on 22 October 2026. Existing screen families have local variations: list pages pair serif headings with sans-serif controls, while document tools use compact sans-serif labels and findings. Preserve those distinctions when extending a screen.
 
 **Key Characteristics:**
 
@@ -176,7 +176,7 @@ List-page heroes use the `display` role and reduce to 32 px at the shared 768 px
 
 The shared page shell scrolls vertically and centers a main column: 900 px for standard list pages and 1200 px for wide detail pages. Shared desktop content padding is 48 px above, 24 px at each side, and 80 px below. At 768 px and below it reduces to 32 px, 16 px, and 60 px. Compact detail pages use their established smaller top padding. Section gaps follow the existing spacing scale.
 
-Document reading uses a main document canvas beside contextual results and tools. The accepted inline result layout shows labelled rows: labels and values share two columns when the result content container is at least 320 px wide, and stack in narrower containers. Its accepted density is 10 px cell padding with 14 px text and 1.6 line height. This is a finding-component choice, not a new application-wide spacing scale.
+Document reading uses a main document canvas beside contextual results and tools. The accepted inline result layout shows labelled rows: labels and values share two columns when the result content container is at least 320 px wide, and stack in narrower containers. Its outer cell retains 10 px padding with 14 px text and 1.6 line height. The finding summary accepted on 22 October uses a pale inset panel with 14 px internal padding, a 6 px radius, a light border, and a 12 px gap. It contains only the verdict badge and Rationale; review actions stay below it. These are finding-component choices, not new application-wide spacing scales.
 
 Navigation changes to the custom mobile treatment below 1100 px. The component library also defines 640, 768, 1024, and 1280 px breakpoints; individual views retain their own responsive rules. Container width governs finding readability independently of viewport width.
 
@@ -210,17 +210,26 @@ White or pale containers group related material with the card radius and the sur
 
 ### Findings and inline results
 
-Display the real finding outcome, labelled fields, rationale, uncertainty, and available quotations in readable text. Structured objects become labelled values and arrays become readable lists. Keep Edit, Approve, and Reject available below the result. Their actions continue to operate on retained data, independently of the presentation projection.
+The document sidebar summary shows only the real verdict badge and Rationale.
+Patrick accepted the pale inset panel (option 3) on 22 October 2026, with 14 px
+internal padding, a 1 px light border, 6 px radius, 14 px body text and 1.6 line
+height. Keep the badge at 13 px, the Rationale label at 13 px semibold, and a
+12 px gap with a light divider before the rationale. The text wraps to the pane.
 
-The outcome badge does not imply approval: show the review state separately. A not-found result keeps its rationale while suppressing stale evidence. Display recorded pages as reported pages unless source matching independently verifies a physical PDF location. Existing source-annotation navigation remains available in its own controls.
+Edit, Approve and Reject stay below the summary. The outcome badge does not
+imply reviewer approval. The sidebar panel omits review-state text, customer
+purpose, template-field state, applicability and quotation details; it does not
+remove them from saved data. Full finding details elsewhere retain their
+existing fields, evidence locations, error states and source-navigation controls.
+Other structured sidebar values retain their labelled rows.
 
 ## Do's and Don'ts
 
 ### Do:
 
 - **Do** reuse the owning screen’s shared tokens and components.
-- **Do** show structured findings as readable labelled values, with review actions available.
-- **Do** retain visible text labels for finding outcomes and review state.
+- **Do** keep the sidebar finding summary to verdict and Rationale, with review actions below; full structured detail views retain readable labelled values.
+- **Do** retain visible verdict text and distinguish outcomes from reviewer decisions.
 - **Do** wrap long text and adapt labelled rows to their available pane width.
 - **Do** preserve keyboard focus, loading, error, empty, and disabled states.
 
@@ -232,3 +241,26 @@ The outcome badge does not imply approval: show the review state separately. A n
 - **Don't** assume every screen uses the same heading font, hover color, or breakpoint.
 
 Extracted from `src/assets/configurations/osLegalStyles.ts`, `src/index.css`, `src/components/layout/PageLayout.tsx`, `src/components/layout/NavMenu.tsx`, the installed `@os-legal/ui` styles, `FindingView.tsx`, and the accepted `SingleDocumentExtractResults.tsx` implementation. Format: [DESIGN.md specification](https://github.com/google-labs-code/design.md/blob/main/docs/spec.md).
+
+## Extraction review accepted 22 October 2026
+
+The Edit finding action opens the focused review form accepted as option 4.
+Verdict and Evidence tabs separate the two comment fields, retaining the verdict
+and rationale as context and the supporting quotations as an open disclosure.
+Use 14px body text, 136px minimum textarea height and the existing teal/slate
+palette. Save comments persists both fields together. Failed saves keep the form
+and its draft available for retry.
+
+Supporting quotations use the confirmation dialog accepted as option 4, with
+14px spacing and text. Reject quotation opens a focused confirmation containing
+the selected quote; Keep quotation or Escape cancels. Confirm rejection saves
+the removal before hiding the quotation and its corresponding extracts/PDF
+annotations. Preserve unsaved comment drafts through that update. The original
+extraction remains available in history; reviewer metadata belongs outside its
+schema-validated response. Keyboard focus returns to a useful quotation action
+or the comment field after the confirmation closes.
+
+PDF highlight inspection also reveals the corresponding right-hand extract
+annotation: open its group, focus the card and scroll within the result panel.
+Repeat activation brings it back into view; Escape clears the inspection focus.
+Keep an active comment draft focused while background evidence queries refresh.
