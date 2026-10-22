@@ -1,9 +1,9 @@
 """Convert native PDF words to the stock parser export without OCR."""
 
-import pymupdf
-
 
 def parse_native_pdf(source, *, title, description=""):
+    import pymupdf
+
     pages, paragraphs, content = [], [], []
     with pymupdf.open(stream=source, filetype="pdf") as pdf:
         if pdf.needs_pass or not pdf.page_count:

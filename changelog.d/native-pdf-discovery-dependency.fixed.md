@@ -1,0 +1,1 @@
+Declare the native PDF parser's PyMuPDF dependency and load it only when that parser runs, so PDF thumbnail discovery does not strand unrelated ingest routes when the optional parser library is unavailable.

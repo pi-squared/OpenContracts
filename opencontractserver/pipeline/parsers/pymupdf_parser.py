@@ -1,7 +1,5 @@
 """Register the preserved native-word PDF route with the stock pipeline."""
 
-import pymupdf
-
 from opencontractserver.documents.models import Document
 from opencontractserver.pipeline.base.exceptions import DocumentParsingError
 from opencontractserver.pipeline.base.file_types import FileTypeEnum
@@ -17,6 +15,8 @@ class PyMuPDFParser(BaseParser):
     supported_file_types = [FileTypeEnum.PDF]
 
     def _parse_document_impl(self, user_id, doc_id, **all_kwargs):
+        import pymupdf
+
         document = Document.objects.get(pk=doc_id)
         try:
             with document.pdf_file.open("rb") as source:
