@@ -1,15 +1,15 @@
 /**
- * Focused tests for HighlightItem scroll-to-annotation behavior and page display.
+ * Focused tests for HighlightItem canonical navigation and page display.
  *
  * Verifies:
- * 1. scrollIntoView is only called for PDF token annotations, not text span annotations.
+ * 1. Selection goes through the URL; the viewer owns scrolling after content loads.
  * 2. Page labels always appear for PDF token annotations (page is always meaningful).
  * 3. Page labels appear for span annotations only when page > 0 (page=0 is a sentinel).
  */
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, useLocation } from "react-router-dom";
 import { HighlightItem } from "../HighlightItem";
 import {
   ServerTokenAnnotation,
@@ -34,6 +34,7 @@ vi.mock("../../hooks/useAnnotationRefs", () => ({
 }));
 
 vi.mock("../../context/UISettingsAtom", () => ({
+  useAnnotationDisplay: () => ({ showSelectedOnly: false }),
   useAnnotationSelection: () => ({
     selectedAnnotations: [],
   }),
@@ -100,29 +101,39 @@ function renderHighlightItem(
         relations={[]}
         onSelect={vi.fn()}
       />
+      <SelectionLocation />
     </MemoryRouter>
+  );
+}
+
+function SelectionLocation() {
+  return (
+    <output data-testid="selection-location">{useLocation().search}</output>
   );
 }
 
 // ---------- Tests ----------
 
-describe("HighlightItem scroll behaviour", () => {
+describe("HighlightItem canonical selection", () => {
   beforeEach(() => {
     mockScrollIntoView.mockClear();
   });
 
-  it("calls scrollIntoView when clicking a PDF token annotation", () => {
+  it("selects a PDF token annotation through the URL without scrolling a stale ref", () => {
     renderHighlightItem(makeTokenAnnotation(2));
     fireEvent.click(screen.getByTestId("highlight-item"));
-    expect(mockScrollIntoView).toHaveBeenCalledWith({
-      behavior: "smooth",
-      block: "center",
-    });
+    expect(screen.getByTestId("selection-location").textContent).toBe(
+      "?ann=token-annot-1"
+    );
+    expect(mockScrollIntoView).not.toHaveBeenCalled();
   });
 
-  it("does NOT call scrollIntoView when clicking a text span annotation", () => {
+  it("selects a text span through the URL without competing with the text viewer", () => {
     renderHighlightItem(makeSpanAnnotation(0));
     fireEvent.click(screen.getByTestId("highlight-item"));
+    expect(screen.getByTestId("selection-location").textContent).toBe(
+      "?ann=span-annot-1"
+    );
     expect(mockScrollIntoView).not.toHaveBeenCalled();
   });
 });

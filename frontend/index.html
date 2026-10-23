@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <!-- Load runtime environment. Only one runtime env script should be included -->
-    <script src="/env-config.js"></script>
+    <script src="%BASE_URL%env-config.js"></script>
     <!-- SVG favicon (modern browsers); .ico kept as legacy fallback. -->
     <!-- `sizes="any"` is the spec-correct value for scalable formats — pixel
          sizes on SVG <link rel="icon"> are semantically wrong (the source
@@ -174,7 +174,7 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!-- Removed duplicate runtime env loader to avoid overrides: env.js -->
-    <script type="module" src="/src/index.tsx"></script>
+    <script type="module" src="/src/bootstrap.ts"></script>
     <div id="root" style="overflow-x: hidden"></div>
     <!--
       This HTML file is a template.

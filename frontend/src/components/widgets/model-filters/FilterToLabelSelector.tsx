@@ -1,3 +1,4 @@
+import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
 import { useEffect } from "react";
 import { useQuery, useReactiveVar } from "@apollo/client";
 import { Chip } from "@os-legal/ui";
@@ -118,7 +119,10 @@ export const FilterToLabelSelector = ({
   let label_options: SelectOption[] = [];
   if (labels) {
     label_options = labels
-      .filter((item): item is AnnotationLabelType => !!item)
+      .filter(
+        (item): item is AnnotationLabelType =>
+          !!item && isReviewerVisibleLabel(item)
+      )
       .map((label) => ({
         value: label.id,
         label: label.text || "",

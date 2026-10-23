@@ -685,6 +685,16 @@ def _resolve_ExtractType_full_iteration_list(root, info):
 
 @strawberry.type(name="ExtractType")
 class ExtractType(Node):
+    @strawberry.field(name="sourceReadinessError")
+    def source_readiness_error(self, info: strawberry.Info) -> str | None:
+        from opencontractserver.extracts.services.source_readiness import (
+            extract_readiness,
+        )
+
+        return extract_readiness(
+            self, documents=_resolve_ExtractType_full_document_list(self, info)
+        )
+
     user_lock: None | (
         Annotated[UserType, strawberry.lazy("config.graphql.user_types")]
     ) = strawberry.field(name="userLock", default=None)
@@ -1717,7 +1727,9 @@ def _resolve_DatacellType_full_source_list(root, info):
 
     Port of DatacellType.resolve_full_source_list
     """
-    return root.sources.all()
+    from opencontractserver.extracts.services.quotation_evidence import finding_sources
+
+    return finding_sources(root)
 
 
 @strawberry.type(name="DatacellType")
@@ -1941,9 +1953,44 @@ class DatacellType(Node):
     def object_shared_with(self, info: strawberry.Info) -> GenericScalar | None:
         return core_permissions.resolve_object_shared_with(self, info)
 
+    @strawberry.field(name="hasFindingEvidence")
+    def has_finding_evidence(self, info: strawberry.Info) -> bool:
+        from opencontractserver.extracts.services.evidence_text import selected_quotes
+
+        return bool(
+            selected_quotes(
+                self.corrected_data if self.corrected_data is not None else self.data
+            )
+        )
+
+    @strawberry.field(name="findingEvidence")
+    def finding_evidence(
+        self, info: strawberry.Info, version: str = "effective"
+    ) -> GenericScalar:
+        from opencontractserver.extracts.services.quotation_evidence import (
+            finding_evidence,
+        )
+        from opencontractserver.utils.ids import to_global_id
+
+        return [
+            {
+                **quote,
+                "annotationIds": [
+                    to_global_id("AnnotationType", identifier)
+                    for identifier in quote.get("annotationIds", [])
+                ],
+                "annotationId": (
+                    to_global_id("AnnotationType", quote["annotationId"])
+                    if quote.get("annotationId") is not None
+                    else None
+                ),
+            }
+            for quote in finding_evidence(self, version)
+        ]
+
     @strawberry.field(name="fullSourceList")
     def full_source_list(
-        self, info: strawberry.Info
+        self, info: strawberry.Info, version: str = "effective"
     ) -> None | (
         list[
             None
@@ -1954,8 +2001,11 @@ class DatacellType(Node):
             )
         ]
     ):
-        kwargs = strip_unset({})
-        return _resolve_DatacellType_full_source_list(self, info, **kwargs)
+        from opencontractserver.extracts.services.quotation_evidence import (
+            finding_sources,
+        )
+
+        return finding_sources(self, version)
 
 
 def _get_node_DatacellType(info, pk):

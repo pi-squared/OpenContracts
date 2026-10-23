@@ -256,9 +256,31 @@ def _construct_model(
         # ignores it. Supply a harmless placeholder when none is configured.
         if provider_key == "ollama" and not api_key:
             api_key = "ollama"
+        profile = None
+        if provider_key == "openai" and model_name.startswith(("gpt-6-", "gpt-6.")):
+            from pydantic_ai.profiles.openai import OpenAIModelProfile
+
+            # The pinned SDK predates GPT-6. Without an explicit profile it
+            # sends extraction's default temperature, which the reasoning
+            # endpoint rejects. Keep sampling settings out of this family.
+            # https://developers.openai.com/api/docs/guides/latest-model
+            profile = OpenAIModelProfile(
+                supports_json_schema_output=True,
+                supports_json_object_output=True,
+                supports_image_output=True,
+                supports_thinking=True,
+                openai_supports_reasoning=True,
+                openai_supports_encrypted_reasoning_content=True,
+                openai_unsupported_model_settings=(
+                    "temperature",
+                    "top_p",
+                    "openai_top_logprobs",
+                ),
+            )
         return _Model(
             model_name,
             provider=OpenAIProvider(api_key=api_key, base_url=base_url),
+            **({"profile": profile} if profile is not None else {}),
         )
 
     if provider_key == "anthropic":
@@ -313,7 +335,7 @@ def _construct_model(
 #: rather than left to the operator: these names are selectable in the System
 #: Settings LLM picker, and picking one would otherwise 400 every agent in the
 #: install with an error only visible in a worker log.
-OPENAI_RESPONSES_ONLY_PREFIXES: tuple[str, ...] = ("gpt-5.6",)
+OPENAI_RESPONSES_ONLY_PREFIXES: tuple[str, ...] = ("gpt-5.6", "gpt-6")
 
 
 def requires_responses_api(provider_key: str, model_name: str) -> bool:
@@ -361,7 +383,9 @@ def build_agent_model(spec: str) -> Any:
     env_spec = f"openai-responses:{model_name}" if responses_api else spec
 
     creds = _get_db_credentials(provider_key)
-    if not creds:
+    if not creds and not (
+        provider_key == "openai" and model_name.startswith(("gpt-6-", "gpt-6."))
+    ):
         return env_spec
 
     try:

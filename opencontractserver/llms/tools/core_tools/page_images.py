@@ -21,7 +21,8 @@ def get_page_image(
 
     Args:
         document_id: The primary key (ID) of the Document
-        page_number: The page number to render (1-indexed)
+        page_number: Physical PDF page to render (1-based, including the cover;
+            not the printed page label). Already one-based; do not increment.
         image_format: The image format to use ('jpeg' or 'png'), defaults to 'jpeg'
         dpi: The resolution in dots per inch (default 150, higher values = better quality but larger files)
 

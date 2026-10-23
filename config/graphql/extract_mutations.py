@@ -49,6 +49,11 @@ from opencontractserver.corpuses.models import Corpus
 from opencontractserver.corpuses.services import CorpusDocumentService
 from opencontractserver.documents.models import Document
 from opencontractserver.extracts.models import Column, Datacell, Extract, Fieldset
+from opencontractserver.extracts.services.source_readiness import (
+    SourceNotReady,
+    ensure_document_ready,
+    ensure_extract_ready,
+)
 from opencontractserver.shared.services.base import BaseService
 from opencontractserver.tasks.extract_orchestrator_tasks import run_extract
 from opencontractserver.types.enums import PermissionTypes
@@ -1015,6 +1020,10 @@ def _mutate_CreateExtractIteration(
         )
 
     if auto_start:
+        try:
+            ensure_extract_ready(new_extract)
+        except SourceNotReady as error:
+            return payload_cls(ok=False, message=str(error), obj=new_extract)
         new_extract.started = timezone.now()
         new_extract.save(update_fields=["started"])
         transaction.on_commit(
@@ -1099,6 +1108,10 @@ def _mutate_StartExtract(payload_cls, root, info, extract_id):
     # Start celery task to process extract
     pk = from_global_id(extract_id)[1]
     extract = Extract.objects.get(pk=pk, creator=info.context.user)
+    try:
+        ensure_extract_ready(extract)
+    except SourceNotReady as error:
+        return payload_cls(ok=False, message=str(error), obj=extract)
     extract.started = timezone.now()
     extract.save()
     transaction.on_commit(lambda: run_extract.s(pk, info.context.user.id).apply_async())
@@ -1503,9 +1516,30 @@ def _mutate_EditDatacell(payload_cls, root, info, datacell_id, edited_data):
 
     try:
         pk = from_global_id(datacell_id)[1]
-        obj = Datacell.objects.get(pk=pk, creator=info.context.user)
-        obj.corrected_data = edited_data
-        obj.save()
+        with transaction.atomic():
+            obj = Datacell.objects.select_for_update().get(
+                pk=pk, creator=info.context.user
+            )
+            from opencontractserver.extracts.services.review_edits import (
+                prepare_review_evidence,
+                preserve_review_evidence,
+            )
+
+            review_quotes = prepare_review_evidence(obj, edited_data)
+            obj.corrected_data = edited_data
+            obj.save()
+            if review_quotes is not None:
+                preserve_review_evidence(obj, review_quotes)
+            try:
+                from opencontractserver.extracts.services.quotation_evidence import (
+                    finding_evidence,
+                )
+
+                finding_evidence(obj)
+            except Exception:
+                logger.exception(
+                    "Quotation re-anchoring unavailable for corrected cell %s", obj.pk
+                )
 
     except Datacell.DoesNotExist:
         ok = False
@@ -1563,6 +1597,11 @@ def _mutate_StartDocumentExtract(
         )
         if corpus is None:
             return payload_cls(ok=False, message="Resource not found", obj=None)
+
+    try:
+        ensure_document_ready(document, corpus.pk if corpus else None)
+    except SourceNotReady as error:
+        return payload_cls(ok=False, message=str(error), obj=None)
 
     extract = Extract.objects.create(
         name=f"Extract {uuid.uuid4()} for {document.title}",

@@ -370,7 +370,10 @@ def create_document_tools() -> list[CoreTool]:
             name="search_exact_text_as_sources",
             description=(
                 "Search for exact text matches in a "
-                "document and return them as source nodes with page numbers and bounding boxes."
+                "document and return them as source nodes with page numbers and bounding boxes. "
+                "PDF page/pages are one-based physical pages including the cover, not "
+                "printed labels; null page means unavailable. Multi-page hits list pages; "
+                "annotation_json geometry retains native zero-based indices."
             ),
         ),
         CoreTool.from_function(
@@ -403,6 +406,7 @@ def create_document_tools() -> list[CoreTool]:
             name="get_page_image",
             description=(
                 "Get a visual image of a specific page from a PDF document. "
+                "Use a one-based physical PDF page including the cover, not printed labels. "
                 "Useful for inspecting diagrams, tables, images, and other "
                 "visual content that may not be captured in text."
             ),
@@ -413,7 +417,8 @@ def create_document_tools() -> list[CoreTool]:
             name="list_document_images",
             description=(
                 "List all images in a document. Returns metadata (position, size, format) "
-                "without the actual image data. Use get_document_image to retrieve specific images."
+                "without the actual image data. Embedded-image page_index is zero-based; "
+                "physical citation page is index + 1. Use get_document_image to retrieve specific images."
             ),
         ),
         CoreTool.from_function(
@@ -422,7 +427,8 @@ def create_document_tools() -> list[CoreTool]:
             description=(
                 "Get image data (base64) for a specific image in a document. "
                 "Returns data URL suitable for LLM vision input. Use list_document_images first "
-                "to find available images by page and index."
+                "to find available images by page and index. Embedded-image page_index is "
+                "zero-based; physical citation page is index + 1."
             ),
         ),
         CoreTool.from_function(

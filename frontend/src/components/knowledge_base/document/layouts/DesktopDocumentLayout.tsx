@@ -44,6 +44,7 @@ import {
 } from "../../../../assets/configurations/constants";
 
 import { DocumentLayoutProps } from "./types";
+import { useExtractCorpusContext } from "../document_kb/useExtractCorpusContext";
 
 /**
  * Desktop layout for the DocumentKnowledgeBase. Renders the full-screen modal
@@ -51,8 +52,8 @@ import { DocumentLayoutProps } from "./types";
  * main layer content, floating controls/panels), the sliding right panel, and
  * the document modals.
  *
- * This component owns no state and no data-loading hooks — it is a verbatim
- * extraction of the previous desktop render from DocumentKnowledgeBase.
+ * Viewer state is owned by DocumentKnowledgeBase. This layout resolves corpus
+ * context when View extracts is clicked from a standalone document route.
  */
 export const DesktopDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
   const {
@@ -109,6 +110,9 @@ export const DesktopDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
     pdfAnnotations,
     analyses,
     extracts,
+    extractsLoading,
+    extractsError,
+    retryExtracts,
     selectedAnalysis,
     selectedExtract,
     threadCount,
@@ -131,10 +135,8 @@ export const DesktopDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
   /*
    * Both rail branches (panel-closed RightEdgeRail and panel-open
    * floating cluster) render the same FloatingDocumentControls with
-   * identical onAnalysesClick / onExtractsClick bodies — gate on
-   * corpusId, toast + open add-to-corpus modal when missing, otherwise
-   * toggle the panel. Extracted once here so the two branches share one
-   * source of truth.
+   * shared analyses/extracts handlers. Extracts resolves existing memberships
+   * before offering Add to Corpus when opened without a corpus context.
    */
   const handleAnalysesClick = useCallback(() => {
     if (!corpusId) {
@@ -150,19 +152,14 @@ export const DesktopDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
     showAnalysesPanel,
   ]);
 
-  const handleExtractsClick = useCallback(() => {
-    if (!corpusId) {
-      toast.info("Add document to corpus for data extraction");
-      setShowAddToCorpusModal(true);
-    } else {
-      setShowExtractsPanel(!showExtractsPanel);
-    }
-  }, [
-    corpusId,
-    setShowAddToCorpusModal,
-    setShowExtractsPanel,
-    showExtractsPanel,
-  ]);
+  const extractContext = useExtractCorpusContext(documentId, corpusId, () => {
+    toast.info("Add document to corpus for data extraction");
+    setShowAddToCorpusModal(true);
+  });
+  const handleExtractsClick = () => {
+    if (corpusId) setShowExtractsPanel(!showExtractsPanel);
+    else void extractContext.resolve();
+  };
 
   return (
     <FullScreenModal
@@ -170,6 +167,7 @@ export const DesktopDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
       open={true}
       onClose={handleClose}
     >
+      {extractContext.dialog}
       <HeaderBar
         metadata={metadata}
         documentId={documentId}
@@ -221,6 +219,7 @@ export const DesktopDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
             {/* Zoom Controls - positioned relative to ContentArea */}
             {activeLayer === "document" && (
               <ZoomControls
+                panelWidth={showRightPanel ? getPanelWidthPercentage() : 0}
                 zoomLevel={zoomLevel}
                 onZoomIn={() => {
                   setZoomLevel(Math.min(zoomLevel + 0.1, ZOOM_MAX));
@@ -337,6 +336,9 @@ export const DesktopDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
                     !selectedExtract
                   }
                   extracts={extracts}
+                  loading={extractsLoading}
+                  error={extractsError}
+                  onRetry={retryExtracts}
                   onClose={() => setShowExtractsPanel(false)}
                   panelOffset={floatingControlsState.offset}
                   readOnly={readOnly}

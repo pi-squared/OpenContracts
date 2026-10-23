@@ -1,3 +1,4 @@
+import { findingOutcome } from "../../../utils/findingValue";
 import { useEffect, useMemo, useCallback, useRef } from "react";
 import { useQuery, useLazyQuery, useReactiveVar } from "@apollo/client";
 import { toast } from "react-toastify";
@@ -6,6 +7,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import {
+  DatacellType,
   AnalysisType,
   ExtractType,
   LabelType,
@@ -18,6 +20,7 @@ import {
   GET_ANNOTATIONS_FOR_ANALYSIS,
   GetAnnotationsForAnalysisOutput,
   GetAnnotationsForAnalysisInput,
+  GET_DATACELL_EVIDENCE,
   GET_DATACELLS_FOR_EXTRACT,
   GetDatacellsForExtractOutput,
   GetDatacellsForExtractInput,
@@ -78,6 +81,21 @@ export const useAnalysisManager = () => {
   const [selected_analysis, setSelectedAnalysis] =
     useAtom(selectedAnalysisAtom);
   const [selected_extract, setSelectedExtract] = useAtom(selectedExtractAtom);
+  const findingParams = new URLSearchParams(location.search);
+  const originalCellId =
+    findingParams.get("findingVersion") === "original"
+      ? findingParams.get("findingCell")
+      : null;
+  const { data: originalEvidence, loading: originalLoading } = useQuery<{
+    datacell: Pick<
+      DatacellType,
+      "id" | "findingEvidence" | "fullSourceList"
+    > | null;
+  }>(GET_DATACELL_EVIDENCE, {
+    variables: { id: originalCellId, version: "original" },
+    skip: !originalCellId || !selected_extract?.id,
+    fetchPolicy: "no-cache",
+  });
 
   const [, setAllowUserInput] = useAtom(allowUserInputAtom);
 
@@ -117,11 +135,20 @@ export const useAnalysisManager = () => {
     GetAnnotationsForAnalysisInput
   >(GET_ANNOTATIONS_FOR_ANALYSIS);
 
-  const [
-    fetchDataCellsForExtract,
-    { loading: datacellsLoading, error: datacellsError, data: datacellsData },
-  ] = useLazyQuery<GetDatacellsForExtractOutput, GetDatacellsForExtractInput>(
-    GET_DATACELLS_FOR_EXTRACT
+  // A declarative query reports pending on the first selection render, including
+  // hook instances mounted when the results pane is reopened.
+  const {
+    loading: datacellsLoading,
+    error: datacellsError,
+    data: datacellsData,
+    refetch: retryExtractResults,
+  } = useQuery<GetDatacellsForExtractOutput, GetDatacellsForExtractInput>(
+    GET_DATACELLS_FOR_EXTRACT,
+    {
+      variables: { extractId: selected_extract?.id ?? "" },
+      skip: !selected_extract || !selectedDocument?.id,
+      notifyOnNetworkStatusChange: true,
+    }
   );
 
   // Access initial annotations and relations
@@ -355,16 +382,12 @@ export const useAnalysisManager = () => {
       setAllowUserInput(false);
       setSelectedAnalysis(null);
 
-      // Clear existing annotations and datacell data
+      // Extract source annotations do not carry manual/analysis relationships.
+      // Their saved baseline remains available when the extract is deselected.
       replaceAnnotations([]);
+      replaceRelations([]);
       replaceDocTypeAnnotations([]);
       setDataCells([]);
-
-      fetchDataCellsForExtract({
-        variables: {
-          extractId: selected_extract.id,
-        },
-      });
     } else {
       setAllowUserInput(true);
 
@@ -394,29 +417,78 @@ export const useAnalysisManager = () => {
       }));
     }
 
-    if (datacellsData?.extract && selectedDocument?.id) {
+    if (
+      !datacellsLoading &&
+      !datacellsError &&
+      selected_extract &&
+      datacellsData?.extract?.id === selected_extract.id &&
+      selectedDocument?.id
+    ) {
       // Clear existing datacell data and annotations
       setDataCells([]);
       replaceAnnotations([]);
 
       // Filter datacells to only include those matching the selected document
-      const filteredDatacells = (
+      const currentDatacells = (
         datacellsData.extract.fullDatacellList || []
       ).filter((datacell) => datacell.document?.id === selectedDocument.id);
+
+      // An explicit original context replaces only this cell's projection.
+      // Never place historical source associations in Apollo's shared cache.
+      const filteredDatacells = currentDatacells.map((cell) => {
+        if (cell.id !== originalCellId) return cell;
+        const evidence =
+          !originalLoading && originalEvidence?.datacell?.id === cell.id
+            ? originalEvidence.datacell
+            : null;
+        return {
+          ...cell,
+          findingEvidence: evidence?.findingEvidence ?? [],
+          fullSourceList: evidence?.fullSourceList ?? [],
+        };
+      });
 
       // Set new datacell data and columns
       setDataCells(filteredDatacells);
       setColumns(datacellsData.extract.fieldset.fullColumnList || []);
 
-      // Process annotations from filtered datacells
-      const processedAnnotations = filteredDatacells
-        .flatMap((datacell) => datacell.fullSourceList || [])
-        .map((annotation) => convertToServerAnnotation(annotation));
-
-      // Replace annotations with processed annotations
-      replaceAnnotations(processedAnnotations);
+      // The dataCells effect below owns source eligibility and replacement,
+      // including updates returned by correction edits.
     }
-  }, [datacellsLoading, datacellsError, datacellsData, selectedDocument?.id]);
+  }, [
+    datacellsLoading,
+    datacellsError,
+    datacellsData,
+    originalCellId,
+    originalEvidence,
+    originalLoading,
+    selectedDocument?.id,
+    selected_extract?.id,
+  ]);
+
+  useEffect(() => {
+    if (!selected_extract?.id || !selectedDocument?.id) return;
+    const sources = dataCells
+      .filter((cell) => cell.document?.id === selectedDocument.id)
+      .flatMap((cell) =>
+        findingOutcome(
+          cell.id === originalCellId
+            ? cell.data
+            : cell.correctedData ?? cell.data
+        ) === "not_found"
+          ? []
+          : cell.fullSourceList ?? []
+      );
+    replaceAnnotations(
+      sources.map((source) => convertToServerAnnotation(source))
+    );
+  }, [
+    dataCells,
+    originalCellId,
+    selected_extract?.id,
+    selectedDocument?.id,
+    replaceAnnotations,
+  ]);
 
   /**
    * Handles selection of an analysis.
@@ -518,6 +590,22 @@ export const useAnalysisManager = () => {
     analyses,
     extracts,
     fetchDocumentAnalysesAndExtracts,
+    extractsLoading:
+      !selectedDocument?.id ||
+      analysesLoading ||
+      (!analysesData && !analysesError),
+    extractsError: analysesError,
+    extractResultsLoading:
+      !!selected_extract && (!selectedDocument?.id || datacellsLoading),
+    extractResultsError:
+      datacellsError ||
+      (selected_extract &&
+      selectedDocument?.id &&
+      !datacellsLoading &&
+      datacellsData?.extract?.id !== selected_extract.id
+        ? new Error("Extract results are unavailable")
+        : undefined),
+    retryExtractResults,
     resetStates,
     onSelectAnalysis,
     onSelectExtract,

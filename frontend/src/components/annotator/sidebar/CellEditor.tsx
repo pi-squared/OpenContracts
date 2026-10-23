@@ -1,11 +1,25 @@
-import React, { useState, useEffect } from "react";
+import {
+  projectFindingValue,
+  findingFrom,
+  isRecord,
+  applyFindingJsonEdit,
+} from "../../../utils/findingValue";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import ReactJson from "react-json-view";
+import {
+  ReviewSaveOptions,
+  readReviewerFeedback,
+} from "../../../utils/reviewerFeedback";
+import { ReviewFeedbackForm } from "./ReviewFeedbackForm";
 import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
 
 interface CellEditorProps {
   value: any;
-  onSave: (newValue: any) => void;
+  onSave: (
+    newValue: unknown,
+    options?: ReviewSaveOptions
+  ) => void | boolean | Promise<boolean>;
   onClose: () => void;
   loading: boolean;
 }
@@ -16,55 +30,90 @@ export const CellEditor: React.FC<CellEditorProps> = ({
   onClose,
   loading,
 }) => {
-  const [editedValue, setEditedValue] = useState(value);
+  const rawValue = isRecord(value) && "data" in value ? value.data : value;
+  const [editedValue, setEditedValue] = useState(rawValue);
+  const [reviewComments, setReviewComments] = useState(() =>
+    readReviewerFeedback(value)
+  );
 
-  // Sync editedValue when value prop changes
+  const savedComments = useRef(readReviewerFeedback(value));
+
+  // Refresh saved values without dropping unsaved comment drafts after quote review.
   useEffect(() => {
-    setEditedValue(value);
+    setEditedValue(isRecord(value) && "data" in value ? value.data : value);
+    const incoming = readReviewerFeedback(value);
+    if (
+      incoming.verdict !== savedComments.current.verdict ||
+      incoming.evidence !== savedComments.current.evidence
+    ) {
+      setReviewComments(incoming);
+    }
+    savedComments.current = incoming;
   }, [value]);
 
-  const isObject = typeof value === "object" && value !== null;
+  const isObject = typeof rawValue === "object" && rawValue !== null;
 
   const handleSave = () => {
     onSave(editedValue);
   };
 
   return (
-    <ModalOverlay onClick={onClose}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>
-        {loading && (
-          <LoaderOverlay>
-            <Loader />
-          </LoaderOverlay>
-        )}
+    <ModalOverlay onClick={loading ? undefined : onClose}>
+      {findingFrom(value) ? (
+        <ReviewModalContent onClick={(e) => e.stopPropagation()}>
+          <ReviewFeedbackForm
+            value={value}
+            comments={reviewComments}
+            onChange={setReviewComments}
+            onSave={onSave}
+            onClose={onClose}
+            loading={loading}
+          />
+        </ReviewModalContent>
+      ) : (
+        <ModalContent onClick={(e) => e.stopPropagation()}>
+          {loading && (
+            <LoaderOverlay>
+              <Loader />
+            </LoaderOverlay>
+          )}
 
-        <CloseModalButton onClick={onClose}>&times;</CloseModalButton>
-        <ModalHeader>Edit Value</ModalHeader>
-        {isObject ? (
-          <ReactJson
-            src={editedValue}
-            onEdit={(edit) => setEditedValue(edit.updated_src)}
-            onAdd={(add) => setEditedValue(add.updated_src)}
-            onDelete={(del) => setEditedValue(del.updated_src)}
-            enableClipboard={false}
-            displayDataTypes={false}
-          />
-        ) : (
-          <InputField
-            type="text"
-            value={editedValue}
-            onChange={(e) => setEditedValue(e.target.value)}
-          />
-        )}
-        <ModalActions>
-          <Button onClick={onClose} disabled={loading}>
-            Cancel
-          </Button>
-          <Button primary onClick={handleSave} disabled={loading}>
-            Save
-          </Button>
-        </ModalActions>
-      </ModalContent>
+          <CloseModalButton onClick={onClose}>&times;</CloseModalButton>
+          <ModalHeader>Edit Value</ModalHeader>
+          {isObject ? (
+            <ReactJson
+              src={projectFindingValue(editedValue)}
+              onEdit={(edit) =>
+                setEditedValue(applyFindingJsonEdit(editedValue, edit))
+              }
+              onAdd={(add) =>
+                setEditedValue(applyFindingJsonEdit(editedValue, add))
+              }
+              onDelete={(del) =>
+                setEditedValue(
+                  applyFindingJsonEdit(editedValue, { ...del, type: "delete" })
+                )
+              }
+              enableClipboard={false}
+              displayDataTypes={false}
+            />
+          ) : (
+            <InputField
+              type="text"
+              value={editedValue}
+              onChange={(e) => setEditedValue(e.target.value)}
+            />
+          )}
+          <ModalActions>
+            <Button onClick={onClose} disabled={loading}>
+              Cancel
+            </Button>
+            <Button primary onClick={handleSave} disabled={loading}>
+              Save
+            </Button>
+          </ModalActions>
+        </ModalContent>
+      )}
     </ModalOverlay>
   );
 };
@@ -93,6 +142,15 @@ const ModalContent = styled.div`
   max-height: 80%;
   overflow-y: auto;
   position: relative;
+`;
+
+const ReviewModalContent = styled(ModalContent)`
+  box-sizing: border-box;
+  width: 650px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 48px);
+  padding: 24px;
+  border-radius: 12px;
 `;
 
 // Close Button

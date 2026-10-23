@@ -250,8 +250,8 @@ class PermissionedTreeQuerySet(UserCanMixin, TreeQuerySet):
 
         return queryset.with_tree_fields()
 
-    def with_tree_fields(self) -> "PermissionedTreeQuerySet":
-        return super().with_tree_fields()
+    def with_tree_fields(self, tree_fields=True) -> "PermissionedTreeQuerySet":
+        return super().with_tree_fields(tree_fields=tree_fields)
 
 
 class UserFeedbackQuerySet(models.QuerySet):

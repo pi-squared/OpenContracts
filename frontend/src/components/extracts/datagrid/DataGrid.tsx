@@ -1,3 +1,5 @@
+import { projectFindingValue } from "../../../utils/findingValue";
+import { downloadExcel } from "../../../utils/extractDownloads";
 import React, {
   forwardRef,
   useCallback,
@@ -57,6 +59,11 @@ import { CreateColumnModal } from "../../widgets/modals/CreateColumnModal";
 import { SelectDocumentsModal } from "../../widgets/modals/SelectDocumentsModal";
 import { REQUEST_GET_EXTRACT } from "../../../graphql/queries";
 import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
+import {
+  OriginalPdfLink,
+  SourceReadinessNotice,
+} from "../SourceReadinessNotice";
+import { unwrapDatacellData } from "../../../utils/extractUtils";
 
 interface DragState {
   isDragging: boolean;
@@ -265,6 +272,7 @@ interface SortConfig {
 // Add interface for the exposed methods
 export interface ExtractDataGridHandle {
   exportToCsv: () => void;
+  exportToExcel: () => void;
 }
 
 // Column pending deletion (null = modal closed)
@@ -325,7 +333,11 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
         const extractIsProcessing =
           extract.started && !extract.finished && !extract.error;
         const cellIsProcessing =
-          cell.started && !cell.completed && !cell.failed;
+          !extract.finished &&
+          !extract.error &&
+          cell.started &&
+          !cell.completed &&
+          !cell.failed;
         const isProcessing =
           cellIsProcessing || (extractIsProcessing && !cell.started);
 
@@ -333,9 +345,9 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
           isLoading: Boolean(isProcessing),
           isApproved: Boolean(cell.approvedBy),
           isRejected: Boolean(cell.rejectedBy),
-          isEdited: Boolean(cell.correctedData),
-          originalData: cell.data || null,
-          correctedData: cell.correctedData || null,
+          isEdited: cell.correctedData != null,
+          originalData: cell.data ?? null,
+          correctedData: cell.correctedData ?? null,
           error: cell.failed || null,
         };
       },
@@ -343,8 +355,7 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
     );
 
     // Check if extract is complete
-    const isExtractComplete =
-      extract.started && extract.finished && !extract.error;
+    const isExtractComplete = Boolean(extract.finished || extract.error);
 
     // Convert data to grid format
     const gridRows = useMemo<ExtractGridRow[]>(() => {
@@ -360,12 +371,13 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
         };
 
         columns.forEach((column) => {
-          const cell = initialCells.find(
+          const cell = localCells.find(
             (c) => c.document.id === row.id && c.column.id === column.id
           );
 
           if (cell) {
-            rowData[column.id] = cell.data?.data || "";
+            rowData[column.id] =
+              unwrapDatacellData(cell.correctedData ?? cell.data) ?? "";
           } else {
             rowData[column.id] = "";
           }
@@ -373,7 +385,7 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
 
         return rowData;
       });
-    }, [rows, initialCells, columns]);
+    }, [rows, localCells, columns]);
 
     // Separate mutations for edit, approve, and reject
     const [editDatacell] = useMutation<
@@ -384,7 +396,9 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
         toast.success("Cell updated!");
         const updatedCell = data.editDatacell.obj;
         setLocalCells((prev) =>
-          prev.map((cell) => (cell.id === updatedCell.id ? updatedCell : cell))
+          prev.map((cell) =>
+            cell.id === updatedCell.id ? { ...cell, ...updatedCell } : cell
+          )
         );
       },
       onError: () => toast.error("Failed to update cell!"),
@@ -400,7 +414,7 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
           const updatedCell = data.approveDatacell.obj;
           setLocalCells((prev) =>
             prev.map((cell) =>
-              cell.id === updatedCell.id ? updatedCell : cell
+              cell.id === updatedCell.id ? { ...cell, ...updatedCell } : cell
             )
           );
         } else {
@@ -422,7 +436,7 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
           const updatedCell = data.rejectDatacell.obj;
           setLocalCells((prev) =>
             prev.map((cell) =>
-              cell.id === updatedCell.id ? updatedCell : cell
+              cell.id === updatedCell.id ? { ...cell, ...updatedCell } : cell
             )
           );
         } else {
@@ -734,7 +748,7 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
       sortedRows.forEach((row) => {
         const csvRow = [row.documentTitle];
         columns.forEach((col) => {
-          let cellValue = row[col.id];
+          let cellValue = projectFindingValue(row[col.id]);
 
           if (cellValue == null) {
             cellValue = "";
@@ -745,7 +759,12 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
           }
 
           cellValue = cellValue.replace(/"/g, '""');
-          if (cellValue.includes(",") || cellValue.includes("\n")) {
+          if (
+            cellValue.includes(",") ||
+            cellValue.includes('"') ||
+            cellValue.includes("\n") ||
+            cellValue.includes("\r")
+          ) {
             cellValue = `"${cellValue}"`;
           }
 
@@ -766,7 +785,18 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
       URL.revokeObjectURL(url);
     }, [columns, sortedRows, extract.name]);
 
+    const exportToExcel = useCallback(() => {
+      downloadExcel(`${extract.name || "data"}.xlsx`, [
+        ["Document", ...columns.map((column) => column.name)],
+        ...sortedRows.map((row) => [
+          row.documentTitle,
+          ...columns.map((column) => row[column.id]),
+        ]),
+      ]);
+    }, [extract.name, columns, sortedRows]);
+
     useImperativeHandle(ref, () => ({
+      exportToExcel,
       exportToCsv,
     }));
 
@@ -783,6 +813,12 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
           }
         />
 
+        <SourceReadinessNotice
+          documents={rows}
+          hasFindings={Boolean(extract.started)}
+          readinessError={extract.sourceReadinessError}
+          showOriginal={false}
+        />
         <div {...getRootProps()} ref={gridRef} style={styles.gridWrapper}>
           {loading && (
             <div
@@ -1021,6 +1057,11 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
                             text={row.documentTitle || ""}
                             limit={100}
                           />
+                          <OriginalPdfLink
+                            document={rows.find(
+                              (source) => source.id === row.id
+                            )}
+                          />
                         </Table.Cell>
                         {columns.map((column) => {
                           const cell = localCells.find(
@@ -1038,7 +1079,7 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
                               style={styles.tableCell}
                             >
                               <ExtractCellFormatter
-                                value={row[column.id] || ""}
+                                value={row[column.id] ?? ""}
                                 cellStatus={cellStatus || null}
                                 onApprove={() =>
                                   handleApproveCell(cell?.id || "")
@@ -1049,9 +1090,16 @@ export const ExtractDataGrid = forwardRef<ExtractDataGridHandle, DataGridProps>(
                                 onEdit={handleEditDatacell}
                                 cellId={cell?.id || ""}
                                 readOnly={Boolean(
-                                  !isExtractComplete || loading
+                                  !isExtractComplete ||
+                                    !cell?.completed ||
+                                    cell?.failed ||
+                                    loading
                                 )}
-                                isExtractComplete={Boolean(isExtractComplete)}
+                                isExtractComplete={Boolean(
+                                  isExtractComplete &&
+                                    cell?.completed &&
+                                    !cell?.failed
+                                )}
                                 schema={columnSchemas.get(column.id) || {}}
                                 extractIsList={column.extractIsList || false}
                                 row={row}

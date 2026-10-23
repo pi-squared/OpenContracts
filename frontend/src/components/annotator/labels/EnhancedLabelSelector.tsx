@@ -1,3 +1,4 @@
+import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
 import React, {
   useState,
   useMemo,
@@ -158,6 +159,10 @@ export const EnhancedLabelSelector: React.FC<EnhancedLabelSelectorProps> = ({
     } else if (isPdfFileType(selectedDocument?.fileType)) {
       availableLabels = [...humanTokenLabels];
     }
+
+    availableLabels = availableLabels.filter((label) =>
+      isReviewerVisibleLabel(label)
+    );
 
     // Filter by search term
     if (searchTerm) {

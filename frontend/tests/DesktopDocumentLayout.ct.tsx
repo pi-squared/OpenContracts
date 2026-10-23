@@ -1,9 +1,31 @@
 import { test, expect } from "./utils/coverage";
+import type { MockedResponse } from "@apollo/client/testing";
 import { DesktopLayoutHarness } from "./DesktopDocumentLayout.harness";
 // Helper import lives in its own statement — CT's babel transform only
 // rewrites component identifiers when every specifier in the statement is
 // a JSX component (see CLAUDE.md "Playwright CT split-import rule").
 import { buildSummaryVersionsMock } from "./DesktopDocumentLayout.harness";
+import { GET_DOCUMENT_EXTRACT_CORPORA } from "../src/components/knowledge_base/document/document_kb/useExtractCorpusContext";
+
+const buildUnassignedDocumentMembershipsMock = (): MockedResponse => ({
+  request: {
+    query: GET_DOCUMENT_EXTRACT_CORPORA,
+    variables: { documentId: "doc-1", after: null },
+  },
+  result: {
+    data: {
+      document: {
+        id: "doc-1",
+        slug: "stub-document",
+        creator: { slug: "test-user" },
+        pathRecords: {
+          edges: [],
+          pageInfo: { hasNextPage: false, endCursor: null },
+        },
+      },
+    },
+  },
+});
 
 test.use({ viewport: { width: 1280, height: 800 } });
 
@@ -222,7 +244,13 @@ test("clicking the extracts button in the rail opens the add-to-corpus modal whe
   mount,
   page,
 }) => {
-  await mount(<DesktopLayoutHarness showRightPanel={false} corpusId="" />);
+  await mount(
+    <DesktopLayoutHarness
+      showRightPanel={false}
+      corpusId=""
+      mocks={[buildUnassignedDocumentMembershipsMock()]}
+    />
+  );
 
   await expect(page.getByTestId("right-edge-rail")).toBeVisible();
   await page.getByTestId("extracts-button").click();
@@ -257,6 +285,7 @@ test("clicking the extracts button while the panel is open with no corpus opens 
       showRightPanel={true}
       corpusId=""
       sidebarViewMode="feed"
+      mocks={[buildUnassignedDocumentMembershipsMock()]}
     />
   );
 

@@ -163,6 +163,12 @@ export function useUploadMutations({
       // a no-op when the corresponding observable isn't mounted.
       await client.refetchQueries({
         include: [GET_DOCUMENTS, GET_DOCUMENTS_FOR_LIST, GET_CORPUS_FOLDERS],
+        updateCache(cache) {
+          // Previously empty searches may be inactive during an upload.
+          // Refresh their next visit as well as currently mounted lists.
+          cache.evict({ id: "ROOT_QUERY", fieldName: "documents" });
+          cache.evict({ id: "ROOT_QUERY", fieldName: "documentStats" });
+        },
       });
 
       onComplete?.();

@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useEffect } from "react";
+import { useDialogFocus } from "../../../hooks/useDialogFocus";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -545,11 +546,19 @@ export const CreateColumnModal: React.FC<CreateColumnModalProps> = ({
     onClose();
   };
 
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialogFocus(open && isMounted, dialogRef, onClose);
+
   if (!open || !isMounted) return null;
 
   return createPortal(
     <ModalOverlay onClick={handleClose}>
       <ModalContainer
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={existing_column ? "Edit Column" : "Create Column"}
+        tabIndex={-1}
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
@@ -589,7 +598,6 @@ export const CreateColumnModal: React.FC<CreateColumnModalProps> = ({
                 value={formData.name || ""}
                 onChange={(e) => handleFieldChange("name", e.target.value)}
                 disabled={isSubmitting}
-                autoFocus
               />
             </FormGroup>
             <FormGroup>

@@ -24,6 +24,12 @@ export function parseOutputType(outputType: string): JSONSchema7 {
 
   const trimmedOutputType = outputType.trim();
 
+  // Installed workflow factories own nested response validation on the server.
+  // The editor presents their response as an object, not as inline model text.
+  if (/^workflow:[0-9a-f]{64}:[a-z][a-z0-9_]{0,127}$/.test(trimmedOutputType)) {
+    return { type: "object" };
+  }
+
   // Check if it's a primitive type
   if (primitiveTypeMap.hasOwnProperty(trimmedOutputType)) {
     return { type: primitiveTypeMap[trimmedOutputType] };

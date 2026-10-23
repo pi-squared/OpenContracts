@@ -25,11 +25,11 @@ from opencontractserver.constants.llm import (
     TOOL_LOOP_THRESHOLD,
 )
 from opencontractserver.extracts.models import Datacell
+from opencontractserver.extracts.services.quotation_grounding import (
+    ground_machine_extraction as ground_extraction_to_annotations,
+)
 from opencontractserver.shared.decorators import celery_task_with_async_to_sync
 from opencontractserver.utils.compact_pawls import expand_pawls_pages
-from opencontractserver.utils.extraction_grounding import (
-    ground_extraction_to_annotations,
-)
 from opencontractserver.utils.files import read_field_file_text
 from opencontractserver.utils.llm import is_anthropic_model
 from opencontractserver.utils.prompt_sanitization import (
@@ -462,8 +462,14 @@ async def doc_extract_query_task(
         logger.info(f"Document: {document.id}, Column: {column.name}")
 
         # Get corpus ID (None if document isn't in a corpus - that's OK now!)
-        corpus_id = await sync_get_corpus_id(document)
+        corpus_id = datacell.extract.corpus_id or await sync_get_corpus_id(document)
         logger.info(f"Corpus ID: {corpus_id}")
+
+        from opencontractserver.extracts.services.source_readiness import (
+            aensure_document_ready,
+        )
+
+        await aensure_document_ready(document, corpus_id)
 
         # 2. Parse the output type
         output_type = parse_model_or_primitive(column.output_type)
@@ -718,7 +724,7 @@ async def doc_extract_query_task(
                     # ``_structured_response_raw`` engages. Widen the
                     # accepted type upstream to ``Optional[float]`` and the
                     # ignore comes off; tracked in #1381.
-                    temperature=extract_temperature,  # type: ignore[arg-type]
+                    temperature=extract_temperature,
                     similarity_top_k=similarity_top_k,
                     model=extract_model,
                     user_id=datacell.creator.id,
@@ -763,13 +769,8 @@ async def doc_extract_query_task(
             logger.info(f"  Final saved data: {data}")
             logger.info(f"  LLM log saved: {len(llm_log) if llm_log else 0} characters")
 
-            # Link the annotations the agent actually retrieved to
-            # ``datacell.sources``.  This is the TRUE citation signal — what
-            # the retrieval tools surfaced to the model — and it sidesteps
-            # the fragile fuzzy-match grounder below for answers where the
-            # retrieval already pinpointed the right spans.  The grounder
-            # still runs as a complementary pass for extracted substrings
-            # that weren't part of a retrieved annotation.
+            # Retain retrieved annotations for trajectory auditing. The finding
+            # viewer separately exposes only explicitly selected quotations.
             if retrieved_annotation_ids:
                 try:
                     await _link_retrieval_citations(datacell, retrieved_annotation_ids)
@@ -786,14 +787,9 @@ async def doc_extract_query_task(
                         exc_info=True,
                     )
 
-            # Auto-ground: find extracted text values in the source document
-            # and create linked source annotations with PDF/text coordinates.
+            # Anchor complete selected evidence quotations against retained PDF
+            # tokens; metadata and unmatched quotations never produce highlights.
             try:
-                # Pass ``corpus_id`` (int) rather than the Corpus instance:
-                # only the ID is in scope here (the extract task receives
-                # ``corpus_id`` as input) and grounding's ``_resolve_corpus``
-                # handles the lookup safely if the corpus was deleted between
-                # task scheduling and execution.
                 grounding_annotations = await ground_extraction_to_annotations(
                     datacell=datacell,
                     document=document,

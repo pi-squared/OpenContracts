@@ -39,6 +39,7 @@ export interface RequestDocumentsInputs {
   corpusId?: string;
   inFolderId?: string; // "__root__" (or omit) = all corpus docs; a folder ID = that folder + sub-folders
   annotateDocLabels?: boolean;
+  badgeCorpusId?: string;
   hasLabelWithId?: string;
 }
 
@@ -101,6 +102,7 @@ export const GET_BULK_DOCUMENT_UPLOAD_STATUS = gql`
 export const GET_DOCUMENTS = gql`
   query (
     $inCorpusWithId: String
+    $badgeCorpusId: ID
     $inFolderId: String
     $cursor: String
     $limit: Int
@@ -145,7 +147,8 @@ export const GET_DOCUMENTS = gql`
           isLatestVersion
           canViewHistory
           docRelationshipCount(corpusId: $inCorpusWithId)
-          docTypeLabels @include(if: $annotateDocLabels) {
+          docTypeLabels(corpusId: $badgeCorpusId)
+            @include(if: $annotateDocLabels) {
             labelType
             text
           }
@@ -2501,6 +2504,7 @@ export const GET_ANNOTATIONS = gql`
             __typename
           }
           annotationType
+          isEvidenceQuote
           structural
           rawText
           linkUrl
@@ -2618,6 +2622,7 @@ export const GET_ANNOTATIONS_FOR_CARDS = gql`
             __typename
           }
           annotationType
+          isEvidenceQuote
           structural
           rawText
           isPublic
@@ -2826,6 +2831,7 @@ export const SEMANTIC_SEARCH_ANNOTATIONS = gql`
           __typename
         }
         annotationType
+        isEvidenceQuote
         structural
         rawText
         linkUrl
@@ -3239,12 +3245,57 @@ export interface RequestGetExtractOutput {
   extract: ExtractType;
 }
 
+export const GET_DATACELL_EVIDENCE = gql`
+  query GetDatacellEvidence($id: ID!, $version: String = "effective") {
+    datacell(id: $id) {
+      id
+      findingEvidence(version: $version)
+      fullSourceList(version: $version) {
+        id
+        page
+        rawText
+        json
+        annotationType
+        isEvidenceQuote
+        structural
+        annotationLabel {
+          id
+          text
+          color
+          labelType
+        }
+        document {
+          id
+          slug
+          creator {
+            id
+            slug
+          }
+        }
+        corpus {
+          id
+          slug
+          creator {
+            id
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const REQUEST_GET_EXTRACT = gql`
   query GetExtract($id: ID!) {
     extract(id: $id) {
       id
       corpus {
         id
+        slug
+        creator {
+          id
+          slug
+        }
         title
       }
       name
@@ -3273,6 +3324,7 @@ export const REQUEST_GET_EXTRACT = gql`
       started
       finished
       error
+      sourceReadinessError
       modelConfig
       iterationAxis
       parentExtract {
@@ -3294,6 +3346,13 @@ export const REQUEST_GET_EXTRACT = gql`
         }
       }
       fullDocumentList {
+        pdfFile
+        slug
+        creator {
+          id
+          slug
+        }
+        processingStatus
         id
         title
         description
@@ -3311,53 +3370,7 @@ export const REQUEST_GET_EXTRACT = gql`
           title
           fileType
         }
-        fullSourceList {
-          id
-          isPublic
-          myPermissions
-          annotationLabel {
-            id
-            text
-            color
-            icon
-            labelType
-            description
-          }
-          document {
-            id
-            fileType
-            pdfFile
-            txtExtractFile
-            pawlsParseFile
-          }
-
-          page
-          rawText
-
-          json
-          annotationType
-          sourceNodeInRelationships {
-            edges {
-              node {
-                id
-              }
-            }
-          }
-          targetNodeInRelationships {
-            edges {
-              node {
-                id
-              }
-            }
-          }
-          creator {
-            id
-            slug
-            email
-          }
-          isPublic
-          myPermissions
-        }
+        hasFindingEvidence
         data
         dataDefinition
         started
@@ -3726,8 +3739,10 @@ export const GET_DATACELLS_FOR_EXTRACT = gql`
         rejectedBy {
           email
         }
+        findingEvidence
         fullSourceList {
           id
+          isEvidenceQuote
           annotationLabel {
             id
             text
@@ -3851,6 +3866,7 @@ export const GET_EXTRACT_GRID_EMBED = gql`
         correctedData
         completed
         failed
+        findingEvidence
         fullSourceList {
           id
           page
@@ -3999,6 +4015,7 @@ export const GET_REFERENCE_MENTIONS_FOR_ANALYSIS = gql`
           labelType
         }
         annotationType
+        isEvidenceQuote
         page
         rawText
         linkUrl
@@ -4037,6 +4054,7 @@ export const GET_ANNOTATIONS_FOR_ANALYSIS = gql`
           labelType
         }
         annotationType
+        isEvidenceQuote
 
         page
         rawText
@@ -5132,6 +5150,7 @@ export const GET_DOCUMENT_KNOWLEDGE_AND_ANNOTATIONS = gql`
           totalCount
         }
         annotationType
+        isEvidenceQuote
         rawText
         json
         linkUrl
@@ -5244,6 +5263,7 @@ export const GET_DOCUMENT_ANNOTATIONS_ONLY = gql`
           totalCount
         }
         annotationType
+        isEvidenceQuote
         rawText
         json
         linkUrl
@@ -5337,6 +5357,7 @@ export const GET_DOCUMENT_STRUCTURAL_ANNOTATIONS = gql`
           labelType
         }
         annotationType
+        isEvidenceQuote
         rawText
         json
         linkUrl

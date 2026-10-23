@@ -212,7 +212,7 @@ test.describe("ExtractDetail — status-driven rendering", () => {
     await component.unmount();
   });
 
-  test("shows the failed state with a Retry Extract action", async ({
+  test("keeps failed runs reviewable and offers iteration recovery", async ({
     mount,
     page,
   }) => {
@@ -228,12 +228,20 @@ test.describe("ExtractDetail — status-driven rendering", () => {
       />
     );
 
-    await expect(page.getByText(/Extraction failed/i).first()).toBeVisible({
+    await expect(page.getByText(/This run ended with errors/i)).toBeVisible({
       timeout: 10_000,
     });
+    await expect(page.getByText("Failed", { exact: true })).toBeVisible();
+    await expect(
+      page.getByRole("tab", { name: "Data", exact: true })
+    ).toBeVisible();
+    await page.getByRole("tab", { name: "Iterations", exact: true }).click();
+    await expect(
+      page.getByRole("button", { name: "New iteration", exact: true })
+    ).toBeVisible();
     await expect(
       page.getByRole("button", { name: /Retry Extract/i })
-    ).toBeVisible();
+    ).toHaveCount(0);
 
     await component.unmount();
   });

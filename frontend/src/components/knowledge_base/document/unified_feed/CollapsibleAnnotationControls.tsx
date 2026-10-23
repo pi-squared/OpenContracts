@@ -292,6 +292,8 @@ export const CollapsibleAnnotationControls: React.FC<
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopPropagation();
         setIsOpen(false);
       }
     };
@@ -318,6 +320,7 @@ export const CollapsibleAnnotationControls: React.FC<
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: triggerMode === "click" ? 0.98 : 1 }}
         data-testid="annotation-controls-toggle"
+        aria-expanded={isOpen}
         style={{
           cursor: triggerMode === "click" ? "pointer" : "default",
           position: "relative",

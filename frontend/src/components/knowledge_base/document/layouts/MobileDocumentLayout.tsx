@@ -1,3 +1,7 @@
+import {
+  ZOOM_MIN,
+  ZOOM_MAX,
+} from "../../../../assets/configurations/constants";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -209,6 +213,11 @@ export const MobileDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
 
   const { selectedAnnotations, setSelectedAnnotations } =
     useAnnotationSelection();
+  const [annotationDetailsOpen, setAnnotationDetailsOpen] = useState(false);
+  const selectedAnnotationKey = selectedAnnotations.join(",");
+  useEffect(() => {
+    setAnnotationDetailsOpen(false);
+  }, [selectedAnnotationKey]);
 
   // A chat source citation click sets a non-null `selectedSourceIndex` on the
   // shared chat-source atom (see ChatTray's per-source `onClick`). When that
@@ -278,12 +287,26 @@ export const MobileDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
           )}
           {!queryError && activeTab === "document" && (
             <DocumentSurface data-testid="mobile-surface-document">
+              {selectedAnnotations.length > 0 && (
+                <button
+                  style={{ flexShrink: 0, padding: 8 }}
+                  onClick={() => setAnnotationDetailsOpen(true)}
+                >
+                  Annotation details
+                </button>
+              )}
               <ViewerArea>
                 {viewerContent}
                 {/* Floating controls overlay the viewer so the page fills it. */}
                 <MobileDocToolbar
                   zoomPercent={zoomLevel * 100}
                   onFitWidth={fitToWidth}
+                  onZoomIn={() =>
+                    setZoomLevel(Math.min(zoomLevel + 0.1, ZOOM_MAX))
+                  }
+                  onZoomOut={() =>
+                    setZoomLevel(Math.max(zoomLevel - 0.1, ZOOM_MIN))
+                  }
                   onSections={() => setSectionsSheetOpen(true)}
                   onFind={() => setFindSheetOpen(true)}
                 />
@@ -481,11 +504,11 @@ export const MobileDocumentLayout: React.FC<DocumentLayoutProps> = (props) => {
         {/* Annotation detail sheet — single rendering site for both open paths:
           tapping a feed row in the Annotations surface and tapping a highlight
           in the Document-tab viewer. Both set the shared `selectedAnnotations`
-          selection; closing the sheet clears it. */}
+          selection; details are optional and closing preserves the source selection. */}
         <MobileSheet
-          open={selectedAnnotations.length > 0}
+          open={annotationDetailsOpen && selectedAnnotations.length > 0}
           title="Annotation"
-          onClose={() => setSelectedAnnotations([])}
+          onClose={() => setAnnotationDetailsOpen(false)}
         >
           <MobileAnnotationDetail readOnly={readOnly} loading={loading} />
         </MobileSheet>

@@ -1,3 +1,12 @@
+import {
+  getExtractProgress,
+  getDocumentExtractionLabel,
+  getExtractExportLabel,
+  exportExtractTab,
+} from "../utils/extractDetails";
+import { getDocumentUrl } from "../utils/navigationUtils";
+import { getSourceReadinessPollInterval } from "../utils/extractSourceReadiness";
+import { SourceReadinessNotice } from "../components/extracts/SourceReadinessNotice";
 import React, {
   useState,
   useEffect,
@@ -79,6 +88,8 @@ import { CreateColumnModal } from "../components/widgets/modals/CreateColumnModa
 import { ConfirmModal } from "../components/widgets/modals/ConfirmModal";
 import { getExtractStatus, formatExtractDate } from "../utils/extractUtils";
 import { useExtractCompletionNotification } from "../hooks/useExtractCompletionNotification";
+
+import { ExtractOutcomeNotice } from "../components/extracts/ExtractOutcomeNotice";
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // STYLED COMPONENTS
@@ -454,6 +465,7 @@ export const ExtractDetail: React.FC = () => {
       variables: { id: extract?.id ?? "" },
       skip: !extract?.id,
       nextFetchPolicy: "network-only",
+      pollInterval: getSourceReadinessPollInterval(extract),
       notifyOnNetworkStatusChange: true,
     }
   );
@@ -565,6 +577,10 @@ export const ExtractDetail: React.FC = () => {
     RequestStartExtractInputType
   >(REQUEST_START_EXTRACT, {
     onCompleted: (data) => {
+      if (!data.startExtract.ok) {
+        toast.error(data.startExtract.message || "Source unavailable.");
+        return;
+      }
       toast.success("Extract started!");
       setExtract((prev) =>
         prev ? { ...prev, ...data.startExtract.obj } : prev
@@ -670,8 +686,16 @@ export const ExtractDetail: React.FC = () => {
     setEditingColumn(null);
   };
 
-  const handleExportCsv = () => {
-    dataGridRef.current?.exportToCsv();
+  const handleExport = () => {
+    try {
+      exportExtractTab(activeTab, extract, columns, dataGridRef.current);
+    } catch (error) {
+      toast.error(
+        `Export failed: ${
+          error instanceof Error ? error.message : "Please retry."
+        }`
+      );
+    }
   };
 
   const handleRowUpdate = useCallback((updatedRow: DocumentType) => {
@@ -682,25 +706,16 @@ export const ExtractDetail: React.FC = () => {
 
   // Computed values
   const isRunning = extract?.started && !extract?.finished && !extract?.error;
-  const isComplete = extract?.started && extract?.finished && !extract?.error;
+  const isComplete = Boolean(extract?.finished || extract?.error);
   const isFailed = Boolean(extract?.error);
   const canEdit = !extract?.started;
 
   const statusProps = extract ? getExtractStatus(extract) : null;
 
-  const stats = useMemo(() => {
-    const completedCells = cells.filter((c) => c.completed).length;
-    const totalCells = cells.length;
-    const successRate =
-      totalCells > 0 ? Math.round((completedCells / totalCells) * 100) : 0;
-
-    return {
-      documents: rows.length,
-      columns: columns.length,
-      rows: rows.length,
-      successRate: isComplete ? `${successRate}%` : "—",
-    };
-  }, [rows, columns, cells, isComplete]);
+  const stats = useMemo(
+    () => getExtractProgress(rows, columns, cells, Boolean(isComplete)),
+    [rows, columns, cells, isComplete]
+  );
 
   // Loading state
   if (!extract) {
@@ -771,7 +786,10 @@ export const ExtractDetail: React.FC = () => {
                   startExtract({ variables: { extractId: extract.id } })
                 }
                 disabled={
-                  startLoading || rows.length === 0 || columns.length === 0
+                  startLoading ||
+                  rows.length === 0 ||
+                  columns.length === 0 ||
+                  Boolean(extract.sourceReadinessError)
                 }
               >
                 Start Extract
@@ -780,25 +798,46 @@ export const ExtractDetail: React.FC = () => {
             <IconButton aria-label="Refresh" onClick={() => refetch()}>
               <RefreshCw size={16} />
             </IconButton>
+            {activeTab === "data" && (
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => dataGridRef.current?.exportToCsv()}
+                disabled={loading || Boolean(isRunning)}
+              >
+                Export CSV
+              </Button>
+            )}
             <Button
               variant="secondary"
               size="sm"
               leftIcon={<Download size={16} />}
-              onClick={handleExportCsv}
-              disabled={loading || Boolean(isRunning)}
+              onClick={handleExport}
+              disabled={
+                loading || Boolean(isRunning) || activeTab === "documents"
+              }
             >
-              Export CSV
+              {getExtractExportLabel(activeTab)}
             </Button>
           </Actions>
         </Header>
 
+        {isComplete && (
+          <ExtractOutcomeNotice
+            cells={cells}
+            expectedFields={rows.length * columns.length}
+            extract={extract}
+            failedFields={stats.failedFields}
+            isFailed={isFailed}
+          />
+        )}
         {/* Stats */}
         <StatsSection>
           <StatGrid columns={4}>
             <StatBlock
               value={String(stats.documents)}
               label="Documents"
-              sublabel="processed"
+              sublabel={`processed of ${rows.length} selected`}
               icon={<DocumentSvgIcon />}
             />
             <StatBlock
@@ -822,6 +861,13 @@ export const ExtractDetail: React.FC = () => {
           </StatGrid>
         </StatsSection>
 
+        {(isFailed || isRunning) && (
+          <SourceReadinessNotice
+            documents={rows}
+            hasFindings={Boolean(extract.started)}
+            readinessError={extract.sourceReadinessError}
+          />
+        )}
         {/* Running state overlay */}
         {isRunning && (
           <RunningState>
@@ -834,30 +880,7 @@ export const ExtractDetail: React.FC = () => {
           </RunningState>
         )}
 
-        {/* Failed state */}
-        {isFailed && (
-          <EmptyWrapper>
-            <EmptyState
-              title="Extraction failed"
-              description="The extraction could not be completed. Please check the configuration and try again."
-              size="lg"
-              action={
-                <Button
-                  variant="primary"
-                  leftIcon={<RefreshCw size={16} />}
-                  onClick={() =>
-                    startExtract({ variables: { extractId: extract.id } })
-                  }
-                >
-                  Retry Extract
-                </Button>
-              }
-            />
-          </EmptyWrapper>
-        )}
-
-        {/* Tabs - only show when not running and not failed */}
-        {!isRunning && !isFailed && (
+        {!isRunning && (
           <TabsSection>
             <Tabs value={activeTab} onChange={setActiveTab}>
               <TabList>
@@ -873,7 +896,9 @@ export const ExtractDetail: React.FC = () => {
                   <div style={{ marginTop: 24 }}>
                     <DataHeader>
                       <DataTitle>Extracted Data</DataTitle>
-                      <DataCount>{rows.length} rows</DataCount>
+                      <DataCount>
+                        {rows.length} selected document rows
+                      </DataCount>
                     </DataHeader>
                     <GridContainer>
                       <ExtractDataGrid
@@ -912,9 +937,34 @@ export const ExtractDetail: React.FC = () => {
                               <DocumentMeta>
                                 <span>PDF</span>
                                 <span>-</span>
-                                <span>1 row extracted</span>
+                                <span>
+                                  {getDocumentExtractionLabel(
+                                    doc,
+                                    cells,
+                                    columns.length,
+                                    Boolean(extract.started)
+                                  )}
+                                </span>
                               </DocumentMeta>
                             </DocumentInfo>
+                            {doc.fileType === "application/pdf" &&
+                            doc.pdfFile &&
+                            getDocumentUrl(doc, extract.corpus) !== "#" ? (
+                              <Button
+                                variant="secondary"
+                                size="sm"
+                                aria-label={`Open PDF: ${doc.title}`}
+                                onClick={() =>
+                                  navigate(getDocumentUrl(doc, extract.corpus))
+                                }
+                              >
+                                Open PDF
+                              </Button>
+                            ) : (
+                              <span role="status">
+                                Original PDF unavailable
+                              </span>
+                            )}
                           </DocumentItem>
                         ))}
                       </DocumentsList>

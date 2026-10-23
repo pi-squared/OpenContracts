@@ -24,6 +24,9 @@ from django.db.models import (
     When,
 )
 
+from opencontractserver.annotations.services.evidence_visibility import (
+    filter_finding_annotations,
+)
 from opencontractserver.constants.annotations import (
     ANNOTATION_TEXT_SEARCH_DEFAULT_LIMIT,
 )
@@ -329,7 +332,7 @@ class AnnotationService(BaseService):
             )
 
         # Build optimized query with combined document filters
-        qs = Annotation.objects.filter(doc_filters)
+        qs = filter_finding_annotations(Annotation.objects.filter(doc_filters))
 
         # Apply privacy filtering for created_by_* fields. Applies to ALL
         # users including superusers (scoped admin access, 2026-05): an admin
@@ -564,7 +567,9 @@ class AnnotationService(BaseService):
         )
 
         # Get annotation summary
-        annotations = Annotation.objects.filter(id__in=source_annotation_ids)
+        annotations = filter_finding_annotations(
+            Annotation.objects.filter(id__in=source_annotation_ids)
+        )
 
         summary = {
             "total_source_annotations": annotations.count(),
@@ -747,7 +752,7 @@ class AnnotationService(BaseService):
         if structural_set_ids:
             base_filter |= Q(structural_set_id__in=structural_set_ids, structural=True)
 
-        qs = Annotation.objects.filter(base_filter)
+        qs = filter_finding_annotations(Annotation.objects.filter(base_filter))
 
         # Apply privacy filtering for created_by_* fields. Applies to ALL
         # users including superusers (scoped admin access, 2026-05): an admin

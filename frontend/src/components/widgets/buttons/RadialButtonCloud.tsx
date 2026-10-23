@@ -1,6 +1,7 @@
+import { DocumentChildModal } from "../../knowledge_base/document/LayoutComponents";
 import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { Modal, ModalBody, ModalFooter, Button } from "@os-legal/ui";
+import { ModalBody, ModalFooter, Button } from "@os-legal/ui";
 import { DynamicIcon } from "../icon-picker/DynamicIcon";
 import { getLuminance } from "polished";
 import useWindowDimensions from "../../hooks/WindowDimensionHook";
@@ -140,7 +141,7 @@ const CloudButtonStyled = styled.button<CloudButtonStyledProps>`
   }
 `;
 
-const HighZModal = styled(Modal)`
+const HighZModal = styled(DocumentChildModal)`
   && {
     z-index: 20001;
   }
@@ -172,6 +173,15 @@ const RadialButtonCloud: React.FC<RadialButtonCloudProps> = ({
 
   const { height, width } = useWindowDimensions();
   const cloudRef = useRef<HTMLDivElement | null>(null);
+  const launcherRef = useRef<HTMLDivElement | null>(null);
+  const returnToLauncher = useRef(false);
+
+  useEffect(() => {
+    if (!confirmModal.open && returnToLauncher.current) {
+      returnToLauncher.current = false;
+      launcherRef.current?.focus();
+    }
+  }, [confirmModal.open]);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -275,9 +285,39 @@ const RadialButtonCloud: React.FC<RadialButtonCloudProps> = ({
   const dotColor = getContrastColor(parentBackgroundColor);
 
   return (
-    <div style={{ position: "relative", display: "inline-block" }}>
+    <div
+      style={{ position: "relative", display: "inline-block" }}
+      onKeyDown={(event) => {
+        if (event.key !== "Escape" || !cloudVisible || confirmModal.open)
+          return;
+        event.preventDefault();
+        event.stopPropagation();
+        setCloudVisible(false);
+        launcherRef.current?.focus();
+      }}
+    >
       <PulsingDot
+        ref={launcherRef}
         className="pulsing-dot"
+        role="button"
+        tabIndex={0}
+        aria-label="Annotation actions"
+        aria-expanded={cloudVisible}
+        onClick={(event) => {
+          event.stopPropagation();
+          setCloudVisible((visible) => !visible);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            event.stopPropagation();
+            setCloudVisible((visible) => !visible);
+          } else if (event.key === "Escape" && cloudVisible) {
+            event.preventDefault();
+            event.stopPropagation();
+            setCloudVisible(false);
+          }
+        }}
         onMouseEnter={() => setCloudVisible(true)}
         $backgroundColor={dotColor}
       />
@@ -312,6 +352,9 @@ const RadialButtonCloud: React.FC<RadialButtonCloudProps> = ({
           <Button
             variant="danger"
             onClick={() => {
+              // Cancellation removes the action button that opened the dialog.
+              // Restore the persistent launcher after the child modal releases focus.
+              returnToLauncher.current = true;
               setConfirmModal({ ...confirmModal, open: false });
               setCloudVisible(false);
             }}

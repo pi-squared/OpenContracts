@@ -1,0 +1,1 @@
+Refresh pending source processing/indexing in both extract detail views so Start Extract becomes available when indexing finishes, without requiring a manual refresh. Stop refreshing once sources are ready, the run starts, or a source requires repair.

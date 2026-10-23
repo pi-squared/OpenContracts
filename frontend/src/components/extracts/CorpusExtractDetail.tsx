@@ -1,3 +1,4 @@
+import { getExtractExportLabel } from "../../utils/extractDetails";
 /**
  * CorpusExtractDetail - Embedded extract detail view for corpus context
  *
@@ -111,6 +112,7 @@ export const CorpusExtractDetail: React.FC<CorpusExtractDetailProps> = ({
   onClose,
 }) => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState("data");
   const contentRef = useRef<ExtractDetailContentHandle>(null);
   const [extract, setExtract] = useState<ExtractType | null>(null);
 
@@ -122,8 +124,8 @@ export const CorpusExtractDetail: React.FC<CorpusExtractDetailProps> = ({
     navigate(`/extracts/${extractId}`);
   };
 
-  const handleExportCsv = () => {
-    contentRef.current?.exportToCsv();
+  const handleExport = () => {
+    contentRef.current?.exportActiveTab();
   };
 
   const handleRefresh = () => {
@@ -152,17 +154,32 @@ export const CorpusExtractDetail: React.FC<CorpusExtractDetailProps> = ({
         </HeaderMain>
         <Actions>
           {canStart && (
-            <IconButton aria-label="Start extract" onClick={handleStartExtract}>
+            <IconButton
+              aria-label="Start extract"
+              onClick={handleStartExtract}
+              disabled={Boolean(extract?.sourceReadinessError)}
+            >
               <Play size={14} />
             </IconButton>
           )}
           <IconButton aria-label="Refresh" onClick={handleRefresh}>
             <RefreshCw size={14} />
           </IconButton>
+          {activeTab === "data" && (
+            <IconButton
+              aria-label="Export CSV"
+              onClick={() => contentRef.current?.exportToCsv()}
+              disabled={!extract || Boolean(isRunning)}
+            >
+              CSV
+            </IconButton>
+          )}
           <IconButton
-            aria-label="Export CSV"
-            onClick={handleExportCsv}
-            disabled={!extract || Boolean(isRunning)}
+            aria-label={getExtractExportLabel(activeTab)}
+            onClick={handleExport}
+            disabled={
+              !extract || Boolean(isRunning) || activeTab === "documents"
+            }
           >
             <Download size={14} />
           </IconButton>
@@ -179,6 +196,7 @@ export const CorpusExtractDetail: React.FC<CorpusExtractDetailProps> = ({
         <ExtractDetailContent
           ref={contentRef}
           extractId={extractId}
+          onActiveTabChange={setActiveTab}
           compact
           onExtractLoaded={handleExtractLoaded}
         />

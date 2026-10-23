@@ -339,7 +339,12 @@ export const cache = new InMemoryCache({
           "orderBy",
         ]),
         userexports: relayStylePagination(),
-        labelsets: relayStylePagination(),
+        labelsets: relayStylePagination([
+          "textSearch",
+          "title_Contains",
+          "labelsetId",
+          "description_Contains",
+        ]),
         annotationLabels: relayStylePagination(),
         relationshipLabels: relayStylePagination(),
         extracts: relayStylePagination([

@@ -11,8 +11,10 @@ import {
 import { DynamicIcon } from "../../widgets/icon-picker/DynamicIcon";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HorizontallyJustifiedDiv } from "./common";
-import { useAnnotationRefs } from "../hooks/useAnnotationRefs";
-import { useAnnotationSelection } from "../context/UISettingsAtom";
+import {
+  useAnnotationDisplay,
+  useAnnotationSelection,
+} from "../context/UISettingsAtom";
 import { updateAnnotationSelectionParams } from "../../../utils/navigationUtils";
 import { ServerTokenAnnotation, ServerAnnotation } from "../types/annotations";
 import { canDeleteAnnotation } from "../../../utils/annotationPermissions";
@@ -154,6 +156,11 @@ interface HighlightItemProps {
   relations: Array<{ sourceIds: string[]; targetIds: string[] }>;
   onDelete?: (annotationId: string) => void;
   onSelect: (annotationId: string) => void;
+  focused?: boolean;
+  onInspect?: () => void;
+  selectionDisplay?: Parameters<
+    typeof updateAnnotationSelectionParams
+  >[2]["display"];
   onToggleMultiSelect?: () => void;
   isMultiSelected?: boolean;
   contentModalities?: string[];
@@ -173,6 +180,9 @@ export const HighlightItem: React.FC<HighlightItemProps> = ({
   relations,
   onDelete,
   onSelect,
+  selectionDisplay,
+  focused,
+  onInspect,
   onToggleMultiSelect,
   isMultiSelected = false,
   contentModalities,
@@ -181,7 +191,7 @@ export const HighlightItem: React.FC<HighlightItemProps> = ({
   const location = useLocation();
   const navigate = useNavigate();
   const { selectedAnnotations } = useAnnotationSelection();
-  const { annotationElementRefs } = useAnnotationRefs();
+  const { showSelectedOnly } = useAnnotationDisplay();
 
   // Fetch images if annotation has IMAGE modality
   const { images, loading, error, hasFetchedEmpty } = useAnnotationImages(
@@ -197,23 +207,27 @@ export const HighlightItem: React.FC<HighlightItemProps> = ({
     relation.targetIds.includes(annotation.id)
   );
   const handleClick = () => {
-    // Only use scrollIntoView for PDF token annotations. Text annotations
-    // are scrolled by TxtAnnotator's own selectedAnnotations useEffect,
-    // so calling scrollIntoView here would cause two competing scroll animations.
-    if (annotation instanceof ServerTokenAnnotation) {
-      annotationElementRefs.current[annotation.id]?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
-
+    // The PDF renderer focuses the final URL selection after its page and
+    // annotation load. Scrolling an old ref here races that canonical owner.
     // Update selection via URL - CentralRouteManager Phase 2 will set reactive var
     // Toggle behavior: if already selected, deselect; otherwise select
-    const newSelection = selected ? [] : [annotation.id];
+    // Selected-only inspection keeps existing viewer membership and filters.
+    // Explicit source navigation still runs through the inspection callback.
+    if (onInspect && (focused || (selected && showSelectedOnly))) {
+      onInspect();
+      return;
+    }
+    const newSelection = onInspect
+      ? [annotation.id]
+      : selected
+      ? []
+      : [annotation.id];
     updateAnnotationSelectionParams(location, navigate, {
       annotationIds: newSelection,
+      display: selectionDisplay,
     });
 
+    onInspect?.();
     // Call optional onSelect callback
     if (onSelect) {
       onSelect(annotation.id);
@@ -223,7 +237,8 @@ export const HighlightItem: React.FC<HighlightItemProps> = ({
   return (
     <HighlightItemCard
       color={annotation?.annotationLabel?.color}
-      selected={selected}
+      selected={focused ?? selected}
+      aria-current={focused ? "true" : undefined}
       className={`sidebar__annotation ${className || ""}`}
       data-testid="highlight-item"
       data-annotation-id={annotation.id}

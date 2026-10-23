@@ -786,12 +786,15 @@ export async function runExtractAndWaitForFinish(
   page: Page,
   timeoutMs: number = 12 * 60 * 1000
 ): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
+  const remainingTimeout = (stepLimit = timeoutMs) =>
+    Math.max(1, Math.min(stepLimit, deadline - Date.now()));
   // If the extract was already run (e.g. a previous partial test run with
   // the same RUN_ID), "Start Extract" won't be visible. In that case,
   // check that we're already in a finished/data state and return early.
   const startBtn = page.getByRole("button", { name: /^Start Extract$/i });
   const startBtnVisible = await startBtn
-    .isVisible({ timeout: 5_000 })
+    .isVisible({ timeout: remainingTimeout(5_000) })
     .catch(() => false);
 
   if (!startBtnVisible) {
@@ -799,7 +802,7 @@ export async function runExtractAndWaitForFinish(
     // visible (finished state) or "Extraction in progress" to clear.
     await expect(async () => {
       const failed = await page
-        .getByText(/Extraction failed/i)
+        .getByText(/Extraction failed|This run ended with errors/i)
         .isVisible()
         .catch(() => false);
       if (failed) {
@@ -812,25 +815,31 @@ export async function runExtractAndWaitForFinish(
       if (running) {
         throw new Error("still running");
       }
-      await expect(page.getByRole("tab", { name: /^Data$/i })).toBeVisible();
-    }).toPass({ timeout: timeoutMs, intervals: [5_000, 10_000] });
+      await expect(page.getByRole("tab", { name: /^Data$/i })).toBeVisible({
+        timeout: remainingTimeout(5_000),
+      });
+    }).toPass({ timeout: remainingTimeout(), intervals: [5_000, 10_000] });
     return;
   }
 
+  // backendLock can clear before corpus passage indexing finishes. The page
+  // refreshes transient source readiness automatically; keep this assertion
+  // within the flow's existing budget rather than clicking a disabled action.
+  await expect(startBtn.first()).toBeEnabled({ timeout: remainingTimeout() });
   // Full-page ExtractDetail renders a <Button> with text "Start Extract".
-  await startBtn.first().click();
+  await startBtn.first().click({ timeout: remainingTimeout(20_000) });
 
   // While running, ExtractDetail / ExtractDetailContent renders
   // "Extraction in progress..." as a styled RunningTitle overlay.
   await expect(page.getByText(/Extraction in progress/i)).toBeVisible({
-    timeout: 60_000,
+    timeout: remainingTimeout(60_000),
   });
 
   // Poll until either the overlay disappears (success) or the failed state
   // renders. toPass retries the inner async function until it does not throw.
   await expect(async () => {
     const failed = await page
-      .getByText(/Extraction failed/i)
+      .getByText(/Extraction failed|This run ended with errors/i)
       .isVisible()
       .catch(() => false);
     if (failed) {
@@ -850,8 +859,10 @@ export async function runExtractAndWaitForFinish(
 
     // The overlay is gone and neither failed state is present: extraction
     // completed successfully. Verify the Data tab is visible again.
-    await expect(page.getByRole("tab", { name: /^Data$/i })).toBeVisible();
-  }).toPass({ timeout: timeoutMs, intervals: [5_000, 10_000] });
+    await expect(page.getByRole("tab", { name: /^Data$/i })).toBeVisible({
+      timeout: remainingTimeout(5_000),
+    });
+  }).toPass({ timeout: remainingTimeout(), intervals: [5_000, 10_000] });
 
   // The "Extraction in progress" overlay disappearing only means the
   // backend marked the Extract row complete. AG-Grid still has to fetch
@@ -869,7 +880,7 @@ export async function runExtractAndWaitForFinish(
   await page
     .getByText(/^\s*Loading\.\.\.\s*$/)
     .first()
-    .waitFor({ state: "detached", timeout: 30_000 })
+    .waitFor({ state: "detached", timeout: remainingTimeout(30_000) })
     .catch(() => {});
 }
 

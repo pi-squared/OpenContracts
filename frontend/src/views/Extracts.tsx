@@ -436,7 +436,7 @@ export const Extracts = () => {
             <StatBlock
               value={stats.completed.toString()}
               label="Completed"
-              sublabel="finished successfully"
+              sublabel="finished processing"
             />
             <StatBlock
               value={stats.totalDocuments.toString()}

@@ -5,12 +5,64 @@
  * components that display extract status and metadata.
  */
 
-import type { ExtractType } from "../types/graphql-api";
+import type { DatacellType, ExtractType } from "../types/graphql-api";
+import { isRecord } from "./findingValue";
 import {
   EXTRACT_STATUS,
   EXTRACT_STATUS_COLORS,
   ExtractStatus,
 } from "../assets/configurations/constants";
+
+/** Read the native storage envelope while retaining scalar and structured values. */
+export function unwrapDatacellData(value: unknown): unknown {
+  return isRecord(value) && Object.prototype.hasOwnProperty.call(value, "data")
+    ? value.data
+    : value;
+}
+
+type ExtractLifecycle = Pick<ExtractType, "started" | "finished" | "error">;
+type CellLifecycle = Pick<DatacellType, "started" | "completed" | "failed">;
+
+/** Stopping a run does not turn unfinished or missing fields into successes. */
+export function getDatacellOutcome(
+  cell: CellLifecycle | undefined,
+  extract: ExtractLifecycle
+): "completed" | "failed" | "interrupted" | "pending" | "notReported" {
+  if (cell?.failed) return "failed";
+  if (cell?.completed) return "completed";
+  if (cell?.started) {
+    return extract.finished || extract.error ? "interrupted" : "pending";
+  }
+  return extract.started && !extract.finished && !extract.error
+    ? "pending"
+    : "notReported";
+}
+
+export function getExtractOutcomeSummary(
+  cells: ReadonlyArray<CellLifecycle>,
+  expectedCells: number,
+  extract: ExtractLifecycle
+): string {
+  const counts = {
+    completed: 0,
+    failed: 0,
+    interrupted: 0,
+    pending: 0,
+    notReported: 0,
+  };
+  for (const cell of cells) counts[getDatacellOutcome(cell, extract)] += 1;
+  counts[getDatacellOutcome(undefined, extract)] += Math.max(
+    0,
+    expectedCells - cells.length
+  );
+  return [
+    `${counts.completed} completed`,
+    `${counts.failed} failed`,
+    ...(counts.interrupted ? [`${counts.interrupted} interrupted`] : []),
+    ...(counts.pending ? [`${counts.pending} pending`] : []),
+    ...(counts.notReported ? [`${counts.notReported} not reported`] : []),
+  ].join(" · ");
+}
 
 /**
  * Extract status color type from the status colors constant
@@ -42,16 +94,16 @@ export function getExtractStatus(
       color: EXTRACT_STATUS_COLORS[EXTRACT_STATUS.RUNNING],
     };
   }
-  if (extract.finished) {
-    return {
-      label: EXTRACT_STATUS.COMPLETED,
-      color: EXTRACT_STATUS_COLORS[EXTRACT_STATUS.COMPLETED],
-    };
-  }
   if (extract.error) {
     return {
       label: EXTRACT_STATUS.FAILED,
       color: EXTRACT_STATUS_COLORS[EXTRACT_STATUS.FAILED],
+    };
+  }
+  if (extract.finished) {
+    return {
+      label: EXTRACT_STATUS.COMPLETED,
+      color: EXTRACT_STATUS_COLORS[EXTRACT_STATUS.COMPLETED],
     };
   }
   return {

@@ -42,6 +42,10 @@ NONE_RESULT_UNKNOWN = "unknown"
 # analytic) can pass its own ``usage_limits``.
 EXTRACT_AGENT_REQUEST_LIMIT = 20
 
+# Source-bearing model-response rounds allowed before structured finalization.
+# Parallel retrieval calls in the same response count as one round.
+EXTRACT_RETRIEVAL_ROUND_LIMIT = 3
+
 EXTRACT_DEFAULT_TEMPERATURE = 0.3
 
 # Low temperature for conversation-title generation: a title is a short,

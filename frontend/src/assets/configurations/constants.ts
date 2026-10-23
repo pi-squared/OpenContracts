@@ -49,6 +49,10 @@ export const FILTER_TAB_ICON_SIZE = 14;
 export const ZOOM_MIN = 0.5;
 /** Maximum document zoom level (400%). */
 export const ZOOM_MAX = 4;
+/** Document-pane width below which zoom controls use a vertical arrangement. */
+export const ZOOM_CONTROLS_COMPACT_WIDTH_PX = 240;
+/** Vertical space reserved for each coincident quotation's persistent label. */
+export const EVIDENCE_LABEL_ROW_STRIDE_PX = 28;
 /**
  * Total horizontal breathing room (px) the shared fit-to-width helper
  * reserves off the viewer container width so the fitted page does not
@@ -305,10 +309,17 @@ export const Z_INDEX = {
   /** PDF page SelectionLayer — full-page overlay capturing mouse for the
    *  annotator. Sits above the rendered canvas so drag-to-select works. */
   PDF_SELECTION_LAYER: 1,
+  /** Saved highlight raised during label inspection, below native PDF links. */
+  PDF_ANNOTATION_FOREGROUND: 3,
   /** PDF page NativeLinkLayer — anchors hovering over PDF.js external link
    *  annotations. Must sit above ``PDF_SELECTION_LAYER`` so its
-   *  ``pointer-events: auto`` anchors receive clicks first. */
-  PDF_NATIVE_LINK_LAYER: 2,
+   *  ``pointer-events: auto`` anchors receive clicks first, including above
+   *  saved highlights raised during label inspection. */
+  PDF_NATIVE_LINK_LAYER: 4,
+  /** Separate annotation labels sit above highlight and native link surfaces. */
+  PDF_ANNOTATION_LABEL: 5,
+  /** The label currently being used stays above its neighboring labels. */
+  PDF_ANNOTATION_LABEL_FOREGROUND: 6,
   /** Mobile floating document-controls pill — overlays the viewer's top-right
    *  corner inside ViewerArea's local stacking context, above the rendered
    *  page but below in-page loading overlays. */
@@ -438,6 +449,8 @@ export const DOCUMENT_ANNOTATION_INDEX_MAX_DEPTH = 6;
 // Keep in sync with opencontractserver/constants/annotations.py
 export const STRUCTURAL_LABEL_PREFIX = "OC_";
 export const OC_SECTION_LABEL = "OC_SECTION";
+// Retrieval anchors are retained for grounding and omitted from reviewer views.
+export const OC_EXTRACT_SOURCE_LABEL = "OC_EXTRACT_SOURCE";
 // Annotations carrying the OC_URL label render as clickable hyperlinks; their
 // ``linkUrl`` field is opened on click. Keep in sync with
 // opencontractserver/constants/annotations.py.
@@ -1188,3 +1201,17 @@ export const WANTED_AUTHORITIES_MAX_ROWS = 5;
 // Defaults for the automation credential mint form.
 export const AUTOMATION_CREDENTIAL_DEFAULT_DAYS = 30;
 export const AUTOMATION_CREDENTIAL_NAME_MAX_LENGTH = 100;
+
+// Evidence label layout and browser file downloads.
+export const ANNOTATION_LABEL_GAP = 4;
+export const ANNOTATION_LABEL_MIN_HEIGHT = 4;
+/** Allow pointer transfer from a highlight to its separate label controls. */
+export const ANNOTATION_LABEL_HOVER_EXIT_DELAY_MS = 160;
+/** Maximum stationary movement for evidence activation and drag admission. */
+export const PDF_EVIDENCE_MOVEMENT_THRESHOLD_PX = 3;
+/** Held touches belong to native text selection instead of evidence clicks. */
+export const PDF_EVIDENCE_TOUCH_HOLD_DURATION_MS = 500;
+export const EXCEL_MAX_CELL_LENGTH = 32767;
+export const EXCEL_MAX_ROWS = 1048576;
+export const EXCEL_MAX_COLUMNS = 16384;
+export const DOWNLOAD_URL_REVOKE_DELAY_MS = 1000;

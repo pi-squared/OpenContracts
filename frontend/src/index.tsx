@@ -26,6 +26,7 @@ const {
   REACT_APP_APPLICATION_CLIENT_ID,
   REACT_APP_AUDIENCE,
   REACT_APP_API_ROOT_URL,
+  REACT_APP_BASE_PATH,
   REACT_APP_USE_AUTH0,
 } = getRuntimeEnv();
 
@@ -78,7 +79,7 @@ if (REACT_APP_USE_AUTH0) {
 
   root.render(
     <HelmetProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={REACT_APP_BASE_PATH || "/"}>
         <Auth0ProviderWithHistory {...providerConfig}>
           <ApolloProvider client={client}>
             <NetworkStatusHandler />
@@ -95,7 +96,7 @@ if (REACT_APP_USE_AUTH0) {
     <HelmetProvider>
       <ApolloProvider client={client}>
         <NetworkStatusHandler />
-        <BrowserRouter>
+        <BrowserRouter basename={REACT_APP_BASE_PATH || "/"}>
           <App />
         </BrowserRouter>
       </ApolloProvider>

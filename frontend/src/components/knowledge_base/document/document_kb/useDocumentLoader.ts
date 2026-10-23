@@ -153,6 +153,19 @@ export function useDocumentLoader({
   selectedAnalysisId,
   selectedExtractId,
 }: UseDocumentLoaderParams): UseDocumentLoaderReturn {
+  // Apollo callbacks may settle after a different document or source is active.
+  const activeContextRef = useRef({
+    documentId,
+    corpusId,
+    selectedAnalysisId,
+    selectedExtractId,
+  });
+  activeContextRef.current = {
+    documentId,
+    corpusId,
+    selectedAnalysisId,
+    selectedExtractId,
+  };
   const [viewState, setViewState] = useState<ViewState>(ViewState.LOADING);
   // Single cancellation handle shared across PDF / TXT / DOCX body loads:
   // a doc switch (or unmount) mid-load must prevent the in-flight promise
@@ -263,15 +276,21 @@ export function useDocumentLoader({
       // split annotations-then-relationships update would cause when this
       // runs in Apollo's onCompleted (outside React's automatic batching).
       // Structural annotations are loaded lazily — see useStructuralAnnotations.
-      setPdfAnnotations(
-        () =>
+      // Retain manual annotations/relations for restoration, while the active
+      // analysis/extract loader owns the rendered evidence.
+      if (
+        !activeContextRef.current.selectedExtractId &&
+        !activeContextRef.current.selectedAnalysisId
+      ) {
+        setPdfAnnotations(
           new PdfAnnotations(
             processedAnnotations,
             processedRelationships,
             processedDocTypeAnnotations,
             true
           )
-      );
+        );
+      }
 
       const corpusUpdatePayload: Partial<CorpusState> = {};
       if (data.corpus?.myPermissions) {
@@ -314,7 +333,7 @@ export function useDocumentLoader({
   );
 
   /**
-   * Lightweight refresh used when switching analyses/extracts — replaces
+   * Lightweight refresh used for manual/analysis views — replaces
    * non-structural annotations + relationships without re-fetching the rest
    * of the corpus payload. Doc-types and structural annotations are
    * preserved across the swap.
@@ -332,8 +351,8 @@ export function useDocumentLoader({
         data.document.allRelationships?.map((rel) => relationToGroup(rel)) ??
         [];
 
-      // Preserve previously-loaded doc-type annotations across analysis /
-      // extract switches — only annotations + relationships are replaced.
+      // Preserve previously-loaded doc-type annotations across analysis
+      // switches — only annotations + relationships are replaced.
       // Single setPdfAnnotations call avoids the intermediate render that
       // splitting annotations-then-relationships would cause when this runs
       // in Apollo's onCompleted (outside React's automatic batching).
@@ -600,6 +619,12 @@ export function useDocumentLoader({
       analysisId: undefined,
     },
     onCompleted: (data) => {
+      if (
+        data?.document &&
+        (data.document.id !== activeContextRef.current.documentId ||
+          data.corpus?.id !== activeContextRef.current.corpusId)
+      )
+        return;
       if (!data?.document) {
         console.error("onCompleted: No document data received.");
         setViewState(ViewState.ERROR);
@@ -684,7 +709,7 @@ export function useDocumentLoader({
     }
   );
 
-  // Lightweight refetch handle for analysis/extract switching.
+  // Lightweight refetch handle for manual/analysis switching.
   const { refetch: refetchAnnotationsOnly } = useQuery<
     GetDocumentAnnotationsOnlyOutput,
     GetDocumentAnnotationsOnlyInput
@@ -695,41 +720,30 @@ export function useDocumentLoader({
 
   const loading = corpusLoading || documentLoading;
 
-  // Re-fetch annotations when the active analysis changes.
-  // Deps intentionally omit `refetchAnnotationsOnly` and
-  // `processAnnotationsOnlyData`. ``refetch`` from ``useQuery`` is in fact
-  // identity-stable; the omission is for ``processAnnotationsOnlyData``,
-  // whose ``setPdfAnnotations`` dependency rebuilds the callback each
-  // render and would re-fire this effect on every parent render. Listing
-  // ``refetch`` alongside it keeps the dep array honest about what we
-  // intentionally omit instead of pretending only one is the problem.
+  // Extract evidence is owned by useAnalysisManager's datacell query. An
+  // extract ID is never a valid analysis filter for this document query.
+  // Leaving an extract restores manual annotations (or the selected analysis).
   useEffect(() => {
-    if (!loading && corpusId) {
+    let cancelled = false;
+    if (!loading && corpusId && !selectedExtractId) {
       refetchAnnotationsOnly({
         documentId,
         corpusId,
         analysisId: selectedAnalysisId || null,
       }).then(({ data }) => {
-        if (data) processAnnotationsOnlyData(data);
+        if (!cancelled && data?.document?.id === documentId) {
+          processAnnotationsOnlyData(data);
+        }
       });
     }
+    // A late response for another document/source must not replace the active
+    // extract or a newer analysis. Refetch/process callback identities are
+    // intentionally excluded, as before, to avoid a refresh on parent renders.
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedAnalysisId, corpusId, loading, documentId]);
-
-  // Re-fetch annotations when the active extract changes.
-  // Same dep-array rationale as the analysis-id effect above.
-  useEffect(() => {
-    if (!loading && corpusId) {
-      refetchAnnotationsOnly({
-        documentId,
-        corpusId,
-        analysisId: selectedExtractId || null,
-      }).then(({ data }) => {
-        if (data) processAnnotationsOnlyData(data);
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedExtractId, corpusId, loading, documentId]);
+  }, [selectedAnalysisId, selectedExtractId, corpusId, loading, documentId]);
 
   // Reset DOCX bytes on unmount to avoid stale WASM data when navigating away.
   useEffect(() => {

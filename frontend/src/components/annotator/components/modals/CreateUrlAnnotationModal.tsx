@@ -1,14 +1,9 @@
 import { SyntheticEvent, useEffect, useState } from "react";
 
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-} from "@os-legal/ui";
+import { ModalHeader, ModalBody, ModalFooter, Button } from "@os-legal/ui";
 
 import { isSafeUrl } from "../../utils/urlAnnotation";
+import { DocumentChildModal } from "../../../knowledge_base/document/LayoutComponents";
 
 interface CreateUrlAnnotationModalProps {
   visible: boolean;
@@ -63,7 +58,7 @@ export const CreateUrlAnnotationModal = ({
   };
 
   return (
-    <Modal open={visible} onClose={onCancel}>
+    <DocumentChildModal open={visible} onClose={onCancel}>
       <ModalHeader>{initialUrl ? "Edit link target" : "Add link"}</ModalHeader>
       <ModalBody>
         <div
@@ -138,6 +133,6 @@ export const CreateUrlAnnotationModal = ({
           {initialUrl ? "Save link" : "Create link"}
         </Button>
       </ModalFooter>
-    </Modal>
+    </DocumentChildModal>
   );
 };

@@ -95,7 +95,9 @@ AVAILABLE_TOOLS: tuple[ToolDefinition, ...] = (
             "Search for semantically similar content using vector embeddings. "
             "With multimodal embedder (CLIP), searches across both text and image "
             "content in a unified vector space. Use modalities filter to restrict results "
-            "to specific content types."
+            "to specific content types. PDF page/pages are one-based physical pages "
+            "including the cover, not printed labels; null page means unavailable. "
+            "Multi-page hits list pages; json geometry retains zero-based indices."
         ),
         category=ToolCategory.SEARCH,
         parameters=(
@@ -133,7 +135,9 @@ AVAILABLE_TOOLS: tuple[ToolDefinition, ...] = (
         name="search_exact_text",
         description=(
             "Find exact text matches in a document and return them as source nodes "
-            "with page numbers and bounding boxes. Essential for creating proper citations."
+            "with page numbers and bounding boxes. PDF page/pages are one-based physical "
+            "pages including the cover, not printed labels; null page means unavailable. "
+            "Multi-page hits list pages; annotation_json geometry retains zero-based indices."
         ),
         category=ToolCategory.SEARCH,
         parameters=(
@@ -350,7 +354,11 @@ AVAILABLE_TOOLS: tuple[ToolDefinition, ...] = (
         ),
         category=ToolCategory.DOCUMENT,
         parameters=(
-            ("page_number", "The page number to render (1-indexed)", True),
+            (
+                "page_number",
+                "Physical PDF page to render (1-based, including cover; not printed labels)",
+                True,
+            ),
             ("image_format", "Image format: 'jpeg' or 'png' (default 'jpeg')", False),
             ("dpi", "Resolution in DPI (default 150)", False),
         ),
@@ -1053,7 +1061,7 @@ AVAILABLE_TOOLS: tuple[ToolDefinition, ...] = (
         parameters=(
             (
                 "page_index",
-                "Optional 0-based page filter to list images from specific page",
+                "Optional 0-based page filter for embedded images; citation page is this index + 1",
                 False,
             ),
         ),
@@ -1067,7 +1075,11 @@ AVAILABLE_TOOLS: tuple[ToolDefinition, ...] = (
         ),
         category=ToolCategory.IMAGE,
         parameters=(
-            ("page_index", "0-based page index where the image is located", True),
+            (
+                "page_index",
+                "0-based embedded-image page index; physical citation page is index + 1",
+                True,
+            ),
             ("token_index", "0-based token index of the image on the page", True),
         ),
     ),

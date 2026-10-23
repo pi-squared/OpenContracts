@@ -1,6 +1,18 @@
+import {
+  useEvidenceFocus,
+  useEvidenceFocusNavigation,
+  useEvidenceFocusEscape,
+} from "../../../../hooks/useEvidenceFocus";
 import styled from "styled-components";
 import { PDFPageProxy } from "pdfjs-dist/types/src/display/api";
-import { useEffect, useMemo, useState, useCallback, useRef } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+  useCallback,
+  useRef,
+} from "react";
 import { PDFPage } from "./PDFPage";
 import {
   usePages,
@@ -16,6 +28,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import {
   useZoomLevel,
   useAnnotationSelection,
+  initialZoomSetAtom,
 } from "../../context/UISettingsAtom";
 import { useAllAnnotations } from "../../hooks/useAllAnnotations";
 import { pendingScrollSearchResultIdAtom } from "../../context/DocumentAtom";
@@ -136,7 +149,12 @@ export const PDF: React.FC<PDFProps> = ({
   const { pages } = usePages();
   const setViewStateError = useSetViewStateError();
   const { zoomLevel } = useZoomLevel();
+  const initialZoomSet = useAtomValue(initialZoomSetAtom);
   const { selectedAnnotations } = useAnnotationSelection();
+  useEvidenceFocusNavigation();
+  const { evidenceNavigation } = useEvidenceFocus();
+  const handledNavigation = useRef<typeof evidenceNavigation>(null);
+  const handledSelection = useRef<string | null>(null);
   const { pdfDoc } = usePdfDoc();
   const { textSearchMatches, selectedTextSearchMatchIndex } =
     useTextSearchState();
@@ -160,7 +178,13 @@ export const PDF: React.FC<PDFProps> = ({
   /* ------------------------------------------------------------------ */
   /* reference to the scrolling element                                 */
   const scrollContainerRef = useAtomValue(scrollContainerRefAtom);
-  const [pageHeights, setPageHeights] = useState<number[]>([]);
+  useEvidenceFocusEscape(scrollContainerRef);
+  const [pageLayout, setPageLayout] = useState<{
+    document: typeof pdfDoc;
+    zoom: number;
+    heights: number[];
+  }>({ document: pdfDoc, zoom: zoomLevel, heights: [] });
+  const pageHeights = pageLayout.heights;
   const allAnnotations = useAllAnnotations();
 
   /* ---------- build index & heights ---------------------------------- */
@@ -186,6 +210,12 @@ export const PDF: React.FC<PDFProps> = ({
     const annot = allAnnotations.find((a) => a.id === selectedAnnotations[0]);
     return annot?.page; // undefined if not found
   }, [selectedAnnotations, allAnnotations]);
+
+  const requestedPageIdx = useMemo(() => {
+    return allAnnotations.find(
+      (annotation) => annotation.id === evidenceNavigation?.annotationId
+    )?.page;
+  }, [evidenceNavigation, allAnnotations]);
 
   /**
    * Returns ALL page indices that contain parts of the selected annotation(s).
@@ -239,6 +269,7 @@ export const PDF: React.FC<PDFProps> = ({
   /* build the cache once per zoom level */
   useEffect(() => {
     if (!pdfDoc) return;
+    let active = true;
     (async () => {
       const h: number[] = [];
       for (let i = 1; i <= pdfDoc.numPages; i++) {
@@ -249,8 +280,14 @@ export const PDF: React.FC<PDFProps> = ({
         );
         h.push(height);
       }
-      setPageHeights(h); // updates state → re-render
+      // Bind the measurements to their source and scale. A fit/zoom can
+      // change while getPage is pending, so discard an obsolete measurement.
+      if (active)
+        setPageLayout({ document: pdfDoc, zoom: zoomLevel, heights: h });
     })();
+    return () => {
+      active = false;
+    };
   }, [pdfDoc, zoomLevel]);
 
   /* prefix sums for quick offset lookup */
@@ -275,6 +312,69 @@ export const PDF: React.FC<PDFProps> = ({
     // fallback – the page itself scrolls
     return window;
   }, [scrollContainerRef]);
+
+  // Preserve the point being read when manual or sidebar zoom changes page
+  // heights. Explicit source/selection navigation below still takes precedence.
+  const previousLayout = useRef<{
+    document: typeof pdfDoc;
+    heights: number[];
+    offsets: number[];
+  } | null>(null);
+  useLayoutEffect(() => {
+    if (!initialZoomSet || pageLayout.document !== pdfDoc) {
+      previousLayout.current = null;
+      return;
+    }
+    // Initial fit establishes the first reading position; it must not move
+    // the document to preserve a point from the temporary 100% layout.
+    // Retain a settled baseline while later zoom measurements are pending.
+    if (pageLayout.zoom !== zoomLevel) return;
+
+    const previous = previousLayout.current;
+    previousLayout.current = {
+      document: pdfDoc,
+      heights: pageHeights,
+      offsets: cumulative,
+    };
+    if (
+      !previous ||
+      previous.document !== pdfDoc ||
+      !previous.heights.length ||
+      previous.heights.length !== pageHeights.length ||
+      previous.heights === pageHeights
+    )
+      return;
+    const element = getScrollElement();
+    const scroll =
+      element instanceof Window ? window.scrollY : element.scrollTop;
+    const viewportHeight =
+      element instanceof Window ? window.innerHeight : element.clientHeight;
+    const readingPoint = scroll + viewportHeight / 2;
+    const pageIndex = previous.heights.findIndex(
+      (_, index) => readingPoint < previous.offsets[index + 1]
+    );
+    if (pageIndex < 0) return;
+    const fraction =
+      (readingPoint - previous.offsets[pageIndex]) /
+      previous.heights[pageIndex];
+    const nextScroll = Math.max(
+      0,
+      cumulative[pageIndex] +
+        fraction * pageHeights[pageIndex] -
+        viewportHeight / 2
+    );
+    if (element instanceof Window)
+      element.scrollTo({ top: nextScroll, behavior: "auto" });
+    else element.scrollTop = nextScroll;
+  }, [
+    pdfDoc,
+    pageLayout,
+    pageHeights,
+    cumulative,
+    getScrollElement,
+    initialZoomSet,
+    zoomLevel,
+  ]);
 
   /* ---------- visible window tracking -------------------------------- */
   const [range, setRange] = useState<[number, number]>([0, 0]); // [startIdx, endIdx]
@@ -458,25 +558,46 @@ export const PDF: React.FC<PDFProps> = ({
   );
 
   /**
-   * Scroll to the selected annotation's page whenever:
-   * 1. A new annotation is selected, OR
-   * 2. The page heights become available, OR
-   * 3. The zoom level changes (which affects page positions), OR
-   * 4. Annotations finish loading (critical for deep links)
+   * Navigate once for each explicit source request or newly located native
+   * selection. Layout changes preserve the reading position rather than replaying
+   * an already handled annotation destination.
    *
    * This effect handles the first part of the scroll-to-annotation process:
    * - Scroll the container so the correct PAGE is visible
    * - Set pendingScrollId so the PDFPage component can center the specific annotation
    */
   useEffect(() => {
-    // No selection or no height data yet - can't scroll properly
-    if (selectedAnnotations.length === 0 || pageHeights.length === 0) return;
-    if (selectedPageIdx === undefined) return;
+    const explicitNavigation =
+      evidenceNavigation && handledNavigation.current !== evidenceNavigation;
+    const targetId = explicitNavigation
+      ? evidenceNavigation.annotationId
+      : selectedAnnotations[0];
+    const targetPageIdx = explicitNavigation
+      ? requestedPageIdx
+      : selectedPageIdx;
+    const selectionKey =
+      selectedAnnotations[0] && selectedPageIdx !== undefined
+        ? `${selectedAnnotations[0]}:${selectedPageIdx}`
+        : null;
+    if (!selectionKey) handledSelection.current = null;
+    if (!targetId) {
+      setPendingScrollId(null);
+      return;
+    }
+    if (pageHeights.length === 0 || targetPageIdx === undefined) {
+      setPendingScrollId(null);
+      return;
+    }
 
-    const targetId = selectedAnnotations[0];
+    // Only new intent drives scrolling; remembered focus/selection never does.
+    if (!explicitNavigation && selectionKey === handledSelection.current)
+      return;
+
+    handledNavigation.current = evidenceNavigation;
+    handledSelection.current = selectionKey;
 
     // 1. Scroll the container/window so the target page is visible
-    const topOffset = Math.max(0, cumulative[selectedPageIdx] - 32);
+    const topOffset = Math.max(0, cumulative[targetPageIdx] - 32);
     getScrollElement().scrollTo({ top: topOffset, behavior: "smooth" });
 
     // 2. Tell the PDFPage components to look for and center this annotation
@@ -484,12 +605,13 @@ export const PDF: React.FC<PDFProps> = ({
   }, [
     selectedAnnotations,
     selectedPageIdx,
+    evidenceNavigation,
+    requestedPageIdx,
     pageHeights,
     cumulative,
     zoomLevel,
     getScrollElement,
     setPendingScrollId,
-    allAnnotations, // ✅ CRITICAL: Re-run when annotations load (fixes deep link race condition)
   ]);
 
   /* 2. scroll container & notify pages (mirrors annotation logic) */
@@ -550,7 +672,10 @@ export const PDF: React.FC<PDFProps> = ({
   if (pageInfos.length === 0) return null;
 
   return (
-    <div data-testid="pdf-annotator" style={{ position: "relative" }}>
+    <div
+      data-testid="pdf-annotator"
+      style={{ position: "relative", overflowAnchor: "none" }}
+    >
       {pageInfos.map((pInfo, idx) => {
         const top = cumulative[idx];
         const height = pageHeights[idx];

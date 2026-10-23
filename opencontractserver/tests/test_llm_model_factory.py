@@ -245,6 +245,33 @@ class TestBuildAgentModelDbWins(TestCase):
         result = build_agent_model("openai:gpt-4o")
         self.assertNotIsInstance(result, OpenAIResponsesModel)
 
+    def test_luna_request_omits_unsupported_sampling_parameters(self):
+        """Exercise SDK request serialization, without issuing a provider call."""
+        from openai import omit
+        from pydantic_ai.messages import ModelRequest, UserPromptPart
+        from pydantic_ai.models import ModelRequestParameters
+        from pydantic_ai.models.openai import OpenAIResponsesModel
+
+        self._configure_openai_creds(api_key="sk-db-key")
+        model = build_agent_model("openai:gpt-6-luna")
+        self.assertIsInstance(model, OpenAIResponsesModel)
+        with mock.patch.object(
+            model.client.responses, "create", new_callable=mock.AsyncMock
+        ) as create:
+            async_to_sync(model._responses_create)(
+                [
+                    ModelRequest(
+                        parts=[UserPromptPart(content="Find the contract price.")]
+                    )
+                ],
+                False,
+                {"temperature": 0.2, "top_p": 0.9, "openai_top_logprobs": 5},
+                ModelRequestParameters(),
+            )
+        self.assertIs(create.call_args.kwargs["temperature"], omit)
+        self.assertIs(create.call_args.kwargs["top_p"], omit)
+        self.assertIs(create.call_args.kwargs["top_logprobs"], omit)
+
 
 class TestRequiresResponsesApiAnchoring(TestCase):
     """The prefix match is anchored, so a longer version number cannot match.

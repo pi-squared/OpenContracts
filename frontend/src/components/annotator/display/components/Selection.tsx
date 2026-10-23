@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import _ from "lodash";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -28,8 +28,13 @@ import {
   isUrlAnnotation,
   openAnnotationUrl,
 } from "../../utils/urlAnnotation";
+import { useEvidenceFocus } from "../../../../hooks/useEvidenceFocus";
 import { useUpdateAnnotation } from "../../hooks/AnnotationHooks";
-import { OC_URL_LABEL } from "../../../../assets/configurations/constants";
+import { LabelDisplayBehavior } from "../../../../types/graphql-api";
+import {
+  ANNOTATION_LABEL_HOVER_EXIT_DELAY_MS,
+  OC_URL_LABEL,
+} from "../../../../assets/configurations/constants";
 import { useReactiveVar } from "@apollo/client";
 import { authToken } from "../../../../graphql/cache";
 import { PDFPageInfo } from "../../types/pdf";
@@ -47,6 +52,8 @@ import {
 
 interface SelectionProps {
   selected: boolean;
+  evidenceHovered?: boolean;
+  onEvidenceActivate?: (clientX: number, clientY: number) => void;
   pageInfo: PDFPageInfo;
   annotation: ServerTokenAnnotation;
   showInfo?: boolean;
@@ -117,6 +124,8 @@ const RelationshipIndicator = styled.div<{ $type: string; $color: string }>`
 
 export const Selection: React.FC<SelectionProps> = ({
   selected,
+  evidenceHovered = false,
+  onEvidenceActivate,
   pageInfo,
   annotation,
   children,
@@ -128,7 +137,23 @@ export const Selection: React.FC<SelectionProps> = ({
 }) => {
   const auth_token = useReactiveVar(authToken);
   const navigate = useNavigate();
-  const [hovered, setHovered] = useState(false);
+  const { focusedEvidenceId } = useEvidenceFocus();
+  const focused =
+    annotation.isEvidenceQuote && focusedEvidenceId === annotation.id;
+  const [locallyHovered, setHovered] = useState(false);
+  const [keyboardFocused, setKeyboardFocused] = useState(false);
+  const hovered = locallyHovered || evidenceHovered || keyboardFocused;
+  const hoverExitTimer = useRef<ReturnType<typeof setTimeout>>();
+  const handleHover = useCallback((active: boolean) => {
+    clearTimeout(hoverExitTimer.current);
+    if (active) setHovered(true);
+    else
+      hoverExitTimer.current = setTimeout(
+        () => setHovered(false),
+        ANNOTATION_LABEL_HOVER_EXIT_DELAY_MS
+      );
+  }, []);
+  useEffect(() => () => clearTimeout(hoverExitTimer.current), []);
   const [isEditLabelModalVisible, setIsEditLabelModalVisible] = useState(false);
   const [isEditUrlModalVisible, setIsEditUrlModalVisible] = useState(false);
   const [cloudVisible, setCloudVisible] = useState(false);
@@ -139,6 +164,9 @@ export const Selection: React.FC<SelectionProps> = ({
   const { showBoundingBoxes, showSelectedOnly, showLabels } =
     useAnnotationDisplay();
   const { hideLabels } = useAnnotationDisplay();
+  const labelHidden =
+    showLabels === LabelDisplayBehavior.HIDE ||
+    (showLabels === LabelDisplayBehavior.ON_HOVER && !hovered && !focused);
   const { pdfAnnotations } = usePdfAnnotations();
   const { selectedAnnotations, setSelectedAnnotations, selectedRelations } =
     useAnnotationSelection();
@@ -288,11 +316,11 @@ export const Selection: React.FC<SelectionProps> = ({
   }
 
   const handleMouseEnter = () => {
-    setHovered(true);
+    handleHover(true);
   };
 
   const handleMouseLeave = () => {
-    setHovered(false);
+    handleHover(false);
   };
 
   return (
@@ -303,127 +331,154 @@ export const Selection: React.FC<SelectionProps> = ({
         showBoundingBox={showBoundingBoxes}
         color={color}
         bounds={bounds}
-        onHover={setHovered}
+        onHover={handleHover}
+        foreground={locallyHovered || keyboardFocused}
+        evidenceTarget={annotation.isEvidenceQuote}
+        onKeyboardFocus={setKeyboardFocused}
+        keyboardFocusLocked={isEditLabelModalVisible || isEditUrlModalVisible}
+        onEvidenceActivate={onEvidenceActivate}
         onClick={onShiftClick}
         clickThroughOnPlainClick={isLinkAnnotation}
         approved={approved}
         rejected={rejected}
         selected={selected}
         scrollIntoView={scrollIntoView}
-      >
-        {showInfo && !hideLabels && (
-          <SelectionInfo
-            id="SelectionInfo"
-            $bounds={bounds}
-            className={`selection_${annotation.id}`}
-            $color={color}
-            $showBoundingBox={showBoundingBoxes}
-            $approved={approved}
-            $rejected={rejected}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <SelectionInfoContainer id="SelectionInfoContainer">
-              {relationship_type && (
-                <RelationshipIndicator
-                  $type={relationship_type}
-                  $color={color}
-                />
-              )}
-              <VerticallyJustifiedEndDiv>
-                <LabelTagContainer
-                  $hidden={hidden}
-                  $hovered={hovered}
-                  $color={color}
-                  $display_behavior={showLabels}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
+        label={
+          (showInfo || annotation.isEvidenceQuote) &&
+          (!hideLabels || annotation.isEvidenceQuote) && (
+            <SelectionInfo
+              id="SelectionInfo"
+              data-annotation-label={annotation.id}
+              role="group"
+              aria-label={`Annotation: ${annotationChipLabel(annotation)}`}
+              hidden={labelHidden}
+              style={{ display: labelHidden ? "none" : undefined }}
+              $bounds={bounds}
+              className={`selection_${annotation.id}`}
+              $color={color}
+              $showBoundingBox={showBoundingBoxes}
+              $approved={approved}
+              $rejected={rejected}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <SelectionInfoContainer id="SelectionInfoContainer">
+                {relationship_type && (
+                  <RelationshipIndicator
+                    $type={relationship_type}
+                    $color={color}
+                  />
+                )}
+                <VerticallyJustifiedEndDiv>
+                  <LabelTagContainer
+                    $hidden={hidden}
+                    $hovered={hovered || focused}
+                    $color={color}
+                    $display_behavior={showLabels}
                   >
-                    <RadialButtonCloud
-                      parentBackgroundColor={color}
-                      actions={actions}
-                    />
                     <div
                       style={{
-                        whiteSpace: "nowrap",
-                        overflowX: "visible",
-                        marginLeft: "8px",
+                        position: "relative",
                         display: "flex",
                         alignItems: "center",
-                        gap: "4px",
                       }}
                     >
-                      {isLinkAnnotation && (
-                        <ExternalLink
-                          size={12}
-                          aria-label="External link annotation"
-                        />
-                      )}
-                      <span>{annotationChipLabel(annotation)}</span>
+                      <RadialButtonCloud
+                        parentBackgroundColor={color}
+                        actions={actions}
+                      />
+                      <div
+                        style={{
+                          whiteSpace: "nowrap",
+                          overflowX: "visible",
+                          marginLeft: "8px",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "4px",
+                        }}
+                      >
+                        {isLinkAnnotation && (
+                          <ExternalLink
+                            size={12}
+                            aria-label="External link annotation"
+                          />
+                        )}
+                        <span>{annotationChipLabel(annotation)}</span>
+                      </div>
+                      {annotation.myPermissions.includes(
+                        PermissionTypes.CAN_UPDATE
+                      ) &&
+                        !annotation.annotationLabel.readonly && (
+                          <Pencil
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`Edit label: ${annotationChipLabel(
+                              annotation
+                            )}`}
+                            onKeyDown={(event) => {
+                              if (event.key === "Enter" || event.key === " ") {
+                                event.preventDefault();
+                                event.currentTarget.dispatchEvent(
+                                  new MouseEvent("click", { bubbles: true })
+                                );
+                              }
+                            }}
+                            size={14}
+                            style={{
+                              marginLeft: ".25rem",
+                              marginRight: ".125rem",
+                              cursor: "pointer",
+                            }}
+                            onClick={(e: React.MouseEvent) => {
+                              e.stopPropagation();
+                              // OC_URL annotations get the link-target editor;
+                              // every other annotation gets the standard label
+                              // editor.
+                              if (
+                                annotation.annotationLabel?.text ===
+                                OC_URL_LABEL
+                              ) {
+                                setIsEditUrlModalVisible(true);
+                              } else {
+                                setIsEditLabelModalVisible(true);
+                              }
+                            }}
+                            onMouseDown={(e: React.MouseEvent) => {
+                              e.stopPropagation();
+                            }}
+                          />
+                        )}
+                      {annotation.myPermissions.includes(
+                        PermissionTypes.CAN_REMOVE
+                      ) &&
+                        !annotation.annotationLabel.readonly && (
+                          <Trash2
+                            size={14}
+                            style={{
+                              marginLeft: ".125rem",
+                              marginRight: ".25rem",
+                              cursor: "pointer",
+                            }}
+                            onClick={(e: React.MouseEvent) => {
+                              e.stopPropagation();
+                              removeAnnotation();
+                            }}
+                            // We have to prevent the default behaviour for
+                            // the pdf canvas here, in order to be able to capture
+                            // the click event.
+                            onMouseDown={(e: React.MouseEvent) => {
+                              e.stopPropagation();
+                            }}
+                          />
+                        )}
                     </div>
-                    {annotation.myPermissions.includes(
-                      PermissionTypes.CAN_UPDATE
-                    ) &&
-                      !annotation.annotationLabel.readonly && (
-                        <Pencil
-                          size={14}
-                          style={{
-                            marginLeft: ".25rem",
-                            marginRight: ".125rem",
-                            cursor: "pointer",
-                          }}
-                          onClick={(e: React.MouseEvent) => {
-                            e.stopPropagation();
-                            // OC_URL annotations get the link-target editor;
-                            // every other annotation gets the standard label
-                            // editor.
-                            if (
-                              annotation.annotationLabel?.text === OC_URL_LABEL
-                            ) {
-                              setIsEditUrlModalVisible(true);
-                            } else {
-                              setIsEditLabelModalVisible(true);
-                            }
-                          }}
-                          onMouseDown={(e: React.MouseEvent) => {
-                            e.stopPropagation();
-                          }}
-                        />
-                      )}
-                    {annotation.myPermissions.includes(
-                      PermissionTypes.CAN_REMOVE
-                    ) &&
-                      !annotation.annotationLabel.readonly && (
-                        <Trash2
-                          size={14}
-                          style={{
-                            marginLeft: ".125rem",
-                            marginRight: ".25rem",
-                            cursor: "pointer",
-                          }}
-                          onClick={(e: React.MouseEvent) => {
-                            e.stopPropagation();
-                            removeAnnotation();
-                          }}
-                          // We have to prevent the default behaviour for
-                          // the pdf canvas here, in order to be able to capture
-                          // the click event.
-                          onMouseDown={(e: React.MouseEvent) => {
-                            e.stopPropagation();
-                          }}
-                        />
-                      )}
-                  </div>
-                </LabelTagContainer>
-              </VerticallyJustifiedEndDiv>
-            </SelectionInfoContainer>
-          </SelectionInfo>
-        )}
+                  </LabelTagContainer>
+                </VerticallyJustifiedEndDiv>
+              </SelectionInfoContainer>
+            </SelectionInfo>
+          )
+        }
+      >
         <div
           style={{
             width: "100%",

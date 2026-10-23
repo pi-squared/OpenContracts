@@ -1,15 +1,23 @@
-import React, { useState, useRef } from "react";
-import styled from "styled-components";
-import { Code, Check, X, Eye, Edit3, EyeOff } from "lucide-react";
+import {
+  ReviewSaveOptions,
+  reviewEnvelope,
+} from "../../../utils/reviewerFeedback";
+import {
+  projectFindingValue,
+  findingFrom,
+  findingOutcome,
+} from "../../../utils/findingValue";
+import { useLocation } from "react-router-dom";
+import { useEvidenceFocus } from "../../../hooks/useEvidenceFocus";
+import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { FindingDetails } from "../../extracts/datagrid/FindingView";
+import styled, { keyframes } from "styled-components";
+import { Code, Check, X, Eye, Edit3, EyeOff, Loader2 } from "lucide-react";
 import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
-import { useNavigate, useLocation } from "react-router-dom";
 import { LoadingOverlay } from "../../common/LoadingOverlay";
 import { CellEditor } from "./CellEditor";
-import {
-  ColumnType,
-  DatacellType,
-  LabelDisplayBehavior,
-} from "../../../types/graphql-api";
+import { ColumnType, DatacellType } from "../../../types/graphql-api";
 import { useMutation, gql } from "@apollo/client";
 import {
   REQUEST_APPROVE_DATACELL,
@@ -22,21 +30,90 @@ import {
   RequestEditDatacellOutputType,
   RequestEditDatacellInputType,
 } from "../../../graphql/mutations";
-import { TruncatedText } from "../../widgets/data-display/TruncatedText";
 import { HighlightItem } from "./HighlightItem";
 import {
   displayAnnotationOnAnnotatorLoad,
   onlyDisplayTheseAnnotations,
-  showSelectedAnnotationOnly,
-  showAnnotationBoundingBoxes,
-  showStructuralAnnotations,
-  showAnnotationLabels,
 } from "../../../graphql/cache";
 import { toast } from "react-toastify";
 import { convertToServerAnnotation } from "../../../utils/transform";
-import ReactJson from "react-json-view";
 import { useAnalysisManager } from "../hooks/AnalysisHooks";
-import { updateAnnotationDisplayParams } from "../../../utils/navigationUtils";
+
+// Read the presentation projection; review/edit operations retain the original data.
+function InlineResultValue({
+  value,
+  isApproved,
+  isRejected,
+  isEdited,
+  evidenceAnchors,
+  onViewQuote,
+}: {
+  value: unknown;
+  isApproved: boolean;
+  isRejected: boolean;
+  isEdited: boolean;
+  evidenceAnchors?: unknown[];
+  onViewQuote?: (annotationId: string) => void;
+}) {
+  const finding = findingFrom(value);
+  const label = (key: string) =>
+    key
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .replace(/_/g, " ")
+      .replace(/^./, (first) => first.toUpperCase());
+  const readable = (item: unknown): React.ReactNode => {
+    if (item === null || item === undefined || item === "")
+      return <span>No value recorded</span>;
+    if (typeof item === "boolean") return <span>{item ? "Yes" : "No"}</span>;
+    if (Array.isArray(item))
+      return item.length ? (
+        <ol>
+          {item.map((entry, index) => (
+            <li key={index}>{readable(entry)}</li>
+          ))}
+        </ol>
+      ) : (
+        <span>None recorded</span>
+      );
+    if (typeof item === "object")
+      return Object.keys(item).length ? (
+        <dl>
+          {Object.entries(item).map(([key, entry]) => (
+            <React.Fragment key={key}>
+              <dt>{label(key)}</dt>
+              <dd>{readable(entry)}</dd>
+            </React.Fragment>
+          ))}
+        </dl>
+      ) : (
+        <span>No fields recorded</span>
+      );
+    return <span style={{ whiteSpace: "pre-wrap" }}>{String(item)}</span>;
+  };
+  if (finding)
+    return (
+      <div className="finding-summary-panel">
+        <FindingDetails value={finding} summaryOnly />
+      </div>
+    );
+  return (
+    <div>
+      {value !== null && typeof value === "object" && !Array.isArray(value) ? (
+        Object.entries(value).map(([key, item]) => (
+          <section key={key}>
+            <h3>{label(key)}</h3>
+            {readable(item)}
+          </section>
+        ))
+      ) : (
+        <section>
+          <h3>Result</h3>
+          {readable(value)}
+        </section>
+      )}
+    </div>
+  );
+}
 
 interface SingleDocumentExtractResultsProps {
   datacells: DatacellType[];
@@ -44,27 +121,28 @@ interface SingleDocumentExtractResultsProps {
 }
 
 /**
- * SingleDocumentExtractResults component displays the extraction results forss a single document.
+ * SingleDocumentExtractResults component displays the extraction results for a single document.
  * It renders a table with columns and their extracted data, along with any associated annotations.
  */
 export const SingleDocumentExtractResults: React.FC<
   SingleDocumentExtractResultsProps
 > = ({ datacells, columns }) => {
+  const {
+    focusedEvidenceId,
+    focusRequest,
+    setFocusedEvidence,
+    navigateToEvidence,
+  } = useEvidenceFocus();
   // State variables
   const [hoveredRow, setHoveredRow] = useState<string | null>(null);
   const [tryingApprove, setTryingApprove] = useState(false);
   const [tryingReject, setTryingReject] = useState(false);
-  const [activeCellId, setActiveCellId] = useState<string | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [annotationVisibility, setAnnotationVisibility] = useState<{
     [key: string]: boolean;
   }>({});
-  const cellRefs = useRef<{ [key: string]: HTMLDivElement }>({});
+  const annotationTargets = useRef(new Map<string, HTMLDivElement>());
   const [isEditing, setIsEditing] = useState(false);
   const [editingCell, setEditingCell] = useState<DatacellType | null>(null);
-
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const [requestApprove] = useMutation<
     RequestApproveDatacellOutputType,
@@ -100,14 +178,62 @@ export const SingleDocumentExtractResults: React.FC<
     },
   });
 
-  const { dataCells, setDataCells } = useAnalysisManager();
+  const {
+    dataCells,
+    setDataCells,
+    extractResultsLoading,
+    extractResultsError,
+    retryExtractResults,
+  } = useAnalysisManager();
 
   const lastCells = dataCells.length ? dataCells : datacells;
+  const location = useLocation();
+  const inspection = new URLSearchParams(location.search);
+  const originalCellId =
+    inspection.get("findingVersion") === "original"
+      ? inspection.get("findingCell")
+      : null;
+  const valueForInspection = (cell: DatacellType) => {
+    const value =
+      cell.id === originalCellId ? cell.data : cell.correctedData ?? cell.data;
+    return projectFindingValue(value?.data ?? value);
+  };
 
-  // Compute activeCell dynamically
-  const activeCell = activeCellId
-    ? dataCells.find((cell) => cell.id === activeCellId)
-    : null;
+  const focusedCellId = focusedEvidenceId
+    ? lastCells.find(
+        (cell) =>
+          findingOutcome(valueForInspection(cell)) !== "not_found" &&
+          cell.fullSourceList?.some(
+            (source) =>
+              source.id === focusedEvidenceId &&
+              isReviewerVisibleLabel(source.annotationLabel)
+          )
+      )?.id
+    : undefined;
+  const focusedGroupOpen = focusedCellId
+    ? Boolean(annotationVisibility[focusedCellId])
+    : false;
+  useEffect(() => {
+    if (!focusedCellId || isEditing) return;
+    setAnnotationVisibility((previous) =>
+      previous[focusedCellId]
+        ? previous
+        : { ...previous, [focusedCellId]: true }
+    );
+  }, [focusedCellId, focusRequest, isEditing]);
+  useLayoutEffect(() => {
+    if (!focusedEvidenceId || !focusedGroupOpen || isEditing) return;
+    const target = annotationTargets.current.get(focusedEvidenceId);
+    if (!target) return;
+    target.focus({ preventScroll: true });
+    target.scrollIntoView?.({
+      block: "nearest",
+      inline: "nearest",
+      behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
+  }, [focusedEvidenceId, focusRequest, focusedGroupOpen, isEditing]);
 
   /**
    * Toggles the visibility of annotations under a cell.
@@ -141,12 +267,14 @@ export const SingleDocumentExtractResults: React.FC<
 
     requestApprove({ variables: { datacellId: cell.id } })
       .then((response) => {
-        // Grab the real datacell
+        // Review responses omit source projections; retain the loaded evidence.
         const updatedCell = response.data?.approveDatacell?.obj;
 
         if (updatedCell) {
           setDataCells((prev) =>
-            prev.map((c) => (c.id === updatedCell.id ? updatedCell : c))
+            prev.map((c) =>
+              c.id === updatedCell.id ? { ...c, ...updatedCell } : c
+            )
           );
           toast.success("Cell approved successfully.");
         } else {
@@ -166,12 +294,14 @@ export const SingleDocumentExtractResults: React.FC<
 
     requestReject({ variables: { datacellId: cell.id } })
       .then((response) => {
-        // Grab the real datacell
+        // Review responses omit source projections; retain the loaded evidence.
         const updatedCell = response.data?.rejectDatacell?.obj;
 
         if (updatedCell) {
           setDataCells((prev) =>
-            prev.map((c) => (c.id === updatedCell.id ? updatedCell : c))
+            prev.map((c) =>
+              c.id === updatedCell.id ? { ...c, ...updatedCell } : c
+            )
           );
           toast.success("Cell rejected successfully.");
         } else {
@@ -188,28 +318,19 @@ export const SingleDocumentExtractResults: React.FC<
    * @returns The rendered value as JSX.
    */
   const renderCellValue = (cell: DatacellType) => {
-    const value = cell.correctedData?.data || cell.data?.data || "";
-    const ref = cellRefs.current[cell.id];
-    const cellWidth = ref?.offsetWidth ?? 0;
+    const value = valueForInspection(cell) ?? "";
 
     return (
-      <DataCell statusColor={getStatusColor(cell)}>
-        <div style={{ flex: 1 }}>
-          {typeof value === "object" && value !== null ? (
-            <JsonViewButton
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setActiveCellId(cell.id);
-                setIsModalOpen(true);
-              }}
-            >
-              <Code />
-              <span>View JSON</span>
-            </JsonViewButton>
-          ) : (
-            <TruncatedText text={String(value)} limit={cellWidth - 100} />
-          )}
+      <InlineDataCell statusColor={getStatusColor(cell)}>
+        <div className="inline-result-content">
+          <InlineResultValue
+            value={value}
+            isApproved={Boolean(cell.approvedBy)}
+            isRejected={Boolean(cell.rejectedBy)}
+            isEdited={Boolean(cell.correctedData)}
+            evidenceAnchors={cell.findingEvidence}
+            onViewQuote={navigateToEvidence}
+          />
         </div>
 
         <div
@@ -221,17 +342,19 @@ export const SingleDocumentExtractResults: React.FC<
         >
           <ActionButton
             className="edit"
+            aria-label="Edit finding"
+            disabled={cell.id === originalCellId}
             onClick={(e) => {
               e.stopPropagation();
               setEditingCell(cell);
               setIsEditing(true);
-              setActiveCellId(cell.id);
             }}
           >
             <Edit3 />
           </ActionButton>
           <ActionButton
             className="approve"
+            aria-label="Approve finding"
             onClick={(e) => {
               e.stopPropagation();
               handleApprove(cell);
@@ -242,6 +365,7 @@ export const SingleDocumentExtractResults: React.FC<
           </ActionButton>
           <ActionButton
             className="reject"
+            aria-label="Reject finding"
             onClick={(e) => {
               e.stopPropagation();
               handleReject(cell);
@@ -251,50 +375,79 @@ export const SingleDocumentExtractResults: React.FC<
             <X />
           </ActionButton>
         </div>
-      </DataCell>
+      </InlineDataCell>
     );
   };
 
-  const handleSave = (newValue: any) => {
-    console.log("Handle save with newValue:", newValue);
-    if (editingCell) {
-      updateDatacell({
+  const handleSave = async (
+    newValue: unknown,
+    options: ReviewSaveOptions = {}
+  ) => {
+    if (!editingCell) return false;
+    try {
+      const response = await updateDatacell({
         variables: {
           datacellId: editingCell.id,
-          editedData: { data: newValue },
+          editedData: findingFrom(newValue)
+            ? reviewEnvelope(newValue)
+            : { data: newValue },
         },
-      })
-        .then((response) => {
-          const updatedCell = response.data?.editDatacell?.obj;
-          if (updatedCell) {
-            // Log the updated cell for debugging
-            console.log("Updated Cell:", updatedCell);
-
-            // Update the dataCells state
-            setDataCells((prevCells) =>
-              prevCells.map((cell) =>
-                cell.id === updatedCell.id ? { ...cell, ...updatedCell } : cell
-              )
-            );
-            toast.success("Cell updated successfully.");
-            console.log("Updated Cell:", updatedCell);
-            console.log("Updated dataCells:", dataCells);
-          } else {
-            toast.error("Failed to update cell.");
-          }
-        })
-        .catch((error) => {
-          toast.error("Error updating cell.");
-          console.error(error);
-        })
-        .finally(() => {
-          setIsEditing(false);
-          setEditingCell(null);
-        });
+      });
+      const updated = response.data?.editDatacell?.obj;
+      if (!response.data?.editDatacell?.ok || !updated) {
+        toast.error("Failed to save the review. Please try again.");
+        return false;
+      }
+      setDataCells((previous) =>
+        previous.map((cell) =>
+          cell.id === updated.id ? { ...cell, ...updated } : cell
+        )
+      );
+      if (options.keepOpen)
+        setEditingCell((previous) =>
+          previous ? { ...previous, ...updated } : null
+        );
+      else {
+        setIsEditing(false);
+        setEditingCell(null);
+      }
+      toast.success(
+        options.successMessage ??
+          (findingFrom(newValue) && reviewEnvelope(newValue).reviewer_feedback
+            ? "Review comments saved."
+            : "Cell updated successfully.")
+      );
+      return true;
+    } catch {
+      toast.error("The review could not be saved. Please try again.");
+      return false;
     }
   };
 
-  console.log("Sample datacell:", dataCells[0]);
+  // Keep an active review mounted while evidence updates refresh the query.
+  if (extractResultsLoading && !isEditing) {
+    return (
+      <ResultsStatus role="status" aria-live="polite">
+        <Spinner size={20} aria-hidden="true" />
+        Loading extracts…
+      </ResultsStatus>
+    );
+  }
+
+  if (extractResultsError && !isEditing) {
+    return (
+      <ResultsStatus role="alert">
+        <p>Could not load extract results. Please try again.</p>
+        <button onClick={() => retryExtractResults().catch(() => {})}>
+          Retry extracts
+        </button>
+      </ResultsStatus>
+    );
+  }
+
+  if (lastCells.length === 0 && !isEditing) {
+    return <ResultsStatus>No extract results for this document.</ResultsStatus>;
+  }
 
   return (
     <Container>
@@ -318,6 +471,14 @@ export const SingleDocumentExtractResults: React.FC<
               const cell = lastCells.find(
                 (c) => c && c.column && c.column.id === column.id
               );
+              const visibleSources =
+                (findingOutcome(cell && valueForInspection(cell)) ===
+                "not_found"
+                  ? []
+                  : cell?.fullSourceList
+                )?.filter((source) =>
+                  isReviewerVisibleLabel(source.annotationLabel)
+                ) ?? [];
               return (
                 <React.Fragment key={column.id}>
                   <TableRow
@@ -331,74 +492,100 @@ export const SingleDocumentExtractResults: React.FC<
                           style={{ display: "flex", flexDirection: "column" }}
                         >
                           <span>{column.name}</span>
-                          {cell &&
-                            cell.fullSourceList &&
-                            cell.fullSourceList.length > 0 && (
-                              <AnnotationShield
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  toggleAnnotationVisibility(cell.id);
-                                }}
-                              >
-                                {annotationVisibility[cell.id] ? (
-                                  <Eye />
-                                ) : (
-                                  <EyeOff />
-                                )}
-                                {cell.fullSourceList.length} Annotation
-                                {cell.fullSourceList.length !== 1 ? "s" : ""}
-                              </AnnotationShield>
-                            )}
+                          {cell && visibleSources.length > 0 && (
+                            <AnnotationShield
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleAnnotationVisibility(cell.id);
+                              }}
+                            >
+                              {annotationVisibility[cell.id] ? (
+                                <Eye />
+                              ) : (
+                                <EyeOff />
+                              )}
+                              {visibleSources.length} Annotation
+                              {visibleSources.length !== 1 ? "s" : ""}
+                            </AnnotationShield>
+                          )}
                         </div>
                         {cell && (
                           <CellStatus>
                             {cell.approvedBy && <Check color="green" />}
-                            {cell.rejectedBy && <X color="red" />}
+                            {cell.rejectedBy && (
+                              <span>
+                                <X color="red" aria-hidden="true" /> Rejected
+                              </span>
+                            )}
                             {cell.correctedData && <Code color="blue" />}
                           </CellStatus>
                         )}
                       </CellContent>
                     </TableCell>
                     <TableCell>
-                      <CellContainer
-                        ref={(el) => cell && (cellRefs.current[cell.id] = el!)}
-                        style={{ position: "relative" }}
-                      >
+                      <CellContainer style={{ position: "relative" }}>
                         {cell ? renderCellValue(cell) : "-"}
                       </CellContainer>
                     </TableCell>
                   </TableRow>
                   {cell &&
-                    cell.fullSourceList &&
-                    cell.fullSourceList.length > 0 &&
+                    visibleSources.length > 0 &&
                     annotationVisibility[cell.id] && (
                       <AnnotationRow>
                         <TableCell colSpan={2}>
                           <AnnotationsContainer>
-                            {cell.fullSourceList.map((annotation) => (
-                              <HighlightItem
+                            {visibleSources.map((annotation) => (
+                              <div
                                 key={annotation.id}
-                                annotation={convertToServerAnnotation(
-                                  annotation
-                                )}
-                                read_only={true}
-                                relations={[]}
-                                onSelect={(annotationId: string) => {
-                                  onlyDisplayTheseAnnotations([annotation]);
-                                  displayAnnotationOnAnnotatorLoad(annotation);
-                                  // Update display settings via URL - CentralRouteManager will set reactive vars
-                                  updateAnnotationDisplayParams(
-                                    location,
-                                    navigate,
-                                    {
-                                      showSelectedOnly: false,
-                                      showBoundingBoxes: true,
-                                      showStructural: true,
-                                      labelDisplay: LabelDisplayBehavior.ALWAYS,
-                                    }
-                                  );
+                                ref={(node) => {
+                                  if (node)
+                                    annotationTargets.current.set(
+                                      annotation.id,
+                                      node
+                                    );
+                                  else
+                                    annotationTargets.current.delete(
+                                      annotation.id
+                                    );
                                 }}
-                              />
+                                tabIndex={-1}
+                                data-extract-annotation-target={annotation.id}
+                                style={{
+                                  scrollMarginTop: 56,
+                                  scrollMarginBottom: 12,
+                                }}
+                                onKeyDown={(event) => {
+                                  if (event.key === "Escape") {
+                                    event.stopPropagation();
+                                    setFocusedEvidence(null);
+                                  }
+                                }}
+                              >
+                                <HighlightItem
+                                  annotation={convertToServerAnnotation(
+                                    annotation
+                                  )}
+                                  read_only={true}
+                                  relations={[]}
+                                  focused={focusedEvidenceId === annotation.id}
+                                  onInspect={() =>
+                                    focusedEvidenceId === annotation.id
+                                      ? setFocusedEvidence(null)
+                                      : navigateToEvidence(annotation.id)
+                                  }
+                                  selectionDisplay={{
+                                    showSelectedOnly: false,
+                                    showBoundingBoxes: true,
+                                    showStructural: false,
+                                  }}
+                                  onSelect={() => {
+                                    onlyDisplayTheseAnnotations([annotation]);
+                                    displayAnnotationOnAnnotatorLoad(
+                                      annotation
+                                    );
+                                  }}
+                                />
+                              </div>
                             ))}
                           </AnnotationsContainer>
                         </TableCell>
@@ -411,32 +598,10 @@ export const SingleDocumentExtractResults: React.FC<
         </Table>
       </TableContainer>
 
-      {isModalOpen && activeCell && (
-        <ModalOverlay onClick={() => setIsModalOpen(false)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <CloseModalButton onClick={() => setIsModalOpen(false)}>
-              &times;
-            </CloseModalButton>
-            <ModalHeader>JSON View</ModalHeader>
-            <ReactJson
-              src={
-                activeCell.correctedData?.data || activeCell.data?.data || {}
-              }
-              theme="rjv-default"
-              style={{ padding: "20px" }}
-              enableClipboard={false}
-              displayDataTypes={false}
-              collapsed={2}
-            />
-          </ModalContent>
-        </ModalOverlay>
-      )}
-
       {isEditing && editingCell && (
         <CellEditor
-          value={
-            editingCell.correctedData?.data || editingCell.data?.data || ""
-          }
+          key={editingCell.id}
+          value={editingCell.correctedData ?? editingCell.data ?? ""}
           onSave={handleSave}
           onClose={() => {
             setIsEditing(false);
@@ -538,25 +703,142 @@ const DataCell = styled(CellContent)<DataCellProps>`
   transition: background-color 0.2s ease;
 `;
 
-const JsonViewButton = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  color: ${OS_LEGAL_COLORS.primaryBlue};
-  font-size: 0.9rem;
-  position: relative;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
+const InlineDataCell = styled(DataCell)`
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 10px;
+  gap: 16px;
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.6;
 
-  &:hover {
-    background-color: rgba(59, 130, 246, 0.1);
+  .inline-result-content {
+    width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    container-type: inline-size;
+  }
+  .inline-result-content > div {
+    font: inherit;
+  }
+  .inline-result-content section {
+    min-width: 0;
+  }
+  .inline-result-content h3 {
+    color: #475569;
+    font-size: 0.93em;
+    font-weight: 600;
+  }
+  .inline-result-content > div > section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+    border-top: 1px solid #e2e8f0;
+    padding: 10px 0;
+  }
+  .inline-result-content > div > section > h3 {
+    margin: 0;
+  }
+  .inline-result-content > div > section > h3 ~ * {
+    min-width: 0;
+  }
+  .inline-result-content > div > section > h3 ~ div {
+    grid-column: 1 / -1;
+  }
+  .inline-result-content dl {
+    margin: 0;
+  }
+  .inline-result-content dt {
+    font-weight: 600;
+    margin-top: 8px;
+    color: #475569;
+  }
+  .inline-result-content dd {
+    margin: 2px 0 0;
+    white-space: pre-wrap;
+  }
+  .inline-result-content ul,
+  .inline-result-content ol {
+    margin: 4px 0;
+    padding-left: 20px;
+  }
+  .inline-result-content blockquote {
+    border: 0;
+    border-radius: 6px;
+    margin: 8px 0;
+    padding: 12px;
+    background: #f1f5f9;
+    color: #334155;
+  }
+  .inline-result-content .review {
+    color: #475569;
+    font-size: 0.86em;
+    margin-top: 8px;
+  }
+  .inline-result-content .evidence-location {
+    color: #475569;
+    font-size: 0.86em;
+  }
+  .inline-result-content > div > section:first-of-type > span {
+    color: #1e293b;
+  }
+  .finding-summary-panel {
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: #f8fafc;
+    color: #334155;
+    font: inherit;
+  }
+  .finding-summary-panel .finding-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .finding-summary-panel .finding-verdict {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .finding-summary-panel .finding-summary section {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+  }
+  .finding-summary-panel h3 {
+    margin: 0 0 6px;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .finding-summary-panel section > span {
+    color: #334155;
+    white-space: pre-wrap;
+  }
+  button:focus-visible {
+    outline: 2px solid #0f766e;
+    outline-offset: 3px;
   }
 
-  svg {
-    width: 16px;
-    height: 16px;
+  @container (min-width: 320px) {
+    .inline-result-content > div > section {
+      grid-template-columns: minmax(80px, 0.65fr) minmax(0, 1.6fr);
+      gap: 12px;
+    }
+    .inline-result-content > div > section > h3 ~ div {
+      grid-column: 2;
+    }
   }
 `;
 
@@ -667,38 +949,6 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-`;
-
-const ModalContent = styled.div`
-  background-color: #fff;
-  width: 80%;
-  max-width: 600px;
-  padding: 20px;
-  border-radius: 8px;
-  position: relative;
-`;
-
-const CloseModalButton = styled.button`
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-`;
-
 // Styled Button Component
 const StyledButton = styled.button<{ color?: string; hoverColor?: string }>`
   display: inline-flex;
@@ -768,10 +1018,6 @@ const ActionButtonsWrapper = styled.div`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const ModalHeader = styled.h2`
-  color: black;
-`;
-
 // Styled component for Edit Icon
 const EditIcon = styled.button`
   position: absolute;
@@ -834,4 +1080,22 @@ const ActionButton = styled.button`
     width: 16px;
     height: 16px;
   }
+`;
+
+const spin = keyframes`
+  to { transform: rotate(360deg); }
+`;
+
+const Spinner = styled(Loader2)`
+  animation: ${spin} 1s linear infinite;
+`;
+
+const ResultsStatus = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  min-height: 120px;
+  color: ${OS_LEGAL_COLORS.textSecondary};
 `;

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useDialogFocus } from "../../../hooks/useDialogFocus";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -414,6 +415,7 @@ export const CreateExtractModal: React.FC<ExtractModalProps> = ({
   fieldsetId,
   corpusId,
 }) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [localSelectedFieldset, setLocalSelectedFieldset] =
@@ -535,6 +537,8 @@ export const CreateExtractModal: React.FC<ExtractModalProps> = ({
     onClose();
   };
 
+  useDialogFocus(open && !loading && !error, dialogRef, handleClose);
+
   if (loading) return null;
   if (error) return null;
   if (!open) return null;
@@ -544,6 +548,11 @@ export const CreateExtractModal: React.FC<ExtractModalProps> = ({
   return createPortal(
     <ModalOverlay onClick={handleClose}>
       <ModalContainer
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="extract-dialog-title"
+        tabIndex={-1}
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
@@ -551,13 +560,14 @@ export const CreateExtractModal: React.FC<ExtractModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         <ModalHeader>
-          <ModalTitle>
+          <ModalTitle id="extract-dialog-title">
             {extractId ? "Edit Extract" : "Create New Extract"}
           </ModalTitle>
           <ModalSubtitle>
             Set up a new data extraction workflow to analyze your documents
           </ModalSubtitle>
           <CloseButton
+            aria-label="Close"
             onClick={handleClose}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -579,7 +589,6 @@ export const CreateExtractModal: React.FC<ExtractModalProps> = ({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   disabled={isLoading}
-                  autoFocus
                 />
               </InputWrapper>
               <HelperText>

@@ -108,6 +108,9 @@ export interface DocumentLayoutProps {
   pdfAnnotations: PdfAnnotations;
   analyses: AnalysisType[];
   extracts: ExtractType[];
+  extractsLoading: boolean;
+  extractsError?: Error;
+  retryExtracts: () => void;
   selectedAnalysis: AnalysisType | null;
   selectedExtract: ExtractType | null;
   threadCount: number;

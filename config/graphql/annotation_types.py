@@ -276,6 +276,36 @@ class AnnotationType(Node):
 
     json: GenericScalar | None = strawberry.field(name="json", default=None)
 
+    @strawberry.field(name="isEvidenceQuote")
+    def is_evidence_quote(self, info: strawberry.Info) -> bool:
+        if getattr(self, "_explicit_evidence_quote", False):
+            return True
+        eligible = getattr(self, "_eligible_evidence_quote", None)
+        if eligible is not None:
+            return eligible
+        metadata: dict[str, Any] = self.data or {}
+        provenance = metadata.get("domainEvidence", {})
+        quotation = metadata.get("quotationEvidence", {})
+        return bool(
+            (quotation.get("datacellId") and quotation.get("active"))
+            or (
+                provenance.get("active")
+                and any(
+                    item.get("active") and item.get("kind") == "quote"
+                    for item in provenance.get("associations", [])
+                )
+            )
+        )
+
+    @strawberry.field(name="domainProvenance")
+    def domain_provenance(self, info: strawberry.Info) -> GenericScalar:
+        metadata: dict[str, Any] = self.data or {}
+        return getattr(
+            self,
+            "_projected_domain_provenance",
+            metadata.get("domainEvidence", {}),
+        )
+
     @strawberry.field(name="parent")
     def parent(self, info: strawberry.Info) -> AnnotationType | None:
         return resolve_visible_fk(self, info, "parent_id", "AnnotationType")

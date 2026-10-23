@@ -39,7 +39,7 @@ export function useVisibleAnnotations(): (
 
   /* ---------------- filtering --------------------------------------- */
   return useMemo(() => {
-    /* ---- ①  IDs that must be visible whatever other filters say ---- */
+    /* ---- ①  IDs that override display settings after label filtering ---- */
     const forcedBySelectedRelationIds = new Set<string>(
       selectedRelations.flatMap((rel) => [...rel.sourceIds, ...rel.targetIds])
     );
@@ -57,7 +57,7 @@ export function useVisibleAnnotations(): (
 
     const forcedIds = new Set(forcedBySelection);
 
-    // Explicit relation selection always wins — not gated on showStructural (unlike forcedByRelationships).
+    // Explicit relation selection overrides structural display settings.
     forcedBySelectedRelationIds.forEach((id) => forcedIds.add(id));
 
     if (showStructural) {
@@ -72,7 +72,16 @@ export function useVisibleAnnotations(): (
 
     /* ---- ③  Final predicate ---------------------------------------- */
     return allAnnotations.filter((annot) => {
-      /* forced – always keep                                            */
+      // Explicit label exclusions apply even to selected annotations and
+      // endpoints of selected relationships.
+      if (
+        labelFilterActive &&
+        !labelFilterActive.has(annot.annotationLabel.id)
+      ) {
+        return false;
+      }
+
+      /* selected annotations may override other display settings */
       if (forcedIds.has(annot.id)) {
         return true;
       }
@@ -93,14 +102,6 @@ export function useVisibleAnnotations(): (
 
       /* structural filter - hide structural annotations if showStructural is false */
       if (annot.structural && !showStructural) {
-        return false;
-      }
-
-      /* label filter - applies to both structural and non-structural    */
-      if (
-        labelFilterActive &&
-        !labelFilterActive.has(annot.annotationLabel.id)
-      ) {
         return false;
       }
 

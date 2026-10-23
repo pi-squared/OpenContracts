@@ -540,8 +540,12 @@ test("the annotation feed renders rows and a row opens the detail sheet", async 
   // Documentation capture: the mobile Annotations surface with the feed rendered.
   await docScreenshot(page, "knowledge-base--mobile--annotations");
 
-  // Tapping a row selects the annotation and opens the "Annotation" sheet.
+  // A row selects the source in the viewer; details remain an explicit action
+  // so opening a quotation does not cover the document with a sheet.
   await row.click();
+  await page
+    .getByRole("button", { name: "Annotation details", exact: true })
+    .click();
   await expect(page.getByText("Annotation", { exact: true })).toBeVisible({
     timeout: LONG_TIMEOUT,
   });

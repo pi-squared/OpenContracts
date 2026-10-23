@@ -415,6 +415,9 @@ const DocumentKnowledgeBase: React.FC<DocumentKnowledgeBaseProps> = ({
     columns,
     analyses,
     extracts,
+    extractsLoading,
+    extractsError,
+    fetchDocumentAnalysesAndExtracts,
     onSelectAnalysis,
     onSelectExtract,
   } = useAnalysisManager();
@@ -606,6 +609,15 @@ const DocumentKnowledgeBase: React.FC<DocumentKnowledgeBaseProps> = ({
   // Add new state for floating panels
   const [showAnalysesPanel, setShowAnalysesPanel] = useState(false);
   const [showExtractsPanel, setShowExtractsPanel] = useState(false);
+
+  // Membership resolution navigates through the normal corpus route. Wait for
+  // that context before opening the panel, including after the route remounts.
+  useEffect(() => {
+    if (corpusId && location.state?.openDocumentExtracts === documentId) {
+      setShowRightPanel(false);
+      setShowExtractsPanel(true);
+    }
+  }, [corpusId, documentId, location.state]);
 
   // When the chat panel takes over the right tray, ``hideDocumentTools`` on
   // ``FloatingDocumentControls`` removes the toggle FABs for the floating
@@ -834,6 +846,11 @@ const DocumentKnowledgeBase: React.FC<DocumentKnowledgeBaseProps> = ({
     pdfAnnotations,
     analyses,
     extracts,
+    extractsLoading,
+    extractsError: extractsError || queryError,
+    retryExtracts: () => {
+      void fetchDocumentAnalysesAndExtracts().catch(() => {});
+    },
     selectedAnalysis,
     selectedExtract,
     threadCount,

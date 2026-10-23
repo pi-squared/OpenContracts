@@ -15,6 +15,7 @@ from pydantic_ai.agent import (
     ModelRequestNode,
     UserPromptNode,
 )
+from pydantic_ai.capabilities import Hooks
 from pydantic_ai.exceptions import UsageLimitExceeded
 from pydantic_ai.messages import (
     ModelMessage,
@@ -30,6 +31,7 @@ from pydantic_ai.messages import (
     ToolReturnPart,
     UserPromptPart,
 )
+from pydantic_ai.tools import ToolDefinition
 from pydantic_ai.toolsets import FunctionToolset
 from pydantic_ai.usage import UsageLimits
 from pydantic_graph import End
@@ -42,6 +44,7 @@ from opencontractserver.constants.context_guardrails import (
 )
 from opencontractserver.constants.llm import (
     EXTRACT_AGENT_REQUEST_LIMIT,
+    EXTRACT_RETRIEVAL_ROUND_LIMIT,
     STRUCTURED_OUTPUT_RETRIES,
 )
 from opencontractserver.conversations.models import Conversation
@@ -143,7 +146,10 @@ def _make_similarity_search_tool(vector_store: Any, default_k: int = 8) -> Calla
         Returns the top-k nearest annotations for ``query`` as a list of
         dicts with keys ``annotation_id``, ``content``, ``document_id``,
         ``corpus_id``, ``page``, ``similarity_score``, ``label``, and
-        ``json``. Each real annotation's ID is captured into
+        ``json``. PDF ``page``/``pages`` are one-based physical pages including
+        the cover, not printed labels; null page means unavailable. Multi-page
+        hits list pages; ``json`` geometry retains native zero-based indices.
+        Each real annotation's ID is captured into
         ``ctx.deps.retrieved_annotation_ids`` so the caller can later link
         citations to the owning object (e.g. ``Datacell.sources``).
         """
@@ -1787,12 +1793,72 @@ class PydanticAICoreAgent(CoreAgentBase, TimelineStreamMixin):
             # ``model_settings=None`` to ``PydanticAIAgent`` when nothing
             # ended up being set, so non-Anthropic structured runs without
             # caller pins are bit-identical to before.
+            retrieval_rounds = 0
+            answering = False
+            extraction_hooks = Hooks()
+            retrieval_tool_names = {
+                "similarity_search",
+                "search_exact_text",
+                "load_document_text",
+            }
+
+            @extraction_hooks.on.after_model_request
+            def count_retrieval_round(
+                ctx: RunContext[PydanticAIDependencies],
+                *,
+                request_context: Any,
+                response: ModelResponse,
+            ) -> ModelResponse:
+                nonlocal retrieval_rounds
+                if any(
+                    isinstance(part, ToolCallPart)
+                    and part.tool_name in retrieval_tool_names
+                    for part in response.parts
+                ):
+                    retrieval_rounds += 1
+                return response
+
+            @extraction_hooks.on.prepare_tools
+            def prepare_extraction_tools(
+                ctx: RunContext[PydanticAIDependencies],
+                tool_defs: list[ToolDefinition],
+            ) -> list[ToolDefinition]:
+                nonlocal answering
+                answer_reserve = 1 + STRUCTURED_OUTPUT_RETRIES
+                reserve_reached = (
+                    effective_request_limit is not None
+                    and ctx.usage.requests >= effective_request_limit - answer_reserve
+                )
+                answering = (
+                    answering
+                    or retrieval_rounds >= EXTRACT_RETRIEVAL_ROUND_LIMIT
+                    or reserve_reached
+                )
+                return [] if answering else tool_defs
+
+            def extraction_instructions(
+                ctx: RunContext[PydanticAIDependencies],
+            ) -> str:
+                if not answering:
+                    return structured_system_prompt
+                return structured_system_prompt + (
+                    "\n\nANSWERING PHASE:\n"
+                    "Retrieval is now unavailable. Submit the requested structured "
+                    "result now using only evidence already provided. "
+                    "This instruction supersedes earlier requirements to perform "
+                    "further searches, reads, or citation verification. "
+                    "For unsupported values, use only uncertainty or null values "
+                    "permitted by the output schema. Do not infer absence merely "
+                    "because the retrieval budget ended."
+                )
+
             structured_agent = make_pydantic_ai_agent(
                 model=await abuild_agent_model(effective_model),
-                instructions=structured_system_prompt,
+                instructions=extraction_instructions,
                 output_type=target_type,
                 deps_type=PydanticAIDependencies,
                 tools=final_tools,
+                capabilities=[extraction_hooks],
                 model_settings=model_settings or None,
                 # Give pydantic-ai room to retry the structured output when
                 # the model fails to commit on the first pass (issue #1381).

@@ -8,6 +8,7 @@ import {
 } from "../../../types";
 
 import { normalizeBounds } from "../../../../utils/transform";
+import { ownsPdfEvidenceInteraction } from "../../../../utils/pdfEvidenceInteraction";
 import { PDFPageInfo } from "../../types/pdf";
 import { AnnotationLabelType } from "../../../../types/graphql-api";
 import { ServerTokenAnnotation } from "../../types/annotations";
@@ -40,6 +41,7 @@ import {
   OC_URL_LABEL_COLOR,
   PENDING_OC_URL_LABEL_ID,
   SELECTION_MENU_COOLDOWN_MS,
+  PDF_EVIDENCE_MOVEMENT_THRESHOLD_PX,
   Z_INDEX,
 } from "../../../../assets/configurations/constants";
 
@@ -59,6 +61,7 @@ interface SelectionLayerProps {
     url: string
   ) => Promise<void>;
   pageNumber: number;
+  mouseEventContainerRef?: React.RefObject<HTMLElement>;
 }
 
 const SelectionLayer = ({
@@ -68,7 +71,12 @@ const SelectionLayer = ({
   createAnnotation,
   createUrlAnnotation,
   pageNumber,
+  mouseEventContainerRef,
 }: SelectionLayerProps) => {
+  const [pendingMouseStart, setPendingMouseStart] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
   const location = useLocation();
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useAtomValue(scrollContainerRefAtom);
@@ -427,7 +435,7 @@ const SelectionLayer = ({
    * Handles the mouse down event to start the selection.
    */
   const handleMouseDown = useCallback(
-    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (event: React.MouseEvent<HTMLDivElement, MouseEvent> | MouseEvent) => {
       if (containerRef.current === null) {
         throw new Error("No Container");
       }
@@ -445,6 +453,10 @@ const SelectionLayer = ({
 
       // Allow selection for copying even in read-only mode
       if (!localPageSelection && event.buttons === 1) {
+        if (!event.shiftKey) {
+          setPendingMouseStart({ x: event.clientX, y: event.clientY });
+          return;
+        }
         setSelectedAnnotations([]); // Clear any selected annotations
         // Only set creating annotation state if we can actually create annotations
         if (!read_only && canUpdateCorpus) {
@@ -482,11 +494,89 @@ const SelectionLayer = ({
     ]
   );
 
+  // A stationary click inspects evidence; source-text selection starts only
+  // after actual movement. The page container also observes drags beginning
+  // on a saved highlight, whose boundary sits above SelectionLayer.
+  useEffect(() => {
+    const wrapper = mouseEventContainerRef?.current;
+    if (!wrapper) return;
+    const down = (event: MouseEvent) => {
+      if (event.shiftKey || event.ctrlKey || event.metaKey || event.altKey)
+        return;
+      if (ownsPdfEvidenceInteraction(event.target)) return;
+      handleMouseDown(event);
+    };
+    wrapper.addEventListener("mousedown", down, true);
+    return () => wrapper.removeEventListener("mousedown", down, true);
+  }, [mouseEventContainerRef, handleMouseDown]);
+
+  useEffect(() => {
+    if (!pendingMouseStart) return;
+    const move = (event: MouseEvent) => {
+      if (!(event.buttons & 1)) {
+        setPendingMouseStart(null);
+        return;
+      }
+      if (
+        Math.hypot(
+          event.clientX - pendingMouseStart.x,
+          event.clientY - pendingMouseStart.y
+        ) <= PDF_EVIDENCE_MOVEMENT_THRESHOLD_PX
+      )
+        return;
+      const canvas = containerRef.current
+        ?.previousSibling as HTMLCanvasElement | null;
+      if (!canvas) return;
+      const bounds = canvas.getBoundingClientRect();
+      setSelectedAnnotations([]);
+      if (!read_only && canUpdateCorpus) setIsCreatingAnnotation(true);
+      setLocalPageSelection({
+        pageNumber,
+        bounds: {
+          left: pendingMouseStart.x - bounds.left,
+          top: pendingMouseStart.y - bounds.top,
+          right: event.clientX - bounds.left,
+          bottom: event.clientY - bounds.top,
+        },
+      });
+      setPendingMouseStart(null);
+    };
+    const up = () => setPendingMouseStart(null);
+    document.addEventListener("mousemove", move);
+    document.addEventListener("mouseup", up);
+    return () => {
+      document.removeEventListener("mousemove", move);
+      document.removeEventListener("mouseup", up);
+    };
+  }, [
+    pendingMouseStart,
+    pageNumber,
+    read_only,
+    canUpdateCorpus,
+    setIsCreatingAnnotation,
+    setSelectedAnnotations,
+  ]);
+
   /**
    * Handles touch start for mobile long press detection
    */
+  const handleTouchCancel = useCallback(() => {
+    if (longPressTimer) clearTimeout(longPressTimer);
+    setLongPressTimer(null);
+    setTouchStartPos(null);
+    if (isLongPressActive) {
+      setLocalPageSelection(undefined);
+      setIsCreatingAnnotation(false);
+    }
+    setIsLongPressActive(false);
+  }, [longPressTimer, isLongPressActive, setIsCreatingAnnotation]);
+
   const handleTouchStart = useCallback(
-    (event: React.TouchEvent<HTMLDivElement>) => {
+    (event: React.TouchEvent<HTMLDivElement> | TouchEvent) => {
+      if (event.touches.length !== 1) {
+        handleTouchCancel();
+        return;
+      }
       if (containerRef.current === null) {
         throw new Error("No Container");
       }
@@ -562,6 +652,7 @@ const SelectionLayer = ({
       setSelectedAnnotations,
       setIsCreatingAnnotation,
       showActionMenu,
+      handleTouchCancel,
     ]
   );
 
@@ -569,8 +660,11 @@ const SelectionLayer = ({
    * Handles touch move - cancels long press if moved too much, or updates selection if active
    */
   const handleTouchMove = useCallback(
-    (event: React.TouchEvent<HTMLDivElement>) => {
-      if (event.touches.length !== 1) return;
+    (event: React.TouchEvent<HTMLDivElement> | TouchEvent) => {
+      if (event.touches.length !== 1) {
+        handleTouchCancel();
+        return;
+      }
 
       const touch = event.touches[0];
 
@@ -621,6 +715,7 @@ const SelectionLayer = ({
       localPageSelection,
       containerRef,
       pageNumber,
+      handleTouchCancel,
     ]
   );
 
@@ -628,7 +723,11 @@ const SelectionLayer = ({
    * Handles touch end - finalize selection if active
    */
   const handleTouchEnd = useCallback(
-    (event: React.TouchEvent<HTMLDivElement>) => {
+    (event: React.TouchEvent<HTMLDivElement> | TouchEvent) => {
+      if (event.touches.length) {
+        handleTouchCancel();
+        return;
+      }
       // Clear long press timer if still running
       if (longPressTimer) {
         clearTimeout(longPressTimer);
@@ -640,6 +739,9 @@ const SelectionLayer = ({
 
       // If long press was active and we have a selection, finalize it
       if (isLongPressActive && localPageSelection) {
+        // An admitted native hold owns the gesture and its compatibility click.
+        event.preventDefault();
+        event.stopPropagation();
         const pageNum = pageNumber;
 
         setMultiSelections((prev) => {
@@ -671,8 +773,54 @@ const SelectionLayer = ({
       localPageSelection,
       pageNumber,
       setIsCreatingAnnotation,
+      handleTouchCancel,
     ]
   );
+
+  useEffect(() => {
+    const wrapper = mouseEventContainerRef?.current;
+    if (!wrapper) return;
+    const start = (event: TouchEvent) => {
+      if (ownsPdfEvidenceInteraction(event.target)) return;
+      handleTouchStart(event);
+    };
+    const move = (event: TouchEvent) => {
+      if (touchStartPos || isLongPressActive) handleTouchMove(event);
+    };
+    const end = (event: TouchEvent) => {
+      if (touchStartPos || isLongPressActive) handleTouchEnd(event);
+    };
+    wrapper.addEventListener("touchstart", start, {
+      capture: true,
+      passive: false,
+    });
+    wrapper.addEventListener("touchmove", move, {
+      capture: true,
+      passive: false,
+    });
+    wrapper.addEventListener("touchend", end, {
+      capture: true,
+      passive: false,
+    });
+    wrapper.addEventListener("touchcancel", handleTouchCancel, {
+      capture: true,
+      passive: false,
+    });
+    return () => {
+      wrapper.removeEventListener("touchstart", start, true);
+      wrapper.removeEventListener("touchmove", move, true);
+      wrapper.removeEventListener("touchend", end, true);
+      wrapper.removeEventListener("touchcancel", handleTouchCancel, true);
+    };
+  }, [
+    mouseEventContainerRef,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+    touchStartPos,
+    isLongPressActive,
+    handleTouchCancel,
+  ]);
 
   /**
    * Handles the mouse move event to update the selection.
@@ -747,10 +895,20 @@ const SelectionLayer = ({
   // Handle ESC key during selection
   useEffect(() => {
     const handleEscapeDuringSelection = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && localPageSelection) {
+      if (
+        event.key === "Escape" &&
+        !event.defaultPrevented &&
+        (localPageSelection ||
+          pendingMouseStart ||
+          touchStartPos ||
+          isLongPressActive ||
+          pageQueuedSelections.length > 0)
+      ) {
         event.preventDefault();
         event.stopPropagation();
         setLocalPageSelection(undefined);
+        setPendingMouseStart(null);
+        setTouchStartPos(null);
         setIsCreatingAnnotation(false);
         setMultiSelections({});
         setIsLongPressActive(false);
@@ -761,13 +919,27 @@ const SelectionLayer = ({
       }
     };
 
-    if (localPageSelection) {
+    if (
+      localPageSelection ||
+      pendingMouseStart ||
+      touchStartPos ||
+      isLongPressActive ||
+      pageQueuedSelections.length > 0
+    ) {
       document.addEventListener("keydown", handleEscapeDuringSelection);
       return () => {
         document.removeEventListener("keydown", handleEscapeDuringSelection);
       };
     }
-  }, [localPageSelection, setIsCreatingAnnotation, longPressTimer]);
+  }, [
+    localPageSelection,
+    pendingMouseStart,
+    touchStartPos,
+    isLongPressActive,
+    pageQueuedSelections.length,
+    setIsCreatingAnnotation,
+    longPressTimer,
+  ]);
 
   // Document-level mouseup / mousemove during an in-progress selection so
   // gestures that release (or drift) over an overlapping fixed-positioned
@@ -902,12 +1074,22 @@ const SelectionLayer = ({
     <div
       id="selection-layer"
       ref={containerRef}
-      onMouseDown={handleMouseDown}
+      onMouseDown={(event) => {
+        if (
+          !mouseEventContainerRef ||
+          event.shiftKey ||
+          event.ctrlKey ||
+          event.metaKey ||
+          event.altKey
+        )
+          handleMouseDown(event);
+      }}
       onMouseMove={localPageSelection ? handleMouseMove : undefined}
       onMouseUp={handleMouseUp}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      onTouchStart={!mouseEventContainerRef ? handleTouchStart : undefined}
+      onTouchMove={!mouseEventContainerRef ? handleTouchMove : undefined}
+      onTouchEnd={!mouseEventContainerRef ? handleTouchEnd : undefined}
+      onTouchCancel={!mouseEventContainerRef ? handleTouchCancel : undefined}
       style={{
         position: "absolute",
         top: 0,

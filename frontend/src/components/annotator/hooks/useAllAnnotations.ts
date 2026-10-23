@@ -1,3 +1,5 @@
+import { isReviewerVisibleLabel } from "../../../utils/annotationVisibility";
+import { useMemo } from "react";
 import { useAtomValue } from "jotai";
 import { allAnnotationsAtom } from "../context/AnnotationAtoms";
 import {
@@ -10,5 +12,12 @@ export function useAllAnnotations(): (
   | ServerTokenAnnotation
   | ServerSpanAnnotation
 )[] {
-  return useAtomValue(allAnnotationsAtom);
+  const annotations = useAtomValue(allAnnotationsAtom);
+  return useMemo(
+    () =>
+      annotations.filter((annotation) =>
+        isReviewerVisibleLabel(annotation.annotationLabel)
+      ),
+    [annotations]
+  );
 }

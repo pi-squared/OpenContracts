@@ -1,10 +1,13 @@
+from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 from django.contrib.auth import get_user_model
-from django.test import TestCase
+from django.core.files.base import ContentFile
+from django.test import TestCase, override_settings
 
 from config.graphql.schema import schema
 from config.graphql.testing import Client
+from opencontractserver.annotations.models import Annotation
 from opencontractserver.corpuses.models import Corpus
 from opencontractserver.documents.models import Document
 from opencontractserver.extracts.models import Column, Datacell, Extract, Fieldset
@@ -110,6 +113,33 @@ class ExtractsMutationTestCase(TestCase):
         self.assertEqual(result["data"]["createColumn"]["obj"]["outputType"], "str")
 
     def test_start_extract_mutation(self):
+        # The real readiness guard requires searchable processed source material.
+        media = TemporaryDirectory()
+        self.addCleanup(media.cleanup)
+        setting = override_settings(MEDIA_ROOT=media.name)
+        setting.enable()
+        self.addCleanup(setting.disable)
+        embedder = "opencontractserver.pipeline.embedders.test_embedder.TestEmbedder"
+        self.corpus.preferred_embedder = embedder
+        self.corpus.save(update_fields=["preferred_embedder"])
+        self.extract.corpus = self.corpus
+        self.extract.save(update_fields=["corpus"])
+        self.document1.file_type = "text/plain"
+        self.document1.processing_status = "completed"
+        self.document1.backend_lock = False
+        self.document1.txt_extract_file.save(
+            "ready.txt", ContentFile(b"Ready source passage")
+        )
+        self.document1.save()
+        self.extract.documents.add(self.document1)
+        passage = Annotation.objects.create(
+            document=self.document1,
+            corpus=self.corpus,
+            creator=self.user,
+            structural=True,
+            raw_text="Ready source passage",
+        )
+        passage.add_embedding(embedder, [0.1] * 384)
         mutation = """
             mutation {{
                 startExtract(
@@ -136,12 +166,34 @@ class ExtractsMutationTestCase(TestCase):
 
                 result = self.graphene_client.execute(mutation)
                 self.assertIsNone(result.get("errors"))
-                self.assertTrue(result["data"]["startExtract"]["ok"])
+                self.assertTrue(result["data"]["startExtract"]["ok"], result)
                 self.assertEqual("STARTED!", result["data"]["startExtract"]["message"])
 
                 # Verify the task was called with correct arguments
                 # Note: from_global_id returns a string, not an int
                 mock_task.s.assert_called_once_with(str(self.extract.id), self.user.id)
+
+    def test_start_extract_without_documents_does_not_dispatch(self):
+        mutation = """
+            mutation Start($extractId: ID!) {
+                startExtract(extractId: $extractId) { ok message }
+            }
+        """
+        with patch("config.graphql.extract_mutations.run_extract") as task:
+            result = self.graphene_client.execute(
+                mutation,
+                variable_values={
+                    "extractId": to_global_id("ExtractType", self.extract.id)
+                },
+            )
+        self.assertIsNone(result.get("errors"), result)
+        self.assertEqual(
+            result["data"]["startExtract"],
+            {"ok": False, "message": "Add a processed document before extracting."},
+        )
+        task.s.assert_not_called()
+        self.extract.refresh_from_db()
+        self.assertIsNone(self.extract.started)
 
     def test_add_documents_to_extract_mutation(self):
         mutation = """

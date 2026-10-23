@@ -655,6 +655,11 @@ def parse_model_or_primitive(value: str) -> type:
     """
     logger.info(f"Attempting to parse model or primitive from value: {value}")
 
+    if value.startswith("workflow:"):
+        from opencontractserver.extracts.workflows import resolve_response_model
+
+        return resolve_response_model(value)
+
     # Check for primitive types
     if value == "int":
         logger.info("Parsed value as int type")

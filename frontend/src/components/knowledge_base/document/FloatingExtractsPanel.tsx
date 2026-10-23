@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Minimize2, Database, ArrowLeft } from "lucide-react";
+import { X, Minimize2, Database, ArrowLeft, Loader2 } from "lucide-react";
 import ExtractTraySelector from "../../analyses/ExtractTraySelector";
 import { SingleDocumentExtractResults } from "../../annotator/sidebar/SingleDocumentExtractResults";
 import {
@@ -18,6 +18,9 @@ import {
 interface FloatingExtractsPanelProps {
   visible: boolean;
   extracts: ExtractType[];
+  loading?: boolean;
+  error?: Error;
+  onRetry?: () => void;
   onClose: () => void;
   panelOffset?: number;
   initiallyExpanded?: boolean;
@@ -176,6 +179,21 @@ const ActionButton = styled(motion.button)`
   }
 `;
 
+const LoadingStatus = styled.div`
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  @keyframes extract-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  svg {
+    animation: extract-spin 1s linear infinite;
+  }
+`;
+
 const Content = styled.div`
   flex: 1;
   overflow: hidden;
@@ -245,6 +263,9 @@ const ExtractTitle = styled.div`
 export const FloatingExtractsPanel: React.FC<FloatingExtractsPanelProps> = ({
   visible,
   extracts,
+  loading = false,
+  error,
+  onRetry,
   onClose,
   panelOffset = 0,
   initiallyExpanded = false,
@@ -326,7 +347,20 @@ export const FloatingExtractsPanel: React.FC<FloatingExtractsPanelProps> = ({
               </Actions>
             </Header>
             <Content>
-              {selectedExtract ? (
+              {error ? (
+                <div role="alert" style={{ padding: 24 }}>
+                  <p>
+                    Could not load extracts. Check document access and try
+                    again.
+                  </p>
+                  <button onClick={onRetry}>Retry extracts</button>
+                </div>
+              ) : loading ? (
+                <LoadingStatus role="status" aria-live="polite">
+                  <Loader2 size={18} aria-hidden="true" />
+                  Loading extracts…
+                </LoadingStatus>
+              ) : selectedExtract ? (
                 <>
                   <BackBar>
                     <BackButton
