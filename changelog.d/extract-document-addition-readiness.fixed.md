@@ -1,0 +1,1 @@
+- `ExtractDetail` and `ExtractDetailContent` refresh the changed extract after successful document addition. Source readiness and original-PDF metadata update together without requiring manual Refresh; rejected additions retain the existing source state.

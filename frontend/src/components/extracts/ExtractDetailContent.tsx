@@ -420,10 +420,12 @@ export const ExtractDetailContent = forwardRef<
     RequestAddDocToExtractInputType
   >(REQUEST_ADD_DOC_TO_EXTRACT, {
     onCompleted: (data) => {
-      setRows((prev) => [
-        ...prev,
-        ...(data.addDocsToExtract.objs as DocumentType[]),
-      ]);
+      if (!data.addDocsToExtract.ok) {
+        toast.error(
+          data.addDocsToExtract.message || "Could not add documents."
+        );
+        return;
+      }
       toast.success("Added documents to extract.");
     },
     onError: () => toast.error("Could not add documents."),
@@ -538,6 +540,18 @@ export const ExtractDetailContent = forwardRef<
     (extractIdParam: string, documentIds: string[]) => {
       addDocsToExtract({
         variables: { extractId: extractIdParam, documentIds },
+        // The mutation omits source metadata and derived readiness. Query
+        // the changed extract so every source-dependent surface updates.
+        refetchQueries: ({ data }) =>
+          data?.addDocsToExtract.ok
+            ? [
+                {
+                  query: REQUEST_GET_EXTRACT,
+                  variables: { id: extractIdParam },
+                },
+              ]
+            : [],
+        awaitRefetchQueries: true,
       });
     },
     [addDocsToExtract]

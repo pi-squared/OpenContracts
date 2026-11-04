@@ -501,10 +501,12 @@ export const ExtractDetail: React.FC = () => {
     RequestAddDocToExtractInputType
   >(REQUEST_ADD_DOC_TO_EXTRACT, {
     onCompleted: (data) => {
-      setRows((prev) => [
-        ...prev,
-        ...(data.addDocsToExtract.objs as DocumentType[]),
-      ]);
+      if (!data.addDocsToExtract.ok) {
+        toast.error(
+          data.addDocsToExtract.message || "Could not add documents."
+        );
+        return;
+      }
       toast.success("Added documents to extract.");
     },
     onError: () => toast.error("Could not add documents."),
@@ -598,7 +600,16 @@ export const ExtractDetail: React.FC = () => {
 
   const handleAddDocIds = useCallback(
     (extractId: string, documentIds: string[]) => {
-      addDocsToExtract({ variables: { extractId, documentIds } });
+      addDocsToExtract({
+        variables: { extractId, documentIds },
+        // The mutation returns partial document objects, not source metadata
+        // or the extract's derived readiness. Refresh both from the server.
+        refetchQueries: ({ data }) =>
+          data?.addDocsToExtract.ok
+            ? [{ query: REQUEST_GET_EXTRACT, variables: { id: extractId } }]
+            : [],
+        awaitRefetchQueries: true,
+      });
     },
     [addDocsToExtract]
   );
