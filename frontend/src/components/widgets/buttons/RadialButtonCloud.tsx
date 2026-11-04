@@ -37,35 +37,37 @@ interface PulsingDotProps {
 }
 
 const PulsingDot = styled.div<PulsingDotProps>`
-  width: 12px;
-  height: 12px;
-  background-color: ${(props) => props.$backgroundColor};
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  animation: ${pulse} 2s infinite;
   cursor: pointer;
   position: relative;
 
   &::before {
     content: "";
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
+    width: 12px;
+    height: 12px;
+    background-color: ${(props) => props.$backgroundColor};
     border-radius: 50%;
+    animation: ${pulse} 2s infinite;
+    pointer-events: none;
   }
 `;
 
 const CloudContainer = styled.div`
   position: absolute;
-  top: -60px;
-  left: -60px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 120px;
   height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: auto;
+  pointer-events: none;
 `;
 
 interface ButtonPosition {
@@ -133,6 +135,7 @@ const CloudButtonStyled = styled.button<CloudButtonStyledProps>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  pointer-events: auto;
   padding: 0;
   background: #eee;
 

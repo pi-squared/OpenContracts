@@ -5,8 +5,8 @@ using TransactionTestCase, ensuring that the Extract models and related objects
 """
 
 import logging
+from unittest.mock import AsyncMock
 
-import vcr
 from django.contrib.auth import get_user_model
 from django.test import TransactionTestCase
 
@@ -16,6 +16,10 @@ from opencontractserver.tasks.data_extract_tasks import (
     doc_extract_query_task,
 )
 from opencontractserver.tests.base import TransactionFixtureTestCase
+from opencontractserver.tests.extraction_fixtures import (
+    prepare_extraction_source,
+    replay_extraction,
+)
 
 logger = logging.getLogger(__name__)
 vcr_log = logging.getLogger("vcr")
@@ -30,6 +34,9 @@ class TestDocExtractQueryTask(TransactionTestCase):
     Datacell, Column, and Fieldset models, then invoking the Celery task
     synchronously to confirm its behavior.
     """
+
+    # Set by the replay decorator as a spy on the real AgentAPI method.
+    agent: AsyncMock
 
     def setUp(self):
         """Set up test data."""
@@ -46,12 +53,13 @@ class TestDocExtractQueryTask(TransactionTestCase):
         self.doc = Document.objects.create(
             title="Test Document", creator=self.user, file_type="text/plain"
         )
-        self.corpus.add_document(document=self.doc, user=self.user)
+        self.doc, _, _ = self.corpus.add_document(document=self.doc, user=self.user)
+        prepare_extraction_source(
+            self.doc, self.corpus, text="Test Document. A retained test clause."
+        )
 
-    @vcr.use_cassette(
-        "fixtures/vcr_cassettes/test_doc_extract_query_task_synchronously.yaml",
-        record_mode="once",
-        filter_headers=["authorization"],
+    @replay_extraction(
+        "test_doc_extract_query_task_synchronously.yaml", expected_interactions=1
     )
     def test_doc_extract_query_task_synchronously(self) -> None:
         """
@@ -97,7 +105,7 @@ class TestDocExtractQueryTask(TransactionTestCase):
         # Invoke the Celery task synchronously
         doc_extract_query_task.si(
             cell_id=datacell.id, similarity_top_k=3, max_token_length=1000
-        ).apply()
+        ).apply(throw=True)
 
         # Refresh datacell from database
         datacell.refresh_from_db()
@@ -110,6 +118,11 @@ class TestDocExtractQueryTask(TransactionTestCase):
 
         # Optionally, assert structure/contents of 'result' as appropriate for your logic
         self.assertIn("data", result, "Expected 'data' key in result")
+        self.agent.assert_awaited_once()
+        call = self.agent.await_args_list[0]
+        self.assertEqual(call.kwargs["document"], self.doc.pk)
+        self.assertEqual(call.kwargs["corpus"], self.corpus.pk)
+        self.assertEqual(call.kwargs["similarity_top_k"], 3)
 
 
 class TestDocExtractQueryTaskDirect(TransactionFixtureTestCase):
@@ -117,6 +130,9 @@ class TestDocExtractQueryTaskDirect(TransactionFixtureTestCase):
     A test class that uses the same fixture setup as our orchestrator-based test
     but calls the doc_extract_query_task task directly on newly created Datacells.
     """
+
+    # Set by the replay decorator as a spy on the real AgentAPI method.
+    agent: AsyncMock
 
     def setUp(self) -> None:
         """
@@ -159,10 +175,11 @@ class TestDocExtractQueryTaskDirect(TransactionFixtureTestCase):
             creator=self.user,
         )
 
-        # Add documents (from TransactionFixtureTestCase) to the Corpus (required for new agent API)
-        self.corpus.add_document(document=self.doc, user=self.user)
-        self.corpus.add_document(document=self.doc2, user=self.user)
-        self.corpus.add_document(document=self.doc3, user=self.user)
+        # The fixture base already returns corpus-isolated documents. Processing
+        # signals are disabled in tests, so retain their actual PDF evidence and
+        # explicitly complete/index that evidence for the task under test.
+        for document in (self.doc, self.doc2, self.doc3):
+            prepare_extraction_source(document, self.corpus)
 
         # Add documents to the Extract
         self.extract.documents.add(self.doc, self.doc2, self.doc3)
@@ -170,10 +187,8 @@ class TestDocExtractQueryTaskDirect(TransactionFixtureTestCase):
 
         logger.info("Fixture data set up complete for TestDocExtractQueryTaskDirect.")
 
-    @vcr.use_cassette(
-        "fixtures/vcr_cassettes/test_doc_extract_query_task_directly.yaml",
-        record_mode="once",
-        filter_headers=["authorization"],
+    @replay_extraction(
+        "test_doc_extract_query_task_directly.yaml", expected_interactions=3
     )
     def test_doc_extract_query_task_directly(self) -> None:
         """
@@ -194,7 +209,7 @@ class TestDocExtractQueryTaskDirect(TransactionFixtureTestCase):
             )
 
             # Call the task synchronously
-            doc_extract_query_task.si(cell.id).apply()
+            doc_extract_query_task.si(cell.id).apply(throw=True)
 
             # Reload the Datacell from DB
             cell.refresh_from_db()
@@ -226,6 +241,11 @@ class TestDocExtractQueryTaskDirect(TransactionFixtureTestCase):
             rows.count(),
             0,
             "No DocumentAnalysisRow objects should be created here since we're only calling the single task directly.",
+        )
+        self.assertEqual(self.agent.await_count, self.extract.documents.count())
+        self.assertEqual(
+            {call.kwargs["document"] for call in self.agent.await_args_list},
+            set(self.extract.documents.values_list("pk", flat=True)),
         )
 
         logger.info("Completed test_doc_extract_query_task_directly.")

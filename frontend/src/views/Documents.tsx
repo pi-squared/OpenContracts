@@ -65,6 +65,7 @@ import {
   GET_DOCUMENT_STATS,
 } from "../graphql/queries";
 import { buildDocumentStatsVariables } from "./documentStatsVariables";
+import { getDocumentProcessingState } from "../utils/documentProcessing";
 import {
   documentSearchTerm,
   editingDocument,
@@ -252,12 +253,15 @@ export const Documents = () => {
   const filteredDocuments = useMemo(() => {
     if (activeStatusFilter === STATUS_FILTERS.ALL) return document_items;
     if (activeStatusFilter === STATUS_FILTERS.PROCESSED) {
-      return document_items.filter((doc) => !doc.backendLock);
+      return document_items.filter(
+        (doc) => getDocumentProcessingState(doc) === "processed"
+      );
     }
     if (activeStatusFilter === STATUS_FILTERS.PROCESSING) {
-      return document_items.filter((doc) => doc.backendLock);
+      return document_items.filter(
+        (doc) => getDocumentProcessingState(doc) === "processing"
+      );
     }
-    // 'error' filter - would need error field in DocumentType
     return document_items;
   }, [document_items, activeStatusFilter]);
 

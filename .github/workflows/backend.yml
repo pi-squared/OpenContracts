@@ -117,7 +117,11 @@ jobs:
     needs: [changes, linter]
     # Same fail-open semantics as the linter gate above.
     if: always() && needs.linter.result == 'success' && (github.event_name == 'push' || needs.changes.outputs.backend != 'false')
-    runs-on: yuge
+    # The upstream custom runner is not available to independent forks.
+    # Keep the same suite/gate on standard hosted runners there.
+    runs-on: ${{ github.repository == 'Open-Source-Legal/OpenContracts' && 'yuge' || 'ubuntu-latest' }}
+    env:
+      BACKEND_TEST_WORKERS: ${{ github.repository == 'Open-Source-Legal/OpenContracts' && 'auto' || '2' }}
     timeout-minutes: 180
     permissions:
       contents: read
@@ -272,7 +276,7 @@ jobs:
           # signal method raises a pytest failure in the worker's main thread.
           # The thread method hard-exits the worker, which can leave the xdist
           # controller waiting until the outer 100-minute timeout.
-          docker compose -f test.yml run django pytest --cov --cov-report=xml -n auto --dist loadscope --timeout=600 --timeout-method=signal
+          docker compose -f test.yml run django pytest --cov --cov-report=xml -n "$BACKEND_TEST_WORKERS" --dist loadscope --timeout=600 --timeout-method=signal
 
       - name: Verify Coverage File Exists
         run: |

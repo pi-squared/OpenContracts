@@ -167,6 +167,36 @@ const QuoteButton = styled.button`
   }
 `;
 
+/** Describe retained grounding without inventing a location for a raw quote. */
+export function QuotationSourceStatus({ anchor }: { anchor: unknown }) {
+  const item = isRecord(anchor) ? anchor : {};
+  const located = typeof item.locatedPage === "number";
+  let message = "Retained source location unavailable. No highlight.";
+  if (item.status === "matched" && located)
+    message = `Matched in parsed text on PDF page ${item.locatedPage}.`;
+  else if (item.status === "different_page" && located)
+    message = `Matched in parsed text on PDF page ${item.locatedPage}; the reported page differs.`;
+  else if (item.status === "unmatched")
+    message = "Quotation not found in retained source. No highlight.";
+  else if (item.status === "ambiguous")
+    message = "Multiple possible source locations. No highlight.";
+  else if (item.status === "source_unavailable")
+    message = "Retained source coordinates are unavailable. No highlight.";
+  else if (item.status === "projection_unavailable")
+    message = "The complete quotation could not be highlighted. No highlight.";
+  if (
+    located &&
+    ["matched", "different_page"].includes(String(item.status)) &&
+    item.matchType === "typography_whitespace"
+  )
+    message += " Matched with typographic or whitespace differences.";
+  return (
+    <div className="evidence-location" role="status">
+      {message}
+    </div>
+  );
+}
+
 function Evidence({
   value,
   anchors,
@@ -236,24 +266,7 @@ function Evidence({
                 : "Reported page unavailable"}
               {typeof item.speaker === "string" ? ` · ${item.speaker}` : ""}
             </div>
-            {anchors && (
-              <div className="evidence-location" role="status">
-                {item.status === "matched" &&
-                  `Matched in parsed text on PDF page ${item.locatedPage}.`}
-                {item.status === "different_page" &&
-                  `Matched in parsed text on PDF page ${item.locatedPage}; the reported page differs.`}
-                {item.matchType === "typography_whitespace" &&
-                  " Matched with typographic or whitespace differences."}
-                {item.status === "unmatched" &&
-                  "Quotation not found in retained source. No highlight."}
-                {item.status === "ambiguous" &&
-                  "Multiple possible source locations. No highlight."}
-                {item.status === "source_unavailable" &&
-                  "Retained source coordinates are unavailable. No highlight."}
-                {item.status === "projection_unavailable" &&
-                  "The complete quotation could not be highlighted. No highlight."}
-              </div>
-            )}
+            {anchors && <QuotationSourceStatus anchor={item} />}
             {anchors &&
               isRecord(item.scope) &&
               Object.keys(item.scope).length > 0 && (

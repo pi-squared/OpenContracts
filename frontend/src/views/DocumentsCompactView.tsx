@@ -2,6 +2,8 @@ import React from "react";
 import { FileText, MoreVertical } from "lucide-react";
 import { Chip } from "@os-legal/ui";
 import { DocumentType } from "../types/graphql-api";
+import { getDocumentProcessingState } from "../utils/documentProcessing";
+import { DocumentProcessingFailure } from "../components/documents/DocumentProcessingFailure";
 import {
   CardMenuButton,
   CompactItem,
@@ -31,13 +33,14 @@ export const DocumentsCompactView: React.FC<DocumentsCompactViewProps> = ({
   <DocumentsCompactContainer>
     {documents.map((doc) => {
       const isSelected = selectedIds.includes(doc.id);
+      const processingState = getDocumentProcessingState(doc);
       return (
         <CompactItem
           key={doc.id}
           role="listitem"
           tabIndex={0}
           data-testid="document-card"
-          data-processing={String(Boolean(doc.backendLock))}
+          data-processing={String(processingState === "processing")}
           aria-label={`Open document ${doc.title || "Untitled"}`}
           $selected={isSelected}
           onClick={() => onDocumentClick(doc)}
@@ -66,13 +69,17 @@ export const DocumentsCompactView: React.FC<DocumentsCompactViewProps> = ({
           <CompactItemMeta>
             {doc.pageCount ? `${doc.pageCount} pages` : ""}
           </CompactItemMeta>
-          <Chip
-            size="sm"
-            variant="soft"
-            color={doc.backendLock ? "warning" : "success"}
-          >
-            {doc.backendLock ? "Processing" : "Processed"}
-          </Chip>
+          {processingState === "failed" ? (
+            <DocumentProcessingFailure document={doc} />
+          ) : (
+            <Chip
+              size="sm"
+              variant="soft"
+              color={processingState === "processing" ? "warning" : "success"}
+            >
+              {processingState === "processing" ? "Processing" : "Processed"}
+            </Chip>
+          )}
           <CardMenuButton
             aria-label="Open menu"
             aria-haspopup="menu"

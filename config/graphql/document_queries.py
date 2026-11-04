@@ -60,6 +60,7 @@ from opencontractserver.constants.search import MAX_SELECT_ALL_DOCUMENT_IDS
 from opencontractserver.constants.zip_import import BULK_UPLOAD_OWNER_CACHE_PREFIX
 from opencontractserver.documents.models import (
     Document,
+    DocumentProcessingStatus,
     DocumentRelationship,
     IngestionSource,
 )
@@ -413,8 +414,16 @@ def _resolve_Query_document_stats(root, info, **kwargs):
     counts = Document.objects.filter(id__in=filtered.values("id")).aggregate(
         total_docs=Count("id"),
         total_pages=Coalesce(Sum("page_count"), 0),
-        processed_count=Count("id", filter=Q(backend_lock=False)),
-        processing_count=Count("id", filter=Q(backend_lock=True)),
+        processed_count=Count(
+            "id",
+            filter=Q(backend_lock=False)
+            & ~Q(processing_status=DocumentProcessingStatus.FAILED),
+        ),
+        processing_count=Count(
+            "id",
+            filter=Q(backend_lock=True)
+            & ~Q(processing_status=DocumentProcessingStatus.FAILED),
+        ),
     )
     # graphene resolved this field from a plain dict; strawberry's default
     # resolver is attribute-based, so construct the payload type instead.

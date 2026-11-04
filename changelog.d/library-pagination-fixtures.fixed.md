@@ -1,0 +1,1 @@
+- Complete library pagination test fixtures with the queried terminal-status fields so Apollo relay pagination can publish the next page.

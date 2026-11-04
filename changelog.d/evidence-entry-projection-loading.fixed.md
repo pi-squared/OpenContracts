@@ -1,0 +1,1 @@
+- Restore an explicit evidence entry after extract source loading and center its PDF quotation. Keep Escape and subsequent manual inspection authoritative during an empty or concurrently replaced projection, refresh and zoom.

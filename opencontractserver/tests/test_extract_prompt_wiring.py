@@ -28,6 +28,7 @@ from opencontractserver.corpuses.models import Corpus
 from opencontractserver.documents.models import Document
 from opencontractserver.extracts.models import Column, Datacell, Extract, Fieldset
 from opencontractserver.tasks.data_extract_tasks import doc_extract_query_task
+from opencontractserver.tests.extraction_fixtures import prepare_extraction_source
 from opencontractserver.utils.prompt_sanitization import UNTRUSTED_CONTENT_NOTICE
 
 User = get_user_model()
@@ -48,7 +49,10 @@ class ExtractPromptWiringTestCase(TransactionTestCase):
             file_type="text/plain",
             txt_extract_file=ContentFile(_DOC_TEXT.encode(), name="pw.txt"),
         )
-        self.corpus.add_document(document=self.document, user=self.user)
+        self.document, _, _ = self.corpus.add_document(
+            document=self.document, user=self.user
+        )
+        prepare_extraction_source(self.document, self.corpus)
         self.fieldset = Fieldset.objects.create(
             name="PW FS", description="d", creator=self.user
         )
@@ -90,7 +94,10 @@ class ExtractPromptWiringTestCase(TransactionTestCase):
             "get_structured_response_and_sources_from_document",
             fake_agent,
         ):
-            doc_extract_query_task.si(cell.id).apply()
+            doc_extract_query_task.si(cell.id).apply(throw=True)
+        cell.refresh_from_db()
+        self.assertIsNotNone(cell.completed)
+        self.assertIsNone(cell.failed)
         return captured.get("prompt", "")
 
     def test_instructions_reach_prompt(self):
@@ -211,7 +218,8 @@ class ExtractPromptWiringTestCase(TransactionTestCase):
             file_type="text/plain",
             txt_extract_file=ContentFile(big_text.encode(), name="pw_big.txt"),
         )
-        self.corpus.add_document(document=big_doc, user=self.user)
+        big_doc, _, _ = self.corpus.add_document(document=big_doc, user=self.user)
+        prepare_extraction_source(big_doc, self.corpus)
         col = Column.objects.create(
             name="c_big",
             fieldset=self.fieldset,
@@ -235,9 +243,9 @@ class ExtractPromptWiringTestCase(TransactionTestCase):
         self.assertIn("What is the governing law?", prompt)
 
     def test_empty_extract_file_logs_and_skips_injection(self):
-        # An in-range file that reads back as empty text (corrupted/empty
-        # extraction, OCR produced nothing) must be logged distinctly from the
-        # "too large to inject" skip, not silently fall through to retrieval.
+        # Simulate an in-range file becoming empty after source admission.
+        # Prompt injection must distinguish this from the size-budget skip.
+        # Genuinely empty sources are rejected separately by the readiness gate.
         col = Column.objects.create(
             name="c_empty",
             fieldset=self.fieldset,

@@ -7,12 +7,14 @@ export interface ReviewSaveOptions {
 
 export interface ReviewQuotation {
   index: number;
+  selectionPath: string;
   quote: string;
   page: number | null;
 }
 
 export function reviewQuotations(value: unknown): ReviewQuotation[] {
   const finding = findingFrom(projectFindingValue(value));
+  const field = finding?.evidence != null ? "evidence" : "evidence_quote";
   let evidence: unknown = finding?.evidence ?? finding?.evidence_quote;
   if (typeof evidence === "string") {
     try {
@@ -27,6 +29,7 @@ export function reviewQuotations(value: unknown): ReviewQuotation[] {
       ? [
           {
             index,
+            selectionPath: `/${field}/${index}`,
             quote: item.quote,
             page: typeof item.page === "number" ? item.page : null,
           },

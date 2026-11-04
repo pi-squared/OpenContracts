@@ -9,6 +9,8 @@ import { useAllAnnotations } from "../components/annotator/hooks/useAllAnnotatio
 type EvidenceFocus = { scope: string; annotationId: string } | null;
 const evidenceFocusAtom = atom<EvidenceFocus>(null);
 const evidenceNavigationAtom = atom<EvidenceFocus>(null);
+type InspectionIntent = { scope: string; annotationId: string | null } | null;
+const inspectionIntentAtom = atom<InspectionIntent>(null);
 
 /** Single inspection focus, independent of URL-synchronized viewer selection. */
 export function useEvidenceFocus() {
@@ -25,6 +27,7 @@ export function useEvidenceFocus() {
   const annotations = useAllAnnotations();
   const [focus, setFocus] = useAtom(evidenceFocusAtom);
   const [navigation, setNavigation] = useAtom(evidenceNavigationAtom);
+  const [inspectionIntent, setInspectionIntent] = useAtom(inspectionIntentAtom);
   const focusedEvidenceId = focus?.scope === scope ? focus.annotationId : null;
   useEffect(() => {
     setFocus((previous) => (previous?.scope === scope ? previous : null));
@@ -41,16 +44,20 @@ export function useEvidenceFocus() {
   }, [focusedEvidenceId, annotations, setFocus, setNavigation]);
   const setFocusedEvidence = useCallback(
     (annotationId: string | null) => {
+      // Record explicit actions even when loading has already cleared focus.
+      // Automatic source/scope invalidation above does not alter this intent.
+      setInspectionIntent({ scope, annotationId });
       setFocus(annotationId ? { scope, annotationId } : null);
     },
-    [scope, setFocus]
+    [scope, setFocus, setInspectionIntent]
   );
   const navigateToEvidence = useCallback(
-    (annotationId: string) => {
-      setFocusedEvidence(annotationId);
+    (annotationId: string, origin: "inspection" | "entry" = "inspection") => {
+      if (origin === "entry") setFocus({ scope, annotationId });
+      else setFocusedEvidence(annotationId);
       setNavigation({ scope, annotationId });
     },
-    [scope, setFocusedEvidence, setNavigation]
+    [scope, setFocus, setFocusedEvidence, setNavigation]
   );
   return {
     focusedEvidenceId,
@@ -61,6 +68,8 @@ export function useEvidenceFocus() {
     navigateToEvidence,
     evidenceNavigation: navigation?.scope === scope ? navigation : null,
     evidenceScope: scope,
+    inspectionIntent:
+      inspectionIntent?.scope === scope ? inspectionIntent : null,
   };
 }
 
@@ -101,16 +110,33 @@ export function useEvidenceFocusEscape(viewer: RefObject<HTMLElement> | null) {
 export function useEvidenceFocusNavigation() {
   const location = useLocation();
   const annotations = useAllAnnotations();
-  const { evidenceScope, setFocusedEvidence } = useEvidenceFocus();
+  const { evidenceScope, inspectionIntent, navigateToEvidence } =
+    useEvidenceFocus();
   const entry = new URLSearchParams(location.search).get("ann") ?? "";
-  const handled = useRef<string | null>(null);
+  const handled = useRef<{
+    key: string;
+    intent: InspectionIntent;
+    pending: boolean;
+    dismissed: boolean;
+  } | null>(null);
   useEffect(() => {
     const key = `${evidenceScope}:${entry}`;
-    if (handled.current === key) return;
     if (!entry) {
-      handled.current = key;
+      handled.current = null;
       return;
     }
+    if (handled.current?.key !== key)
+      handled.current = {
+        key,
+        intent: inspectionIntent,
+        pending: true,
+        dismissed: false,
+      };
+    const request = handled.current;
+    // Pending entries retain manual authority while their projection is absent,
+    // including Escape with no focus and inspection batched with replacement.
+    if (request.intent !== inspectionIntent) request.dismissed = true;
+    if (request.dismissed) return;
     const ids = entry.split(",");
     const target = ids
       .map((id) =>
@@ -119,8 +145,14 @@ export function useEvidenceFocusNavigation() {
         )
       )
       .find(Boolean);
-    if (!target) return;
-    handled.current = key;
-    setFocusedEvidence(target.id);
-  }, [entry, evidenceScope, annotations, setFocusedEvidence]);
+    if (!target) {
+      // Extract loading replaces the initial document annotations. An entry
+      // consumed before that replacement still needs its final source.
+      request.pending = true;
+      return;
+    }
+    if (!request.pending) return;
+    request.pending = false;
+    navigateToEvidence(target.id, "entry");
+  }, [entry, evidenceScope, annotations, inspectionIntent, navigateToEvidence]);
 }

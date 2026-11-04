@@ -193,6 +193,13 @@ export const SingleDocumentExtractResults: React.FC<
     inspection.get("findingVersion") === "original"
       ? inspection.get("findingCell")
       : null;
+  const extractContext = inspection.get("extract");
+  useEffect(() => {
+    // A review belongs to the selected document/extract/effective version.
+    // Browser history can change that context while the dialog is open.
+    setIsEditing(false);
+    setEditingCell(null);
+  }, [location.pathname, extractContext, originalCellId]);
   const valueForInspection = (cell: DatacellType) => {
     const value =
       cell.id === originalCellId ? cell.data : cell.correctedData ?? cell.data;
@@ -602,6 +609,7 @@ export const SingleDocumentExtractResults: React.FC<
         <CellEditor
           key={editingCell.id}
           value={editingCell.correctedData ?? editingCell.data ?? ""}
+          evidenceAnchors={editingCell.findingEvidence}
           onSave={handleSave}
           onClose={() => {
             setIsEditing(false);

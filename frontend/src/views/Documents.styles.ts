@@ -479,9 +479,14 @@ export const ListItem = styled.div<{ $selected?: boolean }>`
     grid-template-columns: 32px 1fr 80px 48px;
 
     & > :nth-child(3),
-    & > :nth-child(5),
+    & > :nth-child(5):not([data-terminal-failure="true"]),
     & > :nth-child(6) {
       display: none;
+    }
+
+    & > [data-terminal-failure="true"] {
+      grid-column: 2 / -1;
+      grid-row: 2;
     }
   }
 `;

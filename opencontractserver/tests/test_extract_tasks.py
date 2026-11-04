@@ -2,15 +2,24 @@
 Quick test for the new structured extraction implementation (synchronous version).
 """
 
-import vcr
+from unittest.mock import AsyncMock, patch
+
 from django.contrib.auth import get_user_model
+from django.core.files.base import ContentFile
 from django.test import TransactionTestCase
 
+from opencontractserver.annotations.models import Embedding
 from opencontractserver.corpuses.models import Corpus
 from opencontractserver.documents.models import Document
 from opencontractserver.extracts.models import Column, Datacell, Extract, Fieldset
+from opencontractserver.extracts.services.source_readiness import SourceNotReady
 from opencontractserver.tasks.data_extract_tasks import doc_extract_query_task
 from opencontractserver.tasks.extract_orchestrator_tasks import run_extract
+from opencontractserver.tests.extraction_fixtures import (
+    fake_structured_response,
+    prepare_extraction_source,
+    replay_extraction,
+)
 from opencontractserver.types.enums import PermissionTypes
 from opencontractserver.utils.permissioning import set_permissions_for_obj_to_user
 
@@ -19,6 +28,9 @@ User = get_user_model()
 
 class NewExtractionTestCase(TransactionTestCase):
     """Test the new agent-based extraction pipeline (sync)."""
+
+    # Set by the replay decorator as a spy on the real AgentAPI method.
+    agent: AsyncMock
 
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", password="testpass")
@@ -30,7 +42,14 @@ class NewExtractionTestCase(TransactionTestCase):
         self.document = Document.objects.create(
             title="Test Document", creator=self.user, file_type="text/plain"
         )
-        self.corpus.add_document(document=self.document, user=self.user)
+        self.document, _, _ = self.corpus.add_document(
+            document=self.document, user=self.user
+        )
+        prepare_extraction_source(
+            self.document,
+            self.corpus,
+            text="Test Document. Payment terms: payment is due in thirty days.",
+        )
 
         # Create fieldset
         self.fieldset = Fieldset.objects.create(
@@ -39,11 +58,7 @@ class NewExtractionTestCase(TransactionTestCase):
             creator=self.user,
         )
 
-    @vcr.use_cassette(
-        "fixtures/vcr_cassettes/test_simple_string_extraction.yaml",
-        record_mode="once",
-        filter_headers=["authorization"],
-    )
+    @replay_extraction("test_simple_string_extraction.yaml", expected_interactions=1)
     def test_simple_string_extraction(self):
         """Test extracting a simple string value."""
         # Create column
@@ -73,7 +88,7 @@ class NewExtractionTestCase(TransactionTestCase):
         )
 
         # Run extraction
-        doc_extract_query_task.si(datacell.id).apply()
+        doc_extract_query_task.si(datacell.id).apply(throw=True)
 
         datacell.refresh_from_db()
 
@@ -85,12 +100,12 @@ class NewExtractionTestCase(TransactionTestCase):
         assert failed is None
         assert data is not None
         assert "data" in data
+        self.agent.assert_awaited_once()
+        call = self.agent.await_args_list[0]
+        self.assertEqual(call.kwargs["document"], self.document.pk)
+        self.assertEqual(call.kwargs["corpus"], self.corpus.pk)
 
-    @vcr.use_cassette(
-        "fixtures/vcr_cassettes/test_list_extraction.yaml",
-        record_mode="once",
-        filter_headers=["authorization"],
-    )
+    @replay_extraction("test_list_extraction.yaml", expected_interactions=1)
     def test_list_extraction(self):
         """Test extracting a list of values."""
         column = Column.objects.create(
@@ -116,7 +131,7 @@ class NewExtractionTestCase(TransactionTestCase):
         )
 
         # Run extraction
-        doc_extract_query_task.si(datacell.id).apply()
+        doc_extract_query_task.si(datacell.id).apply(throw=True)
 
         datacell.refresh_from_db()
 
@@ -126,12 +141,9 @@ class NewExtractionTestCase(TransactionTestCase):
         assert completed is not None
         assert data is not None
         assert isinstance(data.get("data"), list)
+        self.agent.assert_awaited_once()
 
-    @vcr.use_cassette(
-        "fixtures/vcr_cassettes/test_with_constraints.yaml",
-        record_mode="once",
-        filter_headers=["authorization"],
-    )
+    @replay_extraction("test_with_constraints.yaml", expected_interactions=1)
     def test_with_constraints(self):
         """Test extraction with must_contain_text and limit_to_label."""
         column = Column.objects.create(
@@ -159,7 +171,7 @@ class NewExtractionTestCase(TransactionTestCase):
         )
 
         # Run extraction
-        doc_extract_query_task.si(datacell.id).apply()
+        doc_extract_query_task.si(datacell.id).apply(throw=True)
 
         datacell.refresh_from_db()
 
@@ -170,10 +182,63 @@ class NewExtractionTestCase(TransactionTestCase):
         # Should complete (might return None if constraints not met)
         assert started is not None
         assert failed is None or completed is not None
+        self.agent.assert_awaited_once()
+
+    def _source_readiness_cell(self):
+        column = Column.objects.create(
+            name="Source readiness",
+            fieldset=self.fieldset,
+            query="What is the title?",
+            output_type="str",
+            creator=self.user,
+        )
+        extract = Extract.objects.create(
+            name="Source gate",
+            fieldset=self.fieldset,
+            creator=self.user,
+        )
+        extract.documents.add(self.document)
+        return Datacell.objects.create(
+            extract=extract,
+            column=column,
+            document=self.document,
+            data_definition="str",
+            creator=self.user,
+        )
+
+    def _assert_source_rejected(self, reason):
+        cell = self._source_readiness_cell()
+        with patch(
+            "opencontractserver.llms.api.AgentAPI.get_structured_response_and_sources_from_document",
+            new_callable=AsyncMock,
+            side_effect=fake_structured_response,
+        ) as agent:
+            with self.assertRaisesRegex(SourceNotReady, reason):
+                doc_extract_query_task.si(cell.id).apply(throw=True)
+            agent.assert_not_awaited()
+        cell.refresh_from_db()
+        self.assertIsNotNone(cell.failed)
+        self.assertIsNone(cell.completed)
+
+    def test_incomplete_source_cannot_call_agent(self):
+        self.document.processing_status = "pending"
+        self.document.save(update_fields=["processing_status"])
+        self._assert_source_rejected("processing is incomplete")
+
+    def test_empty_source_cannot_call_agent(self):
+        self.document.txt_extract_file.save("empty-source.txt", ContentFile(b""))
+        self._assert_source_rejected("text is empty")
+
+    def test_unindexed_source_cannot_call_agent(self):
+        Embedding.objects.filter(annotation__document=self.document).delete()
+        self._assert_source_rejected("index is incomplete")
 
 
 class ExtractOrchestrationTestCase(TransactionTestCase):
     """Test the extract orchestration pipeline."""
+
+    # Set by the replay decorator as a spy on the real AgentAPI method.
+    agent: AsyncMock
 
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", password="testpass")
@@ -208,9 +273,11 @@ class ExtractOrchestrationTestCase(TransactionTestCase):
         )
 
         # Add documents to corpus
-        self.corpus.add_document(document=self.doc1, user=self.user)
-        self.corpus.add_document(document=self.doc2, user=self.user)
-        self.corpus.add_document(document=self.doc3, user=self.user)
+        self.doc1, _, _ = self.corpus.add_document(document=self.doc1, user=self.user)
+        self.doc2, _, _ = self.corpus.add_document(document=self.doc2, user=self.user)
+        self.doc3, _, _ = self.corpus.add_document(document=self.doc3, user=self.user)
+        for document in (self.doc1, self.doc2, self.doc3):
+            prepare_extraction_source(document, self.corpus)
 
         # Create fieldset with multiple columns
         self.fieldset = Fieldset.objects.create(
@@ -254,11 +321,7 @@ class ExtractOrchestrationTestCase(TransactionTestCase):
 
         return ContentFile(content.encode("utf-8"), name="test.txt")
 
-    @vcr.use_cassette(
-        "fixtures/vcr_cassettes/test_run_extract_orchestration.yaml",
-        record_mode="once",
-        filter_headers=["authorization"],
-    )
+    @replay_extraction("test_run_extract_orchestration.yaml", expected_interactions=9)
     def test_run_extract_orchestration(self):
         """Test the full extract orchestration with multiple documents and columns."""
         # Create extract
@@ -281,6 +344,7 @@ class ExtractOrchestrationTestCase(TransactionTestCase):
 
         # Verify extract was marked as started
         assert extract.started is not None
+        self.assertEqual(self.agent.await_count, 9)
 
         # Verify correct number of datacells created
         # Should be: 3 documents × 3 columns = 9 datacells
@@ -301,8 +365,9 @@ class ExtractOrchestrationTestCase(TransactionTestCase):
                     datacell_exists
                 ), f"Missing datacell for doc {doc.title} and column {column.name}"
 
+    @replay_extraction("test_new_extract_orchestration.yaml", expected_interactions=3)
     def test_extract_with_vcr(self):
-        """Test extraction with VCR for API call recording."""
+        """Replay the recorded SDK responses through single-document orchestration."""
 
         # Create a simple extract
         extract = Extract.objects.create(
@@ -311,20 +376,18 @@ class ExtractOrchestrationTestCase(TransactionTestCase):
         set_permissions_for_obj_to_user(self.user, extract, [PermissionTypes.ALL])
         extract.documents.add(self.doc1)  # Just one doc for VCR test
 
-        with vcr.use_cassette(
-            "fixtures/vcr_cassettes/test_new_extract_orchestration.yaml",
-            record_mode="once",  # Change to "new_episodes" to record new calls
-            filter_headers=["authorization"],
-        ):
-            # Run extraction
-            run_extract.si(extract.id, self.user.id).apply()
+        # Run extraction; the decorator forbids any new provider recording.
+        run_extract.si(extract.id, self.user.id).apply()
 
-            # Verify datacells were created
-            assert extract.extracted_datacells.count() == len(
-                self.fieldset.columns.all()
-            )
+        # Verify datacells were created
+        assert extract.extracted_datacells.count() == len(self.fieldset.columns.all())
 
-    def test_extract_completion_callback(self):
+    @patch(
+        "opencontractserver.llms.api.AgentAPI.get_structured_response_and_sources_from_document",
+        new_callable=AsyncMock,
+        side_effect=fake_structured_response,
+    )
+    def test_extract_completion_callback(self, agent):
         """Test that the extract completion callback is properly called."""
         from unittest.mock import patch
 
@@ -347,8 +410,14 @@ class ExtractOrchestrationTestCase(TransactionTestCase):
             # Verify the extract was started
             extract.refresh_from_db()
             assert extract.started is not None
+            self.assertEqual(agent.await_count, 3)
 
-    def test_run_extract_aborts_for_nonexistent_user(self):
+    @patch(
+        "opencontractserver.llms.api.AgentAPI.get_structured_response_and_sources_from_document",
+        new_callable=AsyncMock,
+        side_effect=fake_structured_response,
+    )
+    def test_run_extract_aborts_for_nonexistent_user(self, agent):
         """run_extract should abort silently when user_id doesn't exist."""
         extract = Extract.objects.create(
             name="Abort Test Extract", fieldset=self.fieldset, creator=self.user
@@ -364,8 +433,14 @@ class ExtractOrchestrationTestCase(TransactionTestCase):
         # Extract should NOT have a started timestamp (task aborted before setting it)
         extract.refresh_from_db()
         self.assertIsNone(extract.started)
+        agent.assert_not_awaited()
 
-    def test_run_extract_aborts_for_unauthorized_user(self):
+    @patch(
+        "opencontractserver.llms.api.AgentAPI.get_structured_response_and_sources_from_document",
+        new_callable=AsyncMock,
+        side_effect=fake_structured_response,
+    )
+    def test_run_extract_aborts_for_unauthorized_user(self, agent):
         """run_extract should abort when user lacks UPDATE permission."""
         # Create a different user with no permissions on the extract
         other_user = User.objects.create_user(
@@ -382,11 +457,18 @@ class ExtractOrchestrationTestCase(TransactionTestCase):
         # Extract should NOT have a started timestamp (task aborted)
         extract.refresh_from_db()
         self.assertIsNone(extract.started)
+        agent.assert_not_awaited()
 
-    def test_run_extract_aborts_for_none_extract_id(self):
+    @patch(
+        "opencontractserver.llms.api.AgentAPI.get_structured_response_and_sources_from_document",
+        new_callable=AsyncMock,
+        side_effect=fake_structured_response,
+    )
+    def test_run_extract_aborts_for_none_extract_id(self, agent):
         """run_extract returns early when extract_id is None (PR #1482 typing fix)."""
         # Should not raise — guard at the top of the task aborts before any DB hit.
         result = run_extract.si(None, self.user.id).apply()
 
         # Eager-mode return value must be None (the guard ``return`` clause).
         self.assertIsNone(result.result)
+        agent.assert_not_awaited()

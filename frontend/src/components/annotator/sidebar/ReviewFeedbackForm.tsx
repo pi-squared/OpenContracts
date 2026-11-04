@@ -16,6 +16,7 @@ import { FindingDetails } from "../../extracts/datagrid/FindingView";
 
 interface ReviewFeedbackFormProps {
   value: unknown;
+  evidenceAnchors?: unknown[];
   comments: ReviewerFeedback;
   onChange: (comments: ReviewerFeedback) => void;
   onSave: (
@@ -28,6 +29,7 @@ interface ReviewFeedbackFormProps {
 
 export function ReviewFeedbackForm({
   value,
+  evidenceAnchors,
   comments,
   onChange,
   onSave,
@@ -70,6 +72,7 @@ export function ReviewFeedbackForm({
       </summary>
       <QuotationReviewList
         quotes={quotes}
+        anchors={evidenceAnchors}
         loading={loading}
         onReject={handleRejectQuotation}
       />
@@ -353,6 +356,7 @@ const FeedbackForm = styled.form`
     margin: 0 0 6px;
   }
   cite,
+  .evidence-location,
   .review-muted,
   .review-save-note {
     color: #475569;
