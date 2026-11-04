@@ -47,6 +47,7 @@ from opencontractserver.benchmarks.runner import run_benchmark
 from opencontractserver.documents.models import Document
 from opencontractserver.extracts.models import Datacell
 from opencontractserver.llms.api import AgentAPI
+from opencontractserver.tests.extraction_fixtures import prepare_extraction_source
 
 User = get_user_model()
 
@@ -522,6 +523,22 @@ class BenchmarkRunnerIntegrationTestCase(TestCase):
         self._canned_by_prompt = {
             task.query: task.gold_answer for task in self.adapter.iter_tasks()
         }
+        # The suite disables ingestion signals. Keep the real loader/import
+        # path, then supply the retained source state this runner test needs.
+        from opencontractserver.benchmarks import loader
+
+        original_ingest = loader._ingest_benchmark_document
+
+        def ingest_ready_source(*, corpus, bench_doc, user):
+            document = original_ingest(corpus=corpus, bench_doc=bench_doc, user=user)
+            prepare_extraction_source(document, corpus, text=bench_doc.text)
+            return document
+
+        ingest_patch = patch.object(
+            loader, "_ingest_benchmark_document", side_effect=ingest_ready_source
+        )
+        ingest_patch.start()
+        self.addCleanup(ingest_patch.stop)
 
     def test_loader_materializes_corpus_fieldset_extract_and_datacells(self):
         loaded = load_benchmark_into_corpus(

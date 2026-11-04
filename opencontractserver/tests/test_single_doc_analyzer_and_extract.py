@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 from django.db import transaction
 from django.db.models.signals import post_save
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.test.client import Client as DjangoClient
 from rest_framework.test import APIClient
 
@@ -44,6 +44,7 @@ class TestContext:
         self.user = user
 
 
+@override_settings(CALLBACK_ROOT_URL_FOR_ANALYZER="http://localhost:8000")
 class GraphQLAnalyzerTestCase(TestCase):
     @factory.django.mute_signals(post_save)
     def setUp(self):
@@ -235,6 +236,20 @@ class GraphQLAnalyzerTestCase(TestCase):
     def test_start_document_extract(self):
         logger.info("Test start extract for single document...")
 
+        from opencontractserver.tests.extraction_fixtures import (
+            prepare_extraction_source,
+        )
+
+        # The analysis-upload fixtures are deliberately unprocessed. This
+        # mutation test needs a completed source, not a mock of admission.
+        source = Document.objects.create(
+            title="Extraction source", creator=self.user, file_type="text/plain"
+        )
+        source, _, _ = self.corpus.add_document(document=source, user=self.user)
+        prepare_extraction_source(
+            source, self.corpus, text="A retained source for the extraction mutation."
+        )
+
         # First, create a fieldset
         CREATE_FIELDSET_MUTATION = """
         mutation createFieldset($name: String!, $description: String!) {
@@ -274,9 +289,7 @@ class GraphQLAnalyzerTestCase(TestCase):
         }
         """
 
-        document_id = to_global_id(
-            "DocumentType", self.doc_ids[0]
-        )  # Use the first document
+        document_id = to_global_id("DocumentType", source.pk)
 
         extract_response = self.graphene_client.execute(
             START_DOCUMENT_EXTRACT_MUTATION,
@@ -302,7 +315,7 @@ class GraphQLAnalyzerTestCase(TestCase):
         extract = Extract.objects.get(id=extract_id)
 
         self.assertEqual(extract.documents.count(), 1)
-        self.assertEqual(extract.documents.first().id, self.doc_ids[0])
+        self.assertEqual(extract.documents.first().id, source.pk)
 
         logger.info("SUCCESS - Document extract started successfully")
 

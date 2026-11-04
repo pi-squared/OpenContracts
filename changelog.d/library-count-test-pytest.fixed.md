@@ -1,0 +1,1 @@
+Keep the terminal document count regression isolated under pytest-Django, with an explicit in-memory SQLite connection and a guard against application database access.
