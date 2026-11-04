@@ -1,15 +1,19 @@
 import React, { useId, useRef, useState } from "react";
 import styled from "styled-components";
 import { ReviewQuotation } from "../../../utils/reviewerFeedback";
+import { isRecord } from "../../../utils/findingValue";
+import { QuotationSourceStatus } from "../../extracts/datagrid/FindingView";
 
 interface QuotationReviewListProps {
   quotes: ReviewQuotation[];
+  anchors?: unknown[];
   onReject: (quotation: ReviewQuotation) => Promise<boolean>;
   loading: boolean;
 }
 
 export function QuotationReviewList({
   quotes,
+  anchors,
   onReject,
   loading,
 }: QuotationReviewListProps) {
@@ -20,6 +24,18 @@ export function QuotationReviewList({
   const [rejecting, setRejecting] = useState(false);
   const [error, setError] = useState("");
   const busy = loading || rejecting;
+  const sourceFor = (quotation: ReviewQuotation) => {
+    // A repeated quotation can have different locations. Retain its selected
+    // field/index association, and reject stale projections after a review edit.
+    const matches = anchors?.filter(
+      (anchor) =>
+        isRecord(anchor) &&
+        anchor.selectionPath === quotation.selectionPath &&
+        anchor.quote === quotation.quote &&
+        anchor.reportedPage === quotation.page
+    );
+    return matches?.length === 1 ? matches[0] : undefined;
+  };
   const cancel = () => {
     setPending(null);
     setError("");
@@ -128,6 +144,7 @@ export function QuotationReviewList({
                   : "Page not recorded"}
               </cite>
             </blockquote>
+            <QuotationSourceStatus anchor={sourceFor(item)} />
             <button
               type="button"
               className="quote-reject"

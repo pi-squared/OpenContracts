@@ -16,6 +16,7 @@ import { OS_LEGAL_COLORS } from "../../../assets/configurations/osLegalStyles";
 
 interface CellEditorProps {
   value: any;
+  evidenceAnchors?: unknown[];
   onSave: (
     newValue: unknown,
     options?: ReviewSaveOptions
@@ -26,6 +27,7 @@ interface CellEditorProps {
 
 export const CellEditor: React.FC<CellEditorProps> = ({
   value,
+  evidenceAnchors,
   onSave,
   onClose,
   loading,
@@ -63,6 +65,7 @@ export const CellEditor: React.FC<CellEditorProps> = ({
         <ReviewModalContent onClick={(e) => e.stopPropagation()}>
           <ReviewFeedbackForm
             value={value}
+            evidenceAnchors={evidenceAnchors}
             comments={reviewComments}
             onChange={setReviewComments}
             onSave={onSave}
