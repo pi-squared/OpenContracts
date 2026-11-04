@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { DocumentType } from "../../types/graphql-api";
 import { getDocumentUrl } from "../../utils/navigationUtils";
 
@@ -16,15 +17,15 @@ export function OriginalPdfLink({
   )
     return null;
   return (
-    <a
-      href={getDocumentUrl(document)}
+    <Link
+      to={getDocumentUrl(document)}
       target="_blank"
       rel="noopener noreferrer"
       onClick={(event) => event.stopPropagation()}
       style={{ display: "block" }}
     >
       Open original PDF{includeTitle ? ` — ${document.title}` : ""}
-    </a>
+    </Link>
   );
 }
 
