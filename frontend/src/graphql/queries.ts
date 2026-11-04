@@ -261,7 +261,7 @@ export const GET_DOCUMENT_STATS = gql`
 // dropped from this query because no list consumer reads them (the
 // document-detail loader fetches them on open via its own query). The
 // Documents view paints even less (id / title / fileType / backendLock /
-// pageCount / icon / created / creator initials, with creator slugs for
+// terminal processing status and error / pageCount / icon / created / creator initials, with creator slugs for
 // ``navigateToDocument``), so it uses the slim query below to skip the heavy
 // fan-out without disturbing the other consumers of GET_DOCUMENTS.
 export interface RequestDocumentsForListInputs {
@@ -301,6 +301,8 @@ export const GET_DOCUMENTS_FOR_LIST = gql`
           title
           fileType
           backendLock
+          processingStatus
+          processingError
           pageCount
           icon
           created

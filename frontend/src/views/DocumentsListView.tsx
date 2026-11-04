@@ -5,6 +5,8 @@ import { DocumentType } from "../types/graphql-api";
 import { formatRelativeTime } from "../utils/formatters";
 import { getCreatorInitials } from "../utils/userDisplay";
 import { getDocumentTypeBadge } from "../utils/files";
+import { getDocumentProcessingState } from "../utils/documentProcessing";
+import { DocumentProcessingFailure } from "../components/documents/DocumentProcessingFailure";
 import {
   CardMenuButton,
   DocumentsListContainer,
@@ -55,13 +57,14 @@ export const DocumentsListView: React.FC<DocumentsListViewProps> = ({
     </ListHeader>
     {documents.map((doc) => {
       const isSelected = selectedIds.includes(doc.id);
+      const processingState = getDocumentProcessingState(doc);
       return (
         <ListItem
           key={doc.id}
           role="row"
           tabIndex={0}
           data-testid="document-card"
-          data-processing={String(Boolean(doc.backendLock))}
+          data-processing={String(processingState === "processing")}
           aria-label={`Open document ${doc.title || "Untitled"}`}
           $selected={isSelected}
           onClick={() => onDocumentClick(doc)}
@@ -90,14 +93,20 @@ export const DocumentsListView: React.FC<DocumentsListViewProps> = ({
           <ListItemSize>
             {doc.pageCount ? `${doc.pageCount} pages` : ""}
           </ListItemSize>
-          <div>
-            <Chip
-              size="sm"
-              variant="soft"
-              color={doc.backendLock ? "warning" : "success"}
-            >
-              {doc.backendLock ? "Processing" : "Processed"}
-            </Chip>
+          <div
+            data-terminal-failure={processingState === "failed" || undefined}
+          >
+            {processingState === "failed" ? (
+              <DocumentProcessingFailure document={doc} />
+            ) : (
+              <Chip
+                size="sm"
+                variant="soft"
+                color={processingState === "processing" ? "warning" : "success"}
+              >
+                {processingState === "processing" ? "Processing" : "Processed"}
+              </Chip>
+            )}
           </div>
           <ListItemUploader>
             <Avatar fallback={getCreatorInitials(doc.creator)} size="xs" />

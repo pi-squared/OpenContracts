@@ -5,6 +5,8 @@ import { DocumentType } from "../types/graphql-api";
 import { formatRelativeTime } from "../utils/formatters";
 import { getCreatorInitials } from "../utils/userDisplay";
 import { getDocumentTypeBadge } from "../utils/files";
+import { getDocumentProcessingState } from "../utils/documentProcessing";
+import { DocumentProcessingFailure } from "../components/documents/DocumentProcessingFailure";
 import {
   CardBody,
   CardCheckbox,
@@ -45,13 +47,14 @@ export const DocumentsGridView: React.FC<DocumentsGridViewProps> = ({
   <DocumentsGrid>
     {documents.map((doc) => {
       const isSelected = selectedIds.includes(doc.id);
+      const processingState = getDocumentProcessingState(doc);
       return (
         <DocumentCardWrapper
           key={doc.id}
           role="button"
           tabIndex={0}
           data-testid="document-card"
-          data-processing={String(Boolean(doc.backendLock))}
+          data-processing={String(processingState === "processing")}
           aria-label={`Open document ${doc.title || "Untitled"}`}
           $selected={isSelected}
           onClick={() => onDocumentClick(doc)}
@@ -96,7 +99,7 @@ export const DocumentsGridView: React.FC<DocumentsGridViewProps> = ({
               </Chip>
             </TypeBadge>
 
-            {doc.backendLock && (
+            {processingState === "processing" && (
               <ProcessingOverlay>
                 <Loader2
                   size={24}
@@ -112,6 +115,9 @@ export const DocumentsGridView: React.FC<DocumentsGridViewProps> = ({
             <CardTitle title={doc.title || "Untitled"}>
               {doc.title || "Untitled"}
             </CardTitle>
+            {processingState === "failed" && (
+              <DocumentProcessingFailure document={doc} />
+            )}
             <CardMeta>
               {doc.pageCount ? (
                 <span>{doc.pageCount} pages</span>
