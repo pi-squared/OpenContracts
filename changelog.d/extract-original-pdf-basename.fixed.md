@@ -1,0 +1,1 @@
+- `OriginalPdfLink` in `frontend/src/components/extracts/SourceReadinessNotice.tsx` now uses the configured router basename, so extract source links preserve native new-tab navigation under prefixed installations.
