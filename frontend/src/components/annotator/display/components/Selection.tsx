@@ -342,6 +342,7 @@ export const Selection: React.FC<SelectionProps> = ({
         approved={approved}
         rejected={rejected}
         selected={selected}
+        focused={focused}
         scrollIntoView={scrollIntoView}
         label={
           (showInfo || annotation.isEvidenceQuote) &&

@@ -2,7 +2,10 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { LabelDisplayBehavior } from "../../../../types/graphql-api";
 import { getContrastColor } from "../../../../utils/transform";
-import { ANNOTATION_BOUNDARY_RADIUS } from "../../../../assets/configurations/constants";
+import {
+  ANNOTATION_BOUNDARY_RADIUS,
+  ANNOTATION_LABEL_GAP,
+} from "../../../../assets/configurations/constants";
 import { pulseGreen, pulseMaroon } from "../effects";
 
 // ... (keep the existing interfaces)
@@ -45,7 +48,7 @@ export const SelectionInfo = styled.div<SelectionInfoProps>`
   position: absolute;
   width: max-content;
   left: 0px;
-  bottom: calc(100% - 2px);
+  bottom: calc(100% + ${ANNOTATION_LABEL_GAP}px);
   border-radius: ${ANNOTATION_BOUNDARY_RADIUS} ${ANNOTATION_BOUNDARY_RADIUS} 0 0;
   background: ${(props) =>
     props.$showBoundingBox ? props.$color : "transparent"};

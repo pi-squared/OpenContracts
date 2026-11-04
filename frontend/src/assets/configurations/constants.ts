@@ -1205,6 +1205,8 @@ export const AUTOMATION_CREDENTIAL_NAME_MAX_LENGTH = 100;
 // Evidence label layout and browser file downloads.
 export const ANNOTATION_LABEL_GAP = 4;
 export const ANNOTATION_LABEL_MIN_HEIGHT = 4;
+/** Inspection focus is independent of the annotation's semantic label colour. */
+export const PDF_EVIDENCE_FOCUS_COLOR = "#2563eb";
 /** Allow pointer transfer from a highlight to its separate label controls. */
 export const ANNOTATION_LABEL_HOVER_EXIT_DELAY_MS = 160;
 /** Maximum stationary movement for evidence activation and drag admission. */

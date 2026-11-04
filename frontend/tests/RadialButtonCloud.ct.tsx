@@ -44,6 +44,40 @@ const protectedActions: CloudButtonItem[] = [
 ];
 
 test.describe("RadialButtonCloud", () => {
+  test("empty cloud background passes native pointer clicks to the underlying surface", async ({
+    mount,
+    page,
+  }) => {
+    await mount(<RadialButtonCloudWrapper actions={sampleActions} underlay />);
+    await page.getByRole("button", { name: "Annotation actions" }).hover();
+    await expect(page.locator("button[title]")).toHaveCount(3);
+    await page.waitForTimeout(600);
+    const point = await page.evaluate(() => {
+      const launcher = document.querySelector(".pulsing-dot")!;
+      const cloud =
+        launcher.parentElement!.querySelector("button[title]")!.parentElement!;
+      const bounds = cloud.getBoundingClientRect();
+      const controls = [launcher, ...cloud.querySelectorAll("button")].map(
+        (element) => element.getBoundingClientRect()
+      );
+      for (const x of [bounds.left + 4, bounds.right - 4])
+        for (const y of [bounds.top + 4, bounds.bottom - 4])
+          if (
+            !controls.some(
+              (rect) =>
+                x >= rect.left &&
+                x <= rect.right &&
+                y >= rect.top &&
+                y <= rect.bottom
+            )
+          )
+            return { x, y };
+      throw Error("A visible-control-free cloud background point is required");
+    });
+    await page.mouse.click(point.x, point.y);
+    await expect(page.getByLabel("Underlying clicks")).toHaveText("1");
+  });
+
   test("renders pulsing dot in collapsed state", async ({ mount, page }) => {
     const component = await mount(
       <RadialButtonCloudWrapper actions={sampleActions} />

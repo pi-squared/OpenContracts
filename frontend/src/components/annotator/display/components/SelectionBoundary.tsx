@@ -9,6 +9,7 @@ import {
   ANNOTATION_BOUNDARY_RADIUS,
   BOUNDARY_OPACITY_SELECTED,
   BOUNDARY_OPACITY_UNSELECTED,
+  PDF_EVIDENCE_FOCUS_COLOR,
   Z_INDEX,
 } from "../../../../assets/configurations/constants";
 import { pulseGreen, pulseMaroon } from "../effects";
@@ -24,6 +25,7 @@ interface SelectionBoundaryProps {
   color: string;
   bounds: BoundingBox;
   selected: boolean;
+  focused?: boolean;
   foreground?: boolean;
   label?: React.ReactNode;
   children?: React.ReactNode;
@@ -123,6 +125,7 @@ export const SelectionBoundary: React.FC<SelectionBoundaryProps> = ({
   onClick,
   clickThroughOnPlainClick = false,
   selected,
+  focused = false,
   foreground = false,
   approved,
   rejected,
@@ -169,18 +172,18 @@ export const SelectionBoundary: React.FC<SelectionBoundaryProps> = ({
   const height = bounds.bottom - bounds.top;
   const rotateY = width < 0 ? -180 : 0;
   const rotateX = height < 0 ? -180 : 0;
-  const { r, g, b } = hexToRgb(color);
+  const { r, g, b } = hexToRgb(focused ? PDF_EVIDENCE_FOCUS_COLOR : color);
   // Fill ignores showBoundingBox so multi-line inter-row gaps don't stripe through as white.
   const opacity = hidden
     ? 0
-    : selected
+    : selected || focused
     ? BOUNDARY_OPACITY_SELECTED
     : BOUNDARY_OPACITY_UNSELECTED;
   const backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
 
   const boxShadow =
     showBoundingBox && !hidden
-      ? computeAnnotationBoxShadow(r, g, b, selected)
+      ? computeAnnotationBoxShadow(r, g, b, selected || focused)
       : "none";
 
   const handleClick = (e: React.MouseEvent) => {
@@ -220,6 +223,7 @@ export const SelectionBoundary: React.FC<SelectionBoundaryProps> = ({
         role={evidenceTarget && !hidden ? "button" : undefined}
         tabIndex={evidenceTarget && !hidden ? 0 : undefined}
         aria-label={evidenceTarget ? "Inspect evidence" : undefined}
+        aria-pressed={evidenceTarget && !hidden ? focused : undefined}
         data-pdf-evidence-target={evidenceTarget ? id : undefined}
         onFocusCapture={(event) =>
           onKeyboardFocus?.(
