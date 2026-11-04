@@ -290,7 +290,14 @@ def original_projection(cell, value, quotes):
         path = quote.get("selectionPath")
         if path not in paths:
             continue
-        annotations = labels.get(path, [])
+        # A retained domain association is provenance, not a location result.
+        # Historical ambiguous/unavailable quotations remain visible, while
+        # their legacy IDs cannot turn into definitive selected highlights.
+        if quote.get("status") in {"matched", "different_page"}:
+            annotations = labels.get(path, [])
+        else:
+            quote = {**quote, "annotationId": None, "annotationIds": []}
+            annotations = []
         if annotations:
             domain_labels = []
             for annotation in annotations:
